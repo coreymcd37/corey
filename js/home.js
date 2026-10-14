@@ -85,18 +85,23 @@
     const forced = new URLSearchParams(location.search).get("month");
     const now = new Date();
     if (forced) {
-      const names = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-      const i = names.findIndex((n) => n.toLowerCase().startsWith(forced.toLowerCase()));
-      if (i >= 0) now.setMonth(i);
+      const n = parseInt(forced, 10);
+      const i = n >= 1 && n <= 12 ? n - 1 : window.CM_ACROSTIC.findIndex((m) => m.name.toLowerCase().startsWith(forced.toLowerCase()));
+      if (i >= 0) now.setMonth(i, 1);
     }
     const month = window.CM_monthSet(now);
     const host = document.getElementById("acrostic");
-    if (host) {
-      document.getElementById("month-name") && (document.getElementById("month-name").textContent = month.name);
-      host.innerHTML = month.words.map((w, i) => {
-        const letter = (month.name[i] || w[0]).toUpperCase();
-        return `<div class="acro-row"><span class="letter">${letter}</span><span class="phrase">${w}</span></div>`;
-      }).join("") + `<svg class="heart" viewBox="0 0 24 24" aria-hidden="true"><path fill="#c084fc" d="M12 21s-6.4-4.2-9.2-8.1C.7 10.3 1.2 7 3.8 5.6 6 4.5 8.2 5.4 12 9c3.8-3.6 6-4.5 8.2-3.4 2.6 1.4 3.1 4.7 1 7.3C18.4 16.8 12 21 12 21z"/></svg>`;
+    if (host && month) {
+      const esc = (t) => String(t).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+      const nameEl = document.getElementById("month-name");
+      if (nameEl) nameEl.textContent = month.name;
+      host.setAttribute("aria-label", `${month.name}: ${month.words.join(" ").replace(/;/g, "")}. ${month.ref.replace(/ \u00b7 /g, ", ")}`);
+      host.innerHTML =
+        `<p class="mc-ref" aria-hidden="true">${esc(month.ref)}</p>` +
+        `<div class="mc-pill" aria-hidden="true">${[...month.name.toUpperCase()].map((c) => `<span>${c}</span>`).join("")}</div>` +
+        `<ul class="mc-words" aria-hidden="true">${month.words.map((w) => `<li><b>${esc(w[0])}</b>${esc(w.slice(1))}</li>`).join("")}</ul>` +
+        `<svg class="mc-heart" viewBox="0 0 24 24" aria-hidden="true"><path fill="#a78bfa" d="M12 21s-6.4-4.2-9.2-8.1C.7 10.3 1.2 7 3.8 5.6 6 4.5 8.2 5.4 12 9c3.8-3.6 6-4.5 8.2-3.4 2.6 1.4 3.1 4.7 1 7.3C18.4 16.8 12 21 12 21z"/></svg>`;
+      host.hidden = false;
     }
 
     const video = document.getElementById("opener-video");
