@@ -95,6 +95,13 @@
       const esc = (t) => String(t).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
       const nameEl = document.getElementById("month-name");
       if (nameEl) nameEl.textContent = month.name;
+      if (month.img) {
+        host.classList.add("month-card--img");
+        host.removeAttribute("role");
+        host.removeAttribute("aria-label");
+        host.innerHTML = `<img src="${esc(month.img)}" alt="${esc(month.alt)}" width="821" height="1100" decoding="async" />`;
+        host.hidden = false;
+      } else {
       host.setAttribute("aria-label", `${month.name}: ${month.words.join(" ").replace(/;/g, "")}. ${month.ref.replace(/ \u00b7 /g, ", ")}`);
       host.innerHTML =
         `<p class="mc-ref" aria-hidden="true">${esc(month.ref)}</p>` +
@@ -102,6 +109,7 @@
         `<ul class="mc-words" aria-hidden="true">${month.words.map((w) => `<li><b>${esc(w[0])}</b>${esc(w.slice(1))}</li>`).join("")}</ul>` +
         `<svg class="mc-heart" viewBox="0 0 24 24" aria-hidden="true"><path fill="#a78bfa" d="M12 21s-6.4-4.2-9.2-8.1C.7 10.3 1.2 7 3.8 5.6 6 4.5 8.2 5.4 12 9c3.8-3.6 6-4.5 8.2-3.4 2.6 1.4 3.1 4.7 1 7.3C18.4 16.8 12 21 12 21z"/></svg>`;
       host.hidden = false;
+      }
     }
 
     const video = document.getElementById("opener-video");
