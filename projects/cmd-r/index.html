@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>CMD-R // Corey McDaniel Game Play</title>
+  <meta name="description" content="Welcome to Corey McDaniel Game Play. Play CMD-R, an immersive arcade experience featuring high-octane action and dynamic mechanics. Play directly in your browser!">
+  <meta name="author" content="Corey McDaniel">
+  
+  <!-- VideoGame Schema Markup for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoGame",
+    "name": "CMD-R",
+    "author": {
+      "@type": "Person",
+      "name": "Corey McDaniel"
+    },
+    "url": "https://coreymcdaniel.com/projects/cmd-r/",
+    "genre": ["Arcade", "Action"],
+    "gamePlatform": "Web Browser"
+  }
+  </script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-user-select: none;
+      -webkit-touch-callout: none;
+    }
+
+    body {
+      background: #020205;
+      color: #00f3ff;
+      font-family: 'Share Tech Mono', monospace;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      position: fixed;
+    }
+
+    .game-wrapper {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      max-width: 950px;
+      max-height: 680px;
+      background: #070712;
+      border-radius: 0;
+      overflow: hidden;
+      box-shadow: 0 0 60px rgba(0, 243, 255, 0.2), inset 0 0 40px rgba(0, 0, 0, 0.9);
+      border: none;
+      display: flex;
+      flex-direction: column;
+    }
+
+    @media (min-width: 951px) {
+      .game-wrapper {
+        border-radius: 12px;
+        border: 1px solid rgba(0, 243, 255, 0.3);
+        height: 85vh;
+      }
+    }
+
+    /* SEO Hidden Content Block */
+    .seo-content-matrix {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* HUD Bar */
+    .game-hud {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 16px;
+      background: rgba(10, 10, 25, 0.95);
+      border-bottom: 1px solid rgba(0, 243, 255, 0.2);
+      font-family: 'Orbitron', sans-serif;
+      z-index: 10;
+    }
+
+    .hud-group {
+      display: flex;
+      gap: 16px;
+      font-size: 0.75rem;
+    }
+
+    .hud-label {
+      color: #64748b;
+      font-size: 0.6rem;
+      display: block;
+      margin-bottom: 1px;
+    }
+
+    .hud-value {
+      color: #fff;
+      font-weight: 700;
+      text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+    }
+
+    .hud-value.energy {
+      color: #00f3ff;
+    }
+
+    .hud-value.score {
+      color: #10b981;
+    }
+
+    /* Canvas Area */
+    .game-canvas-container {
+      position: relative;
+      flex: 1;
+      width: 100%;
+      overflow: hidden;
+      touch-action: none;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Mobile Virtual Controls Overlay */
+    .mobile-controls {
+      position: absolute;
+      bottom: 12px;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 20px;
+      pointer-events: none;
+      z-index: 15;
+    }
+
+    .virtual-btn {
+      pointer-events: auto;
+      background: rgba(0, 243, 255, 0.1);
+      border: 2px solid rgba(0, 243, 255, 0.4);
+      color: #00f3ff;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      font-size: 0.75rem;
+      padding: 12px 20px;
+      border-radius: 8px;
+      backdrop-filter: blur(4px);
+      text-transform: uppercase;
+      box-shadow: 0 0 15px rgba(0, 243, 255, 0.15);
+    }
+
+    .virtual-btn:active, .virtual-btn.active {
+      background: rgba(0, 243, 255, 0.3);
+      border-color: #00f3ff;
+      box-shadow: 0 0 25px rgba(0, 243, 255, 0.6);
+    }
+
+    /* Overlay Screens (Start / Game Over) */
+    .overlay-screen {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(5, 5, 12, 0.94);
+      backdrop-filter: blur(8px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 25;
+      text-align: center;
+      padding: 24px;
+    }
+
+    .overlay-screen.hidden {
+      display: none;
+    }
+
+    .screen-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2rem;
+      font-weight: 900;
+      letter-spacing: 0.15em;
+      color: #fff;
+      text-shadow: 0 0 20px rgba(0, 243, 255, 0.8);
+      margin-bottom: 6px;
+    }
+
+    .screen-subtitle {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.8rem;
+      color: #00f3ff;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .screen-desc {
+      font-size: 0.85rem;
+      color: #94a3b8;
+      max-width: 440px;
+      line-height: 1.5;
+      margin-bottom: 24px;
+    }
+
+    .cyber-btn {
+      background: transparent;
+      border: 2px solid #00f3ff;
+      color: #00f3ff;
+      padding: 14px 32px;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 15px rgba(0, 243, 255, 0.2);
+      border-radius: 6px;
+    }
+
+    .cyber-btn:hover, .cyber-btn:active {
+      background: #00f3ff;
+      color: #020205;
+      box-shadow: 0 0 30px rgba(0, 243, 255, 0.8);
+    }
+
+    /* Footer Controls Bar */
+    .game-footer {
+      padding: 8px 16px;
+      background: rgba(5, 5, 12, 0.95);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.7rem;
+      color: #64748b;
+      z-index: 10;
+    }
+
+    .brand-credit {
+      color: #00f3ff;
+      font-weight: bold;
+    }
+
+    .key {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2px 5px;
+      border-radius: 3px;
+      color: #e2e8f0;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    @media (max-width: 600px) {
+      .desktop-hints {
+        display: none;
+      }
+    }
+  </style>
+<link rel="canonical" href="https://coreymcdaniel.com/projects/cmd-r/">
+<meta property="og:type" content="website"><meta property="og:title" content="CMD-R // Corey McDaniel Game Play"><meta property="og:description" content="Welcome to Corey McDaniel Game Play. Play CMD-R, an immersive arcade experience featuring high-octane action and dynamic mechanics. Play directly in your browser!"><meta property="og:url" content="https://coreymcdaniel.com/projects/cmd-r/"><meta property="og:image" content="https://coreymcdaniel.com/img/og.png"><meta property="og:site_name" content="Corey McDaniel">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="CMD-R // Corey McDaniel Game Play"><meta name="twitter:description" content="Welcome to Corey McDaniel Game Play. Play CMD-R, an immersive arcade experience featuring high-octane action and dynamic mechanics. Play directly in your browser!"><meta name="twitter:image" content="https://coreymcdaniel.com/img/og.png">
+<link rel="icon" href="/img/favicon-32.png" type="image/png" sizes="32x32"><link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+<style>.cmd-back{position:fixed;left:12px;bottom:12px;z-index:2147483000;padding:8px 14px;border-radius:99px;background:#0b0916e6;color:#e9d5ff;border:1px solid #7c3aed;font:600 13px/1 system-ui,sans-serif;text-decoration:none;box-shadow:0 0 16px #7c3aed66}.cmd-back:hover,.cmd-back:focus-visible{color:#fff;outline:2px solid #67e8f9;outline-offset:2px}</style>
+</head>
+<body>
+<a class="cmd-back" href="/home/">&larr; Back to home</a>
+
+
+  <!-- SEO Semantic Text Layer for Crawlers -->
+  <div class="seo-content-matrix">
+    <h1>Corey McDaniel Game Play</h1>
+    <h2>Official Home of CMD-R</h2>
+    <p>Play CMD-R online at coreymcdaniel.com. Experience browser-based arcade action created exclusively by developer Corey McDaniel.</p>
+  </div>
+
+  <div class="game-wrapper">
+    <!-- HUD Header -->
+    <div class="game-hud">
+      <div class="hud-group">
+        <div>
+          <span class="hud-label">SCORE</span>
+          <span id="scoreVal" class="hud-value score">000000</span>
+        </div>
+        <div>
+          <span class="hud-label">WAVE</span>
+          <span id="waveVal" class="hud-value">01</span>
+        </div>
+      </div>
+      <div class="hud-group">
+        <div>
+          <span class="hud-label">CHRONO</span>
+          <span id="energyVal" class="hud-value energy">100%</span>
+        </div>
+        <div>
+          <span class="hud-label">HULL</span>
+          <span id="hpVal" class="hud-value" style="color: #ef4444;">100%</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Canvas Playfield -->
+    <div class="game-canvas-container">
+      <canvas id="gameCanvas"></canvas>
+
+      <!-- Mobile Touch Controls HUD Overlay -->
+      <div class="mobile-controls">
+        <button id="chronoBtn" class="virtual-btn">⏱️ Time Shift</button>
+      </div>
+
+      <!-- Start Screen Overlay -->
+      <div id="startScreen" class="overlay-screen">
+        <h1 class="screen-title" id="t-main">CMD-R</h1>
+        <div class="screen-subtitle" id="t-sub">Corey McDaniel Game Play</div>
+        <p class="screen-desc">
+          Drag to pilot your interceptor. Tap the <span style="color: #00f3ff;">Time Shift</span> button or hold <span class="key">SPACE</span> to dilate time and dodge hostile glitch sectors!
+        </p>
+        <button id="startBtn" class="cyber-btn">Initialize System</button>
+      </div>
+
+      <!-- Game Over Overlay -->
+      <div id="gameOverScreen" class="overlay-screen hidden">
+        <h1 class="screen-title" style="color: #ef4444; text-shadow: 0 0 20px rgba(239, 68, 68, 0.8);">SYSTEM FAILURE</h1>
+        <div class="screen-subtitle" style="color: #ef4444;" id="t-sub2">Corey McDaniel Game Play</div>
+        <p class="screen-desc">
+          Vessel compromised in Sector <span id="finalWave">01</span>.<br>
+          Final Score: <span id="finalScore" style="color: #10b981; font-weight: bold;">0</span>
+        </p>
+        <button id="restartBtn" class="cyber-btn">Reboot Interceptor</button>
+      </div>
+    </div>
+
+    <!-- Footer Controls Bar -->
+    <div class="game-footer">
+      <div class="desktop-hints">Touch/Drag or <span class="key">WASD</span> | <span class="key">SPACE</span> / Time Button</div>
+      <div id="t-foot">Corey McDaniel Game Play &bull; <span class="brand-credit">CMD-R</span></div>
+    </div>
+  </div>
+
+  <script>
+    // Anti-Tamper & Credit Verification Matrix
+    (function(){
+      const _0x1a2b=['Corey McDaniel Game Play','CMD-R','textContent','getElementById','innerHTML'];
+      function verifyCreds() {
+        const m = document[_0x1a2b[3]]('t-main');
+        const s1 = document[_0x1a2b[3]]('t-sub');
+        const s2 = document[_0x1a2b[3]]('t-sub2');
+        const f = document[_0x1a2b[3]]('t-foot');
+        
+        if (!m || !s1 || !s2 || !f) return;
+
+        if (!m[_0x1a2b[2]].includes(_0x1a2b[1]) || !s1[_0x1a2b[2]].includes(_0x1a2b[0])) {
+          document.body[_0x1a2b[4]] = '<div style="background:#020205;color:#ef4444;font-family:monospace;height:100vh;display:flex;justify-content:center;align-items:center;text-align:center;padding:20px;"><h2>CRITICAL ERROR: INTEGRITY CHECK FAILED // UNAUTHORIZED MODIFICATION DETECTED</h2></div>';
+          throw new Error('Integrity violation');
+        }
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', verifyCreds);
+      } else {
+        verifyCreds();
+      }
+      setInterval(verifyCreds, 3000);
+    })();
+
+    // Main Game Engine Loop with Touch / Mobile Support
+    (function() {
+      const canvas = document.getElementById('gameCanvas');
+      const ctx = canvas.getContext('2d');
+
+      const startScreen = document.getElementById('startScreen');
+      const gameOverScreen = document.getElementById('gameOverScreen');
+      const startBtn = document.getElementById('startBtn');
+      const restartBtn = document.getElementById('restartBtn');
+      const chronoBtn = document.getElementById('chronoBtn');
+
+      const scoreValEl = document.getElementById('scoreVal');
+      const waveValEl = document.getElementById('waveVal');
+      const energyValEl = document.getElementById('energyVal');
+      const hpValEl = document.getElementById('hpVal');
+      const finalScoreEl = document.getElementById('finalScore');
+      const finalWaveEl = document.getElementById('finalWave');
+
+      let width, height;
+      function resize() {
+        width = canvas.width = canvas.offsetWidth;
+        height = canvas.height = canvas.offsetHeight;
+      }
+      window.addEventListener('resize', resize);
+      resize();
+
+      let gameState = 'START';
+      let score = 0;
+      let wave = 1;
+      let hp = 100;
+      let chronoEnergy = 100;
+      let isTimeDilated = false;
+      let touchTimeDilated = false;
+
+      let player = {
+        x: width / 2,
+        y: height - 100,
+        radius: 14,
+        speed: 6
+      };
+
+      let keys = {};
+      let pointer = { x: width / 2, y: height - 100, active: false };
+
+      // Keyboard Listeners
+      window.addEventListener('keydown', (e) => {
+        keys[e.code] = true;
+        if (e.code === 'Space') e.preventDefault();
+      });
+
+      window.addEventListener('keyup', (e) => {
+        keys[e.code] = false;
+      });
+
+      // Mouse & Touch Pointer Listeners
+      canvas.addEventListener('mousemove', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        pointer.x = e.clientX - rect.left;
+        pointer.y = e.clientY - rect.top;
+        pointer.active = true;
+      });
+
+      canvas.addEventListener('mouseleave', () => {
+        pointer.active = false;
+      });
+
+      canvas.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        const rect = canvas.getBoundingClientRect();
+        if (e.touches.length > 0) {
+          pointer.x = e.touches[0].clientX - rect.left;
+          pointer.y = e.touches[0].clientY - rect.top;
+          pointer.active = true;
+        }
+      }, { passive: false });
+
+      canvas.addEventListener('touchmove', (e) => {
+        e.preventDefault();
+        const rect = canvas.getBoundingClientRect();
+        if (e.touches.length > 0) {
+          pointer.x = e.touches[0].clientX - rect.left;
+          pointer.y = e.touches[0].clientY - rect.top;
+          pointer.active = true;
+        }
+      }, { passive: false });
+
+      canvas.addEventListener('touchend', (e) => {
+        if (e.touches.length === 0) {
+          pointer.active = false;
+        }
+      });
+
+      // Mobile Chrono Touch Button
+      chronoBtn.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        touchTimeDilated = true;
+        chronoBtn.classList.add('active');
+      });
+      chronoBtn.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        touchTimeDilated = false;
+        chronoBtn.classList.remove('active');
+      });
+      chronoBtn.addEventListener('mousedown', () => { touchTimeDilated = true; chronoBtn.classList.add('active'); });
+      chronoBtn.addEventListener('mouseup', () => { touchTimeDilated = false; chronoBtn.classList.remove('active'); });
+
+      function resetGame() {
+        score = 0;
+        wave = 1;
+        hp = 100;
+        chronoEnergy = 100;
+        bullets = [];
+        enemies = [];
+        particles = [];
+        player.x = width / 2;
+        player.y = height - 100;
+        gameState = 'PLAYING';
+        startScreen.classList.add('hidden');
+        gameOverScreen.classList.add('hidden');
+      }
+
+      startBtn.addEventListener('click', resetGame);
+      restartBtn.addEventListener('click', resetGame);
+
+      let enemySpawnTimer = 0;
+      let shootTimer = 0;
+
+      let bullets = [];
+      let enemies = [];
+      let particles = [];
+      let starfield = [];
+
+      for (let i = 0; i < 60; i++) {
+        starfield.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          size: Math.random() * 2 + 0.5,
+          speed: Math.random() * 1.5 + 0.5
+        });
+      }
+
+      function spawnEnemy() {
+        let typeRand = Math.random();
+        let type = 'drone';
+        let hpVal = 1;
+        let color = '#ef4444';
+        let radius = 16;
+
+        if (typeRand > 0.65 && wave >= 2) {
+          type = 'interceptor';
+          hpVal = 2;
+          color = '#f97316';
+          radius = 18;
+        }
+        if (typeRand > 0.9 && wave >= 3) {
+          type = 'glitch';
+          hpVal = 3;
+          color = '#a855f7';
+          radius = 22;
+        }
+
+        enemies.push({
+          x: Math.random() * (width - 60) + 30,
+          y: -40,
+          vx: (Math.random() - 0.5) * 2,
+          vy: Math.random() * 1.5 + 1.2 + (wave * 0.2),
+          radius: radius,
+          type: type,
+          hp: hpVal,
+          maxHp: hpVal,
+          color: color,
+          angle: 0
+        });
+      }
+
+      function createExplosion(x, y, color, count = 15) {
+        for (let i = 0; i < count; i++) {
+          let angle = Math.random() * Math.PI * 2;
+          let speed = Math.random() * 4 + 1;
+          particles.push({
+            x: x,
+            y: y,
+            vx: Math.cos(angle) * speed,
+            vy: Math.sin(angle) * speed,
+            radius: Math.random() * 2.5 + 1,
+            color: color,
+            alpha: 1.0,
+            decay: Math.random() * 0.03 + 0.015
+          });
+        }
+      }
+
+      function update() {
+        if (gameState !== 'PLAYING') return;
+
+        isTimeDilated = (keys['Space'] || touchTimeDilated) && chronoEnergy > 0;
+        let timeScale = isTimeDilated ? 0.25 : 1.0;
+
+        if (isTimeDilated) {
+          chronoEnergy = Math.max(0, chronoEnergy - 0.45);
+        } else {
+          chronoEnergy = Math.min(100, chronoEnergy + 0.2);
+        }
+
+        energyValEl.textContent = Math.round(chronoEnergy) + '%';
+        hpValEl.textContent = hp + '%';
+        scoreValEl.textContent = String(score).padStart(6, '0');
+        waveValEl.textContent = String(wave).padStart(2, '0');
+
+        if (score > wave * 600) {
+          wave++;
+        }
+
+        for (let star of starfield) {
+          star.y += star.speed * (isTimeDilated ? 0.4 : 1.0);
+          if (star.y > height) star.y = 0;
+        }
+
+        let dx = 0, dy = 0;
+        if (keys['KeyW'] || keys['ArrowUp']) dy -= 1;
+        if (keys['KeyS'] || keys['ArrowDown']) dy += 1;
+        if (keys['KeyA'] || keys['ArrowLeft']) dx -= 1;
+        if (keys['KeyD'] || keys['ArrowRight']) dx += 1;
+
+        if (dx !== 0 || dy !== 0) {
+          let len = Math.hypot(dx, dy);
+          player.x += (dx / len) * player.speed;
+          player.y += (dy / len) * player.speed;
+          pointer.active = false;
+        } else if (pointer.active) {
+          player.x += (pointer.x - player.x) * 0.2;
+          player.y += (pointer.y - player.y) * 0.2;
+        }
+
+        player.x = Math.max(player.radius, Math.min(width - player.radius, player.x));
+        player.y = Math.max(player.radius, Math.min(height - player.radius, player.y));
+
+        shootTimer += timeScale;
+        if (shootTimer > 12) {
+          bullets.push({
+            x: player.x,
+            y: player.y - player.radius,
+            vx: 0,
+            vy: -12,
+            radius: 3.5
+          });
+          shootTimer = 0;
+        }
+
+        for (let i = bullets.length - 1; i >= 0; i--) {
+          let b = bullets[i];
+          b.y += b.vy * timeScale;
+          if (b.y < -10) bullets.splice(i, 1);
+        }
+
+        enemySpawnTimer += timeScale;
+        if (enemySpawnTimer > Math.max(25, 70 - (wave * 8))) {
+          spawnEnemy();
+          enemySpawnTimer = 0;
+        }
+
+        for (let i = enemies.length - 1; i >= 0; i--) {
+          let e = enemies[i];
+          e.x += e.vx * timeScale;
+          e.y += e.vy * timeScale;
+          e.angle += 0.05 * timeScale;
+
+          let distToPlayer = Math.hypot(e.x - player.x, e.y - player.y);
+          if (distToPlayer < e.radius + player.radius) {
+            hp -= 20;
+            createExplosion(e.x, e.y, e.color, 25);
+            enemies.splice(i, 1);
+            if (hp <= 0) {
+              gameState = 'GAMEOVER';
+              finalScoreEl.textContent = score;
+              finalWaveEl.textContent = String(wave).padStart(2, '0');
+              gameOverScreen.classList.remove('hidden');
+            }
+            continue;
+          }
+
+          for (let j = bullets.length - 1; j >= 0; j--) {
+            let b = bullets[j];
+            let distToBullet = Math.hypot(e.x - b.x, e.y - b.y);
+            if (distToBullet < e.radius + b.radius) {
+              e.hp--;
+              bullets.splice(j, 1);
+              createExplosion(b.x, b.y, '#00f3ff', 5);
+
+              if (e.hp <= 0) {
+                createExplosion(e.x, e.y, e.color, 20);
+                score += e.maxHp * 100;
+                enemies.splice(i, 1);
+                break;
+              }
+            }
+          }
+
+          if (e.y > height + 50) enemies.splice(i, 1);
+        }
+
+        for (let i = particles.length - 1; i >= 0; i--) {
+          let p = particles[i];
+          p.x += p.vx * timeScale;
+          p.y += p.vy * timeScale;
+          p.alpha -= p.decay * timeScale;
+          if (p.alpha <= 0) particles.splice(i, 1);
+        }
+      }
+
+      function draw() {
+        ctx.fillStyle = '#05050f';
+        ctx.fillRect(0, 0, width, height);
+
+        if (isTimeDilated) {
+          ctx.fillStyle = 'rgba(0, 243, 255, 0.06)';
+          ctx.fillRect(0, 0, width, height);
+        }
+
+        ctx.fillStyle = '#ffffff';
+        for (let star of starfield) {
+          ctx.globalAlpha = star.size / 2.5;
+          ctx.fillRect(star.x, star.y, star.size, star.size);
+        }
+        ctx.globalAlpha = 1.0;
+
+        for (let p of particles) {
+          ctx.save();
+          ctx.globalAlpha = Math.max(0, p.alpha);
+          ctx.fillStyle = p.color;
+          ctx.shadowBlur = 10;
+          ctx.shadowColor = p.color;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.restore();
+        }
+
+        ctx.fillStyle = '#00f3ff';
+        ctx.shadowBlur = 12;
+        ctx.shadowColor = '#00f3ff';
+        for (let b of bullets) {
+          ctx.beginPath();
+          ctx.arc(b.x, b.y, b.radius, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        ctx.shadowBlur = 0;
+
+        for (let e of enemies) {
+          ctx.save();
+          ctx.translate(e.x, e.y);
+          ctx.rotate(e.angle);
+
+          ctx.strokeStyle = e.color;
+          ctx.lineWidth = 2;
+          ctx.shadowBlur = 15;
+          ctx.shadowColor = e.color;
+          ctx.fillStyle = 'rgba(10, 10, 20, 0.7)';
+
+          if (e.type === 'drone') {
+            ctx.beginPath();
+            ctx.moveTo(0, e.radius);
+            ctx.lineTo(-e.radius, -e.radius);
+            ctx.lineTo(e.radius, -e.radius);
+            ctx.closePath();
+            ctx.fill();
+            ctx.stroke();
+          } else if (e.type === 'interceptor') {
+            ctx.beginPath();
+            for (let i = 0; i < 4; i++) {
+              let angle = (i * Math.PI) / 2;
+              let px = Math.cos(angle) * e.radius;
+              let py = Math.sin(angle) * e.radius;
+              if (i === 0) ctx.moveTo(px, py);
+              else ctx.lineTo(px, py);
+            }
+            ctx.closePath();
+            ctx.fill();
+            ctx.stroke();
+          } else {
+            ctx.beginPath();
+            ctx.arc(0, 0, e.radius, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.stroke();
+          }
+
+          ctx.restore();
+        }
+
+        ctx.save();
+        ctx.translate(player.x, player.y);
+        
+        ctx.shadowBlur = 20;
+        ctx.shadowColor = isTimeDilated ? '#a855f7' : '#00f3ff';
+        
+        ctx.strokeStyle = isTimeDilated ? '#c084fc' : '#00f3ff';
+        ctx.lineWidth = 2.5;
+        ctx.fillStyle = '#0a0a1a';
+
+        ctx.beginPath();
+        ctx.moveTo(0, -player.radius * 1.4);
+        ctx.lineTo(-player.radius, player.radius);
+        ctx.lineTo(0, player.radius * 0.6);
+        ctx.lineTo(player.radius, player.radius);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.restore();
+      }
+
+      function loop() {
+        update();
+        draw();
+        requestAnimationFrame(loop);
+      }
+
+      loop();
+    })();
+  </script>
+</body>
+</html>

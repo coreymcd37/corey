@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Clothing Design: Apparel Mockup Studio | Corey McDaniel</title>
+<meta name="description" content="Clothing Design by Corey McDaniel (work in progress): an apparel mockup studio to design and preview garments in the browser.">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#f3f1ec;--pn:#fff;--tx:#1d2330;--ac:#e4572e;--ln:#d8d4ca}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#161a22;--pn:#222835;--tx:#eef0f4;--ln:#39414f}}
+:root[data-theme="dark"]{--bg:#161a22;--pn:#222835;--tx:#eef0f4;--ln:#39414f}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*:before,*:after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.4 system-ui,sans-serif}
+.app{display:grid;grid-template-columns:minmax(290px,350px) 1fr;gap:16px;padding:16px;max-width:1200px;margin:auto}
+@media(max-width:780px){.app{grid-template-columns:1fr}}
+.pn{background:var(--pn);border:1px solid var(--ln);border-radius:12px;padding:14px}
+h1{font-size:20px;margin:0 0 8px}h3{font-size:13px;margin:14px 0 6px}
+.gs{display:flex;flex-wrap:wrap;gap:6px}
+button,select,input[type=number],input[type=text],textarea{font:inherit;color:var(--tx);background:var(--bg);border:1px solid var(--ln);border-radius:8px;padding:6px 9px}
+button{cursor:pointer}button.on,button.pri{background:var(--ac);color:#fff;border-color:var(--ac)}
+label{display:block;font-size:13px;margin:6px 0 2px}
+input[type=range]{width:100%}.rw{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.st{display:grid;gap:6px}
+#rd{font-size:13px;margin-top:8px;padding:8px;border-radius:8px;background:var(--bg)}
+.stage{display:flex;flex-direction:column;align-items:center;gap:8px}
+svg#s{width:100%;max-width:560px;background:repeating-conic-gradient(#8881 0 25%,#0000 0 50%) 0 0/24px 24px;border-radius:12px;touch-action:none}
+#tp{display:none}
+table{border-collapse:collapse;width:100%;font-size:13px}td,th{border:1px solid #999;padding:4px 8px;text-align:center}
+@media print{
+ body{background:#fff;color:#000}.app{display:none}#tp{display:block;font:13px system-ui;color:#000}
+ #tp .vw{display:flex;gap:.25in;margin:0 0 .2in;break-inside:avoid}#tp svg{width:2.6in;flex:none}#tp h2{margin:0 0 6px}
+ @page{size:letter;margin:.5in}
+}
+</style><link rel="canonical" href="https://coreymcdaniel.com/projects/clothing/">
+<meta property="og:type" content="website"><meta property="og:title" content="Clothing Design: Apparel Mockup Studio | Corey McDaniel"><meta property="og:description" content="Clothing Design by Corey McDaniel (work in progress): an apparel mockup studio to design and preview garments in the browser."><meta property="og:url" content="https://coreymcdaniel.com/projects/clothing/"><meta property="og:image" content="https://coreymcdaniel.com/img/og.png"><meta property="og:site_name" content="Corey McDaniel">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Clothing Design: Apparel Mockup Studio | Corey McDaniel"><meta name="twitter:description" content="Clothing Design by Corey McDaniel (work in progress): an apparel mockup studio to design and preview garments in the browser."><meta name="twitter:image" content="https://coreymcdaniel.com/img/og.png">
+<link rel="icon" href="/img/favicon-32.png" type="image/png" sizes="32x32"><link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+<style>.cmd-back{position:fixed;left:12px;bottom:12px;z-index:2147483000;padding:8px 14px;border-radius:99px;background:#0b0916e6;color:#e9d5ff;border:1px solid #7c3aed;font:600 13px/1 system-ui,sans-serif;text-decoration:none;box-shadow:0 0 16px #7c3aed66}.cmd-back:hover,.cmd-back:focus-visible{color:#fff;outline:2px solid #67e8f9;outline-offset:2px}</style>
+</head><body>
+<a class="cmd-back" href="/home/">&larr; Back to home</a>
+
+<div class="app">
+<div class="pn">
+<h1>Apparel Mockup Studio</h1>
+<div class="gs" id="gs"></div>
+<h3>Colors</h3>
+<div class="rw" id="cz"></div>
+<h3>Split colors (vertical)</h3>
+<div class="rw"><label style="margin:0"><input type="checkbox" id="spOn"> Split</label><input type="color" id="spL"><input type="color" id="spR"></div>
+<label>Split position: <b id="spv"></b>%</label><input type="range" id="sp" min="5" max="95">
+<h3>Designs (place anywhere, any view)</h3>
+<div style="font-size:13px;margin-bottom:4px">Upload as many photos or logos as you like. They go into your asset library; click one to place it.</div><input type="file" id="f" accept="image/*" multiple><div id="al" class="rw" style="margin-top:6px"></div>
+<div class="rw" style="margin-top:8px"><select id="cl"><option value="grid">Collage: neat grid</option><option value="scatter">Collage: scattered / tilted</option><option value="hero">Collage: hero + grid</option></select><select id="cr"><option value="area">In print area</option><option value="torso">Collar to bottom</option></select></div>
+<div class="rw" style="margin-top:6px"><button id="cb" class="pri">Auto-collage my library</button><label style="margin:0"><input type="checkbox" id="cx" checked> replace this view's designs</label></div>
+<div class="st" id="dl" style="margin-top:6px"></div>
+<div id="sc">
+<label>Width: <b id="wv"></b> in</label><input type="range" id="w" min="1" max="16" step=".25">
+<label>Height (stretch): <b id="hv"></b> in</label><input type="range" id="hh" min="1" max="24" step=".25">
+<label>Rotation: <b id="rv"></b>°</label><input type="range" id="r" min="-180" max="180">
+<div class="rw" style="margin-top:6px"><select id="m"><option value="print">Print (printer chooses)</option><option value="dtg">DTG print</option><option value="screen">Screen print</option><option value="dtf">DTF transfer</option><option value="sub">Sublimation</option><option value="emb">Embroidery</option></select><button id="zf">Bring forward</button><button id="zb">Send back</button><button id="rs">Reset shape</button><button id="del">Delete</button></div>
+<input type="number" id="nc" min="1" placeholder="Number of ink / thread colors" style="margin-top:6px;width:100%">
+<div class="rw" style="margin-top:6px"><button data-pp="LC">Left chest</button><button data-pp="RC">Right chest</button><button data-pp="CC">Center chest</button><button data-pp="FF">Full front / back</button><button data-pp="UB">Upper back</button><button data-pp="WL">Wrap: left seam</button><button data-pp="WR">Wrap: right seam</button></div>
+<label style="margin-top:6px">Wrap: <select id="wr"><option value="0">Off</option><option value="1">Around side seams to back / front</option><option value="2">Onto sleeves + back / front</option></select></label>
+<div class="rw" style="margin-top:6px"><button data-pl="L">Left</button><button data-pl="C">Center</button><button data-pl="R">Right</button></div>
+<div class="rw" style="margin-top:6px"><button data-pv="T">Top</button><button data-pv="M">Middle</button><button data-pv="B">Bottom</button><button data-pv="F">Collar to bottom</button></div>
+</div>
+<div id="rd"></div>
+<h3>Order details</h3>
+<div class="st"><div id="sr" class="rw"></div>
+<select id="fab"><option>Fabric: 100% cotton</option><option>Fabric: cotton/poly blend</option><option>Fabric: fleece</option><option>Fabric: French terry</option><option>Fabric: polyester / performance</option><option>Fabric: other (see notes)</option></select>
+<input type="number" id="gsm" placeholder="Fabric weight in GSM (e.g. 180)">
+<select id="fit"><option>Fit: regular</option><option>Fit: oversized</option><option>Fit: boxy / cropped</option><option>Fit: slim</option></select>
+<select id="lbl"><option>Label: manufacturer tag</option><option>Label: tagless + printed neck label</option><option>Label: custom woven label</option><option>Label: custom hang tag</option></select>
+<input type="text" id="dt" placeholder="Needed by (date)">
+<textarea id="nt" rows="2" placeholder="Notes: Pantone / thread colors, packaging, care label"></textarea></div>
+<h3>Outfit bundle (matching set)</h3>
+<div class="st"><select id="of"><option value="hs">Hoodie + Joggers + Hat</option><option value="cs">Tee + Wide-leg pants + Hat</option><option value="cz">Crewneck + Joggers + Tote</option><option value="ac">Tank + Leggings + Hat</option><option value="zp">Zip hoodie + Leggings + Hat</option><option value="kd">Kids tee + Kids hoodie + Hat</option></select>
+<button id="bm">Build matching outfit from current design</button>
+<div class="rw"><button id="ba">Add current garment</button><button id="bc">Clear</button><label style="margin:0"><input type="checkbox" id="bk"> show backs</label></div><div id="bl" class="st"></div></div>
+<h3>Projects</h3>
+<div class="rw"><input type="text" id="pn" placeholder="Project name" style="flex:1;min-width:0"><button id="sv">Save</button></div>
+<div class="rw" style="margin-top:6px"><select id="pl" style="flex:1;min-width:0"></select><button id="ld">Load</button><button id="dp">Delete</button></div>
+<div class="rw" style="margin-top:6px"><button id="ex">Export file</button><button onclick="$('imp').click()">Import file</button><input type="file" id="imp" accept=".json" hidden></div>
+<h3>Export</h3>
+<div class="st">
+<button class="pri" id="e1">Tech pack (print / save PDF)</button>
+<div class="rw"><select id="fm"><option value="crop">Flatten: cropped to artwork</option><option value="std12">Flatten: on 12 x 16 in canvas</option><option value="std15">Flatten: on 15 x 18 in canvas</option></select><label style="margin:0"><input type="checkbox" id="fa"> remove semi-transparent pixels</label></div>
+<button class="pri" id="e7">Flatten &amp; download print-ready files</button>
+<button id="e8">Preflight check</button><div id="pf" style="font-size:13px"></div>
+<button id="e2">Mockup PNGs (all used views)</button>
+<button id="e3">Per-design files (each image, 300 DPI)</button>
+<button id="e4">Copy order brief text</button><button id="e6">Outfit bundle PNG</button><button class="pri" id="e5">3D marketing mockup</button></div>
+</div>
+<div class="stage pn"><div class="gs" id="vt"></div><svg id="s" viewBox="0 0 400 460" xmlns="http://www.w3.org/2000/svg"></svg>
+<p style="font-size:13px;opacity:.75;text-align:center">Drag a design to move it. Drag the square handles to resize (corners keep proportions, sides stretch) and the green dot to rotate. On touch, pinch and twist with two fingers. Mouse wheel zooms. Arrow keys nudge. Dashed box = suggested print area.</p></div>
+</div>
+<div id="tp"></div>
+<div id="m3" style="display:none;position:fixed;inset:0;z-index:50;background:#000c;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:12px;padding-top:calc(12px + env(safe-area-inset-top,0px))"><canvas id="cv" style="border-radius:12px;max-width:100%;touch-action:none"></canvas><div class="rw" style="justify-content:center"><input type="color" id="bg3" value="#1b1f2a" aria-label="Background"><button id="au">Pause / Spin</button><button id="sp3">Save PNG</button><button id="rec">Record 6s spin video</button><button id="cl3">Close</button></div><small style="color:#fff">Drag to rotate. Curved-panel preview using your front and back mockups.</small></div>
+<script>
+const $=id=>document.getElementById(id),NS="http://www.w3.org/2000/svg";
+const body="M140 30 Q200 70 260 30 L340 70 L390 150 L330 175 L310 150 L310 430 L90 430 L90 150 L70 175 L10 150 L60 70 Z",
+SS="M100 100 L300 100 L325 330 L75 330Z",SL="M110 30 L290 30 L310 430 L90 430Z",
+SC1=[[0,0,90,460],[310,0,90,460]],
+neck=`<path d="M140 30 Q200 70 260 30" fill="none" stroke="{c}" stroke-width="8"/>`,
+sq=[["Size","Chest (flat)","Length","Sleeve"],["S",18,28,8.5],["M",20,29,9],["L",22,30,9.5],["XL",24,31,10],["2XL",26,32,10.5]],
+slv=a=>({sleeveL:{p:a,ppi:a==SS?25:16,a:a==SS?[150,150,100,100]:[160,100,80,200]},sleeveR:{p:a,ppi:a==SS?25:16,a:a==SS?[150,150,100,100]:[160,100,80,200]}});
+const G={
+tee:{n:"T-Shirt",p:body,ppi:11,bk:1,z:["Body","Sleeves","Collar"],sc:SC1,tr:neck,v:{front:[134,63,132,176],back:[134,63,132,190],...slv(SS)},t:sq},
+long:{n:"Long Sleeve",p:"M140 30 Q200 70 260 30 L335 60 L395 400 L340 410 L305 170 L305 430 L95 430 L95 170 L60 410 L5 400 L65 60 Z",ppi:11,bk:1,z:["Body","Sleeves","Collar"],sc:SC1,tr:neck,v:{front:[134,63,132,176],back:[134,63,132,190],...slv(SL)},t:[["Size","Chest (flat)","Length","Sleeve"],["S",18,28,24],["M",20,29,25],["L",22,30,25.5],["XL",24,31,26],["2XL",26,32,26.5]]},
+muscle:{n:"Muscle Shirt",p:"M150 30 Q200 90 250 30 L290 30 Q310 110 310 150 L310 430 L90 430 L90 150 Q90 110 110 30 Z",ppi:11,bk:1,z:["Body",null,"Neckline"],tr:`<path d="M150 30 Q200 90 250 30" fill="none" stroke="{c}" stroke-width="8"/>`,v:{front:[134,90,132,160],back:[134,70,132,190]},t:[["Size","Chest (flat)","Length"],["S",18,27],["M",20,28],["L",22,29],["XL",24,30],["2XL",26,31]]},
+hood:{n:"Hoodie Pullover",p:"M130 40 Q200 90 270 40 L335 70 L395 380 L340 395 L310 160 L310 430 L90 430 L90 160 L60 395 L5 380 L65 70 Z",ppi:10,bk:2,z:["Body","Sleeves","Hood"],sc:SC1,tr:`<path d="M140 45 Q200 -15 260 45 Q200 120 140 45Z" fill="{c}" stroke="#0005"/><path d="M110 335 L290 335 L310 430 L90 430Z" fill="none" stroke="#0005"/>`,v:{front:[144,120,112,110],back:[134,70,132,190],...slv(SL)},t:[["Size","Chest (flat)","Length","Sleeve"],["S",21,26,24],["M",23,27,25],["L",25,28,26],["XL",27,29,26.5],["2XL",29,30,27]]},
+hat:{n:"Hat",hat:1,p:"M80 260 Q80 90 200 90 Q320 90 320 260 Q200 235 80 260Z M60 262 Q200 232 340 262 Q370 305 200 325 Q30 305 60 262Z",ppi:40,z:["Crown","Brim",null],sc:[[0,240,400,120]],lb:{sleeveL:"Side"},v:{front:[110,125,180,90],back:[130,140,140,50],sleeveL:{p:"M80 280 Q80 100 220 95 Q330 100 340 270 Z M20 285 L340 270 L340 292 L30 306Z",a:[190,150,110,80]}},t:[["Size","Crown height","Brim","Circumference"],["One size",3.5,2.75,"22-24 adj."]]},
+pants:{n:"Pants",p:"M110 30 L290 30 L320 440 L215 440 L200 150 L185 440 L80 440 Z",ppi:10,z:["Legs",null,"Waistband"],tr:`<rect x="110" y="30" width="180" height="18" fill="{c}"/>`,v:{front:[210,160,80,110],back:[130,60,140,100]},t:[["Size","Waist (flat)","Hip (flat)","Inseam","Rise"],["S",15,20,30,10],["M",16,21,31,10.5],["L",17,22,32,11],["XL",18,23,32,11.5]]}};
+Object.assign(G,{
+crew:{n:"Crewneck Sweatshirt",p:G.long.p,ppi:10,bk:1,z:["Body","Sleeves","Collar & hem"],sc:SC1,tr:`<path d="M145 30 Q200 65 255 30" fill="none" stroke="{c}" stroke-width="10"/><path d="M95 424 L305 424" stroke="{c}" stroke-width="12"/>`,v:{front:[134,70,132,170],back:[134,63,132,190],...slv(SL)},t:[["Size","Chest (flat)","Length","Sleeve"],["S",21,26,24],["M",23,27,25],["L",25,28,26],["XL",27,29,26.5],["2XL",29,30,27]]},
+boxy:{n:"Oversized Boxy Tee",p:"M140 40 Q200 75 260 40 L355 80 L395 165 L335 185 L320 170 L320 400 L80 400 L80 170 L65 185 L5 165 L45 80 Z",ppi:10,z:["Body","Sleeves","Collar"],sc:[[0,0,80,460],[320,0,80,460]],tr:`<path d="M140 40 Q200 75 260 40" fill="none" stroke="{c}" stroke-width="8"/>`,v:{front:[130,75,140,170],back:[130,75,140,190],...slv(SS)},t:[["Size","Chest (flat)","Length","Sleeve"],["S",24,26,9],["M",26,27,9.5],["L",28,28,10],["XL",30,29,10.5],["2XL",32,30,11]]},
+jog:{n:"Joggers",p:"M110 30 L290 30 L318 390 L292 440 L212 440 L200 170 L188 440 L108 440 L82 390 Z",ppi:10,z:["Legs",null,"Waistband"],tr:`<rect x="110" y="30" width="180" height="20" fill="{c}"/>`,v:{front:[210,150,80,110],back:[130,60,140,100]},t:[["Size","Waist (flat)","Hip (flat)","Inseam","Rise"],["S",15,20,28,10.5],["M",16,21,29,11],["L",17,22,30,11.5],["XL",18,23,30,12]]},
+tote:{n:"Tote Bag",p:"M110 150 L290 150 L305 400 L95 400Z",ppi:14,z:["Bag",null,"Handles"],tr:`<path d="M140 150 C140 30 260 30 260 150" fill="none" stroke="{c}" stroke-width="10"/>`,v:{front:[130,180,140,160],back:[130,180,140,160]},t:[["Size","Width","Height","Handle drop"],["One size",15,16,10]]}});
+const kl=(a,k)=>({sleeveL:{p:a,ppi:k,a:[160,100,80,200]},sleeveR:{p:a,ppi:k,a:[160,100,80,200]}}),ks=(k)=>({sleeveL:{p:SS,ppi:k,a:[150,150,100,100]},sleeveR:{p:SS,ppi:k,a:[150,150,100,100]}});
+Object.assign(G,{
+leg:{n:"Leggings",p:"M120 30 L280 30 L292 440 L212 440 L200 170 L188 440 L108 440Z",ppi:10,z:["Legs",null,"Waistband"],tr:`<rect x="120" y="30" width="160" height="20" fill="{c}"/>`,v:{front:[214,150,60,110],back:[140,60,120,90]},t:[["Size","Waist (flat)","Hip (flat)","Inseam"],["S",12.5,17,27],["M",13.5,18,28],["L",14.5,19,28],["XL",15.5,20,29]]},
+zip:{n:"Zip Hoodie",p:G.hood.p,ppi:10,bk:2,z:["Body","Sleeves","Hood"],sc:SC1,tr:G.hood.tr+`<path d="M200 90 L200 430" stroke="#0008" stroke-width="3"/>`,v:{front:[212,110,60,60],back:[134,70,132,190],...slv(SL)},t:G.hood.t},
+wide:{n:"Wide-Leg Pants",p:"M110 30 L290 30 L360 440 L215 440 L200 170 L185 440 L40 440Z",ppi:9,z:["Legs",null,"Waistband"],tr:`<rect x="110" y="30" width="180" height="18" fill="{c}"/>`,v:{front:[214,150,80,120],back:[130,60,140,100]},t:[["Size","Waist (flat)","Hip (flat)","Inseam","Leg opening"],["S",15,21,30,12],["M",16,22,31,12.5],["L",17,23,32,13],["XL",18,24,32,13.5]]},
+ktee:{n:"Kids Tee",kid:1,p:body,ppi:15,bk:1,z:["Body","Sleeves","Collar"],sc:SC1,tr:neck,v:{front:[150,75,100,110],back:[140,75,120,130],...ks(35)},t:[["Size","Chest (flat)","Length","Sleeve"],["2T",12.5,15,5],["4",13.5,17,5.5],["6",14.5,19,6],["8",15.5,21,6.5],["10",16.5,23,7],["12",17.5,25,7.5]]},
+khood:{n:"Kids Hoodie",kid:1,p:G.hood.p,ppi:14,bk:2,z:["Body","Sleeves","Hood"],sc:SC1,tr:G.hood.tr,v:{front:[150,130,100,100],back:[140,75,120,130],...kl(SL,26)},t:[["Size","Chest (flat)","Length","Sleeve"],["2T",14,15,12],["4",15,17,13],["6",16,19,14],["8",17,21,15],["10",18,23,16],["12",19,25,17]]}});
+["tee","hood","crew","hat","muscle","jog","leg","zip","wide"].forEach(k=>G[k].star=1);
+const PP={LC:[.72,3.5,3],RC:[.28,3.5,3],CC:[.5,10,3],FF:[.5,12,3],UB:[.5,12,2],WL:[0,12,3],WR:[1,12,3]},
+OUT={hs:["hood","jog","hat"],cs:["tee","wide","hat"],cz:["crew","jog","tote"],ac:["muscle","leg","hat"],zp:["zip","leg","hat"],kd:["ktee","khood","hat"]},
+ML={print:"PRINT (printer's choice)",dtg:"DTG PRINT",screen:"SCREEN PRINT",dtf:"DTF TRANSFER",sub:"SUBLIMATION",emb:"EMBROIDERY"};
+const VL={front:"Front",back:"Back",sleeveL:"Left sleeve",sleeveR:"Right sleeve"};
+const vl=(k,v)=>(G[k].lb||{})[v]||VL[v];
+const V=(k,v)=>{const o=G[k].v[v],g=G[k];return Array.isArray(o)?{p:g.p,ppi:g.ppi,a:o}:o};
+let S={g:"tee",v:"front",c:["#ffffff","#ffffff","#ffffff"],d:[],sel:null,nid:1,as:[],sr:{},b:[],showB:false,sp:{on:false,pos:50,l:"#111111",r:"#e4572e"}},N=0,BC={};
+const hgi=(d,ppi)=>{const w=d.w*ppi,q=w*d.ar,H=[[-1,-1,"nw"],[0,-1,"n"],[1,-1,"ne"],[1,0,"e"],[1,1,"se"],[0,1,"s"],[-1,1,"sw"],[-1,0,"w"]];
+return `<rect x="${-w/2}" y="${-q/2}" width="${w}" height="${q}" fill="none" stroke="#1a9c5b" stroke-width="1.5" pointer-events="none"/><line x1="0" y1="${-q/2}" x2="0" y2="${-q/2-20}" stroke="#1a9c5b" pointer-events="none"/>`+H.map(([a,b,k])=>`<g data-h="${k}" style="cursor:pointer"><circle cx="${a*w/2}" cy="${b*q/2}" r="16" fill="transparent"/><rect x="${a*w/2-5}" y="${b*q/2-5}" width="10" height="10" fill="#fff" stroke="#1a9c5b" stroke-width="2" pointer-events="none"/></g>`).join("")+`<g data-h="rot" style="cursor:grab"><circle cx="0" cy="${-q/2-20}" r="16" fill="transparent"/><circle cx="0" cy="${-q/2-20}" r="6" fill="#1a9c5b" pointer-events="none"/></g>`};
+const bb=p=>{if(BC[p])return BC[p];const e=document.createElementNS(NS,"path");e.setAttribute("d",p);const s=$("s");s.appendChild(e);const b=e.getBBox();s.removeChild(e);return BC[p]={x:b.x,y:b.y,width:b.width,height:b.height}};
+const cur=()=>S.d.find(d=>d.id==S.sel);
+function build(v,gd){N++;const n=N,g=G[S.g],o=V(S.g,v),sl=v.startsWith("sleeve")&&!g.hat;let p=o.p,tr=g.tr||"";
+if(g.bk&&v=="back"){p=p.replace(/Q200 \d+/,"Q200 40");if(g.bk==1)tr=tr.replace(/Q200 \d+/,"Q200 40")}
+tr=tr.replace(/\{c\}/g,S.c[2]);const a=o.a;
+let h=`<defs><linearGradient id="sh${n}" x1="0" x2="1"><stop offset="0" stop-color="#000" stop-opacity=".18"/><stop offset=".5" stop-color="#fff" stop-opacity=".12"/><stop offset="1" stop-color="#000" stop-opacity=".22"/></linearGradient><clipPath id="c${n}"><path d="${p}"/></clipPath><clipPath id="s${n}">${(g.sc||[]).map(r=>`<rect x="${r[0]}" y="${r[1]}" width="${r[2]}" height="${r[3]}"/>`).join("")}</clipPath><filter id="e${n}"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="2"/><feDropShadow dx="0" dy="1" stdDeviation=".6" flood-opacity=".5"/></filter></defs>`;
+const B=bb(p),sp=S.sp,sx=B.x+B.width*sp.pos/100;
+if(sp.on)h+=`<clipPath id="l${n}"><rect x="-999" y="-999" width="${sx+999}" height="2500"/></clipPath><clipPath id="r${n}"><rect x="${sx}" y="-999" width="2500" height="2500"/></clipPath><g clip-path="url(#l${n})"><path d="${p}" fill="${sp.l}"/></g><g clip-path="url(#r${n})"><path d="${p}" fill="${sp.r}"/></g><path d="${p}" fill="none" stroke="#0006" stroke-width="2"/>`;
+else{h+=`<path d="${p}" fill="${sl?S.c[1]:S.c[0]}" stroke="#0006" stroke-width="2"/>`;
+if(!sl&&g.sc)h+=`<g clip-path="url(#s${n})"><path d="${p}" fill="${S.c[1]}"/></g>`}
+if(!sl)h+=tr;h+=`<path d="${p}" fill="url(#sh${n})"/><g clip-path="url(#c${n})">`;
+const[tx0,tx1]=tx(S.g,p),Wt=tx1-tx0,oth=v=="front"?"back":v=="back"?"front":null,
+im=(d,x,gh,yy=d.y,rr=d.rot)=>{const w=d.w*o.ppi,q=w*d.ar;return `<image ${gh?'style="pointer-events:none"':`data-id="${d.id}" style="cursor:move"`} href="${d.src}" x="${-w/2}" y="${-q/2}" width="${w}" height="${q}" preserveAspectRatio="none" transform="translate(${x} ${yy}) rotate(${rr})"${d.m=="emb"?` filter="url(#e${n})"`:""}/>`};
+h+=`<clipPath id="w${n}"><rect x="${tx0}" y="-999" width="${Wt}" height="2500"/></clipPath>`;
+S.d.filter(d=>d.v==v).forEach(d=>{h+=+d.wr==1&&oth?`<g clip-path="url(#w${n})">${im(d,d.x)}</g>`:im(d,d.x)});
+if(oth)S.d.filter(d=>d.v==oth&&d.wr).forEach(d=>{h+=`<g clip-path="url(#w${n})">${im(d,d.x+Wt,1)}${im(d,d.x-Wt,1)}</g>`});
+if(sl&&g.sc){const k=o.ppi/g.ppi;h+=`<clipPath id="k${n}"><rect x="-999" y="${B.y}" width="2500" height="2500"/></clipPath><g clip-path="url(#k${n})">`;
+["front","back"].forEach(fv=>S.d.filter(d=>d.v==fv&&+d.wr==2).forEach(d=>[-1,1].forEach(sd=>{const tg=fv=="front"?(sd<0?"sleeveR":"sleeveL"):(sd<0?"sleeveL":"sleeveR");if(tg!=v)return;h+=im(d,200-sd*(d.y-110)*k,1,B.y+(sd<0?tx0-d.x:d.x-tx1)*k,sd*90+d.rot)})));h+="</g>"}
+h+="</g>";
+if(gd){h+=`<rect class="guide" x="${a[0]}" y="${a[1]}" width="${a[2]}" height="${a[3]}" fill="none" stroke="#e4572e" stroke-dasharray="6 4" stroke-width="1.5"/><text class="guide" x="${a[0]}" y="${a[1]-4}" font-size="10" fill="#e4572e">Print area ${(a[2]/o.ppi).toFixed(1)} x ${(a[3]/o.ppi).toFixed(1)} in</text>`;
+const d=cur();if(d&&d.v==v)h+=`<g class="guide" id="hg" transform="translate(${d.x} ${d.y}) rotate(${d.rot})">${hgi(d,o.ppi)}</g>`}
+return h}
+const info=d=>{const o=V(S.g,d.v),a=o.a,h=d.w*d.ar;return{h,top:(d.y-h*o.ppi/2-a[1])/o.ppi,off:(d.x-a[0]-a[2]/2)/o.ppi,dpi:Math.round(d.nw/d.w),st:Math.round(d.w*h*1800)}};
+function render(){const g=G[S.g];
+if(!g.v[S.v])S.v="front";
+$("spOn").checked=S.sp.on;$("spL").value=S.sp.l;$("spR").value=S.sp.r;$("sp").value=S.sp.pos;$("spv").textContent=S.sp.pos;
+if(S.showB&&S.b.length){const b=bundleSVG($("bk").checked);$("s").setAttribute("viewBox",`0 0 ${b.W} ${b.H}`);$("s").innerHTML=b.h;$("s").style.maxWidth="100%"}else{S.showB=false;$("s").setAttribute("viewBox","0 0 400 460");$("s").innerHTML=build(S.v,true);$("s").style.maxWidth="560px"}
+{const ak=S.as.map(a=>a.id).join();if($("al").dataset.k!==ak){$("al").dataset.k=ak;$("al").innerHTML=S.as.map(a=>`<span style="position:relative"><button data-ap="${a.id}" title="${a.name} (click to place)" style="padding:0;width:54px;height:54px;background:#8883 url('${a.src}') center/contain no-repeat"></button><button data-ax="${a.id}" title="Remove from library" style="position:absolute;top:-6px;right:-6px;padding:0 5px;border-radius:50%;font-size:11px">×</button></span>`).join("")||"<i style='font-size:13px'>Library is empty.</i>"}}
+$("bl").innerHTML=S.b.map((it,i)=>`<div class="rw"><span style="flex:1">${G[it.g].n}</span><button data-bl="${i}">Edit</button><button data-bx="${i}">Remove</button></div>`).join("");
+$("gs").innerHTML=Object.keys(G).map(k=>`<button data-k="${k}" class="${k==S.g?"on":""}">${G[k].star?"★ ":""}${G[k].n}</button>`).join("");
+$("vt").innerHTML=Object.keys(g.v).map(v=>`<button data-v="${v}" class="${v==S.v&&!S.showB?"on":""}">${vl(S.g,v)}</button>`).join("")+(S.b.length?`<button data-v="__b" class="${S.showB?"on":""}">Bundle (${S.b.length})</button>`:"");
+$("cz").innerHTML=g.z.map((z,i)=>z?`<label>${z}<br><input type="color" data-z="${i}" value="${S.c[i]}"></label>`:"").join("");
+$("dl").innerHTML=S.d.map((d,i)=>`<button data-s="${d.id}" class="${d.id==S.sel?"on":""}">${i+1}. ${vl(S.g,d.v)} · ${{emb:"Embroidery",dtg:"DTG",screen:"Screen",dtf:"DTF",sub:"Sublimation"}[d.m]||"Print"}</button>`).join("")||"<i style='font-size:13px'>No designs yet. Upload one or more images.</i>";
+const d=cur();$("sc").style.display=d?"":"none";
+if(d){const o=V(S.g,d.v);$("w").max=Math.max(Math.ceil(bb(o.p).width/o.ppi),Math.ceil(d.w));$("hh").max=Math.max(24,Math.ceil(d.w*d.ar));$("w").value=d.w;$("r").value=d.rot;$("m").value=d.m;$("nc").value=d.k||"";$("wr").value=+d.wr||0;$("wr").disabled=!(d.v=="front"||d.v=="back");$("wv").textContent=(+d.w).toFixed(2);$("rv").textContent=d.rot;$("hh").value=d.w*d.ar;$("hv").textContent=(d.w*d.ar).toFixed(2);
+const i=info(d);$("rd").innerHTML=`Design ${S.d.indexOf(d)+1}: <b>${d.w} x ${i.h.toFixed(1)} in</b> on ${vl(S.g,d.v)}<br>${i.top.toFixed(1)} in below print-area top, ${i.off.toFixed(1)} in off center<br>Resolution: <b style="color:${i.dpi<150?"#d33":"#2a8a3a"}">${i.dpi} DPI</b> ${i.dpi<150?"(low: upload a larger file)":i.dpi<250?"(ok)":"(great)"}`+(d.m=="emb"?`<br>Embroidery est. ~${i.st.toLocaleString()} stitches. Use 6 or fewer flat colors; thin lines and tiny text stitch poorly.`:"")}
+else $("rd").textContent="Select or upload a design.";
+$("sr").innerHTML=g.t.slice(1).map(r=>`<label style="margin:0;text-align:center">${r[0]}<br><input type="number" min="0" data-q="${S.g}|${r[0]}" value="${S.sr[S.g+"|"+r[0]]||0}" style="width:58px"></label>`).join("");
+try{const P=JSON.parse(localStorage.getItem("ams-p")||"{}");$("pl").innerHTML=Object.keys(P).map(k=>`<option>${k}</option>`).join("")}catch(e){}}
+$("gs").onclick=e=>{const k=e.target.dataset.k;if(k){S.showB=false;S.g=k;S.d=S.d.filter(d=>G[k].v[d.v]);S.v="front";render()}};
+$("vt").onclick=e=>{const v=e.target.dataset.v;if(v){if(v=="__b")S.showB=true;else{S.showB=false;S.v=v}render()}};
+$("cz").oninput=e=>{const i=+e.target.dataset.z,o=S.c[i];S.c[i]=e.target.value;if(i==0)for(let j=1;j<3;j++)if(S.c[j]==o)S.c[j]=e.target.value;$("s").innerHTML=build(S.v,true);if(i==0)render()};
+$("dl").onclick=e=>{const b=e.target.closest("button");if(b){S.sel=+b.dataset.s;S.v=cur().v;render()}};
+$("w").oninput=e=>{cur().w=+e.target.value;render()};$("hh").oninput=e=>{const d=cur();d.ar=+e.target.value/d.w;render()};$("rs").onclick=()=>{const d=cur();if(d&&d.ar0){d.ar=d.ar0;render()}};$("r").oninput=e=>{cur().rot=+e.target.value;render()};$("m").onchange=e=>{cur().m=e.target.value;render()};
+const ctr=d=>{const o=V(S.g,d.v),a=o.a;d.x=a[0]+a[2]/2;d.y=a[1]+a[3]/2};
+$("del").onclick=()=>{S.d=S.d.filter(d=>d.id!=S.sel);S.sel=S.d.length?S.d[S.d.length-1].id:null;render()};
+const ldA=f=>new Promise(res=>{const fr=new FileReader();fr.onload=()=>{const im=new Image();im.onload=()=>{const k=Math.min(1,1600/Math.max(im.naturalWidth,im.naturalHeight)),c=document.createElement("canvas");c.width=Math.round(im.naturalWidth*k);c.height=Math.round(im.naturalHeight*k);c.getContext("2d").drawImage(im,0,0,c.width,c.height);res({id:S.nid++,src:c.toDataURL(f.type=="image/jpeg"?"image/jpeg":"image/png",.9),ar:c.height/c.width,nw:c.width,name:f.name})};im.src=fr.result};fr.readAsDataURL(f)});
+const addD=a=>{const o=V(S.g,S.v),d={id:S.nid++,v:S.v,src:a.src,ar:a.ar,ar0:a.ar,nw:a.nw,rot:0,m:"print",w:Math.min(8,Math.round(o.a[2]/o.ppi*4)/4)};ctr(d);S.d.push(d);S.sel=d.id};
+$("f").onchange=async e=>{const fs=[...e.target.files];for(const f of fs)S.as.push(await ldA(f));if(fs.length==1)addD(S.as[S.as.length-1]);e.target.value="";render()};
+$("al").onclick=e=>{const p=e.target.dataset.ap,x=e.target.dataset.ax;if(x!==undefined)S.as=S.as.filter(a=>a.id!=+x);else if(p!==undefined)addD(S.as.find(a=>a.id==+p));render()};
+function gridP(its,R,jit){const n=its.length;if(!n)return[];const cols=n==1?1:Math.max(1,Math.round(Math.sqrt(n*R.w/R.h))),rows=Math.ceil(n/cols),cw=R.w/cols,ch=R.h/rows;
+return its.map((a,i)=>{const r=Math.floor(i/cols),c=i%cols,inRow=r==rows-1?n-r*cols:cols,off=(cols-inRow)*cw/2,z=jit?1.05+Math.random()*.25:1,j=()=>jit?(Math.random()-.5)*.18:0;
+return{a,x:R.x+off+c*cw+cw/2+j()*cw,y:R.y+r*ch+ch/2+j()*ch,w:Math.min(cw*.9,ch*.9/a.ar)*z,rot:jit?Math.round((Math.random()-.5)*24):0}})}
+$("cb").onclick=()=>{if(!S.as.length)return alert("Upload photos to the library first.");if(S.showB)return;const o=V(S.g,S.v),B=bb(o.p);let R;
+if($("cr").value=="torso"&&(S.v=="front"||S.v=="back")){const[x0,x1]=tx(S.g,o.p);R={x:x0+8,y:B.y+48,w:x1-x0-16,h:B.height*.9-48}}else{const a=o.a;R={x:a[0],y:a[1],w:a[2],h:a[3]}}
+const m=$("cl").value,as=S.as;let P;
+if(m=="hero"&&as.length>1){const wide=R.w>R.h*1.1,hr=wide?{x:R.x,y:R.y,w:R.w*.5,h:R.h}:{x:R.x,y:R.y,w:R.w,h:R.h*.5},gr=wide?{x:R.x+R.w*.5,y:R.y,w:R.w*.5,h:R.h}:{x:R.x,y:R.y+R.h*.5,w:R.w,h:R.h*.5};P=[...gridP([as[0]],hr,0),...gridP(as.slice(1),gr,0)]}else P=gridP(as,R,m=="scatter");
+if($("cx").checked)S.d=S.d.filter(d=>d.v!=S.v);
+P.forEach(p=>S.d.push({id:S.nid++,v:S.v,src:p.a.src,ar:p.a.ar,ar0:p.a.ar,nw:p.a.nw,rot:p.rot,m:"print",wr:0,x:p.x,y:p.y,w:Math.max(.5,Math.round(p.w/o.ppi*100)/100)}));
+S.sel=S.d.length?S.d[S.d.length-1].id:null;render()};
+$("zf").onclick=()=>{const i=S.d.findIndex(d=>d.id==S.sel);if(i>=0&&i<S.d.length-1){[S.d[i],S.d[i+1]]=[S.d[i+1],S.d[i]];render()}};
+$("zb").onclick=()=>{const i=S.d.findIndex(d=>d.id==S.sel);if(i>0){[S.d[i],S.d[i-1]]=[S.d[i-1],S.d[i]];render()}};
+
+let dr=null,pn=null,chg=false;const svg=$("s"),pts=new Map(),pt=e=>{const r=svg.getBoundingClientRect();return[(e.clientX-r.left)*400/r.width,(e.clientY-r.top)*460/r.height]};
+const upd=d=>{const o=V(S.g,d.v),w=d.w*o.ppi,q=w*d.ar,t=`translate(${d.x} ${d.y}) rotate(${d.rot})`,im=svg.querySelector(`image[data-id="${d.id}"]`),g=$("hg");chg=true;
+if(im){im.setAttribute("x",-w/2);im.setAttribute("y",-q/2);im.setAttribute("width",w);im.setAttribute("height",q);im.setAttribute("transform",t)}if(g){g.setAttribute("transform",t);g.innerHTML=hgi(d,o.ppi)}};
+svg.onpointerdown=e=>{if(S.showB)return;pts.set(e.pointerId,[e.clientX,e.clientY]);svg.setPointerCapture(e.pointerId);const d0=cur();
+if(pts.size==2&&d0){const[a,b]=[...pts.values()];pn={d:d0,d0:Math.hypot(a[0]-b[0],a[1]-b[1])||1,a0:Math.atan2(b[1]-a[1],b[0]-a[0]),w:d0.w,rot:d0.rot};dr=null;return}
+const hEl=e.target.closest("[data-h]");if(hEl&&d0){dr={k:hEl.dataset.h,d:d0,st:{x:d0.x,y:d0.y,w:d0.w,ar:d0.ar,rot:d0.rot}};return}
+const im=e.target.closest("image[data-id]");if(!im)return;S.sel=+im.dataset.id;const d=cur(),p=pt(e);dr={d,ox:p[0]-d.x,oy:p[1]-d.y};if(!$("hg"))render()};
+svg.onpointermove=e=>{if(pts.has(e.pointerId))pts.set(e.pointerId,[e.clientX,e.clientY]);
+if(pn&&pts.size==2){const[a,b]=[...pts.values()],d=pn.d;d.w=Math.max(.5,pn.w*Math.hypot(a[0]-b[0],a[1]-b[1])/pn.d0);d.rot=Math.round(pn.rot+(Math.atan2(b[1]-a[1],b[0]-a[0])-pn.a0)*180/Math.PI);upd(d);return}
+if(!dr)return;const p=pt(e),d=dr.d;
+if(!dr.k){d.x=p[0]-dr.ox;d.y=p[1]-dr.oy}
+else{const st=dr.st,ppi=V(S.g,d.v).ppi,r=st.rot*Math.PI/180,c=Math.cos(r),sn=Math.sin(r),dx=p[0]-st.x,dy=p[1]-st.y,lx=dx*c+dy*sn,ly=-dx*sn+dy*c;
+if(dr.k=="rot"){let a=Math.atan2(dx,-dy)*180/Math.PI;const q=Math.round(a/15)*15;if(Math.abs(a-q)<3)a=q;d.rot=Math.round(a)}
+else{const hx={nw:-1,n:0,ne:1,e:1,se:1,s:0,sw:-1,w:-1}[dr.k],hy={nw:-1,n:-1,ne:-1,e:0,se:1,s:1,sw:1,w:0}[dr.k],w0=st.w*ppi,h0=w0*st.ar,ax=-hx*w0/2,ay=-hy*h0/2;let nw=w0,nh=h0;
+if(hx&&hy){const sc=Math.max(10/w0,((lx-ax)*hx/w0+(ly-ay)*hy/h0)/2);nw=w0*sc;nh=h0*sc}else if(hx)nw=Math.max(10,(lx-ax)*hx);else nh=Math.max(10,(ly-ay)*hy);
+const cx=hx?ax+hx*nw/2:0,cy=hy?ay+hy*nh/2:0;d.x=st.x+cx*c-cy*sn;d.y=st.y+cx*sn+cy*c;d.w=nw/ppi;d.ar=nh/nw}}
+upd(d)};
+svg.onpointerup=svg.onpointercancel=e=>{pts.delete(e.pointerId);if(pts.size<2)pn=null;if(pts.size==0){dr=null;if(chg){chg=false;const d=cur();if(d){d.w=Math.round(d.w*100)/100}render()}}};
+svg.addEventListener("wheel",e=>{const d=cur();if(!d||S.showB||!e.target.closest("image,[data-h]"))return;e.preventDefault();d.w=Math.max(.5,Math.round(d.w*Math.exp(-e.deltaY*.0015)*100)/100);render()},{passive:false});
+addEventListener("keydown",e=>{if(/INPUT|TEXTAREA|SELECT/.test(e.target.tagName)||S.showB)return;const d=cur();if(!d)return;const k=e.shiftKey?5:1,m={ArrowLeft:[-k,0],ArrowRight:[k,0],ArrowUp:[0,-k],ArrowDown:[0,k]}[e.key];if(m){e.preventDefault();d.x+=m[0];d.y+=m[1];render()}else if(e.key=="Delete")$("del").click()});
+const dl=(u,n)=>{const a=document.createElement("a");a.href=u;a.download=n;a.click()},sleep=t=>new Promise(r=>setTimeout(r,t));
+const used=()=>{const u=new Set(S.d.map(d=>d.v));if(S.d.some(d=>+d.wr==2)&&G[S.g].sc){u.add("sleeveL");u.add("sleeveR")}return[...u]};
+const sv=v=>{const el=document.createElementNS(NS,"svg");el.setAttribute("viewBox","0 0 400 460");el.setAttribute("xmlns",NS);el.innerHTML=build(v,false);return new XMLSerializer().serializeToString(el)};
+const png=v=>new Promise(r=>{const i=new Image();i.onload=()=>{const c=document.createElement("canvas");c.width=1200;c.height=1380;c.getContext("2d").drawImage(i,0,0,1200,1380);r(c.toDataURL())};i.src="data:image/svg+xml;charset=utf-8,"+encodeURIComponent(sv(v))});
+$("e2").onclick=async()=>{for(const v of used().length?used():["front"]){dl(await png(v),`${S.g}-${v}-mockup.png`);await sleep(400)}};
+const fname=(d,i)=>`${S.g}-${d.v}-design${i+1}-${d.m=="emb"?"embroidery-art":"print-ready"}-300dpi.png`;
+$("e3").onclick=async()=>{if(!S.d.length)return alert("Upload a design first.");for(const[i,d]of S.d.entries()){const im=await new Promise(r=>{const x=new Image();x.onload=()=>r(x);x.src=d.src});
+const W=Math.round(d.w*300),H=Math.round(W*d.ar),r=d.rot*Math.PI/180,c=document.createElement("canvas");c.width=Math.ceil(Math.abs(W*Math.cos(r))+Math.abs(H*Math.sin(r)));c.height=Math.ceil(Math.abs(W*Math.sin(r))+Math.abs(H*Math.cos(r)));
+const x=c.getContext("2d");x.translate(c.width/2,c.height/2);x.rotate(r);x.drawImage(im,-W/2,-H/2,W,H);try{dl(URL.createObjectURL(await png300(c)),fname(d,i))}catch(er){return alert(BIG)}await sleep(400)}};
+const spec=()=>{const g=G[S.g],rn=g.t.slice(1).map(r=>[r[0],S.sr[S.g+"|"+r[0]]||0]).filter(x=>x[1]),tot=rn.reduce((a,x)=>a+x[1],0);
+return{head:`Garment: ${g.n}${g.kid?" (kids sizing)":""}\nColors: ${g.z.map((z,i)=>z?`${z} ${S.c[i]}`:"").filter(Boolean).join(", ")}${S.sp.on?`\nSplit: left ${S.sp.l} / right ${S.sp.r} at ${S.sp.pos}% of width (split replaces sleeve color)`:""}\nSize run: ${rn.map(x=>x[0]+" x"+x[1]).join(", ")||"not set"} (total ${tot})\n${$("fab").value}, ${$("gsm").value?$("gsm").value+" GSM":"weight: printer's choice"}\n${$("fit").value}\n${$("lbl").value}\nNeeded by: ${$("dt").value||"n/a"}\nNotes: ${$("nt").value||"none"}${S.b.length?`\nOutfit bundle: ${S.b.map(i=>G[i.g].n).join(" + ")}`:""}`,
+lines:S.d.map((d,i)=>{const f=info(d);return{v:d.v,t:`Design ${i+1} (${vl(S.g,d.v)}): ${ML[d.m]||"PRINT"}${d.k?`, ${d.k} colors`:""}${+d.wr==2?", WRAPS onto the sleeves and the other side":d.wr?", WRAPS around side seams (continues on the other side)":""}, ${d.w} x ${f.h.toFixed(1)} in, ${f.top.toFixed(1)} in below print-area top, ${f.off.toFixed(1)} in off center, rotation ${d.rot} deg. File: ${fname(d,i)}${d.m=="emb"?`, ~${f.st.toLocaleString()} stitches (est.)`:""}`}})}};
+$("e4").onclick=()=>{const s=spec(),t="ORDER BRIEF\n"+s.head+"\n"+s.lines.map(l=>l.t).join("\n")+"\n\nFILE NOTES\n"+chk().join("\n")+"\n\nPREFLIGHT\n"+pf().map(x=>x.t).join("\n");navigator.clipboard.writeText(t).then(()=>$("e4").textContent="Copied!",()=>prompt("Copy:",t));setTimeout(()=>$("e4").textContent="Copy order brief text",1500)};
+function pack(){const s=spec(),g=G[S.g],vs=used().length?used():["front"];
+$("tp").innerHTML=`<h2>Tech Pack: ${g.n}</h2><pre style="font:13px system-ui;white-space:pre-wrap">${s.head.replace(/</g,"&lt;")}</pre>`+vs.map(v=>`<div class="vw"><svg viewBox="0 0 400 460" xmlns="${NS}">${build(v,false)}</svg><div><b>${vl(S.g,v)}</b>${s.lines.filter(l=>l.v==v).map(l=>`<p>${l.t.replace(/</g,"&lt;")}</p>`).join("")||"<p>No design.</p>"}</div></div>`).join("")+notes()+bun()+`<h3>Size chart (garment measured flat, inches)</h3><table>${g.t.map((r,i)=>`<tr>${r.map(c=>i?`<td>${c}</td>`:`<th>${c}</th>`).join("")}</tr>`).join("")}</table><p style="font-size:11px">Generated by Apparel Mockup Studio. Mockup is illustrative; confirm a proof with your printer.</p>`}
+$("e1").onclick=()=>{pack();window.print()};window.addEventListener("beforeprint",pack);
+const gp=()=>{try{return JSON.parse(localStorage.getItem("ams-p")||"{}")}catch(e){return{}}};
+const F=["fab","gsm","fit","lbl","dt","nt"],snap=()=>{const T={},inv={};let n=0;const p=JSON.parse(JSON.stringify({...S,o:Object.fromEntries(F.map(i=>[i,$(i).value]))},(k,v)=>{if(k=="src"&&typeof v=="string"&&v.length>500){if(!T[v]){T[v]="@@"+n++;inv[T[v]]=v}return T[v]}return v}));return JSON.stringify({p,inv})};
+const restore=t=>{const w=JSON.parse(t),j=w.p?JSON.parse(JSON.stringify(w.p),(k,v)=>typeof v=="string"&&v.startsWith("@@")?w.inv[v]||v:v):w;S={...S,...j};delete S.o;if(j.o)F.forEach(i=>{if(j.o[i]!==undefined)$(i).value=j.o[i]});render()};
+$("sv").onclick=()=>{const k=$("pn").value.trim();if(!k)return alert("Type a project name.");const P=gp();P[k]=snap();try{localStorage.setItem("ams-p",JSON.stringify(P));render();$("pl").value=k}catch(e){alert("Browser storage is full. Use Export file instead.")}};
+$("ld").onclick=()=>{const t=gp()[$("pl").value];if(t){restore(t);$("pn").value=$("pl").value}};
+$("dp").onclick=()=>{const P=gp();delete P[$("pl").value];try{localStorage.setItem("ams-p",JSON.stringify(P))}catch(e){}render()};
+$("ex").onclick=()=>dl("data:application/json;charset=utf-8,"+encodeURIComponent(snap()),($("pn").value||"apparel-project")+".json");
+$("imp").onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{restore(r.result)}catch(x){alert("That file is not a valid project.")}};r.readAsText(f);e.target.value=""};
+$("spOn").onchange=e=>{S.sp.on=e.target.checked;render()};$("spL").oninput=e=>{S.sp.l=e.target.value;render()};$("spR").oninput=e=>{S.sp.r=e.target.value;render()};$("sp").oninput=e=>{S.sp.pos=+e.target.value;render()};
+$("sc").addEventListener("click",e=>{const a=e.target.dataset.pl,b=e.target.dataset.pv,pp=e.target.dataset.pp,d=cur();if(!d||(!a&&!b&&!pp))return;const o=V(S.g,d.v),B=bb(o.p),tor=G[S.g].sc&&!d.v.startsWith("sleeve"),x0=tor?90:B.x,tw=tor?220:B.width,y0=B.y+40,hh=B.height-40;
+if(pp){const[fx,w,t]=PP[pp],cap=Math.min(w,tw*.92/o.ppi,B.height*.9/d.ar/o.ppi);d.w=Math.max(1,Math.floor(cap*4)/4);d.x=x0+tw*fx;d.y=B.y+t*o.ppi+d.w*d.ar*o.ppi/2;if(pp[0]=="W")d.wr=true}
+if(a)d.x=x0+tw*{L:.27,C:.5,R:.73}[a];
+if(b==="F"){d.w=Math.max(1,Math.floor(Math.min(tw*.92,hh*.95/d.ar)/o.ppi*4)/4);d.x=x0+tw/2;d.y=y0+hh/2}else if(b)d.y=y0+hh*{T:.2,M:.5,B:.8}[b];render()});
+const load3=()=>window.THREE?Promise.resolve():new Promise((r,j)=>{const s=document.createElement("script");s.src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js";s.onload=r;s.onerror=j;document.head.append(s)});
+$("e5").onclick=async()=>{$("m3").style.display="flex";try{await load3()}catch(e){$("m3").style.display="none";return alert("Could not load the 3D library.")}
+const cv=$("cv"),W=Math.min(560,innerWidth-30),H=Math.round(W*1.15),R=new THREE.WebGLRenderer({canvas:cv,antialias:true,preserveDrawingBuffer:true});R.setPixelRatio(Math.min(2,devicePixelRatio));R.setSize(W,H,false);cv.style.width=W+"px";cv.style.height=H+"px";R.outputEncoding=THREE.sRGBEncoding;
+const sc=new THREE.Scene();sc.background=new THREE.Color($("bg3").value);const cam=new THREE.PerspectiveCamera(35,W/H,.1,50);cam.position.set(0,0,10);
+sc.add(new THREE.AmbientLight(0xffffff,.8));const dl2=new THREE.DirectionalLight(0xffffff,.6);dl2.position.set(3,4,6);sc.add(dl2);const grp=new THREE.Group();sc.add(grp);
+const mk=async(v,fl)=>{const url=await png(v),t=await new Promise(r=>new THREE.TextureLoader().load(url,r));t.encoding=THREE.sRGBEncoding;t.anisotropy=8;
+const g=new THREE.PlaneGeometry(4,4.6,48,48),P=g.attributes.position;for(let i=0;i<P.count;i++){const x=P.getX(i),y=P.getY(i);P.setZ(i,.5*Math.cos(x/2*Math.PI/2)*(1-.25*(y/2.3)**2))}g.computeVertexNormals();
+const m=new THREE.Mesh(g,new THREE.MeshStandardMaterial({map:t,transparent:true,alphaTest:.05,roughness:.9}));if(fl)m.rotation.y=Math.PI;m.position.z=fl?-.03:.03;grp.add(m)};
+await mk("front",0);await mk(G[S.g].v.back?"back":"front",1);
+let dn=0,lx=0,ly=0,rx=.1,ry=.5,auto=true,ani;
+const loop=()=>{ani=requestAnimationFrame(loop);if(auto&&!dn)ry+=.01;grp.rotation.y=ry;grp.rotation.x=rx;R.render(sc,cam)};loop();
+cv.onpointerdown=e=>{dn=1;lx=e.clientX;ly=e.clientY;cv.setPointerCapture(e.pointerId)};
+cv.onpointermove=e=>{if(!dn)return;ry+=(e.clientX-lx)*.01;rx=Math.max(-.6,Math.min(.6,rx+(e.clientY-ly)*.005));lx=e.clientX;ly=e.clientY};cv.onpointerup=()=>dn=0;
+$("bg3").oninput=e=>sc.background=new THREE.Color(e.target.value);$("au").onclick=()=>auto=!auto;
+$("sp3").onclick=()=>{R.render(sc,cam);dl(cv.toDataURL("image/png"),`${S.g}-3d-mockup.png`)};
+$("rec").onclick=()=>{const mr=new MediaRecorder(cv.captureStream(30),{mimeType:"video/webm"}),ch=[];mr.ondataavailable=e=>ch.push(e.data);mr.onstop=()=>dl(URL.createObjectURL(new Blob(ch,{type:"video/webm"})),`${S.g}-3d-spin.webm`);auto=true;mr.start();$("rec").textContent="Recording...";setTimeout(()=>{mr.stop();$("rec").textContent="Record 6s spin video"},6000)};
+$("cl3").onclick=()=>{cancelAnimationFrame(ani);R.dispose();$("m3").style.display="none"}};
+const tx=(k,p)=>{const g=G[k];if(g.hat)return[80,320];if(g.sc&&g.sc.length==2)return[g.sc[0][2],g.sc[1][0]];const B=bb(p);return[B.x,B.x+B.width]};
+const fit=(d,k)=>{const v=G[k].v[d.v]?d.v:"front",oc=V(S.g,d.v),on=V(k,v),sc=(on.a[2]/on.ppi)/(oc.a[2]/oc.ppi);return{...d,wr:false,id:S.nid++,v,w:Math.max(1,Math.min(Math.round(d.w*sc*4)/4,Math.floor(on.a[2]/on.ppi*4)/4)),x:on.a[0]+on.a[2]/2,y:on.a[1]+on.a[3]/2}};
+const item=k=>k==S.g?{g:k,c:[...S.c],sp:{...S.sp},d:S.d.map(d=>({...d}))}:{g:k,c:[...S.c],sp:{...S.sp},d:S.d.map(d=>fit(d,k))};
+const asItem=(it,fn)=>{const s0=[S.g,S.c,S.d,S.sp];S.g=it.g;S.c=it.c;S.d=it.d;S.sp=it.sp;try{return fn()}finally{[S.g,S.c,S.d,S.sp]=s0}};
+function bundleSVG(bk){const n=S.b.length;let h="";S.b.forEach((it,i)=>{h+=`<svg x="${i*400}" y="0" width="400" height="460" viewBox="0 0 400 460">${asItem(it,()=>build("front",false))}</svg><text x="${i*400+200}" y="482" text-anchor="middle" font-size="16" fill="#888" font-family="system-ui">${G[it.g].n}</text>`;
+if(bk&&G[it.g].v.back)h+=`<svg x="${i*400}" y="495" width="400" height="460" viewBox="0 0 400 460">${asItem(it,()=>build("back",false))}</svg>`});return{h,W:n*400,H:bk?960:495}}
+const bun=()=>{if(!S.b.length)return"";const b=bundleSVG(0);return`<h3>Outfit bundle</h3><svg viewBox="0 0 ${b.W} ${b.H}" xmlns="${NS}" style="width:100%">${b.h}</svg>`};
+$("bm").onclick=()=>{if(!S.d.length)return alert("Upload a design first, then build the outfit from it.");S.b=OUT[$("of").value].map(item);S.showB=true;render()};
+$("ba").onclick=()=>{S.b.push(item(S.g));S.showB=true;render()};$("bc").onclick=()=>{S.b=[];S.showB=false;render()};$("bk").onchange=render;
+$("bl").onclick=e=>{const x=e.target.dataset.bx,l=e.target.dataset.bl;if(x!==undefined)S.b.splice(+x,1);if(l!==undefined){const it=S.b[+l];S.g=it.g;S.c=[...it.c];S.sp={...it.sp};S.d=it.d.map(d=>({...d}));S.sel=S.d.length?S.d[0].id:null;S.v="front";S.showB=false}render()};
+$("wr").onchange=e=>{const d=cur();if(d){d.wr=+e.target.value;render()}};
+$("sr").oninput=e=>{S.sr[e.target.dataset.q]=+e.target.value||0};$("nc").oninput=e=>{const d=cur();if(d)d.k=+e.target.value||0};
+$("e6").onclick=()=>{if(!S.b.length)return alert("Build or add bundle items first.");const b=bundleSVG($("bk").checked),x=`<svg xmlns="${NS}" viewBox="0 0 ${b.W} ${b.H}" width="${b.W}" height="${b.H}"><rect width="100%" height="100%" fill="#fff"/>${b.h}</svg>`,i=new Image();i.onload=()=>{const k=2.25,c=document.createElement("canvas");c.width=b.W*k;c.height=b.H*k;c.getContext("2d").drawImage(i,0,0,c.width,c.height);dl(c.toDataURL("image/png"),"outfit-bundle-mockup.png")};i.src="data:image/svg+xml;charset=utf-8,"+encodeURIComponent(x)};
+const BIG="Your browser could not create a file this large (common on phones). Use a computer, or choose 'cropped to artwork'.";
+const crcT=(()=>{const t=[];for(let n=0;n<256;n++){let c=n;for(let k=0;k<8;k++)c=c&1?0xEDB88320^(c>>>1):c>>>1;t[n]=c>>>0}return t})();
+const crc=b=>{let c=0xFFFFFFFF;for(const x of b)c=crcT[(c^x)&255]^(c>>>8);return(c^0xFFFFFFFF)>>>0};
+const chunk=(t,data)=>{const o=new Uint8Array(12+data.length),v=new DataView(o.buffer);v.setUint32(0,data.length);for(let i=0;i<4;i++)o[4+i]=t.charCodeAt(i);o.set(data,8);v.setUint32(8+data.length,crc(o.subarray(4,8+data.length)));return o};
+async function png300(cv){const bl=await new Promise(r=>cv.toBlob(r,"image/png"));if(!bl)throw new Error("big");const b=new Uint8Array(await bl.arrayBuffer()),dv=new DataView(b.buffer),parts=[b.subarray(0,8)],drop=["sRGB","pHYs","iCCP","gAMA","cHRM"];let p=8;
+while(p<b.length){const L=dv.getUint32(p),t=String.fromCharCode(...b.subarray(p+4,p+8)),end=p+12+L;if(!drop.includes(t))parts.push(b.subarray(p,end));
+if(t=="IHDR"){const ph=new Uint8Array(9),v=new DataView(ph.buffer);v.setUint32(0,11811);v.setUint32(4,11811);ph[8]=1;parts.push(chunk("sRGB",new Uint8Array([0])),chunk("pHYs",ph))}p=end}
+return new Blob(parts,{type:"image/png"})}
+const ext=(d,ppi)=>{const w=d.w*ppi,h=w*d.ar,r=d.rot*Math.PI/180,c=Math.abs(Math.cos(r)),n=Math.abs(Math.sin(r));return[(w*c+h*n)/2,(w*n+h*c)/2]};
+async function flat(v,m,ds){const o=V(S.g,v),a=o.a,ppi=o.ppi,oth=v=="front"?"back":v=="back"?"front":null,[t0,t1]=tx(S.g,o.p),Wt=t1-t0,items=ds.map(d=>({d,x:d.x,cl:+d.wr&&oth?[t0,t1]:null}));
+if(oth)S.d.filter(d=>d.v==oth&&+d.wr&&d.m==m).forEach(d=>[Wt,-Wt].forEach(k=>items.push({d,x:d.x+k,cl:[t0,t1]})));
+let x0=1e9,y0=1e9,x1=-1e9,y1=-1e9;items.forEach(({d,x,cl})=>{const[hx,hy]=ext(d,ppi);let l=x-hx,r=x+hx;if(cl){l=Math.max(l,cl[0]);r=Math.min(r,cl[1])}if(r<=l)return;x0=Math.min(x0,l);x1=Math.max(x1,r);y0=Math.min(y0,d.y-hy);y1=Math.max(y1,d.y+hy)});
+if(x1<x0)return null;let ox,oy,W,H;const md=$("fm").value,sc=300/ppi;
+if(md=="crop"){ox=x0;oy=y0;W=Math.round((x1-x0)*sc);H=Math.round((y1-y0)*sc)}else{const cw=md=="std15"?15:12,ch=md=="std15"?18:16;ox=a[0]+a[2]/2-cw*ppi/2;oy=a[1];W=cw*300;H=ch*300}
+const cv=document.createElement("canvas");cv.width=W;cv.height=H;const cx=cv.getContext("2d");if(!cx)throw new Error("big");
+for(const{d,x,cl}of items){const im=await new Promise(r=>{const i=new Image();i.onload=()=>r(i);i.src=d.src});cx.save();if(cl){cx.beginPath();cx.rect((cl[0]-ox)*sc,0,(cl[1]-cl[0])*sc,H);cx.clip()}
+cx.translate((x-ox)*sc,(d.y-oy)*sc);cx.rotate(d.rot*Math.PI/180);const w=d.w*300;cx.drawImage(im,-w/2,-w*d.ar/2,w,w*d.ar);cx.restore()}
+if($("fa").checked){const im=cx.getImageData(0,0,W,H),dd=im.data;for(let i=3;i<dd.length;i+=4)dd[i]=dd[i]<128?0:255;cx.putImageData(im,0,0)}
+return{cv,W,H,out:md!="crop"&&(x0<ox-1||x1>ox+W/sc+1||y0<oy-1||y1>oy+H/sc+1)}}
+$("e7").onclick=async()=>{const g={};S.d.filter(d=>d.m!="emb").forEach(d=>{(g[d.v+"|"+d.m]=g[d.v+"|"+d.m]||[]).push(d)});const ks=Object.keys(g);if(!ks.length)return alert("No print designs to flatten. Embroidery designs need a digitized stitch file instead.");let n=0;
+for(const k of ks){const[v,m]=k.split("|");try{const r=await flat(v,m,g[k]);if(!r)continue;dl(URL.createObjectURL(await png300(r.cv)),`${S.g}-${v}-${m}-${(r.W/300).toFixed(2)}x${(r.H/300).toFixed(2)}in-300dpi.png`);n++;if(r.out)alert(`Part of the ${vl(S.g,v)} artwork falls outside the chosen canvas and was cut off. Choose "cropped to artwork" or move or resize it.`);await sleep(500)}catch(e){return alert(BIG)}}
+if(!n)alert("Nothing to export.")};
+function pf(){const L=[],add=(lv,t)=>L.push({lv,t});if(!S.d.length)add("warn","No designs placed yet.");
+S.d.forEach((d,i)=>{const o=V(S.g,d.v),a=o.a,n=`Design ${i+1} (${vl(S.g,d.v)})`,e=Math.round(Math.min(d.nw/d.w,d.nw*(d.ar0||d.ar)/(d.w*d.ar))),[hx,hy]=ext(d,o.ppi);
+add(e<150?"bad":e<300?"warn":"ok",`${n}: effective resolution ${e} DPI ${e<150?"(too low, will print soft; use a larger image)":e<300?"(below the 300 DPI standard; check a proof)":"(good)"}.`);
+if(!+d.wr&&(d.x-hx<a[0]-2||d.x+hx>a[0]+a[2]+2||d.y-hy<a[1]-2||d.y+hy>a[1]+a[3]+2))add("warn",`${n}: extends past the suggested print area (${(a[2]/o.ppi).toFixed(1)} x ${(a[3]/o.ppi).toFixed(1)} in). Many printers cap each placement at about that size, so confirm.`);
+if(d.m=="screen")add("warn",`${n}: screen printing normally needs vector art with solid spot colors. This is a raster image, so expect the shop to rebuild or separate it.${d.k>8?" More than 8 colors is usually not offered.":""}`);
+if(d.m=="emb")add("warn",`${n}: embroidery needs a digitized stitch file (DST / PES / EXP). Est. ~${Math.round(d.w*d.w*d.ar*1800).toLocaleString()} stitches. ${d.k>6?"More than 6 thread colors raises the price.":"Keep to about 6 colors or fewer."} Avoid text under 0.25 in.`);
+if(+d.wr==2)add("warn",`${n}: wraps onto the sleeves. The flat files include the front/back continuation only, not the sleeve part. Printing across seams usually needs sublimation or all-over printing, so ask the printer.`);
+else if(+d.wr==1)add("warn",`${n}: wraps around the side seam. Ask the printer whether they can align a print across the seam.`)});
+return L}
+const chk=()=>{const ms=new Set(S.d.map(d=>d.m)),L=[];
+if([...ms].some(m=>["print","dtg","dtf"].includes(m)))L.push("DTG / DTF: PNG with a transparent background, 300 DPI at actual print size, sRGB. Common maximum sizes are 12 x 16 in for front and back, 4 x 4 in for left chest, and 3 x 3 in for a sleeve. If your printer supplies its own template or asks for a different color mode, follow theirs.");
+if(ms.has("screen"))L.push("Screen print: vector art (AI / EPS / PDF with text outlined) with separated spot colors and Pantone numbers is preferred. No gradients unless halftoned. Keep lines about 1 pt or thicker. Dark garments need a white underbase, which is an extra screen. The PNG supplied is a 300 DPI reference or fallback.");
+if(ms.has("emb"))L.push("Embroidery: the artwork must be digitized into a stitch file (DST / PES / EXP) by the shop or a digitizer. The PNG is reference art only. Keep to about 6 colors, text at least 0.25 in (6 mm) tall, and lines at least 1.5 mm.");
+if(ms.has("sub"))L.push("Sublimation: PNG or JPEG, 300 DPI, sRGB. Use the printer's template for sizing.");return L};
+const notes=()=>`<h3>Print file notes</h3><ul>${chk().map(x=>`<li>${x}</li>`).join("")}</ul><h3>Preflight</h3><ul>${pf().map(x=>`<li>${{ok:"OK",warn:"CHECK",bad:"FIX"}[x.lv]}: ${x.t}</li>`).join("")}</ul>`;
+$("e8").onclick=()=>{$("pf").innerHTML=pf().map(x=>`<div style="margin-top:4px">${{ok:"✅",warn:"⚠️",bad:"⛔"}[x.lv]} ${x.t}</div>`).join("")};
+
+render();
+</script></body></html>

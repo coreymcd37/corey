@@ -4,6 +4,8 @@
 ## Pages
 - https://coreymcdaniel.com/ : interactive "Enter the Matrix" terminal entry page
 - https://coreymcdaniel.com/home/ : main home page (monthly verse card, utilities, works)
+- https://coreymcdaniel.com/projects/clothing/ : Clothing Design, apparel mockup studio (work in progress)
+- https://coreymcdaniel.com/projects/cmd-r/ : CMD-R, simple online game and one-minute stress reliever
 - https://coreymcdaniel.com/utilities/ : All the Best Internet Utilities, ~127 free browser tools that run locally
 - https://coreymcdaniel.com/utilities/llms.txt : utilities details
 - https://coreymcdaniel.com/quotes/ : Quick Print
