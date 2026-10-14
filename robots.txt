@@ -1,6 +1,5 @@
 User-agent: *
 Allow: /
 
-Disallow: /media/
-
 Sitemap: https://coreymcdaniel.com/sitemap.xml
+Sitemap: https://coreymcdaniel.com/utilities/sitemap.xml

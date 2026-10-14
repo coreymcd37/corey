@@ -2,7 +2,7 @@
 
 Portfolio site by **Corey McDaniel**.
 
-**Live site:** [https://coreymcdaniel.com/](https://coreymcdaniel.com/) (custom domain; GitHub Pages project URL [https://coreymcd37.github.io/corey/](https://coreymcd37.github.io/corey/) until DNS is fully live)
+**Live site:** [https://coreymcdaniel.com/](https://coreymcdaniel.com/) (custom domain on GitHub Pages). Entry page: `/` (Matrix terminal). Main home: `/home/`. Utilities: `/utilities/`.
 
 ## Homepage
 
