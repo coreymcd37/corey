@@ -102,9 +102,8 @@
         const stem = month.img.replace(/\.webp$/, "");
         host.innerHTML =
           `<picture>` +
-          `<source type="image/webp" srcset="${esc(stem)}-sm.webp 540w, ${esc(month.img)} 1100w" sizes="(max-width: 600px) 92vw, 480px" />` +
-          `<source type="image/jpeg" srcset="${esc(stem)}-sm.jpg 540w, ${esc(stem)}.jpg 1100w" sizes="(max-width: 600px) 92vw, 480px" />` +
-          `<img src="${esc(stem)}.jpg" alt="${esc(month.alt)}" width="821" height="1100" decoding="async" loading="eager" />` +
+          `<source type="image/webp" srcset="${esc(stem)}-sm.webp 540w, ${esc(month.img)} ${month.w || 1100}w" sizes="(max-width: 600px) 92vw, 480px" />` +
+          `<img src="${esc(stem)}-sm.png" alt="${esc(month.alt)}" width="${month.w || 800}" height="${month.h || 1050}" decoding="async" loading="eager" />` +
           `</picture>`;
         host.hidden = false;
       } else {
