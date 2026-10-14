@@ -1,256 +1,765 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Seek First The Kingdom Of God | Corey McDaniel</title>
-  <meta name="description" content="Seek first the Kingdom of God. A privacy-first home by Corey McDaniel for useful tools, monthly encouragement, and works that serve people well. Matthew 6:33." />
-  <meta name="robots" content="index,follow,max-image-preview:large" />
-  <meta name="author" content="Corey McDaniel" />
-  <meta name="theme-color" content="#05040c" />
-  <link rel="canonical" href="https://coreymcdaniel.com/" />
-  <link rel="alternate" hreflang="en" href="https://coreymcdaniel.com/" />
-  <link rel="alternate" hreflang="es" href="https://coreymcdaniel.com/?lang=es" />
-  <link rel="alternate" hreflang="ru" href="https://coreymcdaniel.com/?lang=ru" />
-  <link rel="alternate" hreflang="zh-Hans" href="https://coreymcdaniel.com/?lang=zh" />
-  <link rel="alternate" hreflang="hi" href="https://coreymcdaniel.com/?lang=hi" />
-  <link rel="alternate" hreflang="ar" href="https://coreymcdaniel.com/?lang=ar" />
-  <link rel="alternate" hreflang="de" href="https://coreymcdaniel.com/?lang=de" />
-  <link rel="alternate" hreflang="fi" href="https://coreymcdaniel.com/?lang=fi" />
-  <link rel="alternate" hreflang="sv" href="https://coreymcdaniel.com/?lang=sv" />
-  <link rel="alternate" hreflang="da" href="https://coreymcdaniel.com/?lang=da" />
-  <link rel="alternate" hreflang="th" href="https://coreymcdaniel.com/?lang=th" />
-  <link rel="alternate" hreflang="x-default" href="https://coreymcdaniel.com/" />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Seek First The Kingdom Of God | Corey McDaniel" />
-  <meta property="og:description" content="Matthew 6:33. Useful tools, monthly encouragement, and a living workbench." />
-  <meta property="og:url" content="https://coreymcdaniel.com/" />
-  <meta property="og:image" content="https://coreymcdaniel.com/utilities/img/og.svg" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <link rel="icon" href="utilities/img/favicon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="css/home.css" />
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@graph":[
-    {"@type":"WebSite","name":"Seek First The Kingdom Of God","url":"https://coreymcdaniel.com/","inLanguage":["en","es","ru","zh","hi","ar","de","fi","sv","da","th"],"publisher":{"@type":"Person","name":"Corey McDaniel"}},
-    {"@type":"Person","name":"Corey McDaniel","url":"https://coreymcdaniel.com/","sameAs":["https://github.com/coreymcd37","https://x.com/CoreyMcDaniel"]}
-  ]}
-  </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corey McDaniel — Enter the Matrix</title>
+    <meta name="description" content="Corey McDaniel's home on the web. Step through an interactive Matrix terminal to reach his site: free privacy-first browser utilities, monthly encouragement, and useful works.">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <meta name="author" content="Corey McDaniel">
+    <meta name="theme-color" content="#030712">
+    <link rel="canonical" href="https://coreymcdaniel.com/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Corey McDaniel">
+    <meta property="og:title" content="Corey McDaniel — Enter the Matrix">
+    <meta property="og:description" content="An interactive Matrix terminal gateway to Corey McDaniel's site, utilities, and works.">
+    <meta property="og:url" content="https://coreymcdaniel.com/">
+    <meta property="og:image" content="https://coreymcdaniel.com/img/og.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Corey McDaniel logo">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Corey McDaniel — Enter the Matrix">
+    <meta name="twitter:description" content="An interactive Matrix terminal gateway to Corey McDaniel's site, utilities, and works.">
+    <meta name="twitter:image" content="https://coreymcdaniel.com/img/og.png">
+    <link rel="icon" href="/img/favicon-32.png" type="image/png" sizes="32x32">
+    <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="preload" as="image" href="/img/logo-matrix.webp" type="image/webp">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@graph":[
+      {"@type":"WebSite","@id":"https://coreymcdaniel.com/#website","name":"Corey McDaniel","url":"https://coreymcdaniel.com/","publisher":{"@id":"https://coreymcdaniel.com/#person"}},
+      {"@type":"Person","@id":"https://coreymcdaniel.com/#person","name":"Corey McDaniel","url":"https://coreymcdaniel.com/","image":"https://coreymcdaniel.com/img/icon-512.png","sameAs":["https://github.com/coreymcd37","https://x.com/CoreyMcDaniel"]}
+    ]}
+    </script>
+    <style>
+      .cm-logo{position:fixed;top:12px;left:max(1rem,calc((100vw - 1120px)/2));z-index:40;line-height:0}
+      .cm-logo img{height:40px;width:auto;max-width:min(160px,42vw);display:block;filter:drop-shadow(0 0 8px rgba(0,243,255,.35))}
+      @media (max-width:640px){.cm-logo img{height:34px}}
+      .sr-only-cm{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --neon-primary: #00ff66;
+            --neon-primary-glow: #00ff66aa;
+            --neon-secondary: #00f3ff;
+            --neon-secondary-glow: #00f3ff88;
+            --neon-accent: #ff0055;
+            --neon-accent-glow: #ff0055aa;
+            --bg-dark: #030712;
+            --glass-bg: rgba(3, 7, 18, 0.82);
+        }
+
+        /* Color Theme Variations */
+        body.theme-cyan {
+            --neon-primary: #00f3ff;
+            --neon-primary-glow: #00f3ffaa;
+            --neon-secondary: #ff0055;
+            --neon-secondary-glow: #ff005588;
+            --neon-accent: #00ff66;
+            --neon-accent-glow: #00ff66aa;
+        }
+
+        body.theme-amber {
+            --neon-primary: #ffb000;
+            --neon-primary-glow: #ffb000aa;
+            --neon-secondary: #ff5500;
+            --neon-secondary-glow: #ff550088;
+            --neon-accent: #00f3ff;
+            --neon-accent-glow: #00f3ffaa;
+        }
+
+        body.theme-synth {
+            --neon-primary: #ff007f;
+            --neon-primary-glow: #ff007faa;
+            --neon-secondary: #7928ca;
+            --neon-secondary-glow: #7928ca88;
+            --neon-accent: #00f3ff;
+            --neon-accent-glow: #00f3ffaa;
+        }
+
+        body {
+            font-family: 'Fira Code', monospace;
+            background-color: var(--bg-dark);
+            color: var(--neon-primary);
+            overflow: hidden;
+            user-select: none;
+            transition: color 0.4s ease;
+        }
+
+        /* CRT Screen Effect & Scanlines */
+        .crt-container::before {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.35) 50%), 
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+            z-index: 30;
+            background-size: 100% 3px, 6px 100%;
+            pointer-events: none;
+        }
+
+        .crt-container::after {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: rgba(18, 16, 16, 0.1);
+            opacity: 0;
+            z-index: 30;
+            pointer-events: none;
+            animation: flicker 0.15s infinite;
+        }
+
+        @keyframes flicker {
+            0% { opacity: 0.02; }
+            50% { opacity: 0.05; }
+            100% { opacity: 0.01; }
+        }
+
+        /* Glowing Neon Dynamic Helpers */
+        .glow-primary {
+            text-shadow: 0 0 5px var(--neon-primary-glow), 0 0 10px var(--neon-primary-glow);
+        }
+
+        .glow-secondary {
+            text-shadow: 0 0 5px var(--neon-secondary-glow), 0 0 10px var(--neon-secondary-glow);
+        }
+
+        .glow-accent {
+            text-shadow: 0 0 5px var(--neon-accent-glow), 0 0 10px var(--neon-accent-glow);
+        }
+
+        .box-glow {
+            box-shadow: 0 0 25px var(--neon-secondary-glow), inset 0 0 15px rgba(0, 243, 255, 0.05);
+            border: 1px solid var(--neon-secondary);
+        }
+
+        /* Custom Scrollbar */
+        .terminal-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .terminal-scroll::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.3);
+        }
+        .terminal-scroll::-webkit-scrollbar-thumb {
+            background: var(--neon-secondary);
+            border-radius: 3px;
+            opacity: 0.5;
+        }
+
+        /* Glitch Animation Keyframes */
+        .glitch-active {
+            animation: glitch-anim 0.2s infinite alternate;
+        }
+
+        @keyframes glitch-anim {
+            0% { transform: translate(0); filter: hue-rotate(0deg); }
+            20% { transform: translate(-4px, 4px); filter: hue-rotate(90deg) invert(0.2); }
+            40% { transform: translate(-4px, -4px); filter: hue-rotate(180deg); }
+            60% { transform: translate(4px, 4px); filter: hue-rotate(270deg); }
+            80% { transform: translate(4px, -4px); filter: hue-rotate(360deg) contrast(1.5); }
+            100% { transform: translate(0); }
+        }
+
+        /* Screen Flash Explosion sequence */
+        @keyframes matrix-warp {
+            0% { transform: scale(1); filter: brightness(1) opacity(1); }
+            50% { transform: scale(3) rotate(5deg); filter: brightness(10) contrast(2) invert(1); }
+            100% { transform: scale(10) rotate(-10deg); filter: brightness(50) opacity(0); }
+        }
+
+        .warp-active {
+            animation: matrix-warp 1.8s cubic-bezier(0.7, 0, 0.84, 0) forwards;
+        }
+
+        /* Blinking status pulse */
+        .status-pulse {
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 var(--neon-primary-glow); }
+            70% { box-shadow: 0 0 0 8px rgba(0, 255, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 255, 102, 0); }
+        }
+    </style>
 </head>
-<body>
-  <a class="skip" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="wrap nav">
-      <!-- Header: transparent img/logo-header.png only (never logo.jpg). -->
-      <a class="brand" href="./" aria-label="Home">
-        <img class="site-logo" src="img/logo-header.png" alt="Home" height="40" />
-      </a>
-      <div class="nav-actions">
-        <div class="lang-menu">
-          <button class="lang-btn" id="lang-toggle" type="button" aria-expanded="false" aria-controls="lang-list" aria-haspopup="listbox">EN</button>
-          <div class="lang-list" id="lang-list" role="listbox" aria-label="Language">
-            <button type="button" role="option" data-lang="en">English</button>
-            <button type="button" role="option" data-lang="es">Español</button>
-            <button type="button" role="option" data-lang="ru">Русский</button>
-            <button type="button" role="option" data-lang="zh">中文</button>
-            <button type="button" role="option" data-lang="hi">हिन्दी</button>
-            <button type="button" role="option" data-lang="ar">العربية</button>
-            <button type="button" role="option" data-lang="de">Deutsch</button>
-            <button type="button" role="option" data-lang="fi">Suomi</button>
-            <button type="button" role="option" data-lang="sv">Svenska</button>
-            <button type="button" role="option" data-lang="da">Dansk</button>
-            <button type="button" role="option" data-lang="th">ไทย</button>
-          </div>
+<body class="crt-container h-screen w-screen flex items-center justify-center relative">
+    <a class="cm-logo" href="/home/" aria-label="Corey McDaniel — home"><picture><source srcset="/img/logo-matrix.webp" type="image/webp"><img src="/img/logo-matrix.png" alt="Corey McDaniel" width="168" height="80" decoding="async"></picture></a>
+    <h1 class="sr-only-cm">Corey McDaniel</h1>
+    <noscript><p style="position:fixed;bottom:1rem;left:0;right:0;text-align:center;z-index:60"><a href="/home/" style="color:#00ff66">Continue to Corey McDaniel's home page</a></p></noscript>
+
+    <!-- Matrix Rain Background Canvas -->
+    <canvas id="matrix-canvas" class="absolute inset-0 z-0" aria-hidden="true"></canvas>
+
+    <!-- Terminal Frame -->
+    <div id="terminal-window" class="relative z-10 w-11/12 max-w-4xl h-[84vh] bg-slate-950/85 backdrop-blur-md rounded-lg box-glow flex flex-col overflow-hidden transition-all duration-300">
+        
+        <!-- Terminal Header Bar -->
+        <div class="bg-slate-900/80 border-b border-cyan-500/30 px-4 py-2.5 flex items-center justify-between text-xs sm:text-sm">
+            <div class="flex items-center space-x-3">
+                <span id="status-dot" class="w-2.5 h-2.5 rounded-full bg-emerald-400 status-pulse inline-block"></span>
+                <span class="font-bold tracking-wider text-cyan-400 glow-secondary">HACKED_CONSOLE_PORT_OUT_OF_MATRIX // NODE_CMD37</span>
+            </div>
+            <div class="flex items-center space-x-3 sm:space-x-5 text-xs font-semibold">
+                <span class="hidden sm:inline text-slate-400">FPS: <span id="fps-display" class="text-emerald-400">60</span></span>
+                <span class="hidden md:inline text-slate-400">THEME: <span id="theme-display" class="text-emerald-400">MATRIX</span></span>
+                <button id="audio-toggle" class="px-2.5 py-0.5 rounded border border-cyan-500/50 hover:bg-cyan-500/20 text-cyan-300 text-xs transition-colors">
+                    AUDIO: <span id="audio-status" class="text-emerald-400">ON</span>
+                </button>
+            </div>
         </div>
-        <button class="menu-btn" type="button" id="menu-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
-          <span class="menu-btn-bars" aria-hidden="true"></span>
-        </button>
-      </div>
-      <nav class="nav-panel" id="site-nav" aria-label="Primary">
-        <a href="./" data-i="navHome">Home</a>
-        <a href="#tools" data-i="utilities">Utilities</a>
-        <a href="utilities/" data-i="openUtilities">Open Utilities</a>
-        <a href="#works" data-i="works">Useful Works</a>
-        <a href="quotes/" data-i="quickPrint">Quick Print</a>
-        <a href="works/photo.html" data-i="photo">Photo</a>
-        <a href="legal/terms.html" data-i="navLegal">Legal</a>
-        <a href="#note-block" data-i="navContact">Contact</a>
-      </nav>
+
+        <!-- Terminal Output Viewport -->
+        <div id="output-window" class="flex-1 p-4 sm:p-6 overflow-y-auto terminal-scroll text-sm sm:text-base space-y-2">
+            <div class="text-cyan-400 glow-secondary">>>> ESCAPE_MATRIX v3.0 INITIALIZED [QUANTUM_RELEASE_2026]</div>
+            <div class="text-slate-400">Neural Gateway Connected. Secure tunnel established on port 9042.</div>
+            <div class="text-emerald-400 glow-primary">Type <span class="text-white underline font-bold cursor-pointer" onclick="executeQuickCmd('help')">help</span> to list commands or <span class="text-pink-400 underline font-bold cursor-pointer" onclick="executeQuickCmd('enter the matrix')">enter the matrix</span> to begin.</div>
+            <div class="h-2"></div>
+        </div>
+
+        <!-- Command Input Line -->
+        <div class="p-3 sm:p-4 bg-slate-900/80 border-t border-cyan-500/20 flex items-center space-x-2">
+            <span class="text-pink-500 font-bold glow-accent text-sm sm:text-base whitespace-nowrap">usr@coreymcdaniel></span>
+            <div class="relative flex-1 flex items-center">
+                <input type="text" id="command-input" class="w-full bg-transparent outline-none text-emerald-400 font-mono text-sm sm:text-base glow-primary border-none p-0 focus:ring-0" autofocus autocomplete="off" spellcheck="false" />
+            </div>
+        </div>
     </div>
-  </header>
 
-  <main id="main">
-  <section class="opener" id="opener">
-    <video id="opener-video" muted playsinline autoplay poster="">
-      <source src="media/opener.mp4" type="video/mp4" />
-    </video>
-    <div class="fallback" id="opener-fallback"></div>
-    <div class="veil wrap">
-      <p class="kicker" data-i="kicker">Matthew 6:33 · Corey McDaniel</p>
-      <h1 class="grad" data-i="title">Seek First The Kingdom Of God</h1>
-      <p class="lede" data-i="lede">Build useful work, keep a clean conscience, and put the Kingdom first.</p>
-      <button class="btn btn-primary" id="skip-opener" type="button" data-i="watch">Begin</button>
+    <!-- "Enter The Matrix" Pop-Up Confirmation Dialog Overlay -->
+    <div id="matrix-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-lg flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
+        <div class="w-11/12 max-w-lg bg-slate-950 border-2 border-emerald-400 rounded-lg p-6 sm:p-8 box-glow relative shadow-[0_0_50px_rgba(0,255,102,0.3)]">
+            <div class="text-xs text-cyan-400 font-bold tracking-widest uppercase mb-2">>>> SYSTEM_OVERRIDE_GATEWAY</div>
+            <h2 class="text-xl sm:text-2xl font-bold text-emerald-400 glow-primary mb-4">Are you sure you are ready?</h2>
+            <p class="text-slate-300 text-xs sm:text-sm mb-6 leading-relaxed">
+                Entering the raw Matrix stream will sever your connection to simulated reality and breach the core system mainframe.
+            </p>
+            
+            <form id="modal-form" class="space-y-4">
+                <div>
+                    <label for="modal-input" class="block text-xs font-semibold text-pink-500 glow-accent mb-1">TYPE 'YES' TO CONFIRM BREACH:</label>
+                    <input type="text" id="modal-input" class="w-full bg-slate-900 border border-emerald-500/50 rounded px-3 py-2 text-emerald-400 font-mono focus:outline-none focus:border-emerald-400 glow-primary text-base" placeholder="Type Yes..." autocomplete="off">
+                </div>
+                <div class="flex items-center justify-end space-x-3 pt-2">
+                    <button type="button" id="modal-cancel" class="px-4 py-2 rounded text-xs font-bold text-slate-400 hover:text-white border border-slate-700 hover:border-slate-500 transition-colors">ABORT</button>
+                    <button type="submit" class="px-6 py-2 rounded text-xs font-bold bg-emerald-500/20 hover:bg-emerald-500/40 text-emerald-300 border border-emerald-400 transition-all glow-primary">ENTER MATRIX</button>
+                </div>
+            </form>
+        </div>
     </div>
-  </section>
 
-  <section class="month-stage" id="month-stage">
-    <div class="wrap">
-      <p class="kicker"><span data-i="monthLabel">This month</span> · <span id="month-name"></span></p>
-      <div class="month-card" id="acrostic" role="img" aria-label="Monthly acrostic verse card" hidden></div>
-      <noscript><div class="month-card" role="img" aria-label="January: Jehovah Always Navigates Us Assisting Rebellious Youth. Jeremiah 29:11"><p class="mc-ref">Jeremiah 29:11</p><div class="mc-pill"><span>J</span><span>A</span><span>N</span><span>U</span><span>A</span><span>R</span><span>Y</span></div><ul class="mc-words"><li><b>J</b>ehovah</li><li><b>A</b>lways</li><li><b>N</b>avigates</li><li><b>U</b>s</li><li><b>A</b>ssisting</li><li><b>R</b>ebellious</li><li><b>Y</b>outh</li></ul></div></noscript>
-      <p class="howto">Each month the letters of the month spell a short line of encouragement, anchored in Scripture. The card changes automatically with your calendar.</p>
-    </div>
-  </section>
+    <script>
+        // Web Audio API Sound Synthesizer Engine
+        class SoundFX {
+            constructor() {
+                this.ctx = null;
+                this.enabled = true;
+            }
 
-  <section class="wrap" id="tools">
-    <h2 class="grad" data-i="utilities">Utilities</h2>
-    <p class="howto">Privacy-first utility benches that run in your browser. Open a category to launch focused tools.</p>
-    <div class="cats-grid">
-      <a class="neon-card cat-card" href="utilities/categories/seo.html"><div class="card-3d" aria-hidden="true"><div class="card-3d-face"><svg viewBox="0 0 48 48" fill="none" stroke="#e9d5ff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="7"/><path d="M24 8a16 16 0 0 1 16 16M24 14a10 10 0 0 1 10 10M12 16l4 4M10 24h5"/></svg></div></div>
-        <h3>SEO & Webmaster</h3>
-      </a>
-      <a class="neon-card cat-card" href="utilities/categories/text.html"><div class="card-3d" aria-hidden="true"><div class="card-3d-face"><svg viewBox="0 0 48 48" fill="none" stroke="#f0abfc" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14V10h28v4M24 10v28M16 38h16"/></svg></div></div>
-        <h3>Text & Content</h3>
-      </a>
-      <a class="neon-card cat-card" href="utilities/categories/design.html"><div class="card-3d" aria-hidden="true"><div class="card-3d-face"><svg viewBox="0 0 48 48" fill="none" stroke="#a5b4fc" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M24 8a16 16 0 1 0 0 32h3a5 5 0 0 0 0-10H24"/><circle cx="16" cy="20" r="2"/><circle cx="20" cy="14" r="2"/></svg></div></div>
-        <h3>CSS & Design</h3>
-      </a>
-      <a class="neon-card cat-card" href="utilities/categories/image.html"><div class="card-3d" aria-hidden="true"><div class="card-3d-face"><svg viewBox="0 0 48 48" fill="none" stroke="#7dd3fc" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="12" width="32" height="24" rx="3"/><circle cx="18" cy="22" r="3"/><path d="M40 30l-9-9-14 14"/></svg></div></div>
-        <h3>Images</h3>
-      </a>
-      <a class="neon-card cat-card" href="utilities/categories/pdf.html"><div class="card-3d" aria-hidden="true"><div class="card-3d-face"><svg viewBox="0 0 48 48" fill="none" stroke="#fda4af" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M28 8H14a3 3 0 0 0-3 3v26a3 3 0 0 0 3 3h20a3 3 0 0 0 3-3V16z"/><path d="M28 8v8h8"/></svg></div></div>
-        <h3>PDF & Documents</h3>
-      </a>
-      <a class="neon-card cat-card" href="utilities/categories/developer.html"><div class="card-3d" aria-hidden="true"><div class="card-3d-face"><svg viewBox="0 0 48 48" fill="none" stroke="#c4b5fd" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 16l-8 8 8 8M32 16l8 8-8 8M26 12l-4 24"/></svg></div></div>
-        <h3>Developer</h3>
-      </a>
-      <a class="neon-card cat-card" href="utilities/categories/security.html"><div class="card-3d" aria-hidden="true"><div class="card-3d-face"><svg viewBox="0 0 48 48" fill="none" stroke="#6ee7b7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M24 8l14 5v10c0 9-6 15-14 16-8-1-14-7-14-16V13z"/></svg></div></div>
-        <h3>Security & Privacy</h3>
-      </a>
-      <a class="neon-card cat-card" href="utilities/categories/calculators.html"><div class="card-3d" aria-hidden="true"><div class="card-3d-face"><svg viewBox="0 0 48 48" fill="none" stroke="#93c5fd" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="12" y="8" width="24" height="32" rx="3"/><path d="M18 16h12M18 24h4M26 24h4M18 32h4M26 32h4"/></svg></div></div>
-        <h3>Calculators & Time</h3>
-      </a>
-      <a class="neon-card cat-card" href="utilities/categories/diagnostics.html"><div class="card-3d" aria-hidden="true"><div class="card-3d-face"><svg viewBox="0 0 48 48" fill="none" stroke="#67e8f9" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="10" width="32" height="10" rx="2"/><rect x="8" y="28" width="32" height="10" rx="2"/><path d="M14 15h.01M14 33h.01"/></svg></div></div>
-        <h3>Domain & Diagnostics</h3>
-      </a>
-      <a class="neon-card cat-card" href="utilities/categories/business.html"><div class="card-3d" aria-hidden="true"><div class="card-3d-face"><svg viewBox="0 0 48 48" fill="none" stroke="#c4b5fd" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="16" width="32" height="22" rx="3"/><path d="M16 16V12h16v4M8 24h32"/></svg></div></div>
-        <h3>Business & Everyday</h3>
-      </a>
-    </div>
-    <p class="browse-all"><a href="utilities/" data-i="browseAll">Browse all utilities</a></p>
-  </section>
+            init() {
+                if (!this.ctx) {
+                    const AudioContext = window.AudioContext || window.webkitAudioContext;
+                    this.ctx = new AudioContext();
+                }
+            }
 
-  <section class="journey wrap" id="journey">
-    <h2 class="grad" data-i="journey">A life being shaped</h2>
-    <p class="howto">Scroll the path. Each beat leaves room for a caption and the skills earned there. Share this page when the story is ready to travel.</p>
-    <article class="scene">
-      <svg class="figure" viewBox="0 0 120 140" aria-hidden="true"><ellipse cx="60" cy="128" rx="28" ry="6" fill="#22183a"/><path d="M28 110c12-18 22-8 34-28 6 14 22 6 30 24" fill="none" stroke="#c084fc" stroke-width="5"/><circle cx="52" cy="58" r="10" fill="#e9d5ff"/></svg>
-      <div><h3>On the ground</h3><p>Broken and looking down. The camera sits above the shoulders.</p><p class="howto">Skills later: honesty, endurance.</p></div>
-    </article>
-    <article class="scene">
-      <svg class="figure" viewBox="0 0 120 140"><rect x="18" y="20" width="84" height="50" rx="4" fill="#1e1b4b" stroke="#67e8f9"/><path d="M50 120v-40h20v40" fill="none" stroke="#a5b4fc" stroke-width="5"/><circle cx="60" cy="62" r="8" fill="#e9d5ff"/></svg>
-      <div><h3>University passes</h3><p>Clothes change. A school facade flashes. Side view.</p><p class="howto">Skills: study, speech, craft.</p></div>
-    </article>
-    <article class="scene">
-      <svg class="figure" viewBox="0 0 120 140"><path d="M40 110l20-30 20 30" fill="none" stroke="#fb7185" stroke-width="5"/><circle cx="60" cy="55" r="9" fill="#e9d5ff"/></svg>
-      <div><h3>Struggle</h3><p>A fight in the frame. Kneeling next, then standing when God is found.</p><p class="howto">Skills: courage, repentance, faith.</p></div>
-    </article>
-    <article class="scene">
-      <svg class="figure" viewBox="0 0 120 140"><circle cx="48" cy="50" r="8" fill="#e9d5ff"/><circle cx="72" cy="50" r="8" fill="#c4b5fd"/><path d="M40 110c8-28 16-28 20-28s12 0 20 28" fill="none" stroke="#34d399" stroke-width="5"/></svg>
-      <div><h3>Married and stronger</h3><p>Looking up at the figure. Broader stance.</p><p class="howto">Skills: covenant, strength, service.</p></div>
-    </article>
-    <article class="scene">
-      <svg class="figure" viewBox="0 0 120 140"><rect x="30" y="48" width="60" height="54" rx="6" fill="#312e81"/><circle cx="60" cy="38" r="10" fill="#e9d5ff"/></svg>
-      <div><h3>Another country, then the desk</h3><p>Business dress. Camera rotates to a three-quarter boss stance.</p><p class="howto">Skills: building, leading, shipping tools people can trust.</p></div>
-    </article>
-    <p class="no-print"><button class="btn" type="button" onclick="navigator.share ? navigator.share({title:document.title,url:location.href}) : navigator.clipboard.writeText(location.href)">Share this page</button></p>
-  </section>
+            playKeyBeep() {
+                if (!this.enabled) return;
+                this.init();
+                if (this.ctx.state === 'suspended') this.ctx.resume();
 
-  <section class="works" id="works">
-    <div class="wrap">
-      <h2 class="grad" data-i="works">Useful Works</h2>
-      <div class="rail-wrap">
-      <div class="rail" id="works-rail">
-        <a class="neon-card work-card" href="works/property-360.html"><div class="card-3d" aria-hidden="true"><div class="card-3d-face"><svg viewBox="0 0 48 48" fill="none" stroke="#7dd3fc" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 22L24 10l16 12v14H8z"/><path d="M20 36V24h8v12"/></svg></div></div>
-          <h3>Property 360</h3>
-          <p>Walk a space before you arrive.</p>
-        </a>
-        <a class="neon-card work-card" href="works/money-desk.html"><div class="card-3d" aria-hidden="true"><div class="card-3d-face"><svg viewBox="0 0 48 48" fill="none" stroke="#6ee7b7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="14" width="28" height="20" rx="3"/><path d="M10 20h28M18 14v-3h12v3"/></svg></div></div>
-          <h3>My Money Desk</h3>
-          <p>Fix my finances.</p>
-        </a>
-        <a class="neon-card work-card" href="works/photo.html"><div class="card-3d" aria-hidden="true"><div class="card-3d-face"><svg viewBox="0 0 48 48" fill="none" stroke="#7dd3fc" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="12" width="32" height="24" rx="3"/><circle cx="18" cy="22" r="3"/><path d="M40 30l-9-9-14 14"/></svg></div></div>
-          <h3 data-i="photo">Photo</h3>
-          <p>Metadata, resize, crop, markup.</p>
-        </a>
+                const osc = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
 
-        <a class="neon-card work-card" href="utilities/"><div class="card-3d" aria-hidden="true"><div class="card-3d-face"><svg viewBox="0 0 48 48" fill="none" stroke="#c4b5fd" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="10" width="12" height="12" rx="2"/><rect x="26" y="10" width="12" height="12" rx="2"/><rect x="10" y="26" width="12" height="12" rx="2"/><path d="M28 28h6v6"/></svg></div></div>
-          <h3>Utilities</h3>
-          <p>Standalone browser tools.</p>
-        </a>
-        <a class="neon-card work-card" href="utilities/categories/seo.html"><div class="card-3d" aria-hidden="true"><div class="card-3d-face"><svg viewBox="0 0 48 48" fill="none" stroke="#e9d5ff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="7"/><path d="M24 8a16 16 0 0 1 16 16"/></svg></div></div>
-          <h3>Website & SEO</h3>
-          <p>Titles, schema, sitemaps.</p>
-        </a>
-        <a class="neon-card work-card" href="works/solar.html"><div class="card-3d" aria-hidden="true"><div class="card-3d-face"><svg viewBox="0 0 48 48" fill="none" stroke="#fde68a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="8"/><path d="M24 8v4M24 36v4M8 24h4M36 24h4M12 12l3 3M33 33l3 3M12 36l3-3M33 15l3-3"/></svg></div></div>
-          <h3>Home Solar Calculator</h3>
-          <p>Estimate a roof before a pitch.</p>
-        </a>
-        <a class="neon-card work-card" href="works/family-tree.html"><div class="card-3d" aria-hidden="true"><div class="card-3d-face"><svg viewBox="0 0 48 48" fill="none" stroke="#f0abfc" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="12" r="4"/><circle cx="12" cy="32" r="4"/><circle cx="36" cy="32" r="4"/><path d="M24 16v8M24 24H12v4M24 24h12v4"/></svg></div></div>
-          <h3>Family Tree App</h3>
-          <p>Names, roots, remembrance.</p>
-        </a>
-        <a class="neon-card work-card" href="quotes/"><div class="card-3d" aria-hidden="true"><div class="card-3d-face"><svg viewBox="0 0 48 48" fill="none" stroke="#a5f3fc" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V8h14l6 6v4"/><path d="M14 30h20v10H14z"/><path d="M10 18h28v12H10z"/></svg></div></div>
-          <h3>Quick Print</h3>
-          <p>Invoice, lists, work orders, PDF.</p>
-        </a>
-        <a class="neon-card work-card" href="legal/terms.html"><div class="card-3d" aria-hidden="true"><div class="card-3d-face"><svg viewBox="0 0 48 48" fill="none" stroke="#c4b5fd" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8h12l6 6v26H16z"/><path d="M28 8v6h6M20 22h12M20 28h12M20 34h8"/></svg></div></div>
-          <h3>Terms & Privacy</h3>
-          <p>The house rules in one place.</p>
-        </a>
-      </div>
-      </div>
-    </div>
-  </section>
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(800 + Math.random() * 300, this.ctx.currentTime);
+                gain.gain.setValueAtTime(0.015, this.ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + 0.03);
 
-  <section class="wrap note-block" id="note-block">
-    <div class="panel">
-      <h2 class="grad" data-i="subscribe">Subscribe and drop me a note here</h2>
-      <form id="note-form" class="form">
-        <label><span data-i="name">Name</span><input name="name" required autocomplete="name" /></label>
-        <label><span data-i="email">Email</span><input name="email" type="email" required autocomplete="email" /></label>
-        <label><span data-i="note">Optional note</span><textarea name="note" rows="4"></textarea></label>
-        <button class="btn btn-primary" type="submit" data-i="send">Send note</button>
-        <p id="form-status" class="howto"></p>
-      </form>
-    </div>
-  </section>
+                osc.connect(gain);
+                gain.connect(this.ctx.destination);
 
-  </main>
+                osc.start();
+                osc.stop(this.ctx.currentTime + 0.03);
+            }
 
-  <footer class="site-footer">
-    <div class="wrap foot-grid">
-      <div>
-        <p data-i="footer">A Corey McDaniel workbench. Seek first the Kingdom.</p>
-        <p>© 2026 Corey McDaniel.</p>
-      </div>
-      <div>
-        <a href="utilities/">Utilities</a><br />
-        <a href="quotes/" data-i="quickPrint">Quick Print</a><br />
-        <a href="works/photo.html" data-i="photo">Photo</a><br />
-        <a href="legal/terms.html">Terms &amp; Privacy</a>
-      </div>
-      <div>
-        <p data-i="region">Discover this site from your region</p>
-        <p id="region-links"></p>
-      </div>
-    </div>
-  </footer>
-  <script src="js/i18n.js"></script>
-  <script src="js/acrostic.js"></script>
-  <script src="js/home.js"></script>
-  <script>
-    const q = new URLSearchParams(location.search).get("lang");
-    if (q) localStorage.setItem("cm-lang", q);
-  </script>
+            playCommandSound(type = 'success') {
+                if (!this.enabled) return;
+                this.init();
+                if (this.ctx.state === 'suspended') this.ctx.resume();
+
+                const osc = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
+
+                if (type === 'success') {
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(523.25, this.ctx.currentTime);
+                    osc.frequency.setValueAtTime(659.25, this.ctx.currentTime + 0.08);
+                    gain.gain.setValueAtTime(0.04, this.ctx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + 0.2);
+                } else if (type === 'alert' || type === 'error') {
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(220, this.ctx.currentTime);
+                    osc.frequency.setValueAtTime(110, this.ctx.currentTime + 0.1);
+                    gain.gain.setValueAtTime(0.06, this.ctx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + 0.25);
+                } else if (type === 'glitch') {
+                    osc.type = 'square';
+                    osc.frequency.setValueAtTime(150 + Math.random() * 500, this.ctx.currentTime);
+                    gain.gain.setValueAtTime(0.08, this.ctx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + 0.15);
+                }
+
+                osc.connect(gain);
+                gain.connect(this.ctx.destination);
+
+                osc.start();
+                osc.stop(this.ctx.currentTime + 0.25);
+            }
+
+            playSynthChord() {
+                if (!this.enabled) return;
+                this.init();
+                if (this.ctx.state === 'suspended') this.ctx.resume();
+
+                const freqs = [261.63, 329.63, 392.00, 523.25]; // C Major Synth Pad
+                freqs.forEach((f, idx) => {
+                    const osc = this.ctx.createOscillator();
+                    const gain = this.ctx.createGain();
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(f, this.ctx.currentTime);
+                    
+                    gain.gain.setValueAtTime(0.015, this.ctx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + 1.2 + (idx * 0.1));
+
+                    osc.connect(gain);
+                    gain.connect(this.ctx.destination);
+
+                    osc.start();
+                    osc.stop(this.ctx.currentTime + 1.5);
+                });
+            }
+
+            playWarpDriveSound() {
+                if (!this.enabled) return;
+                this.init();
+                if (this.ctx.state === 'suspended') this.ctx.resume();
+
+                const osc = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
+
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(100, this.ctx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(1800, this.ctx.currentTime + 1.5);
+
+                gain.gain.setValueAtTime(0.08, this.ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + 1.8);
+
+                osc.connect(gain);
+                gain.connect(this.ctx.destination);
+
+                osc.start();
+                osc.stop(this.ctx.currentTime + 1.8);
+            }
+        }
+
+        const audio = new SoundFX();
+
+        const canvas = document.getElementById('matrix-canvas');
+        const ctx = canvas.getContext('2d');
+
+        const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
+        const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*+-/<>[]{}';
+        const alphabet = katakana + latin;
+
+        let fontSize = 16;
+        let columns = 0;
+        let drops = [];
+        let speeds = [];
+
+        let rainConfig = {
+            speedMultiplier: 1.0,
+            color: '#00ff66'
+        };
+
+        function initCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            columns = Math.floor(canvas.width / fontSize);
+            drops = [];
+            speeds = [];
+
+            for (let i = 0; i < columns; i++) {
+                drops[i] = Math.random() * -100;
+                speeds[i] = Math.random() * 0.8 + 0.6;
+            }
+        }
+
+        initCanvas();
+        window.addEventListener('resize', initCanvas);
+
+        let lastTime = performance.now();
+        let frameCount = 0;
+        let currentFps = 60;
+        const fpsDisplay = document.getElementById('fps-display');
+
+        function drawMatrix(currentTime) {
+            frameCount++;
+            if (currentTime - lastTime >= 1000) {
+                currentFps = frameCount;
+                fpsDisplay.textContent = currentFps;
+                frameCount = 0;
+                lastTime = currentTime;
+            }
+
+            ctx.fillStyle = 'rgba(3, 7, 18, 0.08)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.font = `${fontSize}px 'Fira Code', monospace`;
+
+            for (let i = 0; i < drops.length; i++) {
+                const char = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+                const x = i * fontSize;
+                const y = drops[i] * fontSize;
+
+                if (Math.random() > 0.12) {
+                    ctx.fillStyle = '#ffffff';
+                    ctx.shadowColor = '#00f3ff';
+                    ctx.shadowBlur = 8;
+                } else {
+                    ctx.fillStyle = rainConfig.color;
+                    ctx.shadowColor = rainConfig.color;
+                    ctx.shadowBlur = 4;
+                }
+
+                ctx.fillText(char, x, y);
+                ctx.shadowBlur = 0;
+
+                if (y > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+
+                drops[i] += speeds[i] * rainConfig.speedMultiplier;
+            }
+
+            requestAnimationFrame(drawMatrix);
+        }
+
+        requestAnimationFrame(drawMatrix);
+
+        const input = document.getElementById('command-input');
+        const output = document.getElementById('output-window');
+        const audioToggleBtn = document.getElementById('audio-toggle');
+        const audioStatus = document.getElementById('audio-status');
+        const themeDisplay = document.getElementById('theme-display');
+
+        const themes = ['matrix', 'cyan', 'amber', 'synth'];
+        let currentThemeIndex = 0;
+
+        audioToggleBtn.addEventListener('click', () => {
+            audio.enabled = !audio.enabled;
+            audioStatus.textContent = audio.enabled ? 'ON' : 'OFF';
+            audioStatus.className = audio.enabled ? 'text-emerald-400' : 'text-pink-500';
+        });
+
+        document.getElementById('terminal-window').addEventListener('click', () => {
+            input.focus();
+        });
+
+        input.addEventListener('input', () => {
+            audio.playKeyBeep();
+        });
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const command = input.value.trim();
+                input.value = '';
+                if (command !== '') {
+                    processCommand(command);
+                }
+            }
+        });
+
+        function executeQuickCmd(cmdText) {
+            input.value = cmdText;
+            processCommand(cmdText);
+            input.value = '';
+        }
+
+        function printOutput(htmlContent) {
+            const div = document.createElement('div');
+            div.className = 'leading-relaxed';
+            div.innerHTML = htmlContent;
+            output.appendChild(div);
+            output.scrollTop = output.scrollHeight;
+        }
+
+        function escapeHtml(str) {
+            return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        }
+
+        function processCommand(rawCmd) {
+            printOutput(`<span class="text-pink-500 font-bold glow-accent">usr@matrix_os:~$</span> <span class="text-white font-semibold">${escapeHtml(rawCmd)}</span>`);
+
+            const cleanCmd = rawCmd.trim().toLowerCase();
+
+            // Check for "Enter The Matrix" command variations
+            if (cleanCmd === 'enter the matrix' || cleanCmd === 'enter matrix' || cleanCmd === 'enterthematrix') {
+                audio.playCommandSound('success');
+                openMatrixModal();
+                return;
+            }
+
+            const args = rawCmd.split(' ');
+            const cmd = args[0].toLowerCase();
+
+            switch (cmd) {
+                case 'help':
+                    audio.playCommandSound('success');
+                    printOutput(`
+                        <div class="my-2 border-l-2 border-cyan-400 pl-3 space-y-1 text-xs sm:text-sm">
+                            <div class="text-cyan-300 font-bold mb-1">=== AVAILABLE SYSTEM COMMANDS ===</div>
+                            <div><span class="text-emerald-400 font-bold w-28 inline-block">help</span> - Display system commands list</div>
+                            <div><span class="text-emerald-400 font-bold w-28 inline-block">enter the matrix</span> - Trigger gateway breach prompt sequence</div>
+                            <div><span class="text-emerald-400 font-bold w-28 inline-block">glitch</span> - Trigger screen visual corruption glitch burst</div>
+                            <div><span class="text-emerald-400 font-bold w-28 inline-block">synth / audio</span> - Play 80s arcade ambient synth chime</div>
+                            <div><span class="text-emerald-400 font-bold w-28 inline-block">theme</span> - Cycle color themes (Matrix, Cyan, Amber, Synth)</div>
+                            <div><span class="text-emerald-400 font-bold w-28 inline-block">scan</span> - Perform network port & vulnerability scan</div>
+                            <div><span class="text-emerald-400 font-bold w-28 inline-block">hack</span> - Run animated mainframe breach simulation</div>
+                            <div><span class="text-emerald-400 font-bold w-28 inline-block">matrix</span> - Stream raw ASCII telemetry data stream</div>
+                            <div><span class="text-emerald-400 font-bold w-28 inline-block">rain</span> - Tweak rain speed/color [<span class="text-cyan-300">rain speed 2</span>]</div>
+                            <div><span class="text-emerald-400 font-bold w-28 inline-block">clear</span> - Clear console display</div>
+                        </div>
+                    `);
+                    break;
+
+                case 'glitch':
+                    triggerGlitchEffect();
+                    break;
+
+                case 'synth':
+                case 'audio':
+                    audio.playSynthChord();
+                    printOutput('<span class="text-cyan-300">>>> Synthetic audio chord synthesized [C-MAJOR_ARCADE].</span>');
+                    break;
+
+                case 'theme':
+                    cycleTheme();
+                    break;
+
+                case 'scan':
+                    audio.playCommandSound('success');
+                    runScanSequence();
+                    break;
+
+                case 'hack':
+                    audio.playCommandSound('alert');
+                    runHackSequence();
+                    break;
+
+                case 'matrix':
+                    audio.playCommandSound('success');
+                    runMatrixStream();
+                    break;
+
+                case 'rain':
+                    handleRainCommand(args);
+                    break;
+
+                case 'clear':
+                    output.innerHTML = '';
+                    break;
+
+                default:
+                    audio.playCommandSound('error');
+                    printOutput(`<span class="text-pink-500">Command not recognized: '${escapeHtml(cmd)}'. Type <span class="text-white underline font-semibold cursor-pointer" onclick="executeQuickCmd('help')">help</span> for assistance.</span>`);
+                    break;
+            }
+        }
+
+        // Full Screen Visual Glitch Trigger
+        function triggerGlitchEffect() {
+            audio.playCommandSound('glitch');
+            const term = document.getElementById('terminal-window');
+            term.classList.add('glitch-active');
+            printOutput('<span class="text-pink-500 font-bold glow-accent">[!] CRITICAL MEMORY CORRUPTION DETECTED...</span>');
+
+            setTimeout(() => {
+                term.classList.remove('glitch-active');
+                printOutput('<span class="text-emerald-400">System display buffers restored.</span>');
+            }, 1800);
+        }
+
+        // Theme Switcher
+        function cycleTheme() {
+            currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+            const newTheme = themes[currentThemeIndex];
+            
+            document.body.className = 'crt-container h-screen w-screen flex items-center justify-center relative';
+            if (newTheme !== 'matrix') {
+                document.body.classList.add(`theme-${newTheme}`);
+            }
+
+            themeDisplay.textContent = newTheme.toUpperCase();
+            
+            const colors = {
+                matrix: '#00ff66',
+                cyan: '#00f3ff',
+                amber: '#ffb000',
+                synth: '#ff007f'
+            };
+            rainConfig.color = colors[newTheme];
+
+            audio.playCommandSound('success');
+            printOutput(`<span class="text-cyan-300">Terminal display theme updated to: <span class="font-bold text-emerald-400">${newTheme.toUpperCase()}</span></span>`);
+        }
+
+        // Port Scanner
+        function runScanSequence() {
+            printOutput('<span class="text-cyan-400">Initiating sector port & neural node scan...</span>');
+            const ports = [21, 22, 80, 443, 3000, 8080, 9042];
+            let delay = 250;
+
+            ports.forEach((port, idx) => {
+                setTimeout(() => {
+                    audio.playKeyBeep();
+                    const open = Math.random() > 0.25;
+                    const statusText = open ? '<span class="text-emerald-400 font-bold">[OPEN]</span>' : '<span class="text-pink-500 font-bold">[FILTERED]</span>';
+                    printOutput(`Scanning Port ${port}... ${statusText} SERVICE: <span class="text-cyan-300">node_sec_${port}</span>`);
+                }, (idx + 1) * delay);
+            });
+
+            setTimeout(() => {
+                audio.playCommandSound('success');
+                printOutput('<span class="text-emerald-400 font-bold">>>> GRID SCAN COMPLETE: Connection verified. Zero breaches.</span>');
+            }, (ports.length + 1) * delay);
+        }
+
+        // Animated Breach Simulation
+        function runHackSequence() {
+            printOutput('<span class="text-pink-500 font-bold glow-accent">[!] OVERRIDING SECURITY PROTOCOLS...</span>');
+            const logs = [
+                'Attaching payload to memory address 0x8841F...',
+                'Bypassing quantum gateway firewalls...',
+                'Injecting backdoor into matrix mainframe...',
+                'Rerouting telemetry through proxy cluster...',
+                'DECRYPTING ROOT SYSTEM KEYS...',
+                'ACCESS GRANTED: MASTER CONTROL ACQUIRED.'
+            ];
+
+            logs.forEach((log, i) => {
+                setTimeout(() => {
+                    audio.playKeyBeep();
+                    const color = i === logs.length - 1 ? 'text-emerald-400 font-bold glow-primary' : 'text-cyan-300';
+                    printOutput(`[SYS_OVERRIDE_${i + 1}] ${log}`);
+                }, (i + 1) * 350);
+            });
+        }
+
+        // Rain Customizer
+        function handleRainCommand(args) {
+            if (args.length < 2) {
+                printOutput(`
+                    <div class="text-cyan-300">Rain Controls:</div>
+                    <div>• <span class="text-emerald-400">rain speed [0.5 - 5.0]</span> - Adjust drop velocity</div>
+                `);
+                return;
+            }
+
+            const sub = args[1].toLowerCase();
+            const val = args[2] ? args[2].toLowerCase() : '';
+
+            if (sub === 'speed') {
+                const speedVal = parseFloat(val);
+                if (!isNaN(speedVal) && speedVal > 0 && speedVal <= 10) {
+                    rainConfig.speedMultiplier = speedVal;
+                    audio.playCommandSound('success');
+                    printOutput(`<span class="text-emerald-400">Matrix rain speed updated to ${speedVal}x.</span>`);
+                } else {
+                    printOutput('<span class="text-pink-500">Invalid speed. Use a number between 0.1 and 5.0.</span>');
+                }
+            }
+        }
+
+        // Telemetry Stream
+        function runMatrixStream() {
+            printOutput('<span class="text-cyan-400">Streaming raw ASCII matrix telemetry...</span>');
+            for (let i = 0; i < 6; i++) {
+                setTimeout(() => {
+                    audio.playKeyBeep();
+                    let streamStr = '';
+                    for (let j = 0; j < 48; j++) {
+                        streamStr += alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+                    }
+                    printOutput(`<span class="text-emerald-400 font-mono text-xs opacity-80">${escapeHtml(streamStr)}</span>`);
+                }, i * 120);
+            }
+        }
+
+        const modal = document.getElementById('matrix-modal');
+        const modalForm = document.getElementById('modal-form');
+        const modalInput = document.getElementById('modal-input');
+        const modalCancel = document.getElementById('modal-cancel');
+
+        function openMatrixModal() {
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modalInput.value = '';
+                modalInput.focus();
+            }, 50);
+        }
+
+        function closeMatrixModal() {
+            modal.classList.add('opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        modalCancel.addEventListener('click', () => {
+            audio.playCommandSound('error');
+            closeMatrixModal();
+            printOutput('<span class="text-slate-400">Gateway breach sequence aborted by user.</span>');
+        });
+
+        modalForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const answer = modalInput.value.trim().toLowerCase();
+
+            if (answer === 'yes') {
+                closeMatrixModal();
+                executeMatrixRedirect();
+            } else {
+                audio.playCommandSound('error');
+                modalInput.classList.add('border-pink-500');
+                setTimeout(() => modalInput.classList.remove('border-pink-500'), 500);
+            }
+        });
+
+        // Matrix Speed Explosion & Web Redirect
+        function executeMatrixRedirect() {
+            audio.playWarpDriveSound();
+            rainConfig.speedMultiplier = 12.0;
+
+            const term = document.getElementById('terminal-window');
+            term.classList.add('warp-active');
+
+            printOutput('<span class="text-emerald-400 font-bold glow-primary text-lg">>>> BREACHING REALITY LAYER... REDIRECTING INCOMING STREAM...</span>');
+
+            setTimeout(() => {
+                window.location.href = '/home/';
+            }, 1800);
+        }
+    </script>
 </body>
 </html>
