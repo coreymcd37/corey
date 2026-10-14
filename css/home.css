@@ -621,3 +621,15 @@ body.qp-is-fs .site-header { visibility: hidden; }
 @media (max-width: 900px) {
   .ph-layout { grid-template-columns: 1fr; }
 }
+
+/* month card: uploaded image variant */
+.month-card.month-card--img {
+  display: block; padding: 0; max-width: 480px;
+  background: none; border: 0; box-shadow: none;
+}
+.month-card--img img {
+  display: block; width: 100%; height: auto;
+  border-radius: 20px; object-fit: contain;
+  filter: drop-shadow(0 22px 40px rgba(8, 4, 24, 0.55));
+}
+@media (max-width: 600px) { .month-card.month-card--img { padding: 0; max-width: 92vw; } }
