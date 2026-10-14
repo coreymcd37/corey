@@ -4,8 +4,8 @@ Privacy-first standalone toolkit of browser utilities by **Corey McDaniel**.
 
 ## Live demo
 
-- GitHub Pages: https://coreymcd37.github.io/Co_Folio/utilities/
-- Portfolio home: https://coreymcd37.github.io/Co_Folio/
+- GitHub Pages: https://coreymcdaniel.com/utilities/
+- Portfolio home: https://coreymcdaniel.com/
 - Future custom domain: https://coreymcdaniel.com/utilities/ (planned; path retained)
 
 ## NOTICE — Demo only · All rights reserved
