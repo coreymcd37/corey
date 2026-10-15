@@ -678,3 +678,18 @@ body.qp-is-fs .site-header { visibility: hidden; }
 .pf3 { transform: rotateY(240deg) translateZ(34.6px); background: linear-gradient(180deg, #fde047cc, #34d399aa); }
 .prism::after { content: ""; position: absolute; left: -40px; right: -40px; bottom: -26px; height: 20px; border-radius: 50%;
   background: radial-gradient(#c084fc88, transparent 70%); transform: rotateX(90deg); }
+.badge-guide { color: #7dd3fc; background: #7dd3fc1a; border-color: #7dd3fc55; }
+.coin { width: 120px; height: 120px; animation-duration: 6s; }
+.coin-l { position: absolute; inset: 0; border-radius: 50%; transform: translateZ(var(--z)); background: #b45309; border: 2px solid #f59e0b; }
+.coin-face { display: grid; place-items: center; font: 900 3.4rem/1 ui-sans-serif, system-ui, sans-serif; color: #78350f;
+  background: radial-gradient(circle at 35% 30%, #fef3c7, #fbbf24 45%, #d97706); box-shadow: inset 0 0 0 7px #f59e0b, inset 0 0 0 9px #fde68a, 0 0 30px #fbbf2466; }
+.coin-back { transform: translateZ(var(--z)) rotateY(180deg); }
+.house { width: 120px; height: 150px; animation-duration: 9s; }
+.hs-w { position: absolute; left: 10px; top: 60px; width: 100px; height: 70px; border: 1.5px solid #5eead4; background: linear-gradient(180deg, #0f766ecc, #134e4acc); box-shadow: inset 0 0 20px #2dd4bf55; }
+.hs-w i { position: absolute; left: 38px; bottom: 0; width: 24px; height: 38px; background: #fde68a; box-shadow: 0 0 14px #fde68a; border-radius: 3px 3px 0 0; }
+.hw1 { transform: translateZ(50px); } .hw2 { transform: rotateY(90deg) translateZ(50px); }
+.hw3 { transform: rotateY(180deg) translateZ(50px); } .hw4 { transform: rotateY(-90deg) translateZ(50px); }
+.hs-r { position: absolute; left: 0; top: 10px; width: 120px; height: 72px; transform-origin: 50% 0; background: linear-gradient(180deg, #f472b6, #c026d3); border: 1.5px solid #fbcfe8; box-shadow: 0 0 18px #f472b655; }
+.hr1 { transform: rotateX(45deg); } .hr2 { transform: rotateX(-45deg); }
+.hs-gable { position: absolute; left: 10px; top: 10px; width: 100px; height: 50px; background: linear-gradient(180deg, #e879f9, #a21caf); clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+.hg1 { transform: rotateY(90deg) translateZ(50px); } .hg2 { transform: rotateY(-90deg) translateZ(50px); }

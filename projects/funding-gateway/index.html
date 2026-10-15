@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Government Funding Pathways: Nonprofit Grant & Business Financing Guide | Corey McDaniel</title>
+<style>
+  :root {
+    --bg: #050a14;
+    --glass: rgba(15, 30, 60, 0.55);
+    --glass-border: rgba(56, 189, 248, 0.35);
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --primary: #0ea5e9;
+    --primary-glow: rgba(14, 165, 233, 0.4);
+    --accent: #38bdf8;
+    --success: #22d3ee;
+    --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 20px var(--primary-glow);
+  }
+  [data-theme="light"] {
+    --bg: #f0f9ff;
+    --glass: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(14, 165, 233, 0.25);
+    --text: #0f172a;
+    --muted: #475569;
+    --primary: #0284c7;
+    --primary-glow: rgba(14, 165, 233, 0.25);
+    --accent: #0ea5e9;
+    --success: #0891b2;
+    --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), 0 0 15px var(--primary-glow);
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: radial-gradient(ellipse at top, #0c1a3a 0%, var(--bg) 60%);
+    color: var(--text);
+    line-height: 1.6;
+    margin: 0;
+    padding: 1.5rem;
+    min-height: 100vh;
+    transition: background 0.3s, color 0.3s;
+  }
+  [data-theme="light"] body {
+    background: radial-gradient(ellipse at top, #e0f2fe 0%, var(--bg) 60%);
+  }
+  .container { max-width: 920px; margin: 0 auto; }
+  .controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .control-group {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: var(--glass);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 0.6rem 1rem;
+    box-shadow: var(--card-shadow);
+  }
+  label { font-size: 0.9rem; font-weight: 500; color: var(--muted); }
+  select, button.toggle {
+    background: rgba(14, 165, 233, 0.15);
+    border: 1px solid var(--glass-border);
+    color: var(--text);
+    padding: 0.4rem 0.75rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+  }
+  select:focus, button.toggle:focus { outline: 2px solid var(--primary); }
+  button.toggle {
+    min-width: 70px;
+    font-weight: 600;
+  }
+  header {
+    text-align: center;
+    padding: 2.5rem 1.5rem;
+    background: var(--glass);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--card-shadow);
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(14, 165, 233, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  header h1 { margin: 0 0 0.5rem; font-size: 1.9rem; font-weight: 700; letter-spacing: -0.02em; }
+  header p { margin: 0; opacity: 0.9; font-size: 1rem; }
+  .disclaimer {
+    background: var(--glass);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(251, 191, 36, 0.4);
+    color: #fde68a;
+    padding: 1rem 1.25rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+    box-shadow: 0 0 15px rgba(251, 191, 36, 0.15);
+  }
+  [data-theme="light"] .disclaimer { color: #92400e; border-color: rgba(245, 158, 11, 0.5); }
+  .tabs { display: flex; gap: 0.75rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+  .tab {
+    flex: 1;
+    padding: 0.85rem 1rem;
+    background: var(--glass);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    cursor: pointer;
+    text-align: center;
+    font-weight: 600;
+    transition: all 0.25s;
+    box-shadow: var(--card-shadow);
+  }
+  .tab.active {
+    background: linear-gradient(135deg, rgba(14, 165, 233, 0.3), rgba(56, 189, 248, 0.2));
+    border-color: var(--primary);
+    box-shadow: 0 0 25px var(--primary-glow);
+  }
+  .section { display: none; }
+  .section.active { display: block; }
+  .card {
+    background: var(--glass);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 1.25rem;
+    box-shadow: var(--card-shadow);
+  }
+  .card h2 { margin-top: 0; color: var(--accent); font-size: 1.3rem; }
+  .ideas { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.85rem; margin: 1rem 0; }
+  .idea {
+    background: rgba(14, 165, 233, 0.08);
+    padding: 0.9rem;
+    border-radius: 10px;
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    font-size: 0.9rem;
+  }
+  .idea strong { color: var(--accent); }
+  .step {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.85rem;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid rgba(56, 189, 248, 0.15);
+  }
+  .step:last-child { border-bottom: none; }
+  .step input[type="checkbox"] {
+    width: 1.3rem;
+    height: 1.3rem;
+    margin-top: 0.15rem;
+    accent-color: var(--success);
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .step.completed .step-content { text-decoration: line-through; opacity: 0.55; }
+  .step-content { flex: 1; }
+  .step-content strong { display: block; margin-bottom: 0.3rem; }
+  .progress {
+    height: 8px;
+    background: rgba(56, 189, 248, 0.15);
+    border-radius: 4px;
+    margin: 1rem 0 0.5rem;
+    overflow: hidden;
+  }
+  .progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary), var(--success));
+    width: 0%;
+    transition: width 0.4s ease;
+    box-shadow: 0 0 10px var(--primary-glow);
+  }
+  .resources a { color: var(--accent); text-decoration: none; }
+  .resources a:hover { text-decoration: underline; }
+  .state-note {
+    background: rgba(14, 165, 233, 0.12);
+    border-left: 3px solid var(--primary);
+    padding: 0.75rem 1rem;
+    border-radius: 0 8px 8px 0;
+    margin: 0.5rem 0 1rem;
+    font-size: 0.9rem;
+  }
+  footer { text-align: center; margin-top: 2rem; font-size: 0.85rem; color: var(--muted); }
+  @media (max-width: 600px) {
+    .tabs { flex-direction: column; }
+    header h1 { font-size: 1.5rem; }
+    .controls { flex-direction: column; align-items: stretch; }
+  }
+</style>
+<meta name="description" content="Independent educational guide by Corey McDaniel to nonprofit grant and small-business financing steps, with state filing links, EIN, 501(c)(3), SAM.gov, Grants.gov and SBA resources, plus a progress checklist. Not affiliated with any government agency.">
+<meta name="author" content="Corey McDaniel"><meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://coreymcdaniel.com/projects/funding-gateway/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Corey McDaniel"><meta property="og:title" content="Government Funding Pathways: Nonprofit Grant & Business Financing Guide | Corey McDaniel"><meta property="og:description" content="Independent educational guide by Corey McDaniel to nonprofit grant and small-business financing steps, with state filing links, EIN, 501(c)(3), SAM.gov, Grants.gov and SBA resources, plus a progress checklist. Not affiliated with any government agency."><meta property="og:url" content="https://coreymcdaniel.com/projects/funding-gateway/"><meta property="og:image" content="https://coreymcdaniel.com/img/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Corey McDaniel logo">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Government Funding Pathways: Nonprofit Grant & Business Financing Guide | Corey McDaniel"><meta name="twitter:description" content="Independent educational guide by Corey McDaniel to nonprofit grant and small-business financing steps, with state filing links, EIN, 501(c)(3), SAM.gov, Grants.gov and SBA resources, plus a progress checklist. Not affiliated with any government agency."><meta name="twitter:image" content="https://coreymcdaniel.com/img/og.png">
+<link rel="icon" href="/img/favicon-32.png" type="image/png" sizes="32x32"><link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+<script type="application/ld+json">{"@type": ["WebApplication", "LearningResource"], "applicationCategory": "EducationalApplication", "operatingSystem": "Any (web browser)", "educationalUse": "Self-guided learning", "isAccessibleForFree": true, "@context": "https://schema.org", "@id": "https://coreymcdaniel.com/projects/funding-gateway/#app", "name": "Government Funding Pathways", "description": "Independent educational guide by Corey McDaniel to nonprofit grant and small-business financing steps, with state filing links, EIN, 501(c)(3), SAM.gov, Grants.gov and SBA resources, plus a progress checklist. Not affiliated with any government agency.", "url": "https://coreymcdaniel.com/projects/funding-gateway/", "image": "https://coreymcdaniel.com/img/og.png", "inLanguage": "en", "author": {"@type": "Person", "@id": "https://coreymcdaniel.com/#person", "name": "Corey McDaniel", "url": "https://coreymcdaniel.com/"}, "creator": {"@type": "Person", "@id": "https://coreymcdaniel.com/#person", "name": "Corey McDaniel", "url": "https://coreymcdaniel.com/"}, "isPartOf": {"@type": "WebSite", "@id": "https://coreymcdaniel.com/#website", "name": "Corey McDaniel", "url": "https://coreymcdaniel.com/"}, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://coreymcdaniel.com/home/"}, {"@type": "ListItem", "position": 2, "name": "Life Project Files", "item": "https://coreymcdaniel.com/home/#projects"}, {"@type": "ListItem", "position": 3, "name": "Government Funding Pathways", "item": "https://coreymcdaniel.com/projects/funding-gateway/"}]}</script>
+<style>.cmd-back{position:fixed;top:calc(env(safe-area-inset-top,0px) + 10px);left:calc(env(safe-area-inset-left,0px) + 10px);z-index:2147483000;padding:8px 14px;border-radius:99px;background:#0b0916e6;color:#e9d5ff;border:1px solid #7c3aed;font:600 13px/1 system-ui,sans-serif;text-decoration:none;box-shadow:0 0 16px #7c3aed66;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}.cmd-back:hover,.cmd-back:focus-visible{color:#fff;outline:2px solid #67e8f9;outline-offset:2px}body{padding-top:56px!important}</style>
+</head>
+<body data-theme="dark">
+<a class="cmd-back" href="/home/#projects">&larr; Life Project Files</a>
+<div class="container">
+  <div class="controls">
+    <div class="control-group">
+      <label for="stateSelect">State:</label>
+      <select id="stateSelect" onchange="updateState()">
+        <option value="az">Arizona</option>
+        <option value="ca">California</option>
+        <option value="tx">Texas</option>
+        <option value="fl">Florida</option>
+        <option value="wi">Wisconsin</option>
+        <option value="ky">Kentucky</option>
+        <option value="nv">Nevada</option>
+        <option value="nm">New Mexico</option>
+        <option value="ia">Iowa</option>
+      </select>
+    </div>
+    <div class="control-group">
+      <label>Theme:</label>
+      <button class="toggle" id="themeToggle" onclick="toggleTheme()">Dark</button>
+    </div>
+  </div>
+
+  <header>
+    <h1>Government Funding Pathways</h1>
+    <p>More McDaniel Motivation • Nonprofit Grants & Business Financing</p>
+  </header>
+
+  <div class="disclaimer">
+    <strong>Important:</strong> Factual overview of legitimate processes (October 2026). Grants are competitive; loans must be repaid. Eligibility, documentation, and application quality determine outcomes. Verify on official sites. This is a guide to help people do good things and move forward with great ideas!  It is Not legal or financial advice. <strong>Independent educational tool by Corey McDaniel. Not affiliated with, endorsed by, or operated by any government agency.</strong> It does not collect payments or personal data; checklist progress is saved only in your browser.
+  </div>
+
+  <div class="tabs">
+    <div class="tab active" onclick="showTab('nonprofit')">Nonprofit Pathway</div>
+    <div class="tab" onclick="showTab('business')">For-Profit / Business Pathway</div>
+  </div>
+
+  <div id="nonprofit" class="section active">
+    <div class="card">
+      <h2>Nonprofit Ideas & Examples</h2>
+      <p>Must serve a genuine public/charitable purpose. Examples:</p>
+      <div class="ideas">
+        <details class="idea">
+          <summary><strong>Community Health Support</strong></summary>
+          <p>Provide free or low-cost diabetes education, nutrition workshops, or mobility programs for seniors and low-income residents. Focus on measurable outcomes like workshops delivered or participants served.</p>
+          <p><strong>Get started by:</strong> Document local need (e.g., diabetes prevalence data), recruit a small board, draft a simple program outline, then form the nonprofit. Partner with clinics for referrals.</p>
+        </details>
+        <details class="idea">
+          <summary><strong>Youth Education & Mentorship</strong></summary>
+          <p>After-school tutoring, trade skill training (HVAC, electrical basics), or career readiness. Track attendance and skill gains.</p>
+          <p><strong>Get started by:</strong> Identify schools or community centers, outline curriculum, recruit volunteer mentors, incorporate, then pilot a small cohort.</p>
+        </details>
+        <details class="idea">
+          <summary><strong>Veteran & Military Family Support</strong></summary>
+          <p>Transition assistance, job training, or wellness resources. Emphasize veteran board members if possible.</p>
+          <p><strong>Get started by:</strong> Connect with local VA or veteran groups, define services, form entity, apply for relevant grants after 501(c)(3).</p>
+        </details>
+        <details class="idea">
+          <summary><strong>Environmental / Local Improvement</strong></summary>
+          <p>Neighborhood cleanup, energy efficiency education, or community gardens and food access.</p>
+          <p><strong>Get started by:</strong> Survey community interest, partner with local government or parks, form nonprofit, start with small events.</p>
+        </details>
+        <details class="idea">
+          <summary><strong>Skills & Workforce Development</strong></summary>
+          <p>Free certification prep (OSHA, EPA 608, pool operator) or trades training for underserved groups.</p>
+          <p><strong>Get started by:</strong> Assess demand, secure instructors or materials, incorporate, seek workforce development grants.</p>
+        </details>
+      </div>
+    </div>
+
+    <div class="card" id="barriers-card">
+      <h2>Key Barriers & Practical Realities</h2>
+      <div id="barriers-content">
+        Select a pathway and state for specifics on credit, background, and other factors.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Nonprofit Formation & Funding Steps</h2>
+      <div class="state-note" id="np-state-note">Select a state above for specific incorporation details.</div>
+      <div class="progress"><div class="progress-bar" id="np-progress"></div></div>
+      <div class="steps" id="np-steps">
+        <div class="step"><input type="checkbox" onchange="updateProgress('np')"><div class="step-content"><strong>1. Define mission and confirm need</strong> Clear charitable purpose. Research existing organizations. Document community need.</div></div>
+        <div class="step"><input type="checkbox" onchange="updateProgress('np')"><div class="step-content"><strong>2. Recruit independent board</strong> Typically 3+ directors. Avoid majority related parties. Hold organizational meeting.</div></div>
+        <div class="step"><input type="checkbox" onchange="updateProgress('np')"><div class="step-content"><strong>3. Choose name and registered/statutory agent</strong> Search state database for availability. Appoint in-state agent.</div></div>
+        <div class="step"><input type="checkbox" onchange="updateProgress('np')"><div class="step-content" id="np-inc-step"><strong>4. File Articles / Certificate of Incorporation</strong> State-specific details load here.</div></div>
+        <div class="step"><input type="checkbox" onchange="updateProgress('np')"><div class="step-content"><strong>5. Obtain EIN</strong> Free online at IRS.gov. Required for banking and filings.</div></div>
+        <div class="step"><input type="checkbox" onchange="updateProgress('np')"><div class="step-content"><strong>6. Adopt bylaws and open bank account</strong> Dedicated nonprofit account.</div></div>
+        <div class="step"><input type="checkbox" onchange="updateProgress('np')"><div class="step-content"><strong>7. Apply for 501(c)(3) status</strong> IRS Form 1023-EZ ($275) or full Form 1023 ($600) via Pay.gov. Receive determination letter.</div></div>
+        <div class="step"><input type="checkbox" onchange="updateProgress('np')"><div class="step-content"><strong>8. Register for federal systems</strong> SAM.gov for UEI. Grants.gov account and AOR designation (1–4 weeks).</div></div>
+        <div class="step"><input type="checkbox" onchange="updateProgress('np')"><div class="step-content"><strong>9. Search and apply for grants</strong> Grants.gov NOFOs matching mission. Prepare narrative, budget. Submit via Workspace early.</div></div>
+        <div class="step"><input type="checkbox" onchange="updateProgress('np')"><div class="step-content"><strong>10. State registration & compliance</strong> Charitable solicitation if required. Annual reports. Form 990 series. Maintain records.</div></div>
+        <div class="step"><input type="checkbox" onchange="updateProgress('np')"><div class="step-content"><strong>11. Additional funding</strong> Private foundations, state/local programs after 501(c)(3) approval. Grants remain competitive.</div></div>
+      </div>
+    </div>
+
+    <div class="card resources">
+      <h2>Official Resources</h2>
+      <ul id="np-resources">
+        <li><a href="https://www.irs.gov/charities-non-profits" target="_blank">IRS Charities & Nonprofits</a></li>
+        <li><a href="https://sam.gov" target="_blank">SAM.gov</a></li>
+        <li><a href="https://www.grants.gov" target="_blank">Grants.gov</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="business" class="section">
+    <div class="card">
+      <h2>For-Profit Business Ideas & Examples</h2>
+      <p>Legitimate for-profit operations meeting SBA size standards:</p>
+      <div class="ideas">
+        <details class="idea">
+          <summary><strong>Service-based trades</strong></summary>
+          <p>Pool maintenance, HVAC/electrical support, solar panel cleaning, or property maintenance. Requires relevant certifications and insurance.</p>
+          <p><strong>Get started by:</strong> Obtain necessary licenses/certs, form LLC, create simple business plan and pricing, register for local permits, then seek microloan or SBA for equipment/working capital.</p>
+        </details>
+        <details class="idea">
+          <summary><strong>Specialty retail or online</strong></summary>
+          <p>Home goods, wellness products, or e-bike repair/parts with local delivery. Start lean with online sales.</p>
+          <p><strong>Get started by:</strong> Validate product demand, form entity, set up basic website/payment processing, track sales for 3-6 months, then apply for working capital loan.</p>
+        </details>
+        <details class="idea">
+          <summary><strong>Food & meal prep</strong></summary>
+          <p>Small-batch healthy meal preparation or catering focused on dietary needs. Comply with food safety rules.</p>
+          <p><strong>Get started by:</strong> Check local health department requirements, obtain permits, form business, test recipes with small orders, build customer base, then finance equipment if needed.</p>
+        </details>
+        <details class="idea">
+          <summary><strong>Consulting or training</strong></summary>
+          <p>Technical training, certification prep courses, or business process improvement. Leverage existing skills/certs.</p>
+          <p><strong>Get started by:</strong> Define offerings and target audience, create curriculum or materials, form entity, market to initial clients, use revenue history for financing if expanding.</p>
+        </details>
+        <details class="idea">
+          <summary><strong>Local logistics</strong></summary>
+          <p>Flexible delivery or handyman gig services with proper licensing where required. Low startup cost.</p>
+          <p><strong>Get started by:</strong> Confirm insurance and licensing needs, form LLC, set up basic operations/tools, document income, then explore microloans for vehicle or tools.</p>
+        </details>
+      </div>
+    </div>
+
+    <div class="card" id="barriers-card-biz">
+      <h2>Key Barriers & Practical Realities</h2>
+      <div id="barriers-content-biz">
+        Select a pathway and state for specifics on credit, background, and other factors.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Business Financing Steps</h2>
+      <div class="state-note" id="biz-state-note">SBA programs are national; local resources update by state.</div>
+      <div class="progress"><div class="progress-bar" id="biz-progress"></div></div>
+      <div class="steps" id="biz-steps">
+        <div class="step"><input type="checkbox" onchange="updateProgress('biz')"><div class="step-content"><strong>1. Form the business entity</strong> Register LLC/corporation with state. Obtain local licenses and trade certifications as needed.</div></div>
+        <div class="step"><input type="checkbox" onchange="updateProgress('biz')"><div class="step-content"><strong>2. Get EIN and set up banking</strong> Free EIN from IRS. Dedicated business bank account.</div></div>
+        <div class="step"><input type="checkbox" onchange="updateProgress('biz')"><div class="step-content"><strong>3. Prepare documents</strong> Business plan/use-of-funds, financial projections, P&L, balance sheet, tax returns.</div></div>
+        <div class="step"><input type="checkbox" onchange="updateProgress('biz')"><div class="step-content"><strong>4. Assess eligibility</strong> Small under SBA standards, for-profit, U.S.-based, eligible ownership (100% U.S. citizens/nationals/LPRs). Credit and cash flow matter.</div></div>
+        <div class="step"><input type="checkbox" onchange="updateProgress('biz')"><div class="step-content"><strong>5. Use free counseling</strong> Contact local SBDC for document review and funding options.</div></div>
+        <div class="step"><input type="checkbox" onchange="updateProgress('biz')"><div class="step-content"><strong>6. Find lenders</strong> SBA Lender Match (sba.gov/lendermatch). Local banks, credit unions, CDFIs. Check state microloan programs.</div></div>
+        <div class="step"><input type="checkbox" onchange="updateProgress('biz')"><div class="step-content"><strong>7. Gather application package</strong> Forms 1919 and 413, bank statements, licenses, ownership docs, use of proceeds. Lender provides exact list.</div></div>
+        <div class="step"><input type="checkbox" onchange="updateProgress('biz')"><div class="step-content"><strong>8. Submit and underwrite</strong> Apply through lender. Underwriting for repayment, credit, eligibility. Often 30–90 days.</div></div>
+        <div class="step"><input type="checkbox" onchange="updateProgress('biz')"><div class="step-content"><strong>9. Close and fund</strong> Complete closing, equity injection if required. Use funds for stated purposes.</div></div>
+        <div class="step"><input type="checkbox" onchange="updateProgress('biz')"><div class="step-content"><strong>10. Repay and comply</strong> Make payments. Maintain records. Complete any required training for microloans.</div></div>
+      </div>
+    </div>
+
+    <div class="card resources">
+      <h2>Official Resources</h2>
+      <ul id="biz-resources">
+        <li><a href="https://www.sba.gov/loans" target="_blank">SBA Loans</a></li>
+        <li><a href="https://www.sba.gov/loans/lender-match/" target="_blank">SBA Lender Match</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <p>Information as of October 2026. Processes and fees can change. Verify on official .gov sites. Educational planning only — not legal, financial, or tax advice.</p>
+  </footer>
+</div>
+
+<script>
+const states = {
+  az: {
+    name: "Arizona",
+    npNote: "Arizona Corporation Commission (ACC). Articles of Incorporation (Form C011) fee typically $40. Maricopa and Pima counties exempt from newspaper publication. No general charitable solicitation registration required. Minimum 1 director allowed (recommend 3+).",
+    npInc: "<strong>4. File Articles of Incorporation</strong> File Form C011 with Arizona Corporation Commission (ACC) plus Certificate of Disclosure and Statutory Agent Acceptance. Standard fee ~$40. Include IRS purpose and dissolution language. Online filing available. Maricopa/Pima often exempt from publication.",
+    npResources: [
+      {text: "Arizona Corporation Commission", url: "https://azcc.gov/"},
+      {text: "SBA Arizona District Office", url: "https://www.sba.gov/district/arizona"}
+    ],
+    bizNote: "Arizona has the Microbusiness Loan Program ($2,000–$50,000 for businesses with ≤5 employees) via Office of Economic Opportunity and CDFI partners. Strong SBDC network in Maricopa area.",
+    bizResources: [
+      {text: "Arizona Office of Economic Opportunity (Microbusiness)", url: "https://oeo.az.gov/"},
+      {text: "Arizona SBDC Network", url: "https://clients.arizonasbdc.com/"}
+    ]
+  },
+  ca: {
+    name: "California",
+    npNote: "California Secretary of State. Articles of Incorporation (Form ARTS-PB-501(c)(3)) fee $30. Must register with Attorney General Registry of Charitable Trusts (Form CT-1, typically $25–$50) within 30 days of receiving charitable assets. State tax exemption via Franchise Tax Board after IRS determination. Minimum 1 director allowed.",
+    npInc: "<strong>4. File Articles of Incorporation</strong> File Form ARTS-PB-501(c)(3) with California Secretary of State via bizfile Online. Fee $30. Include IRS purpose and dissolution language. Online processing often 3–5 business days. Register for charitable solicitation promptly.",
+    npResources: [
+      {text: "California Secretary of State (bizfile)", url: "https://bizfileonline.sos.ca.gov/"},
+      {text: "CA Attorney General Registry of Charitable Trusts", url: "https://oag.ca.gov/charities"},
+      {text: "SBA California District Offices", url: "https://www.sba.gov/district/california"}
+    ],
+    bizNote: "High volume of SBA lending and CDFI activity. Multiple district offices. Strong ecosystem but competitive. Check CalGold for local licensing.",
+    bizResources: [
+      {text: "SBA California", url: "https://www.sba.gov/district/california"},
+      {text: "California SBDC", url: "https://www.californiasbdc.org/"}
+    ]
+  },
+  tx: {
+    name: "Texas",
+    npNote: "Texas Secretary of State. Certificate of Formation (Form 202) fee $25. No general charitable solicitation registration for most nonprofits. Apply for franchise tax exemption after IRS determination. Minimum 3 directors.",
+    npInc: "<strong>4. File Certificate of Formation</strong> File Form 202 with Texas Secretary of State. Fee $25. Online via SOSDirect. Include 501(c)(3) purpose and dissolution language. Processing typically 3–5 business days online.",
+    npResources: [
+      {text: "Texas Secretary of State", url: "https://www.sos.state.tx.us/"},
+      {text: "SBA Texas District Offices", url: "https://www.sba.gov/district/texas"}
+    ],
+    bizNote: "High SBA loan volume. Multiple district offices. Strong lender competition across the state.",
+    bizResources: [
+      {text: "SBA Texas", url: "https://www.sba.gov/district/texas"}
+    ]
+  },
+  fl: {
+    name: "Florida",
+    npNote: "Florida Division of Corporations. Articles of Incorporation fee typically $35–$70 range depending on options. Online filing available. Check current charitable registration requirements.",
+    npInc: "<strong>4. File Articles of Incorporation</strong> File with Florida Division of Corporations. Confirm current fee on official site. Online filing supported. Include required purpose language for 501(c)(3).",
+    npResources: [
+      {text: "Florida Division of Corporations", url: "https://dos.myflorida.com/sunbiz/"},
+      {text: "SBA Florida District Offices", url: "https://www.sba.gov/district/florida"}
+    ],
+    bizNote: "High SBA activity, especially in tourism, hospitality, and construction. Multiple district offices.",
+    bizResources: [
+      {text: "SBA Florida", url: "https://www.sba.gov/district/florida"}
+    ]
+  },
+  wi: {
+    name: "Wisconsin",
+    npNote: "Wisconsin Department of Financial Institutions. Low incorporation fees (around $35). Established nonprofit community. Confirm current charitable solicitation rules.",
+    npInc: "<strong>4. File Articles of Incorporation</strong> File with Wisconsin DFI. Low fee. Online options available. Include IRS-required clauses.",
+    npResources: [
+      {text: "Wisconsin DFI", url: "https://www.wdfi.org/"},
+      {text: "SBA Wisconsin", url: "https://www.sba.gov/district/wisconsin"}
+    ],
+    bizNote: "Solid SBA participation and regional lending options.",
+    bizResources: [
+      {text: "SBA Wisconsin", url: "https://www.sba.gov/district/wisconsin"}
+    ]
+  },
+  ky: {
+    name: "Kentucky",
+    npNote: "Kentucky Secretary of State. Articles of Incorporation fee $8 (one of the lowest). Must also record with county clerk within 30 days (additional local fee). Minimum 3 directors. Charitable solicitation registration with Attorney General ($0 fee).",
+    npInc: "<strong>4. File Articles of Incorporation</strong> File Form NAI with Kentucky Secretary of State ($8). Online available. Within 30 days, record copy with county clerk in registered office county. Include 501(c)(3) purpose and dissolution language.",
+    npResources: [
+      {text: "Kentucky Secretary of State", url: "https://sos.ky.gov/"},
+      {text: "SBA Kentucky", url: "https://www.sba.gov/district/kentucky"}
+    ],
+    bizNote: "Low formation barriers. Access SBA and regional CDFIs.",
+    bizResources: [
+      {text: "SBA Kentucky", url: "https://www.sba.gov/district/kentucky"}
+    ]
+  },
+  nv: {
+    name: "Nevada",
+    npNote: "Nevada Secretary of State. Nonprofit filing fee around $50. Business-friendly environment. No general state business license for nonprofits. Strong director liability protections. Confirm charitable solicitation status.",
+    npInc: "<strong>4. File Articles of Incorporation</strong> File with Nevada Secretary of State. Fee typically ~$50. Online filing available. Include required exempt purpose language.",
+    npResources: [
+      {text: "Nevada Secretary of State", url: "https://www.nvsos.gov/"},
+      {text: "SBA Nevada", url: "https://www.sba.gov/district/nevada"}
+    ],
+    bizNote: "Pro-business environment with active SBA options.",
+    bizResources: [
+      {text: "SBA Nevada", url: "https://www.sba.gov/district/nevada"}
+    ]
+  },
+  nm: {
+    name: "New Mexico",
+    npNote: "New Mexico Secretary of State. Articles of Incorporation fee $25 (plus any payment processing charges). Online filing required via the Enterprise portal. Minimum 3 directors. Charitable solicitation registration with the Attorney General is typically required (often $0 fee). File Initial Corporate Report within 30 days of incorporation.",
+    npInc: "<strong>4. File Articles of Incorporation</strong> File Nonprofit Corporation Articles of Incorporation with New Mexico Secretary of State through the online Enterprise portal. Fee $25. Include IRS-required purpose and dissolution language. Processing often 5–10 business days. Complete Initial Corporate Report (fee ~$10) within 30 days of receiving the certificate.",
+    npResources: [
+      {text: "New Mexico Secretary of State", url: "https://www.sos.nm.gov/"},
+      {text: "SBA New Mexico District Office", url: "https://www.sba.gov/district/new-mexico"}
+    ],
+    bizNote: "SBA district office serves the state. Regional CDFI and microloan options available. Confirm local business licensing and any industry-specific permits.",
+    bizResources: [
+      {text: "SBA New Mexico", url: "https://www.sba.gov/district/new-mexico"}
+    ]
+  },
+  ia: {
+    name: "Iowa",
+    npNote: "Iowa Secretary of State. Very low incorporation fee (~$20). Free annual reports in many cases. Minimum 1 director allowed. Confirm current charitable registration.",
+    npInc: "<strong>4. File Articles of Incorporation</strong> File with Iowa Secretary of State. Low fee (~$20). Online filing available. Include IRS purpose and dissolution clauses.",
+    npResources: [
+      {text: "Iowa Secretary of State", url: "https://sos.iowa.gov/"},
+      {text: "SBA Iowa", url: "https://www.sba.gov/district/iowa"}
+    ],
+    bizNote: "Low barriers and accessible regional funding options.",
+    bizResources: [
+      {text: "SBA Iowa", url: "https://www.sba.gov/district/iowa"}
+    ]
+  }
+};
+
+function showTab(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.currentTarget.classList.add('active');
+  updateProgress(id === 'nonprofit' ? 'np' : 'biz');
+}
+
+function updateProgress(prefix) {
+  const container = document.getElementById(prefix === 'np' ? 'np-steps' : 'biz-steps');
+  const steps = container.querySelectorAll('.step');
+  let completed = 0;
+  steps.forEach(step => {
+    const cb = step.querySelector('input');
+    if (cb.checked) {
+      step.classList.add('completed');
+      completed++;
+    } else {
+      step.classList.remove('completed');
+    }
+  });
+  const pct = steps.length ? Math.round((completed / steps.length) * 100) : 0;
+  document.getElementById(`${prefix}-progress`).style.width = pct + '%';
+  const state = {};
+  steps.forEach((step, i) => { state[i] = step.querySelector('input').checked; });
+  localStorage.setItem(`funding-${prefix}`, JSON.stringify(state));
+}
+
+function loadProgress(prefix) {
+  const saved = localStorage.getItem(`funding-${prefix}`);
+  if (!saved) return;
+  const state = JSON.parse(saved);
+  const container = document.getElementById(prefix === 'np' ? 'np-steps' : 'biz-steps');
+  const steps = container.querySelectorAll('.step');
+  steps.forEach((step, i) => {
+    if (state[i]) {
+      step.querySelector('input').checked = true;
+      step.classList.add('completed');
+    }
+  });
+  updateProgress(prefix);
+}
+
+function updateState() {
+  const code = document.getElementById('stateSelect').value;
+  const s = states[code];
+  if (!s) return;
+
+  document.getElementById('np-state-note').innerHTML = `<strong>${s.name}:</strong> ${s.npNote}`;
+  document.getElementById('np-inc-step').innerHTML = s.npInc;
+
+  const npRes = document.getElementById('np-resources');
+  npRes.innerHTML = `
+    <li><a href="https://www.irs.gov/charities-non-profits" target="_blank">IRS Charities & Nonprofits</a></li>
+    <li><a href="https://sam.gov" target="_blank">SAM.gov</a></li>
+    <li><a href="https://www.grants.gov" target="_blank">Grants.gov</a></li>
+  ` + s.npResources.map(r => `<li><a href="${r.url}" target="_blank">${r.text}</a></li>`).join('');
+
+  document.getElementById('biz-state-note').innerHTML = `<strong>${s.name}:</strong> ${s.bizNote}`;
+
+  const bizRes = document.getElementById('biz-resources');
+  bizRes.innerHTML = `
+    <li><a href="https://www.sba.gov/loans" target="_blank">SBA Loans</a></li>
+    <li><a href="https://www.sba.gov/loans/lender-match/" target="_blank">SBA Lender Match</a></li>
+  ` + s.bizResources.map(r => `<li><a href="${r.url}" target="_blank">${r.text}</a></li>`).join('');
+
+  // Barriers content
+  const npBarriers = `
+    <p><strong>Credit:</strong> Personal credit is generally not required for nonprofit grants. Funders evaluate organizational capacity, mission alignment, board, and financial management—not founder FICO scores. Some organizational credit or clean books help for larger awards.</p>
+    <p><strong>Bankruptcy or IRS debt:</strong> Personal bankruptcy or owing the IRS does not automatically bar nonprofit formation or most grant applications. Grants focus on the organization’s mission and capacity rather than personal credit or tax status. However, unresolved personal tax issues or open bankruptcy can complicate organizational banking, board service in some cases, or applications that require personal financial disclosures. Disclose honestly if asked. Prior federal loan defaults by principals can create issues for certain funding.</p>
+    <p><strong>Criminal history:</strong> No automatic federal bar for forming a nonprofit or applying for most grants based on past convictions. Disclose honestly if asked by specific funders. Current incarceration or certain pending charges can create practical barriers. Board composition is scrutinized more than individual history in many cases.</p>
+    <p><strong>Income / education:</strong> No formal requirement. Limited resources or formal education do not disqualify you. Success depends on ability to complete applications, document need, and maintain basic compliance. Free SBDC or nonprofit resource centers can help.</p>
+    <p><strong>Other factors that can prevent eligibility or funding:</strong> Failure to obtain IRS 501(c)(3) determination letter; private inurement or benefit to insiders; incomplete or inaccurate applications; weak financial controls or unaudited statements for larger grants; mission misalignment with funder priorities; missing SAM.gov / Grants.gov registration; charitable solicitation violations in the state; or prior debarment/suspension from federal programs. Competitive grants simply reject most applicants due to limited funds.</p>
+  `;
+  document.getElementById('barriers-content').innerHTML = npBarriers;
+
+  const bizBarriers = `
+    <p><strong>Credit:</strong> Important for business loans. Most SBA 7(a) lenders look for personal FICO scores around 680+ (some flexibility to 650 with strong compensating factors). Microloans often accept lower scores (around 575+). Lenders review personal credit history of owners, recent bankruptcies, collections, and debt service coverage. No SBA-mandated universal minimum, but lender overlays apply.</p>
+    <p><strong>Bankruptcy or IRS debt:</strong> A discharged bankruptcy does not automatically disqualify you from SBA loans, but most lenders prefer 2+ years of re-established credit after discharge and will scrutinize the circumstances. An open bankruptcy is generally a hard stop. Owing the IRS is a significant hurdle: unresolved past-due federal taxes or liens typically lead to denial. An active, current IRS installment agreement can sometimes allow approval if payments are on time and the debt service coverage still works. Prior federal loan defaults that caused a loss to the government are generally disqualifying unless waived. Always disclose fully on SBA forms.</p>
+    <p><strong>Criminal history:</strong> Current incarceration or indictment for a felony or financial-misconduct crime disqualifies under SBA rules. Completed past sentences do not automatically bar eligibility but must be disclosed on required forms; lenders and SBA may review character. Lying on applications is a serious federal offense.</p>
+    <p><strong>Income / education:</strong> No formal education requirement. Low income or limited formal education is not a disqualifier. Ability to prepare a business plan, demonstrate repayment capacity (cash flow), and meet documentation standards is critical. Microloan programs and SBDC counseling are designed for smaller or earlier-stage operators.</p>
+    <p><strong>Other factors that can prevent eligibility or funding:</strong> Non-profit status (SBA 7(a)/504 require for-profit); incomplete U.S. citizenship/ownership (must be 100% U.S. citizens or nationals with U.S. residence under current rules); ineligible business types (illegal activity, primarily lending/finance, certain gambling, passive real estate, pyramid schemes, life insurance companies); size standards exceeded; inability to show credit not reasonably available elsewhere; insufficient cash flow or DSCR; prior federal default causing government loss; debarment/suspension; inaccurate or incomplete disclosure of material facts. Microloans and CDFIs may have more flexibility on some criteria.</p>
+  `;
+  document.getElementById('barriers-content-biz').innerHTML = bizBarriers;
+}
+
+function toggleTheme() {
+  const body = document.body;
+  const btn = document.getElementById('themeToggle');
+  if (body.getAttribute('data-theme') === 'dark') {
+    body.setAttribute('data-theme', 'light');
+    btn.textContent = 'Light';
+  } else {
+    body.setAttribute('data-theme', 'dark');
+    btn.textContent = 'Dark';
+  }
+}
+
+window.onload = function() {
+  loadProgress('np');
+  loadProgress('biz');
+  updateState();
+};
+</script>
+</body>
+</html>
