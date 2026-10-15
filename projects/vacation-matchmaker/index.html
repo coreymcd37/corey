@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vacation Property Matchmaker: Island Condo Quiz | Corey McDaniel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(rgba(0, 40, 80, 0.45), rgba(0, 40, 80, 0.45)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80') no-repeat center center fixed;
+            background-size: cover;
+            color: #2c3e50;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .quiz-container {
+            background: rgba(255, 255, 255, 0.97);
+            max-width: 680px;
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+        .header {
+            background: linear-gradient(135deg, #0077be, #00a8e8);
+            color: white;
+            padding: 30px 25px;
+            text-align: center;
+        }
+        .header h1 { font-size: 1.9rem; margin-bottom: 10px; font-weight: 700; }
+        .header p { font-size: 1.05rem; opacity: 0.95; line-height: 1.5; }
+        .brand { font-size: 0.9rem; margin-top: 12px; opacity: 0.9; }
+        .progress-container { background: #e9ecef; height: 6px; }
+        .progress-bar { height: 100%; background: linear-gradient(90deg, #00c6ff, #0072ff); width: 0%; transition: width 0.4s ease; }
+        .step-indicator { text-align: center; padding: 12px; font-size: 0.9rem; color: #666; background: #f8f9fa; }
+        .content { padding: 30px 25px; min-height: 380px; }
+        .step { display: none; animation: fadeIn 0.4s ease; }
+        .step.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        h2 { font-size: 1.45rem; margin-bottom: 20px; color: #0077be; text-align: center; }
+        .option-grid { display: grid; gap: 12px; }
+        .option-card {
+            display: flex;
+            align-items: center;
+            padding: 16px 18px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            text-align: left;
+            font-size: 1.02rem;
+        }
+        .option-card:hover { border-color: #0077be; background: #f0f8ff; transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0, 119, 190, 0.15); }
+        .option-card i { font-size: 1.6rem; margin-right: 15px; color: #0077be; min-width: 30px; text-align: center; }
+        .tooltip {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 12px 15px;
+            margin: 15px 0;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            color: #856404;
+            display: none;
+        }
+        .form-group { margin-bottom: 16px; }
+        label { display: block; margin-bottom: 6px; font-weight: 600; color: #444; }
+        input, textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+        input:focus, textarea:focus { outline: none; border-color: #0077be; }
+        textarea { resize: vertical; min-height: 80px; }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #0077be, #00a8e8);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: all 0.3s;
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0, 119, 190, 0.35); }
+        .btn-secondary { background: #6c757d; }
+        .success { text-align: center; }
+        .success h2 { color: #28a745; }
+        .summary { background: #f8f9fa; padding: 20px; border-radius: 12px; margin-top: 20px; text-align: left; }
+        .summary li { padding: 8px 0; border-bottom: 1px solid #eee; list-style: none; }
+        .footer { text-align: center; padding: 15px; font-size: 0.85rem; color: #666; background: #f8f9fa; border-top: 1px solid #eee; }
+        @media (max-width: 500px) {
+            .header h1 { font-size: 1.5rem; }
+            .content { padding: 20px 15px; }
+            .option-card { padding: 14px; font-size: 0.98rem; }
+        }
+    </style>
+<meta name="description" content="Vacation Property Matchmaker by Corey McDaniel: a 60-second quiz that outlines your ideal island vacation condo by goal, usage, budget, size and amenities.">
+<meta name="author" content="Corey McDaniel"><meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://coreymcdaniel.com/projects/vacation-matchmaker/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Corey McDaniel"><meta property="og:title" content="Vacation Property Matchmaker: Island Condo Quiz | Corey McDaniel"><meta property="og:description" content="Vacation Property Matchmaker by Corey McDaniel: a 60-second quiz that outlines your ideal island vacation condo by goal, usage, budget, size and amenities."><meta property="og:url" content="https://coreymcdaniel.com/projects/vacation-matchmaker/"><meta property="og:image" content="https://coreymcdaniel.com/img/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Corey McDaniel logo">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Vacation Property Matchmaker: Island Condo Quiz | Corey McDaniel"><meta name="twitter:description" content="Vacation Property Matchmaker by Corey McDaniel: a 60-second quiz that outlines your ideal island vacation condo by goal, usage, budget, size and amenities."><meta name="twitter:image" content="https://coreymcdaniel.com/img/og.png">
+<link rel="icon" href="/img/favicon-32.png" type="image/png" sizes="32x32"><link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+<script type="application/ld+json">{"@type": "WebApplication", "applicationCategory": "LifestyleApplication", "operatingSystem": "Any (web browser)", "@context": "https://schema.org", "@id": "https://coreymcdaniel.com/projects/vacation-matchmaker/#app", "name": "Vacation Property Matchmaker", "description": "Vacation Property Matchmaker by Corey McDaniel: a 60-second quiz that outlines your ideal island vacation condo by goal, usage, budget, size and amenities.", "url": "https://coreymcdaniel.com/projects/vacation-matchmaker/", "image": "https://coreymcdaniel.com/img/og.png", "inLanguage": "en", "author": {"@type": "Person", "@id": "https://coreymcdaniel.com/#person", "name": "Corey McDaniel", "url": "https://coreymcdaniel.com/"}, "creator": {"@type": "Person", "@id": "https://coreymcdaniel.com/#person", "name": "Corey McDaniel", "url": "https://coreymcdaniel.com/"}, "isPartOf": {"@type": "WebSite", "@id": "https://coreymcdaniel.com/#website", "name": "Corey McDaniel", "url": "https://coreymcdaniel.com/"}, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://coreymcdaniel.com/home/"}, {"@type": "ListItem", "position": 2, "name": "Life Project Files", "item": "https://coreymcdaniel.com/home/#projects"}, {"@type": "ListItem", "position": 3, "name": "Vacation Property Matchmaker", "item": "https://coreymcdaniel.com/projects/vacation-matchmaker/"}]}</script>
+<style>.cmd-back{position:fixed;top:calc(env(safe-area-inset-top,0px) + 10px);left:calc(env(safe-area-inset-left,0px) + 10px);z-index:2147483000;padding:8px 14px;border-radius:99px;background:#0b0916e6;color:#e9d5ff;border:1px solid #7c3aed;font:600 13px/1 system-ui,sans-serif;text-decoration:none;box-shadow:0 0 16px #7c3aed66;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}.cmd-back:hover,.cmd-back:focus-visible{color:#fff;outline:2px solid #67e8f9;outline-offset:2px}body{padding-top:64px!important}</style>
+</head>
+<body>
+<a class="cmd-back" href="/home/#projects">&larr; Life Project Files</a>
+    <div class="quiz-container">
+        <div class="header">
+            <h1><i class="fas fa-umbrella-beach" aria-hidden="true"></i> Find Your Perfect Island Getaway</h1>
+            <p>Make your Dreams, a Reality. Take 60 seconds to match with exclusive, low-maintenance freehold condos that fit your travel lifestyle and budget.</p>
+            <div class="brand">Personalized matching by Corey McDaniel | coreymcdaniel.com</div>
+        </div>
+        <div class="progress-container"><div class="progress-bar" id="progressBar"></div></div>
+        <div class="step-indicator" id="stepIndicator">Welcome</div>
+        <div class="content" id="content">
+            <!-- Welcome / Start -->
+            <div class="step active" id="welcome">
+                <div style="text-align: center; margin-bottom: 25px;">
+                    <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=600&q=80" alt="Tropical island paradise" style="width: 100%; border-radius: 12px; max-height: 180px; object-fit: cover;">
+                </div>
+                <p style="text-align: center; margin-bottom: 25px; font-size: 1.05rem;">Discover freehold island properties curated for vacationers, investors, and remote professionals.</p>
+                <button class="btn" onclick="startQuiz()">Start My Match <i class="fas fa-arrow-right"></i></button>
+            </div>
+
+            <!-- Goal -->
+            <div class="step" id="goal">
+                <h2>What is your primary goal for this island property?</h2>
+                <div class="option-grid">
+                    <div class="option-card" onclick="selectGoal('vacation')">
+                        <i class="fas fa-home"></i>
+                        <div><strong>Vacation Home / “Lock-and-Leave”</strong><br><small>Easy getaway with minimal upkeep</small></div>
+                    </div>
+                    <div class="option-card" onclick="selectGoal('investor')">
+                        <i class="fas fa-chart-line"></i>
+                        <div><strong>Rental Income Investment</strong><br><small>Generate returns through rentals or appreciation</small></div>
+                    </div>
+                    <div class="option-card" onclick="selectGoal('remote')">
+                        <i class="fas fa-laptop"></i>
+                        <div><strong>Relocating / Remote Work Base</strong><br><small>Longer stays with work-life balance</small></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Branch A: Traveler -->
+            <div class="step" id="traveler-months">
+                <h2>How many months out of the year do you plan to use the condo?</h2>
+                <div class="option-grid">
+                    <div class="option-card" onclick="selectAnswer('months', 'Less than 1 month', 'traveler-away')"><i class="fas fa-calendar-alt"></i> Less than 1 month</div>
+                    <div class="option-card" onclick="selectAnswer('months', '1–3 months', 'traveler-away')"><i class="fas fa-calendar-check"></i> 1–3 months</div>
+                    <div class="option-card" onclick="selectAnswer('months', '6+ months / Half the year', 'traveler-away')"><i class="fas fa-sun"></i> 6+ months / Half the year</div>
+                </div>
+            </div>
+            <div class="step" id="traveler-away">
+                <h2>When you are away traveling, what is most important to you?</h2>
+                <div class="option-grid">
+                    <div class="option-card" onclick="selectAnswer('awayPriority', '24/7 on-site security and zero exterior maintenance', 'budget')">
+                        <i class="fas fa-shield-alt"></i>
+                        <div><strong>24/7 on-site security & zero exterior maintenance</strong><br><small>High-end HOA management preferred</small></div>
+                    </div>
+                    <div class="option-card" onclick="selectAnswer('awayPriority', 'Generating short-term rental income to offset costs', 'budget')">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <div><strong>Generating short-term rental income</strong><br><small>Lenient condo rental bylaws important</small></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Branch B: Investor -->
+            <div class="step" id="investor-strategy">
+                <h2>What is your target investment strategy for this property?</h2>
+                <div class="option-grid">
+                    <div class="option-card" onclick="selectAnswer('strategy', 'Strictly short-term vacation rentals (Airbnb/VRBO)', 'budget')"><i class="fas fa-suitcase"></i> Strictly short-term vacation rentals</div>
+                    <div class="option-card" onclick="selectAnswer('strategy', 'Long-term leasing to locals or expats', 'budget')"><i class="fas fa-key"></i> Long-term leasing to locals or expats</div>
+                    <div class="option-card" onclick="selectAnswer('strategy', 'Capital appreciation (emerging island market)', 'budget')"><i class="fas fa-chart-pie"></i> Capital appreciation in an emerging market</div>
+                </div>
+            </div>
+
+            <!-- Branch C: Remote / Living Needs -->
+            <div class="step" id="remote-needs">
+                <h2>What are your primary living needs for a remote work base?</h2>
+                <div class="option-grid">
+                    <div class="option-card" onclick="selectAnswer('livingNeeds', 'Strong Wi-Fi and coworking space', 'budget')"><i class="fas fa-wifi"></i> Strong Wi-Fi & coworking access</div>
+                    <div class="option-card" onclick="selectAnswer('livingNeeds', 'Quiet residential area', 'budget')"><i class="fas fa-tree"></i> Quiet residential neighborhood</div>
+                    <div class="option-card" onclick="selectAnswer('livingNeeds', 'Close to beaches and nature', 'budget')"><i class="fas fa-water"></i> Close to beaches & nature</div>
+                    <div class="option-card" onclick="selectAnswer('livingNeeds', 'Mix of conveniences and island lifestyle', 'budget')"><i class="fas fa-balance-scale"></i> Mix of urban conveniences & island living</div>
+                </div>
+            </div>
+
+            <!-- Budget -->
+            <div class="step" id="budget">
+                <h2>What is your comfortable investment range?</h2>
+                <div class="option-grid">
+                    <div class="option-card" onclick="selectBudget('Under $300k')"><i class="fas fa-coins"></i> Under $300k</div>
+                    <div class="option-card" onclick="selectBudget('$300k–$500k')"><i class="fas fa-dollar-sign"></i> $300k–$500k</div>
+                    <div class="option-card" onclick="selectBudget('$500k–$1M')"><i class="fas fa-gem"></i> $500k–$1M</div>
+                    <div class="option-card" onclick="selectBudget('$1M+')"><i class="fas fa-crown"></i> $1M+</div>
+                </div>
+                <div class="tooltip" id="budgetTooltip">Note: Freehold titles on prime beachfront land typically start around $350k. Are you open to properties 5–10 minutes from the beach? We'll factor this into your matches.</div>
+            </div>
+
+            <!-- Purchase Structure -->
+            <div class="step" id="purchase">
+                <h2>How do you plan to structure this purchase?</h2>
+                <div class="option-grid">
+                    <div class="option-card" onclick="selectAnswer('purchase', 'All-Cash Purchase', 'size')"><i class="fas fa-money-bill"></i> All-Cash Purchase <small>(Hot lead!)</small></div>
+                    <div class="option-card" onclick="selectAnswer('purchase', 'Seeking local or international financing', 'size')"><i class="fas fa-university"></i> Seeking local or international financing</div>
+                    <div class="option-card" onclick="selectAnswer('purchase', 'Using equity from a primary home flip/refinance', 'size')"><i class="fas fa-exchange-alt"></i> Using equity from a primary home</div>
+                </div>
+            </div>
+
+            <!-- Size -->
+            <div class="step" id="size">
+                <h2>What size condo fits your travel crew?</h2>
+                <div class="option-grid">
+                    <div class="option-card" onclick="selectAnswer('size', 'Studio/1-Bedroom', 'amenity')"><i class="fas fa-bed"></i> Studio/1-Bedroom (Easy to rent)</div>
+                    <div class="option-card" onclick="selectAnswer('size', '2-Bedrooms', 'amenity')"><i class="fas fa-door-open"></i> 2-Bedrooms (Best balance)</div>
+                    <div class="option-card" onclick="selectAnswer('size', '3+ Bedrooms / Penthouse', 'amenity')"><i class="fas fa-building"></i> 3+ Bedrooms / Penthouse</div>
+                </div>
+            </div>
+
+            <!-- Amenity + Additional -->
+            <div class="step" id="amenity">
+                <h2>Which island amenity is a non-negotiable for you?</h2>
+                <div class="option-grid">
+                    <div class="option-card" onclick="selectAmenity('Beachfront access')"><i class="fas fa-umbrella-beach" aria-hidden="true"></i> Beachfront access</div>
+                    <div class="option-card" onclick="selectAmenity('Resort-style infinity pool')"><i class="fas fa-swimming-pool"></i> Resort-style infinity pool</div>
+                    <div class="option-card" onclick="selectAmenity('Strong Wi-Fi & coworking space')"><i class="fas fa-wifi"></i> Strong Wi-Fi & coworking space</div>
+                    <div class="option-card" onclick="selectAmenity('Gym & wellness center')"><i class="fas fa-dumbbell"></i> Gym & wellness center</div>
+                </div>
+                <div class="form-group" style="margin-top: 25px;">
+                    <label for="additional">Is there anything else you'd need to be close to or have nearby? (Optional)</label>
+                    <textarea id="additional" placeholder="e.g., grocery stores, medical facilities, airport, schools, restaurants..."></textarea>
+                </div>
+                <button class="btn" onclick="goToLead()">Continue to Matches</button>
+            </div>
+
+            <!-- Lead Capture -->
+            <div class="step" id="lead">
+                <h2>We found 3 freehold condos matching your criteria!</h2>
+                <p style="text-align: center; margin-bottom: 20px;">Enter your details below to receive your personalized island property report, including rental yield estimates and HOA fee breakdowns.</p>
+                <div class="form-group">
+                    <label for="firstName"><i class="fas fa-user"></i> First Name</label>
+                    <input type="text" id="firstName" required placeholder="Your first name">
+                </div>
+                <div class="form-group">
+                    <label for="email"><i class="fas fa-envelope"></i> Email Address</label>
+                    <input type="email" id="email" required placeholder="you@email.com">
+                </div>
+                <div class="form-group">
+                    <label for="phone"><i class="fas fa-phone"></i> Phone Number (Optional)</label>
+                    <input type="tel" id="phone" placeholder="Optional">
+                </div>
+                <button class="btn" onclick="submitForm()">Send Me My Matches <i class="fas fa-paper-plane"></i></button>
+                <p style="margin-top:10px;font-size:.85rem;color:#666;text-align:center">Preview: your answers stay in this browser and are not sent anywhere yet.</p>
+            </div>
+
+            <!-- Success -->
+            <div class="step" id="success">
+                <div class="success">
+                    <h2><i class="fas fa-check-circle"></i> Thank You!</h2>
+                    <p>Your personalized island property report is being prepared by Corey McDaniel.</p>
+                    <div class="summary" id="summary"></div>
+                    <p style="margin-top: 20px; font-size: 0.95rem;">We'll review your preferences and send matching freehold condos shortly. Visit <a href="https://coreymcdaniel.com" target="_blank">coreymcdaniel.com</a> for more.</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            Personalized Island Property Matching by <strong>Corey McDaniel</strong><br>
+            <a href="https://coreymcdaniel.com" style="color: #0077be; text-decoration: none;">coreymcdaniel.com</a>
+        </div>
+    </div>
+
+    <script>
+        const answers = {};
+        let currentStep = 'welcome';
+        const stepOrder = {
+            welcome: 0, goal: 1,
+            'traveler-months': 2, 'traveler-away': 3,
+            'investor-strategy': 2, 'remote-needs': 2,
+            budget: 4, purchase: 5, size: 6, amenity: 7, lead: 8, success: 9
+        };
+
+        function updateUI(stepId) {
+            document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+            const el = document.getElementById(stepId);
+            if (el) el.classList.add('active');
+            currentStep = stepId;
+            const progress = (stepOrder[stepId] || 0) / 9 * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+            const labels = {
+                welcome: 'Welcome', goal: 'Step 1 of 5',
+                'traveler-months': 'Step 2 of 5', 'traveler-away': 'Step 2 of 5',
+                'investor-strategy': 'Step 2 of 5', 'remote-needs': 'Step 2 of 5',
+                budget: 'Step 3 of 5', purchase: 'Step 3 of 5',
+                size: 'Step 4 of 5', amenity: 'Step 4 of 5',
+                lead: 'Step 5 of 5', success: 'Complete'
+            };
+            document.getElementById('stepIndicator').textContent = labels[stepId] || 'Matching...';
+        }
+
+        function startQuiz() { updateUI('goal'); }
+
+        function selectGoal(type) {
+            answers.goal = type === 'vacation' ? 'Vacation Home / Lock-and-Leave' :
+                           type === 'investor' ? 'Rental Income Investment' : 'Relocating / Remote Work Base';
+            if (type === 'vacation') updateUI('traveler-months');
+            else if (type === 'investor') updateUI('investor-strategy');
+            else updateUI('remote-needs');
+        }
+
+        function selectAnswer(key, value, next) {
+            answers[key] = value;
+            updateUI(next);
+        }
+
+        function selectBudget(value) {
+            answers.budget = value;
+            const tip = document.getElementById('budgetTooltip');
+            if (value === 'Under $300k') {
+                tip.style.display = 'block';
+                setTimeout(() => updateUI('purchase'), 1800);
+            } else {
+                tip.style.display = 'none';
+                updateUI('purchase');
+            }
+        }
+
+        function selectAmenity(value) {
+            answers.amenity = value;
+            answers.additional = document.getElementById('additional').value.trim();
+            // Stay on this step until continue button, but we already advanced via card click? Wait, fix: cards call this then button.
+            // Actually buttons call selectAmenity which should not auto-advance; the continue does.
+        }
+
+        // Fix amenity cards to not auto-advance
+        document.querySelectorAll('#amenity .option-card').forEach(card => {
+            card.onclick = function() {
+                document.querySelectorAll('#amenity .option-card').forEach(c => c.style.borderColor = '#e0e0e0');
+                this.style.borderColor = '#0077be';
+                this.style.background = '#f0f8ff';
+                answers.amenity = this.textContent.trim().split('\n')[0];
+            };
+        });
+
+        function goToLead() {
+            answers.additional = document.getElementById('additional').value.trim() || 'None specified';
+            if (!answers.amenity) {
+                alert('Please select a non-negotiable amenity.');
+                return;
+            }
+            updateUI('lead');
+        }
+
+        function submitForm() {
+            const firstName = document.getElementById('firstName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            if (!firstName || !email) {
+                alert('Please enter your first name and email.');
+                return;
+            }
+            answers.firstName = firstName;
+            answers.email = email;
+            answers.phone = phone || 'Not provided';
+
+            const summaryHTML = `
+                <strong>Your Personalized Match Criteria:</strong>
+                <ul>
+                    <li><strong>Goal:</strong> ${answers.goal || '-'}</li>
+                    ${answers.months ? `<li><strong>Usage:</strong> ${answers.months}</li>` : ''}
+                    ${answers.awayPriority ? `<li><strong>When Away:</strong> ${answers.awayPriority}</li>` : ''}
+                    ${answers.strategy ? `<li><strong>Strategy:</strong> ${answers.strategy}</li>` : ''}
+                    ${answers.livingNeeds ? `<li><strong>Living Needs:</strong> ${answers.livingNeeds}</li>` : ''}
+                    <li><strong>Budget:</strong> ${answers.budget || '-'}</li>
+                    <li><strong>Purchase:</strong> ${answers.purchase || '-'}</li>
+                    <li><strong>Size:</strong> ${answers.size || '-'}</li>
+                    <li><strong>Amenity:</strong> ${answers.amenity || '-'}</li>
+                    <li><strong>Additional Nearby Needs:</strong> ${answers.additional}</li>
+                    <li><strong>Name:</strong> ${answers.firstName}</li>
+                    <li><strong>Email:</strong> ${answers.email}</li>
+                    <li><strong>Phone:</strong> ${answers.phone}</li>
+                </ul>
+            `;
+            document.getElementById('summary').innerHTML = summaryHTML;
+            updateUI('success');
+
+            // In production, POST answers to your server/CRM here
+            console.log('Lead captured for Corey McDaniel:', answers);
+        }
+    </script>
+</body>
+</html>
