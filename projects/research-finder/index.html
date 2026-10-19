@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Research Finder | Corey McDaniel</title>
+<style>
+:root{--bg:#fafaf7;--fg:#1c1c1a;--mu:#6b6b66;--card:#fff;--bd:#e2e0d8;--ac:#1f5eff;--acfg:#fff;--code:#f0efe9;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141413;--fg:#eceae3;--mu:#9a9890;--card:#1e1e1c;--bd:#33332f;--ac:#6b93ff;--acfg:#0d0d0c;--code:#232321;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#141413;--fg:#eceae3;--mu:#9a9890;--card:#1e1e1c;--bd:#33332f;--ac:#6b93ff;--acfg:#0d0d0c;--code:#232321;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+.w{max-width:760px;margin:0 auto;padding:18px 16px 40px}
+h1{font-size:1.5rem;margin:.2rem 0 .2rem}
+h3{font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;color:var(--mu);margin:1.4rem 0 .5rem}
+p.s{color:var(--mu);margin:0 0 1rem;font-size:.92rem}
+input[type=text],input[type=number],select{width:100%;padding:12px;font:inherit;color:var(--fg);background:var(--card);border:1px solid var(--bd);border-radius:10px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:10px}
+.row>*{flex:1 1 90px}
+label.c{display:flex;gap:6px;align-items:center;font-size:.92rem;flex:0 0 auto}
+.tabs{display:flex;gap:6px;margin:18px 0 4px;overflow-x:auto}
+.tabs button{flex:1 0 auto;padding:10px 14px;font:inherit;font-weight:600;color:var(--fg);background:var(--card);border:1px solid var(--bd);border-radius:10px}
+.tabs button.on{background:var(--ac);color:var(--acfg);border-color:var(--ac)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px}
+a.card{display:block;padding:12px;background:var(--card);border:1px solid var(--bd);border-radius:10px;color:var(--fg);text-decoration:none}
+a.card b{display:block}a.card span{font-size:.82rem;color:var(--mu)}
+a.card.off{opacity:.45;pointer-events:none}
+.btn{padding:12px 14px;font:inherit;font-weight:600;color:var(--acfg);background:var(--ac);border:0;border-radius:10px;text-decoration:none;text-align:center;cursor:pointer}
+pre{background:var(--code);border:1px solid var(--bd);border-radius:10px;padding:12px;overflow-x:auto;font-size:.78rem;line-height:1.45;margin:10px 0}
+code.q{display:block;background:var(--code);border:1px solid var(--bd);border-radius:10px;padding:12px;word-break:break-word;margin:10px 0}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.chips button{padding:6px 10px;font:inherit;font-size:.85rem;color:var(--fg);background:var(--card);border:1px solid var(--bd);border-radius:99px}
+.pn{display:none}.pn.on{display:block}
+details.help{margin:0 0 14px;background:var(--card);border:1px solid var(--bd);border-radius:10px}
+details.help>summary{list-style:none;cursor:pointer;padding:12px 14px;font-weight:700;color:var(--ac)}
+details.help>summary::-webkit-details-marker{display:none}
+details.help>summary::after{content:"▾";float:right}
+details.help[open]>summary::after{content:"▴"}
+.hb{padding:0 14px 14px;font-size:.95rem}
+.hb h4{margin:1rem 0 .3rem;font-size:1rem}
+.hb p{margin:.3rem 0}
+.hb ol,.hb ul{margin:.3rem 0;padding-left:1.2rem}
+.hb li{margin:.3rem 0}
+.hb code{background:var(--code);padding:1px 5px;border-radius:5px}
+</style><meta name="description" content="Research Finder by Corey McDaniel: search scholarly papers, journals, clinical trials, preprints and open-access PDFs across research databases, or generate a script that pulls results and downloads open-access PDFs.">
+<meta name="author" content="Corey McDaniel"><meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://coreymcdaniel.com/projects/research-finder/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Corey McDaniel"><meta property="og:title" content="Research Finder | Corey McDaniel"><meta property="og:description" content="Research Finder by Corey McDaniel: search scholarly papers, journals, clinical trials, preprints and open-access PDFs across research databases, or generate a script that pulls results and downloads open-access PDFs."><meta property="og:url" content="https://coreymcdaniel.com/projects/research-finder/"><meta property="og:image" content="https://coreymcdaniel.com/img/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Corey McDaniel logo">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Research Finder | Corey McDaniel"><meta name="twitter:description" content="Research Finder by Corey McDaniel: search scholarly papers, journals, clinical trials, preprints and open-access PDFs across research databases, or generate a script that pulls results and downloads open-access PDFs."><meta name="twitter:image" content="https://coreymcdaniel.com/img/og.png">
+<link rel="icon" href="/img/favicon-32.png" type="image/png" sizes="32x32"><link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+<script type="application/ld+json">{"@type": "WebApplication", "applicationCategory": "ReferenceApplication", "operatingSystem": "Any (web browser)", "@context": "https://schema.org", "@id": "https://coreymcdaniel.com/projects/research-finder/#app", "name": "Research Finder", "description": "Research Finder by Corey McDaniel: search scholarly papers, journals, clinical trials, preprints and open-access PDFs across research databases, or generate a script that pulls results and downloads open-access PDFs.", "url": "https://coreymcdaniel.com/projects/research-finder/", "image": "https://coreymcdaniel.com/img/og.png", "inLanguage": "en", "author": {"@type": "Person", "@id": "https://coreymcdaniel.com/#person", "name": "Corey McDaniel", "url": "https://coreymcdaniel.com/"}, "creator": {"@type": "Person", "@id": "https://coreymcdaniel.com/#person", "name": "Corey McDaniel", "url": "https://coreymcdaniel.com/"}, "isPartOf": {"@type": "WebSite", "@id": "https://coreymcdaniel.com/#website", "name": "Corey McDaniel", "url": "https://coreymcdaniel.com/"}, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://coreymcdaniel.com/home/"}, {"@type": "ListItem", "position": 2, "name": "Life Project Files", "item": "https://coreymcdaniel.com/home/#projects"}, {"@type": "ListItem", "position": 3, "name": "Research Finder", "item": "https://coreymcdaniel.com/projects/research-finder/"}]}</script>
+<style>.cmd-back{position:fixed;top:calc(env(safe-area-inset-top,0px) + 10px);left:calc(env(safe-area-inset-left,0px) + 10px);z-index:2147483000;padding:8px 14px;border-radius:99px;background:#0b0916e6;color:#e9d5ff;border:1px solid #7c3aed;font:600 13px/1 system-ui,sans-serif;text-decoration:none;box-shadow:0 0 16px #7c3aed66;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}.cmd-back:hover,.cmd-back:focus-visible{color:#fff;outline:2px solid #67e8f9;outline-offset:2px}body{padding-top:56px!important}.cmd-note{position:relative;z-index:5;max-width:900px;margin:24px auto;padding:14px 18px;border:1px solid #7c3aed;border-radius:12px;background:#171230;color:#e9d5ff;font:500 14px/1.5 system-ui,sans-serif}</style>
+</head><body>
+<a class="cmd-back" href="/home/#projects">&larr; Life Project Files</a><div class="w">
+<h1>Research Finder</h1>
+<p class="s">Type a topic or title. Search papers, journals, clinical trials, preprints and PDFs across many databases, or generate a script that pulls results and downloads open-access PDFs.</p>
+<details class="help"><summary>❓ How does this work? (tap to open)</summary><div class="hb">
+<h4>What is this?</h4>
+<p>It's a search tool just for serious research: science papers, medical studies, clinical trials and PDFs. Regular Google is full of ads and blog posts. This page sends your search straight to the places where researchers actually publish, so you skip the junk.</p>
+<h4>How to use it</h4>
+<ol>
+<li><b>Type what you're looking for</b> in the big box, like "sleep and memory in teenagers".</li>
+<li><b>Optional:</b> add a year range to only get newer papers, or tick "PDF only" to focus on downloadable files.</li>
+<li><b>Databases tab:</b> tap any card. It opens that site's results for your search in a new tab. Try a few, because each one has different papers.</li>
+<li><b>PDF search tab:</b> makes a special search that finds PDF files (or Word, Excel, and more). You can limit it to one site like nih.gov. Tap Google to run it.</li>
+<li><b>Python fetch tab:</b> for grabbing lots of results at once. It makes a small program that collects results into a spreadsheet and downloads the free PDFs for you.</li>
+</ol>
+<h4>Words you'll see</h4>
+<ul><li><b>Open access:</b> free to read and download.</li><li><b>Preprint:</b> a paper shared before experts have checked it.</li><li><b>Clinical trial:</b> a test of a treatment on real people.</li><li><b>DOI:</b> a permanent ID number for a paper, like a license plate.</li></ul>
+<h4>Tip</h4>
+<p>Some papers are locked behind a paywall. If you only see a summary, search the title again with "PDF only" ticked, or try PubMed Central, CORE or Europe PMC, which focus on free copies.</p>
+</div></details>
+<input type="text" id="q" placeholder="e.g. pulsed electromagnetic field therapy" autocomplete="off">
+<div class="row">
+<input type="number" id="y1" placeholder="From year" inputmode="numeric">
+<input type="number" id="y2" placeholder="To year" inputmode="numeric">
+<label class="c"><input type="checkbox" id="pdf"> PDF only</label>
+</div>
+<div class="tabs"><button data-t="a" class="on">Databases</button><button data-t="b">PDF search</button><button data-t="c">Python fetch</button></div>
+
+<div class="pn on" id="pa"><div id="src"></div></div>
+
+<div class="pn" id="pb">
+<h3>Build a search-engine query</h3>
+<div class="row"><select id="ft"><option value="pdf">filetype: PDF</option><option value="doc">DOC</option><option value="docx">DOCX</option><option value="ppt">PPT</option><option value="pptx">PPTX</option><option value="xls">XLS</option><option value="xlsx">XLSX</option><option value="csv">CSV</option><option value="">Any type</option></select></div>
+<div class="row"><input type="text" id="site" placeholder="Limit to site (optional), e.g. nih.gov"></div>
+<div class="chips" id="chips"></div>
+<div class="row"><label class="c"><input type="checkbox" id="ex" checked> Exact phrase</label><label class="c"><input type="checkbox" id="it"> Title only</label></div>
+<code class="q" id="dq"></code>
+<div class="row" id="eng"></div>
+</div>
+
+<div class="pn" id="pc">
+<h3>Script that fetches results and PDFs</h3>
+<p class="s">Hosted pages can't pull live data from other sites, so this builds a script you run yourself (<code>pip install requests</code>). It saves a CSV and downloads every open-access PDF it finds.</p>
+<details class="help"><summary>▶ Where and how do I run this? (tap to open)</summary><div class="hb">
+<p>A script is a list of instructions for a computer. You need a place that can run Python. The easiest free place, even on a phone, is <b>Google Colab</b>. It runs in your browser and there's nothing to install.</p>
+<h4>Easy way: Google Colab</h4>
+<ol>
+<li>Type your search at the top of this page and pick your options.</li>
+<li>Tap <b>Copy script</b> below.</li>
+<li>Tap <b>Open Google Colab</b> below and sign in with a Google account. On iPhone, if it looks cramped, use Safari's "Request Desktop Website".</li>
+<li>You'll see an empty box with a ▶ play button. Tap in the box and paste.</li>
+<li>Tap the ▶ play button and wait a minute or two. When it's done it prints "results saved".</li>
+<li>A file called <b>results.zip</b> downloads by itself. Inside is <b>results.csv</b> (the list) and a <b>pdfs</b> folder. If nothing downloads, tap the folder icon on the left side of Colab and download it from there.</li>
+</ol>
+<h4>On a computer instead</h4>
+<ol><li>Install Python from python.org, then run <code>pip install requests</code> in Terminal (Mac) or Command Prompt (Windows).</li><li>Paste the script into a text file named <code>search.py</code>.</li><li>Run <code>python search.py</code>. A <b>results</b> folder appears next to the file.</li></ol>
+<h4>Good to know</h4>
+<p>Only free, open-access PDFs get downloaded. Locked papers still show up in the list with a link. If one source fails, the script skips it and keeps going.</p>
+</div></details>
+<div class="chips" id="apis"></div>
+<div class="row"><input type="number" id="n" value="25" min="1" max="200" inputmode="numeric"></div>
+<pre id="py"></pre>
+<div class="row"><button class="btn" id="cp">Copy script</button><a class="btn" href="https://colab.research.google.com/#create=true" target="_blank" rel="noopener">Open Google Colab</a></div>
+</div>
+</div>
+<script>
+const $=id=>document.getElementById(id),E=encodeURIComponent;
+const S=[
+["Papers & journals","Google Scholar","All disciplines",(q,o)=>"https://scholar.google.com/scholar?q="+E(q+(o.pdf?" filetype:pdf":""))+(o.y1?"&as_ylo="+o.y1:"")+(o.y2?"&as_yhi="+o.y2:"")],
+["Papers & journals","Semantic Scholar","AI-ranked papers",q=>"https://www.semanticscholar.org/search?q="+E(q)],
+["Papers & journals","OpenAlex","250M+ works (JSON)",q=>"https://api.openalex.org/works?search="+E(q)],
+["Papers & journals","Crossref","DOI registry",q=>"https://search.crossref.org/?q="+E(q)],
+["Papers & journals","CORE","Open-access full text",q=>"https://core.ac.uk/search?q="+E(q)],
+["Papers & journals","BASE","Academic repositories",q=>"https://www.base-search.net/Search/Results?lookfor="+E(q)],
+["Papers & journals","Internet Archive Scholar","Archived PDFs",q=>"https://scholar.archive.org/search?q="+E(q)],
+["Medical & clinical","PubMed","Biomedical literature",(q,o)=>"https://pubmed.ncbi.nlm.nih.gov/?term="+E(q)+((o.y1&&o.y2)?"&filter=years."+o.y1+"-"+o.y2:"")],
+["Medical & clinical","PubMed Central","Free full text",q=>"https://pmc.ncbi.nlm.nih.gov/search/?term="+E(q)],
+["Medical & clinical","Europe PMC","Papers, preprints, patents",(q,o)=>"https://europepmc.org/search?query="+E(q+((o.y1&&o.y2)?" AND (PUB_YEAR:["+o.y1+" TO "+o.y2+"])":""))],
+["Medical & clinical","ClinicalTrials.gov","Registered trials",q=>"https://clinicaltrials.gov/search?term="+E(q)],
+["Medical & clinical","Cochrane Library","Systematic reviews",q=>"https://www.cochranelibrary.com/search?searchBy=1&searchText="+E(q)],
+["Preprints & open access","arXiv","Physics, CS, math, bio",q=>"https://arxiv.org/search/?searchtype=all&query="+E(q)],
+["Preprints & open access","bioRxiv / medRxiv","Via Europe PMC preprints",q=>"https://europepmc.org/search?query="+E(q+" AND SRC:PPR")],
+["Preprints & open access","SSRN","Social science & economics",q=>"https://papers.ssrn.com/sol3/results.cfm?txtKey_Words="+E(q)],
+["Preprints & open access","OSF Preprints","Multi-discipline",q=>"https://osf.io/search?q="+E(q)],
+["Theses & education","OATD","Open theses & dissertations",q=>"https://oatd.org/oatd/search?q="+E(q)],
+["Theses & education","ERIC","Education research",q=>"https://eric.ed.gov/?q="+E(q)]
+];
+const G={};S.forEach(s=>(G[s[0]]=G[s[0]]||[]).push(s));
+const o=()=>({pdf:$('pdf').checked,y1:$('y1').value.trim(),y2:$('y2').value.trim()});
+function render(){const q=$('q').value.trim(),op=o();let h='';
+for(const g in G){h+='<h3>'+g+'</h3><div class="grid">';
+G[g].forEach(s=>{const u=q?s[3](q,op).replace(/&/g,'&amp;'):'';h+='<a class="card'+(q?'':' off')+'"'+(q?' href="'+u+'" target="_blank" rel="noopener"':'')+'><b>'+s[1]+'</b><span>'+s[2]+'</span></a>'});h+='</div>'}
+$('src').innerHTML=h;dork();py()}
+const ENG=[["Google","https://www.google.com/search?q="],["Bing","https://www.bing.com/search?q="],["DuckDuckGo","https://duckduckgo.com/?q="]];
+function dork(){const q=$('q').value.trim();let s=q;
+if(q){if($('ex').checked||$('it').checked)s='"'+q+'"';if($('it').checked)s='intitle:'+s;
+if($('ft').value)s+=' filetype:'+$('ft').value;if($('site').value.trim())s+=' site:'+$('site').value.trim()}
+$('dq').textContent=q?s:'Enter a search above';
+$('eng').innerHTML=ENG.map(e=>'<a class="btn" '+(q?'href="'+(e[1]+E(s)).replace(/&/g,'&amp;')+'" target="_blank" rel="noopener"':'style="opacity:.45;pointer-events:none"')+'>'+e[0]+'</a>').join('')}
+$('chips').innerHTML=['.edu','.gov','nih.gov','who.int','arxiv.org','nature.com','sciencedirect.com'].map(x=>'<button data-s="'+x+'">'+x+'</button>').join('');
+$('chips').onclick=e=>{if(e.target.dataset.s){$('site').value=e.target.dataset.s;dork()}};
+const API=[["openalex","OpenAlex"],["pubmed","PubMed"],["arxiv","arXiv"],["trials","ClinicalTrials"],["crossref","Crossref"]];
+$('apis').innerHTML=API.map(a=>'<label class="c"><input type="checkbox" class="api" value="'+a[0]+'" checked> '+a[1]+'</label>').join('');
+const PY=String.raw`import requests, csv, os, re
+import xml.etree.ElementTree as ET
+
+Q = __Q__
+N = __N__            # results per source
+YEARS = __Y__        # (from, to) or None
+OUT = "results"
+os.makedirs(OUT + "/pdfs", exist_ok=True)
+rows = []
+
+def add(src, title, year, doi, url, pdf):
+    rows.append(dict(source=src, title=title, year=year, doi=doi, url=url, pdf=pdf))
+
+def openalex():
+    p = {"search": Q, "per-page": N}
+    if YEARS: p["filter"] = "publication_year:%s-%s" % YEARS
+    for w in requests.get("https://api.openalex.org/works", params=p).json()["results"]:
+        loc = w.get("best_oa_location") or {}
+        add("openalex", w["title"], w["publication_year"], w.get("doi"), w["id"], loc.get("pdf_url"))
+
+def pubmed():
+    base = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/"
+    t = Q + (" AND %s:%s[dp]" % YEARS if YEARS else "")
+    ids = requests.get(base + "esearch.fcgi", params={"db": "pubmed", "term": t, "retmax": N, "retmode": "json"}).json()["esearchresult"]["idlist"]
+    if not ids: return
+    s = requests.get(base + "esummary.fcgi", params={"db": "pubmed", "id": ",".join(ids), "retmode": "json"}).json()["result"]
+    for i in ids:
+        add("pubmed", s[i]["title"], s[i]["pubdate"][:4], "", "https://pubmed.ncbi.nlm.nih.gov/" + i, None)
+
+def arxiv():
+    x = requests.get("https://export.arxiv.org/api/query", params={"search_query": "all:" + Q, "max_results": N}).text
+    ns = {"a": "http://www.w3.org/2005/Atom"}
+    for e in ET.fromstring(x).findall("a:entry", ns):
+        link = e.find("a:id", ns).text
+        add("arxiv", " ".join(e.find("a:title", ns).text.split()), e.find("a:published", ns).text[:4], "", link, link.replace("/abs/", "/pdf/"))
+
+def trials():
+    d = requests.get("https://clinicaltrials.gov/api/v2/studies", params={"query.term": Q, "pageSize": N}).json()
+    for s in d.get("studies", []):
+        i = s["protocolSection"]["identificationModule"]
+        add("clinicaltrials", i.get("briefTitle"), "", "", "https://clinicaltrials.gov/study/" + i["nctId"], None)
+
+def crossref():
+    for w in requests.get("https://api.crossref.org/works", params={"query": Q, "rows": N}).json()["message"]["items"]:
+        add("crossref", (w.get("title") or [""])[0], w.get("issued", {}).get("date-parts", [[""]])[0][0], w.get("DOI"), w.get("URL"), None)
+
+for f in (__F__):
+    try: f()
+    except Exception as e: print(f.__name__, "failed:", e)
+
+for i, r in enumerate(rows):
+    if r["pdf"]:
+        try:
+            b = requests.get(r["pdf"], timeout=30)
+            if b.ok and b.content[:4] == b"%PDF":
+                name = re.sub(r"\W+", "_", r["title"] or str(i))[:80] + ".pdf"
+                open(OUT + "/pdfs/" + name, "wb").write(b.content)
+        except Exception: pass
+
+if rows:
+    with open(OUT + "/results.csv", "w", newline="", encoding="utf-8") as fh:
+        w = csv.DictWriter(fh, fieldnames=rows[0].keys())
+        w.writeheader(); w.writerows(rows)
+print(len(rows), "results saved to", OUT)
+
+try:  # in Google Colab, download everything as one zip
+    import shutil
+    from google.colab import files
+    shutil.make_archive("results", "zip", OUT)
+    files.download("results.zip")
+except ImportError:
+    pass
+`;
+function py(){const y1=$('y1').value.trim(),y2=$('y2').value.trim(),fs=[...document.querySelectorAll('.api:checked')].map(c=>c.value);
+$('py').textContent=PY.replace('__Q__',JSON.stringify($('q').value.trim()||'your search terms')).replace('__N__',+$('n').value||25).replace('__Y__',(y1&&y2)?'('+y1+', '+y2+')':'None').replace('__F__',fs.length?fs.join(', ')+',':'')}
+document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('on',x===b));['a','b','c'].forEach(k=>$('p'+k).classList.toggle('on',k===b.dataset.t))});
+$('cp').onclick=async()=>{const t=$('py').textContent;try{await navigator.clipboard.writeText(t);$('cp').textContent='Copied'}catch(e){const r=document.createRange();r.selectNodeContents($('py'));const s=getSelection();s.removeAllRanges();s.addRange(r);$('cp').textContent='Selected, now copy'}setTimeout(()=>$('cp').textContent='Copy script',2000)};
+['q','y1','y2','pdf','ft','site','ex','it','n'].forEach(i=>$(i).addEventListener('input',render));
+document.getElementById('apis').addEventListener('change',py);
+render();
+</script></body></html>

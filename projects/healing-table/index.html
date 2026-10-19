@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Healing Table | Corey McDaniel</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0B1810;--sf:#142312;--sf2:#1B3019;--bd:#263D28;
+  --sh:#5DBF7E;--hm:#E8955A;--hr:#A884CC;--gd:#CFA02A;
+  --tx:#EBE7DC;--tm:#7A9878;--wh:#fff;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{background:var(--bg);color:var(--tx);font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.6;min-height:100%}
+body::before{content:'';position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:200;background:#091410}
+
+/* HERO */
+.hero{background:linear-gradient(150deg,#050f08 0%,#122a18 55%,#0B1810 100%);padding:60px 24px 48px;text-align:center;border-bottom:1px solid var(--bd)}
+.hero-glyph{font-size:32px;margin-bottom:18px;display:block;opacity:.9}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(48px,12vw,80px);font-weight:300;line-height:.96;color:var(--tx);margin-bottom:10px;letter-spacing:-.5px}
+.hero h1 em{font-style:italic;color:var(--sh)}
+.hero-sub{color:var(--tm);font-size:14px;font-weight:300;margin:0 auto 30px;max-width:320px}
+.hero-pills{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+.pill{padding:5px 14px;border-radius:100px;font-size:12px;font-weight:500;line-height:1.4}
+.p-hm{background:rgba(232,149,90,.12);color:var(--hm);border:1px solid rgba(232,149,90,.26)}
+.p-hr{background:rgba(168,132,204,.12);color:var(--hr);border:1px solid rgba(168,132,204,.26)}
+.p-sh{background:rgba(93,191,126,.12);color:var(--sh);border:1px solid rgba(93,191,126,.26)}
+
+/* TABS */
+.tabnav{position:sticky;top:env(safe-area-inset-top,0px);z-index:100;background:var(--sf);border-bottom:1px solid var(--bd);display:flex;overflow-x:auto;scrollbar-width:none;padding:0 12px}
+.tabnav::-webkit-scrollbar{display:none}
+.tab{flex-shrink:0;background:none;border:none;color:var(--tm);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;padding:13px 16px;cursor:pointer;border-bottom:2px solid transparent;transition:color .15s,border-color .15s;white-space:nowrap}
+.tab:hover{color:var(--tx)}
+.tab.on{color:var(--sh);border-bottom-color:var(--sh)}
+
+/* PANES */
+.pane{display:none;padding:30px 18px 80px;max-width:700px;margin:0 auto}
+.pane.on{display:block}
+.s-head{margin-bottom:26px}
+.s-title{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:300;color:var(--tx);margin-bottom:4px;line-height:1.15}
+.s-desc{color:var(--tm);font-size:13px;font-weight:300}
+
+/* PROGRESS */
+.prog{background:var(--sf);border:1px solid var(--bd);border-radius:10px;padding:13px 16px;margin-bottom:22px;display:flex;align-items:center;gap:12px}
+.prog-bar{flex:1;height:4px;background:var(--bd);border-radius:4px;overflow:hidden}
+.prog-fill{height:100%;background:var(--sh);border-radius:4px;transition:width .3s}
+.prog-txt{font-size:12px;color:var(--tm);white-space:nowrap}
+.prog-rst{font-size:11px;color:var(--tm);background:none;border:1px solid var(--bd);border-radius:6px;padding:3px 9px;cursor:pointer;transition:color .15s,border-color .15s}
+.prog-rst:hover{color:var(--tx);border-color:var(--tm)}
+
+/* LEGEND */
+.legend{display:flex;gap:14px;flex-wrap:wrap;padding:11px 14px;background:var(--sf);border:1px solid var(--bd);border-radius:9px;margin-bottom:20px}
+.leg{font-size:12px;color:var(--tm);display:flex;align-items:center;gap:6px}
+.leg-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+
+/* GROCERY */
+.g-cat{margin-bottom:20px}
+.g-cat-hd{display:flex;align-items:center;gap:8px;padding-bottom:8px;margin-bottom:8px;border-bottom:1px solid var(--bd)}
+.g-cat-hd span{font-size:13px;font-weight:500;color:var(--tm)}
+.g-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px}
+.g-item{display:flex;align-items:center;gap:9px;padding:7px 8px;border-radius:7px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.g-item:hover,.g-item:active{background:var(--sf)}
+.g-item input[type=checkbox]{width:15px;height:15px;accent-color:var(--sh);cursor:pointer;flex-shrink:0;pointer-events:none}
+.g-item .lbl{font-size:13px;color:var(--tx);line-height:1.3;pointer-events:none}
+.g-item.chk .lbl{color:var(--tm);text-decoration:line-through}
+.him-o .lbl::after{content:' ♦';color:var(--hm);font-size:9px}
+.her-o .lbl::after{content:' ♦';color:var(--hr);font-size:9px}
+
+/* MEAL CARDS */
+.m-lbl{font-size:11px;font-weight:500;color:var(--tm);letter-spacing:.7px;text-transform:uppercase;margin:30px 0 13px;display:flex;align-items:center;gap:10px}
+.m-lbl::after{content:'';flex:1;height:1px;background:var(--bd)}
+.mcard{background:var(--sf);border:1px solid var(--bd);border-radius:16px;overflow:hidden;margin-bottom:13px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.mcard-sw{height:108px;display:flex;align-items:center;justify-content:center;position:relative}
+.mcard-sw .em{font-size:52px;position:relative;z-index:1;filter:drop-shadow(0 3px 12px rgba(0,0,0,.5))}
+.mcard-sw::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,var(--sf) 100%)}
+.mcard-body{padding:13px 17px 17px}
+.m-time{display:inline-flex;font-size:11px;font-weight:500;padding:3px 9px;border-radius:100px;margin-bottom:7px;background:rgba(93,191,126,.1);color:var(--sh)}
+.mcard h3{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:var(--tx);margin-bottom:6px;line-height:1.15}
+.m-desc{font-size:13px;color:var(--tm);font-weight:300;margin-bottom:11px;line-height:1.5}
+.m-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px}
+.m-tag{font-size:11px;padding:2px 8px;border-radius:100px;border:1px solid var(--bd);color:var(--tm)}
+.xhint{font-size:11px;color:var(--bd);text-align:right;transition:color .15s}
+.mcard:hover .xhint{color:var(--tm)}
+.m-detail{display:none;border-top:1px solid var(--bd);margin-top:11px;padding-top:13px}
+.m-detail.open{display:block}
+.d-lbl{font-size:11px;font-weight:500;color:var(--tm);letter-spacing:.3px;margin-bottom:8px}
+.ingr{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:2px 8px;margin-bottom:11px}
+.ingr li{font-size:12px;color:var(--tx);padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);display:flex;gap:5px;align-items:baseline;line-height:1.35}
+.ingr li::before{content:'—';color:var(--bd);font-size:10px;flex-shrink:0}
+.m-add{padding:9px 12px;border-radius:8px;font-size:12px;line-height:1.5;margin-top:6px}
+.m-hm{background:rgba(232,149,90,.08);border:1px solid rgba(232,149,90,.2)}
+.m-hm strong{color:var(--hm)}
+.m-hr{background:rgba(168,132,204,.08);border:1px solid rgba(168,132,204,.2);margin-top:5px}
+.m-hr strong{color:var(--hr)}
+
+/* PERSON PAGES */
+.p-hd{padding:18px 0 17px;border-bottom:1px solid var(--bd);margin-bottom:24px}
+.p-name{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;margin-bottom:3px}
+.p-sub{font-size:13px;color:var(--tm);font-weight:300}
+.card{background:var(--sf);border:1px solid var(--bd);border-radius:12px;padding:15px 17px;margin-bottom:13px}
+.c-hm{border-left:3px solid var(--hm)}
+.c-hr{border-left:3px solid var(--hr)}
+.c-sh{border-left:3px solid var(--sh)}
+.c-title{font-size:12px;font-weight:500;color:var(--tm);margin-bottom:11px;letter-spacing:.2px}
+.n-row{display:flex;justify-content:space-between;align-items:flex-start;padding:7px 0;border-bottom:1px solid var(--bd);font-size:13px;gap:8px}
+.n-row:last-child{border-bottom:none}
+.n-k{color:var(--tm);flex-shrink:0;min-width:140px}
+.n-v{color:var(--tx);font-weight:500;text-align:right}
+.n-s{color:var(--tm);font-size:11px;text-align:right;max-width:150px;line-height:1.3}
+.rl{list-style:none}
+.ri{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--bd);font-size:13px;align-items:flex-start}
+.ri:last-child{border-bottom:none}
+.ri-ic{font-size:14px;flex-shrink:0;margin-top:1px}
+.ri-tx{color:var(--tx);line-height:1.4}
+.ri-tx em{color:var(--tm);font-style:normal;font-size:12px;display:block;margin-top:2px;line-height:1.4}
+.tl{position:relative;padding-left:22px;margin-top:3px}
+.tl::before{content:'';position:absolute;left:6px;top:8px;bottom:8px;width:1px;background:var(--bd)}
+.tl-i{position:relative;padding:0 0 17px 16px}
+.tl-i::before{content:'';position:absolute;left:-22px;top:7px;width:8px;height:8px;border-radius:50%;background:var(--sh);border:2px solid var(--bg)}
+.tl-t{font-size:11px;color:var(--tm);margin-bottom:1px}
+.tl-a{font-size:13px;color:var(--tx);font-weight:500}
+.tl-d{font-size:12px;color:var(--tm);font-weight:300;margin-top:1px;line-height:1.4}
+
+/* FOOTER */
+footer{text-align:center;padding:26px 18px;border-top:1px solid var(--bd);color:var(--tm);font-size:12px;font-weight:300;line-height:1.6}
+
+/* LIGHT MODE */
+@media(prefers-color-scheme:light){
+  :root{--bg:#F2F6F0;--sf:#fff;--sf2:#EBF0E8;--bd:#D3DDCE;--tx:#182718;--tm:#567054}
+  .mcard-sw::after{background:linear-gradient(to bottom,transparent 40%,#fff 100%)}
+  .tl-i::before{border-color:#F2F6F0}
+  body::before{background:#E8F0E5}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+<meta name="description" content="The Healing Table by Corey McDaniel: shared meal planning, plates and a grocery list organized around two people's dietary needs. Educational and informational only, not medical advice.">
+<meta name="author" content="Corey McDaniel"><meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://coreymcdaniel.com/projects/healing-table/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Corey McDaniel"><meta property="og:title" content="The Healing Table | Corey McDaniel"><meta property="og:description" content="The Healing Table by Corey McDaniel: shared meal planning, plates and a grocery list organized around two people's dietary needs. Educational and informational only, not medical advice."><meta property="og:url" content="https://coreymcdaniel.com/projects/healing-table/"><meta property="og:image" content="https://coreymcdaniel.com/img/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Corey McDaniel logo">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="The Healing Table | Corey McDaniel"><meta name="twitter:description" content="The Healing Table by Corey McDaniel: shared meal planning, plates and a grocery list organized around two people's dietary needs. Educational and informational only, not medical advice."><meta name="twitter:image" content="https://coreymcdaniel.com/img/og.png">
+<link rel="icon" href="/img/favicon-32.png" type="image/png" sizes="32x32"><link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+<script type="application/ld+json">{"@type": "WebApplication", "applicationCategory": "HealthApplication", "operatingSystem": "Any (web browser)", "@context": "https://schema.org", "@id": "https://coreymcdaniel.com/projects/healing-table/#app", "name": "The Healing Table", "description": "The Healing Table by Corey McDaniel: shared meal planning, plates and a grocery list organized around two people's dietary needs. Educational and informational only, not medical advice.", "url": "https://coreymcdaniel.com/projects/healing-table/", "image": "https://coreymcdaniel.com/img/og.png", "inLanguage": "en", "author": {"@type": "Person", "@id": "https://coreymcdaniel.com/#person", "name": "Corey McDaniel", "url": "https://coreymcdaniel.com/"}, "creator": {"@type": "Person", "@id": "https://coreymcdaniel.com/#person", "name": "Corey McDaniel", "url": "https://coreymcdaniel.com/"}, "isPartOf": {"@type": "WebSite", "@id": "https://coreymcdaniel.com/#website", "name": "Corey McDaniel", "url": "https://coreymcdaniel.com/"}, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://coreymcdaniel.com/home/"}, {"@type": "ListItem", "position": 2, "name": "Life Project Files", "item": "https://coreymcdaniel.com/home/#projects"}, {"@type": "ListItem", "position": 3, "name": "The Healing Table", "item": "https://coreymcdaniel.com/projects/healing-table/"}]}</script>
+<style>.cmd-back{position:fixed;top:calc(env(safe-area-inset-top,0px) + 10px);left:calc(env(safe-area-inset-left,0px) + 10px);z-index:2147483000;padding:8px 14px;border-radius:99px;background:#0b0916e6;color:#e9d5ff;border:1px solid #7c3aed;font:600 13px/1 system-ui,sans-serif;text-decoration:none;box-shadow:0 0 16px #7c3aed66;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}.cmd-back:hover,.cmd-back:focus-visible{color:#fff;outline:2px solid #67e8f9;outline-offset:2px}body{padding-top:56px!important}.cmd-note{position:relative;z-index:5;max-width:900px;margin:24px auto;padding:14px 18px;border:1px solid #7c3aed;border-radius:12px;background:#171230;color:#e9d5ff;font:500 14px/1.5 system-ui,sans-serif}</style>
+</head>
+<body>
+<a class="cmd-back" href="/home/#projects">&larr; Life Project Files</a>
+
+<header class="hero">
+  <span class="hero-glyph">🌿</span>
+  <h1>The<br><em>Healing</em><br>Table</h1>
+  <p class="hero-sub">One kitchen. Two plans. Every meal built for both of you.</p>
+  <div class="hero-pills">
+    <span class="pill p-hm">Him · T1D · Heart · Bone</span>
+    <span class="pill p-hr">Her · Psoriasis · Bone · Post-Menopausal</span>
+    <span class="pill p-sh">90% of meals fully shared</span>
+  </div>
+</header>
+
+<nav class="tabnav" id="tabnav">
+  <button class="tab on" data-p="grocery">🛒 Grocery List</button>
+  <button class="tab" data-p="meals">🍽 Shared Meals</button>
+  <button class="tab" data-p="him">🐟 His Plate</button>
+  <button class="tab" data-p="her">🌸 Her Plate</button>
+</nav>
+
+<!-- GROCERY -->
+<section class="pane on" id="grocery">
+  <div class="s-head">
+    <div class="s-title">Grocery List</div>
+    <div class="s-desc">Tap any item to check it off. Progress saves automatically.</div>
+  </div>
+  <div class="prog">
+    <div class="prog-bar"><div class="prog-fill" id="pFill" style="width:0%"></div></div>
+    <span class="prog-txt" id="pTxt">0 / 0</span>
+    <button class="prog-rst" id="rstBtn">Reset</button>
+  </div>
+  <div class="legend">
+    <span class="leg"><span class="leg-dot" style="background:var(--sh)"></span>Shared — both eat</span>
+    <span class="leg"><span class="leg-dot" style="background:var(--hm)"></span>His only ♦</span>
+    <span class="leg"><span class="leg-dot" style="background:var(--hr)"></span>Her only ♦</span>
+  </div>
+  <div id="gList"></div>
+</section>
+
+<!-- MEALS -->
+<section class="pane" id="meals">
+  <div class="s-head">
+    <div class="s-title">Shared Meals</div>
+    <div class="s-desc">Tap any card to reveal full ingredients and personal additions.</div>
+  </div>
+  <div id="mList"></div>
+</section>
+
+<!-- HIM -->
+<section class="pane" id="him">
+  <div class="p-hd">
+    <div class="p-name" style="color:var(--hm)">His Plan</div>
+    <div class="p-sub">47 · Type 1 Diabetes · Cardiovascular · Bone Density</div>
+  </div>
+  <div class="card c-hm">
+    <div class="c-title">Daily Nutrient Targets</div>
+    <div class="n-row"><span class="n-k">Calcium</span><span class="n-v">1,200–1,500 mg</span><span class="n-s">Sardines, yogurt, kale, cheese</span></div>
+    <div class="n-row"><span class="n-k">Vitamin D3</span><span class="n-v">2,000–4,000 IU</span><span class="n-s">Fatty fish, eggs, sun exposure</span></div>
+    <div class="n-row"><span class="n-k">Vitamin K2 MK-7</span><span class="n-v">180–360 mcg</span><span class="n-s">Natto, Gouda, Jarlsberg</span></div>
+    <div class="n-row"><span class="n-k">Magnesium</span><span class="n-v">420 mg</span><span class="n-s">Pumpkin seeds, dark chocolate</span></div>
+    <div class="n-row"><span class="n-k">Omega-3 EPA+DHA</span><span class="n-v">2–3 g</span><span class="n-s">Salmon, mackerel, sardines</span></div>
+    <div class="n-row"><span class="n-k">Protein</span><span class="n-v">1.5 g / kg body weight</span><span class="n-s">Spread across all meals</span></div>
+    <div class="n-row"><span class="n-k">Net Carbs</span><span class="n-v">50–75 g / day</span><span class="n-s">Whole food sources only</span></div>
+  </div>
+  <div class="card c-hm">
+    <div class="c-title">His Non-Negotiable Rules</div>
+    <ul class="rl">
+      <li class="ri"><span class="ri-ic">🍶</span><span class="ri-tx">Natto 3× per week minimum<em>The richest K2 MK-7 source on Earth — activates osteocalcin to lock calcium into bone and away from arteries</em></span></li>
+      <li class="ri"><span class="ri-ic">🫐</span><span class="ri-tx">4–6 prunes every single day<em>Penn State clinical trial: preserved cortical bone density and strength at 6 months — eat them, not prune juice</em></span></li>
+      <li class="ri"><span class="ri-ic">🥛</span><span class="ri-tx">Greek yogurt + aged Gouda are his dairy advantage<em>Both supply calcium + K2 simultaneously — she avoids dairy, he leverages it daily</em></span></li>
+      <li class="ri"><span class="ri-ic">🍅</span><span class="ri-tx">Nightshades at the table — never cooked into the shared dish<em>Salsa, hot sauce, feta go on his plate only. The shared pan stays nightshade-free for her.</em></span></li>
+      <li class="ri"><span class="ri-ic">⏰</span><span class="ri-tx">12-hour overnight fast minimum — kitchen closes 7 PM<em>Improves insulin sensitivity and lowers HbA1c independent of what you eat</em></span></li>
+      <li class="ri"><span class="ri-ic">🩺</span><span class="ri-tx">Monitor glucose before every meal — adjust insulin with your endocrinologist<em>As carbs drop and the diet improves, insulin requirements change. Never adjust blindly.</em></span></li>
+    </ul>
+  </div>
+  <div class="card c-hm">
+    <div class="c-title">Daily Rhythm</div>
+    <div class="tl">
+      <div class="tl-i"><div class="tl-t">7:00 AM</div><div class="tl-a">Ginger lemon water — before anything</div><div class="tl-d">Hydrates and primes digestion before the eating window opens</div></div>
+      <div class="tl-i"><div class="tl-t">8:00 AM</div><div class="tl-a">Breakfast — check glucose first</div><div class="tl-d">Eggs or yogurt bowl. Prunes on the side. Adjust insulin based on reading.</div></div>
+      <div class="tl-i"><div class="tl-t">10:30 AM</div><div class="tl-a">Small snack if needed</div><div class="tl-d">Almonds + berries. Check glucose first — skip snack if reading is fine.</div></div>
+      <div class="tl-i"><div class="tl-t">12:30 PM</div><div class="tl-a">Lunch — largest meal of the day</div><div class="tl-d">Salmon bowl or Mediterranean plate. Always start with bone broth.</div></div>
+      <div class="tl-i"><div class="tl-t">3:00 PM</div><div class="tl-a">Afternoon green tea</div><div class="tl-d">A handful of walnuts alongside. Blood sugar check.</div></div>
+      <div class="tl-i"><div class="tl-t">6:00 PM</div><div class="tl-a">Dinner — final meal</div><div class="tl-d">Sheet pan, stew, or bowl. 2 tbsp natto on the side. Turmeric tea after.</div></div>
+      <div class="tl-i"><div class="tl-t">7:00 PM</div><div class="tl-a">Kitchen closes — 12h fast begins</div><div class="tl-d">Water and herbal tea only. This window is when bone remodeling peaks.</div></div>
+    </div>
+  </div>
+  <div class="card c-hm">
+    <div class="c-title">His Side of the Table — Always Available to Him</div>
+    <ul class="rl">
+      <li class="ri"><span class="ri-ic" style="color:var(--hm)">♦</span><span class="ri-tx">Full-fat plain Greek yogurt — Fage 5% or Chobani Whole Milk</span></li>
+      <li class="ri"><span class="ri-ic" style="color:var(--hm)">♦</span><span class="ri-tx">Aged Gouda · Jarlsberg · Feta · Parmesan</span></li>
+      <li class="ri"><span class="ri-ic" style="color:var(--hm)">♦</span><span class="ri-tx">Tomato salsa — nightshade condiment, his plate only</span></li>
+      <li class="ri"><span class="ri-ic" style="color:var(--hm)">♦</span><span class="ri-tx">Hot sauce (Frank's · Cholula · Tabasco) — his bottles only</span></li>
+      <li class="ri"><span class="ri-ic" style="color:var(--hm)">♦</span><span class="ri-tx">85%+ dark chocolate — 2 squares nightly (choose dairy-free so she can share)</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- HER -->
+<section class="pane" id="her">
+  <div class="p-hd">
+    <div class="p-name" style="color:var(--hr)">Her Plan</div>
+    <div class="p-sub">47 · Post-Menopausal · Scoliosis · Psoriasis</div>
+  </div>
+  <div class="card c-hr">
+    <div class="c-title">Daily Nutrient Targets</div>
+    <div class="n-row"><span class="n-k">Calcium</span><span class="n-v">1,200–1,500 mg</span><span class="n-s">Sardines, bok choy, teff, collard greens</span></div>
+    <div class="n-row"><span class="n-k">Vitamin D3</span><span class="n-v">2,000–5,000 IU</span><span class="n-s">Fatty fish, UV mushrooms, supplement — test blood levels</span></div>
+    <div class="n-row"><span class="n-k">Vitamin K2 MK-7</span><span class="n-v">200–360 mcg</span><span class="n-s">Natto daily — estrogen loss shuts down osteocalcin</span></div>
+    <div class="n-row"><span class="n-k">Omega-3 EPA+DHA</span><span class="n-v">3–4 g / day</span><span class="n-s">4× fatty fish per week — primary psoriasis treatment</span></div>
+    <div class="n-row"><span class="n-k">Phytoestrogens</span><span class="n-v">50–75 mg isoflavones</span><span class="n-s">Flaxseed daily · natto · miso · tempeh</span></div>
+    <div class="n-row"><span class="n-k">Zinc (skin healing)</span><span class="n-v">15–20 mg</span><span class="n-s">Pumpkin seeds, shrimp, hemp hearts</span></div>
+    <div class="n-row"><span class="n-k">Net Carbs</span><span class="n-v">75–100 g / day</span><span class="n-s">Slightly more flexible than his plan</span></div>
+  </div>
+  <div class="card c-hr">
+    <div class="c-title">Her Non-Negotiable Rules</div>
+    <ul class="rl">
+      <li class="ri"><span class="ri-ic">🚫</span><span class="ri-tx">No nightshades — permanently removed<em>Tomatoes, peppers, eggplant, white potato, paprika, cayenne — documented psoriasis triggers in multiple studies</em></span></li>
+      <li class="ri"><span class="ri-ic">🚫</span><span class="ri-tx">No dairy of any form<em>Casein + IGF-1 from dairy promote keratinocyte overgrowth — the direct driver of psoriasis plaque formation</em></span></li>
+      <li class="ri"><span class="ri-ic">🚫</span><span class="ri-tx">No alcohol — ever<em>The single most consistent psoriasis dietary trigger across all dermatological literature</em></span></li>
+      <li class="ri"><span class="ri-ic">🌱</span><span class="ri-tx">2 tablespoons ground flaxseed every single day<em>Lignans are the most potent dietary phytoestrogen for slowing post-menopausal bone resorption without HRT</em></span></li>
+      <li class="ri"><span class="ri-ic">🍶</span><span class="ri-tx">Natto 3–4× per week — her biggest bone tool<em>Estrogen loss shuts down osteocalcin activation. K2 MK-7 from natto restores it. No drug needed.</em></span></li>
+      <li class="ri"><span class="ri-ic">🟡</span><span class="ri-tx">Turmeric + black pepper daily — non-negotiable<em>Curcumin inhibits NF-κB — the master inflammatory switch driving both psoriasis and accelerated bone resorption</em></span></li>
+      <li class="ri"><span class="ri-ic">⏰</span><span class="ri-tx">13-hour overnight fast — kitchen closes 6:30 PM<em>Reduces visceral fat that produces inflammatory estrogen-like compounds worsening both psoriasis and bone loss</em></span></li>
+    </ul>
+  </div>
+  <div class="card c-hr">
+    <div class="c-title">Daily Rhythm</div>
+    <div class="tl">
+      <div class="tl-i"><div class="tl-t">7:00 AM</div><div class="tl-a">Turmeric golden milk — first thing</div><div class="tl-d">Coconut milk · turmeric · black pepper · cinnamon. No sweetener. NF-κB suppression before anything enters the gut.</div></div>
+      <div class="tl-i"><div class="tl-t">7:30 AM</div><div class="tl-a">Breakfast</div><div class="tl-d">Coconut yogurt bowl + 2 tbsp ground flaxseed + berries + prunes. The flaxseed is non-negotiable.</div></div>
+      <div class="tl-i"><div class="tl-t">10:30 AM</div><div class="tl-a">Snack or bone broth</div><div class="tl-d">1 cup warm bone broth, or apple + macadamia butter. Bone broth preferred — collagen precursors for skin and spine.</div></div>
+      <div class="tl-i"><div class="tl-t">12:00 PM</div><div class="tl-a">Lunch — largest meal</div><div class="tl-d">Salmon bowl, miso bowl, or Mediterranean plate. Bone broth always starts the meal.</div></div>
+      <div class="tl-i"><div class="tl-t">3:00 PM</div><div class="tl-a">Green or white tea ritual</div><div class="tl-d">EGCG from green tea is clinically anti-inflammatory for psoriasis. A small ritual that compounds over time.</div></div>
+      <div class="tl-i"><div class="tl-t">5:30 PM</div><div class="tl-a">Dinner — must finish by 6:30</div><div class="tl-d">Sheet pan fish, stew, or Asian bowl. Her 13-hour fast is more important than his 12-hour one.</div></div>
+      <div class="tl-i"><div class="tl-t">Bedtime</div><div class="tl-a">Flaxseed in warm coconut milk</div><div class="tl-d">Stir 1 tbsp ground flaxseed into warm coconut milk. Overnight phytoestrogen delivery during the bone remodeling window.</div></div>
+    </div>
+  </div>
+  <div class="card c-hr">
+    <div class="c-title">Her Pantry Extras</div>
+    <ul class="rl">
+      <li class="ri"><span class="ri-ic" style="color:var(--hr)">♦</span><span class="ri-tx">Unsweetened coconut yogurt — Cocoyo or GT's CocoYo</span></li>
+      <li class="ri"><span class="ri-ic" style="color:var(--hr)">♦</span><span class="ri-tx">Ground flaxseed — grind whole seeds weekly in small batches for maximum potency</span></li>
+      <li class="ri"><span class="ri-ic" style="color:var(--hr)">♦</span><span class="ri-tx">Her own chili-free kimchi — separate jar from his regular kimchi</span></li>
+      <li class="ri"><span class="ri-ic" style="color:var(--hr)">♦</span><span class="ri-tx">Teff grain — highest-calcium grain on Earth at 123 mg per ½ cup cooked</span></li>
+      <li class="ri"><span class="ri-ic" style="color:var(--hr)">♦</span><span class="ri-tx">Collagen peptides (unflavored, grass-fed) — stirs into morning drink</span></li>
+      <li class="ri"><span class="ri-ic" style="color:var(--hr)">♦</span><span class="ri-tx">Cassava flour tortillas — AIP-compliant grain-free wrap option</span></li>
+    </ul>
+  </div>
+</section>
+
+<footer>Built from peer-reviewed research at Rosalind Franklin University, Penn State, University of Iowa, Stanford, and the Virta Health Study.<br>Always work with your care team before making dietary changes that affect medication dosing. · The Healing Table</footer>
+
+<script>
+const G=[
+  {ic:'🐟',title:'Proteins',items:['Wild salmon — fresh or frozen','Canned sardines in olive oil','Canned mackerel in olive oil','Wild-caught shrimp','Scallops','Organic chicken thighs (bone-in)','Grass-fed ground beef','Grass-fed sirloin steak','Lamb chops','Ground turkey','Turkey legs (bone-in)','Natto — frozen, 3–4 packs','Tempeh','Organic chicken livers','Bison (swap for beef)']},
+  {ic:'🥦',title:'Vegetables — Safe for Both (No Nightshades)',items:['Kale','Collard greens','Bok choy','Arugula','Broccoli','Cauliflower','Brussels sprouts','Asparagus','Zucchini','Carrots','Beets','Sweet potatoes','Turnips','Parsnips','Purple cabbage','White / yellow cabbage','Cremini mushrooms','Shiitake mushrooms','Yellow or white onions','Garlic — fresh bulbs','Fresh ginger root','Cucumber','Fennel','Leeks']},
+  {ic:'🫐',title:'Fruits',items:['Blueberries — fresh or frozen','Raspberries','Blackberries','Strawberries','Prunes / dried plums — 4–6 each daily','Apples','Pears','Avocados — keep several stages ripening','Lemons','Limes','Dried unsweetened cherries']},
+  {ic:'🌾',title:'Grains, Legumes & Starches',items:['Quinoa','Black rice','Millet','Buckwheat groats or flour','Teff','Red lentils','Green lentils','Chickpeas — canned or dry','Black beans','Cassava root or yuca']},
+  {ic:'🫙',title:'Fermented Foods',items:['Sauerkraut — plain, refrigerated','Kimchi — regular (his jar)','Kimchi — chili-free (her separate jar)','White or yellow miso paste','Coconut kefir (optional)','Kombucha — low sugar']},
+  {ic:'🥑',title:'Fats & Oils',items:['Extra virgin olive oil — 1 L minimum','Coconut oil — unrefined','Avocado oil','Sesame oil — small bottle','Canned full-fat coconut milk × 6','Unsweetened coconut milk carton']},
+  {ic:'🥜',title:'Nuts & Seeds',items:['Walnuts','Almonds','Macadamia nuts','Pumpkin seeds','Hemp hearts','Chia seeds','Whole flaxseed — grind fresh weekly','Sesame seeds','Almond butter — no added sugar']},
+  {ic:'🌿',title:'Spices & Pantry',items:['Turmeric — ground, buy 200 g','Black pepper — freshly ground','Ceylon cinnamon','Cumin','Coriander','Dried ginger','Thyme — dried','Rosemary — dried','Dried oregano','Sea salt — Celtic or Himalayan','Apple cider vinegar','Coconut aminos','Tamari — gluten-free soy sauce','Dijon mustard — nightshade-free','Bone broth cartons × 8 or make homemade','Nori / seaweed sheets','85%+ dark chocolate — dairy-free','Green tea — loose or bags']},
+  {ic:'💛',title:'His Only',him:true,items:["Full-fat plain Greek yogurt — Fage 5%",'Aged Gouda cheese','Jarlsberg cheese','Feta cheese','Parmesan block','Tomato salsa — his condiment only','Hot sauce — Frank\'s or Cholula','Canned diced tomatoes (nightshade — his only)']},
+  {ic:'💜',title:'Her Only',her:true,items:['Unsweetened coconut yogurt — Cocoyo or GT\'s','Ground flaxseed or whole + grinder','Collagen peptides — unflavored, grass-fed','Teff grain','Cassava flour or cassava tortillas','Tigernut flour — AIP baking']},
+];
+
+const M=[
+  {time:'Breakfast',name:'Morning Power Bowl',em:'🫐',g:'linear-gradient(135deg,#140828 0%,#311666 55%,#5a2a99 100%)',
+   desc:'Seed-packed, probiotic-rich and takes 3 minutes to assemble. The flaxseed is critical for her bone plan — it delivers the phytoestrogen signaling that partially replaces estrogen post-menopause.',
+   tags:['Phytoestrogens','Omega-3','K2 delivery','Probiotic','Low glycemic'],
+   ingr:['1 cup blueberries','½ cup raspberries','2 tbsp ground flaxseed each','2 tbsp chia seeds each','1 tbsp hemp hearts each','10 walnuts each','1 tsp cinnamon per bowl','4–6 prunes per person','Turmeric coconut milk to drink'],
+   hm:'¾ cup full-fat plain Greek yogurt as his base',hr:'¾ cup unsweetened coconut yogurt + 1 tbsp collagen peptides stirred in'},
+  {time:'Breakfast',name:'Healing Egg Scramble',em:'🍳',g:'linear-gradient(135deg,#1a0f00 0%,#4a2c00 55%,#8a5500 100%)',
+   desc:'One pan, 12 minutes. Mushrooms deliver vitamin D. Salmon brings omega-3. Greens provide magnesium and calcium. The egg binds it all with protein for bone collagen matrix.',
+   tags:['Vitamin D','Omega-3','Magnesium','Bone collagen','K2'],
+   ingr:['3 eggs per person','2 cups wild mushrooms — shared pan','1 cup kale or bok choy wilted in','½ white onion diced','4 garlic cloves minced','2 tbsp olive oil or coconut oil','2 oz smoked wild salmon each (cold, on top)','½ avocado per person','Fresh herbs + sea salt','4–6 prunes each on the side'],
+   hm:'1 oz crumbled feta scattered over his portion after plating',hr:'A tbsp of natto on the side — her extra K2 hit'},
+  {time:'Breakfast',name:'Sardine & Avocado Plate',em:'🐟',g:'linear-gradient(135deg,#001520 0%,#003550 55%,#005f82 100%)',
+   desc:'The highest calcium + D3 + omega-3 breakfast on the entire plan. The sardine bones are the secret — eat them. They are more calcium-dense per gram than milk.',
+   tags:['Highest calcium','Vitamin D3','Omega-3','Probiotic','Bone minerals'],
+   ingr:['1 can sardines in olive oil per person (bones in)','½ avocado each','1 cup plain sauerkraut each','Purple cabbage + cucumber slaw — shared','Apple cider vinegar dressing','Lemon wedges','1 cup warm bone broth each as starter','1 small apple or pear each'],
+   hm:'A fried egg on top if still hungry after',hr:'1 tbsp ground flaxseed over the slaw'},
+  {time:'Breakfast',name:'Sweet Potato Savory Plate',em:'🍠',g:'linear-gradient(135deg,#200a00 0%,#5c1f00 55%,#9e4400 100%)',
+   desc:'Bake the sweet potatoes the night before. Overnight cooling forms resistant starch that feeds the exact gut bacteria that reduce both psoriasis inflammation and blood sugar spikes.',
+   tags:['Resistant starch','Gut microbiome','Beta-carotene','Potassium','Anti-inflammatory'],
+   ingr:['½ sweet potato (baked, cooled overnight) each','4 oz ground turkey or chicken per person','2 cups sautéed kale or collard greens','Turmeric + ginger + cumin + cinnamon spice blend','Olive oil for cooking','½ avocado each','2 tbsp sauerkraut each','Fresh cilantro or parsley'],
+   hm:'2 fried eggs on top of his plate',hr:'Tbsp of hemp hearts over the greens — extra zinc for skin healing'},
+  {time:'Lunch',name:'Signature Salmon Bowl ⭐',em:'🥗',g:'linear-gradient(135deg,#081a00 0%,#1a4700 55%,#2e7800 100%)',
+   desc:'The most important recurring shared meal. It hits every single therapeutic target for both simultaneously — omega-3 for his heart and her skin, bone minerals, K2, fiber for his blood sugar, and polyphenols. Make this 3× per week.',
+   tags:['Omega-3 anti-inflammatory','Bone calcium','K2 (natto)','Blood sugar fiber','Cardiovascular'],
+   ingr:['5–6 oz wild salmon each (bake together at 400°F)','3 cups mixed greens per person (arugula, watercress, butter lettuce)','½ cup cooked quinoa per person','½ cup cooked lentils per person','1 cup roasted beets (shared)','Shredded purple cabbage (shared)','½ avocado each','Handful of pumpkin seeds each','1 cup warm bone broth each as starter','4–6 prunes each after'],
+   hm:'1 oz feta crumbled over his bowl',hr:'2 tbsp natto on top of her bowl'},
+  {time:'Lunch',name:'Miso Healing Bowl',em:'🍜',g:'linear-gradient(135deg,#160a00 0%,#3d2500 55%,#704500 100%)',
+   desc:'The single highest phytoestrogen and probiotic delivery meal on the plan. Miso + natto + tempeh together create a compounding gut-skin-bone effect that is almost pharmacological.',
+   tags:['Phytoestrogens','Probiotic depth','Gut-skin axis','K2 delivery','Bone minerals'],
+   ingr:['2 tbsp miso per person — stir in after heat off (preserve probiotics)','4 cups water simmered (never boiled)','5 oz tempeh or firm tofu per person','2 cups bok choy','1 cup shiitake mushrooms','4 garlic cloves + 2-inch grated ginger','1 tbsp tamari per pot','Nori sheet crumbled in per bowl','2 tbsp natto per bowl (on top)','½ cup cooked buckwheat noodles or quinoa','Green onions + sesame seeds'],
+   hm:'Soft-boiled egg on top of his bowl',hr:'Extra tbsp of ground flaxseed into her half of the broth'},
+  {time:'Lunch',name:'Mediterranean Fish Plate',em:'🫒',g:'linear-gradient(135deg,#001508 0%,#003520 55%,#005c38 100%)',
+   desc:'One sheet pan for the fish and roasted vegetables. Olive oil, lemon, garlic, and fresh herbs do all the work. The chickpeas deliver the soluble fiber that blunts his post-meal blood sugar rise.',
+   tags:['Omega-3','Heart-protective','Polyphenols','Blood sugar fiber','Bone vitamins'],
+   ingr:['5–6 oz mackerel, trout, or herring each','Zucchini + asparagus + broccoli + carrots — roasted together','½ cup chickpeas per person (roasted with olive oil)','Kalamata olives — large handful shared','Fresh herb salad: parsley, mint, arugula','Dressing: 3 tbsp olive oil + ACV + Dijon + garlic','Lemon wedges','Bone broth starter'],
+   hm:'Crumbled feta over his fish after roasting',hr:'Extra olive oil drizzle — she needs the higher anti-inflammatory fat intake'},
+  {time:'Dinner',name:'Sheet Pan Omega-3 Dinner ⭐',em:'🌿',g:'linear-gradient(135deg,#001510 0%,#003528 55%,#005540 100%)',
+   desc:'One pan, one oven, 25 minutes. Everything roasts together at 400°F. Make this twice a week minimum — it is the simplest, most repeatable, highest omega-3 delivery meal on the plan.',
+   tags:['3g+ Omega-3','Bone D+K2','Cruciferous sulfur','Cardiovascular','Anti-inflammatory'],
+   ingr:['6 oz wild salmon per person (two fillets)','2 cups broccoli florets','1 cup Brussels sprouts halved','1 cup asparagus spears','3 tbsp olive oil drizzled over everything','Juice of 2 lemons squeezed over','Fresh thyme + rosemary + dill','Sea salt + black pepper','½ cup cooked quinoa or teff per person','2 tbsp sauerkraut each alongside','2 tbsp natto each on the side','1 cup bone broth each before dinner'],
+   hm:'1 oz feta crumbled over his salmon after plating',hr:'Extra lemon + olive oil — her omega-3 target is 3–4g vs his 2–3g'},
+  {time:'Dinner',name:'Slow-Cooked Bone Broth Stew ⭐',em:'🍲',g:'linear-gradient(135deg,#180800 0%,#3d1c00 55%,#6e3300 100%)',
+   desc:'Make a large batch Sunday — it feeds both of you for 3 days. Collagen releases from the bones during the long slow cook, creating a deeply restorative broth that repairs both gut lining and supports bone matrix.',
+   tags:['Bone collagen','Gut lining repair','Root vegetable minerals','Deep anti-inflammatory','Phytoestrogen add-on'],
+   ingr:['8 oz bone-in chicken thighs or turkey legs per person','4 cups homemade bone broth as cooking liquid','1 large sweet potato cubed','2 large carrots sliced','2 parsnips cubed','1 cup turnips cubed','1 white onion + 6 garlic cloves','2-inch fresh ginger grated in','1 tbsp turmeric + 1 tsp cumin + 1 tsp cinnamon','Fresh thyme + rosemary stems','2 cups kale or collard greens added last 10 minutes','Sea salt + fresh lemon to finish'],
+   hm:'A side of roasted tomatoes or his salsa served separately at the table',hr:'Extra tbsp turmeric in her bowl. 2 tbsp ground flaxseed stirred in after ladling.'},
+  {time:'Dinner',name:'Asian-Inspired Healing Bowl',em:'🥢',g:'linear-gradient(135deg,#000b18 0%,#001c3d 55%,#002e5e 100%)',
+   desc:'The tamari-ginger-turmeric glaze on the salmon creates deep umami that makes this feel like a restaurant meal at home. The black rice anthocyanins add another layer of anti-inflammatory protection for both psoriasis and his cardiovascular system.',
+   tags:['Highest omega-3 dinner','Kimchi gut support','K2 via natto','Blood sugar control','Skin healing zinc'],
+   ingr:['5–6 oz wild salmon each — marinate 20 min then bake or sear','Glaze: tamari + sesame oil + ginger + rice vinegar + turmeric + coconut aminos','2 cups bok choy sautéed in sesame oil + garlic','Shredded purple cabbage — raw, shared bowl','½ cup cooked black rice per person','½ cup shelled edamame (soy phytoestrogens — important for her)','2 tbsp natto per person','Sliced avocado per person','Sesame seeds + sliced green onions','Miso soup as starter per person (simmer, do not boil)'],
+   hm:'His regular chili kimchi on the side. Soft-boiled egg on top.',hr:'Her chili-free kimchi on the side. Extra edamame for phytoestrogen boost.'},
+];
+
+// ── GROCERY ──────────────────────────────────────────────────
+let ck={},tot=0;
+function loadCk(){try{return JSON.parse(localStorage.getItem('ht_ck')||'{}')}catch(e){return{}}}
+function saveCk(){try{localStorage.setItem('ht_ck',JSON.stringify(ck))}catch(e){}}
+function updateProg(){
+  const vals=Object.values(ck),done=vals.filter(Boolean).length;
+  const pct=tot?Math.round(done/tot*100):0;
+  document.getElementById('pFill').style.width=pct+'%';
+  document.getElementById('pTxt').textContent=done+' / '+tot;
+}
+function toggleCk(id){
+  ck[id]=!ck[id];saveCk();
+  const w=document.getElementById('w_'+id);
+  const i=document.getElementById('i_'+id);
+  if(w)w.classList.toggle('chk',!!ck[id]);
+  if(i)i.checked=!!ck[id];
+  updateProg();
+}
+function renderG(){
+  ck=loadCk();tot=0;
+  let h='';
+  G.forEach(cat=>{
+    const ec=cat.him?'him-o':cat.her?'her-o':'';
+    h+=`<div class="g-cat"><div class="g-cat-hd"><span>${cat.ic}</span><span>${cat.title}</span></div><div class="g-grid">`;
+    cat.items.forEach((item,i)=>{
+      const id=cat.title.replace(/\W/g,'')+i;tot++;
+      const chk=ck[id]?'chk':'';
+      h+=`<div class="g-item ${ec} ${chk}" id="w_${id}" onclick="toggleCk('${id}')"><input type="checkbox" id="i_${id}" ${ck[id]?'checked':''} onclick="event.stopPropagation()"><span class="lbl">${item}</span></div>`;
+    });
+    h+='</div></div>';
+  });
+  document.getElementById('gList').innerHTML=h;
+  updateProg();
+}
+document.getElementById('rstBtn').addEventListener('click',()=>{
+  if(confirm('Clear all checked items and start fresh?')){
+    ck={};saveCk();tot=0;renderG();
+  }
+});
+
+// ── MEALS ────────────────────────────────────────────────────
+function renderM(){
+  const secs=['Breakfast','Lunch','Dinner'];
+  let h='';
+  secs.forEach(s=>{
+    h+=`<div class="m-lbl">${s}</div>`;
+    M.filter(m=>m.time===s).forEach((m,idx)=>{
+      const uid=s+idx;
+      h+=`<div class="mcard" onclick="xMeal('${uid}')">
+        <div class="mcard-sw" style="background:${m.g}"><span class="em">${m.em}</span></div>
+        <div class="mcard-body">
+          <div class="m-time">${m.time}</div>
+          <h3>${m.name}</h3>
+          <p class="m-desc">${m.desc}</p>
+          <div class="m-tags">${m.tags.map(t=>`<span class="m-tag">${t}</span>`).join('')}</div>
+          <div class="xhint" id="xh_${uid}">Tap for ingredients ↓</div>
+          <div class="m-detail" id="xd_${uid}">
+            <div class="d-lbl">Ingredients — serves two</div>
+            <ul class="ingr">${m.ingr.map(i=>`<li>${i}</li>`).join('')}</ul>
+            ${m.hm?`<div class="m-add m-hm"><strong>His addition:</strong> ${m.hm}</div>`:''}
+            ${m.hr?`<div class="m-add m-hr"><strong>Her addition:</strong> ${m.hr}</div>`:''}
+          </div>
+        </div>
+      </div>`;
+    });
+  });
+  document.getElementById('mList').innerHTML=h;
+}
+function xMeal(uid){
+  const d=document.getElementById('xd_'+uid);
+  const h=document.getElementById('xh_'+uid);
+  const o=d.classList.toggle('open');
+  h.textContent=o?'Tap to collapse ↑':'Tap for ingredients ↓';
+}
+
+// ── TABS ─────────────────────────────────────────────────────
+document.getElementById('tabnav').addEventListener('click',e=>{
+  const b=e.target.closest('.tab');if(!b)return;
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
+  document.querySelectorAll('.pane').forEach(p=>p.classList.remove('on'));
+  b.classList.add('on');
+  document.getElementById(b.dataset.p).classList.add('on');
+  window.scrollTo({top:0,behavior:'smooth'});
+});
+
+renderG();renderM();
+</script>
+<p class="cmd-note" role="note">Educational and informational only — not medical advice. Talk with your clinician or care team before changing meals, supplements or treatment.</p>
+</body>
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Patient Evidence Navigator | Corey McDaniel</title>
+<style>
+:root{--bg:#fafaf7;--fg:#1c1c1a;--mu:#6b6b66;--card:#fff;--bd:#e2e0d8;--ac:#0f7b6c;--acfg:#fff;--code:#f0efe9;--warn:#fff4e0;--warnb:#e8c27a;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141413;--fg:#eceae3;--mu:#9a9890;--card:#1e1e1c;--bd:#33332f;--ac:#3fc4ae;--acfg:#0d0d0c;--code:#232321;--warn:#2c2417;--warnb:#6b5420;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#141413;--fg:#eceae3;--mu:#9a9890;--card:#1e1e1c;--bd:#33332f;--ac:#3fc4ae;--acfg:#0d0d0c;--code:#232321;--warn:#2c2417;--warnb:#6b5420;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+.w{max-width:760px;margin:0 auto;padding:18px 16px 40px}
+h1{font-size:1.5rem;margin:.2rem 0}
+h3{font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;color:var(--mu);margin:1.4rem 0 .5rem}
+p.s{color:var(--mu);margin:0 0 1rem;font-size:.92rem}
+input[type=text]{width:100%;padding:12px;font:inherit;color:var(--fg);background:var(--card);border:1px solid var(--bd);border-radius:10px;margin-top:8px}
+.note{background:var(--warn);border:1px solid var(--warnb);border-radius:10px;padding:10px 12px;font-size:.88rem;margin-top:12px}
+.tabs{display:flex;gap:6px;margin:16px 0 4px;overflow-x:auto}
+.tabs button{flex:1 0 auto;padding:10px 14px;font:inherit;font-weight:600;color:var(--fg);background:var(--card);border:1px solid var(--bd);border-radius:10px}
+.tabs button.on{background:var(--ac);color:var(--acfg);border-color:var(--ac)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px}
+a.card{display:block;padding:12px;background:var(--card);border:1px solid var(--bd);border-radius:10px;color:var(--fg);text-decoration:none}
+a.card b{display:block}a.card span{font-size:.82rem;color:var(--mu)}
+a.card.off{opacity:.45;pointer-events:none}
+.btn{padding:12px 14px;font:inherit;font-weight:600;color:var(--acfg);background:var(--ac);border:0;border-radius:10px;cursor:pointer}
+.pn{display:none}.pn.on{display:block}
+details.help{margin:0 0 12px;background:var(--card);border:1px solid var(--bd);border-radius:10px}
+details.help>summary{list-style:none;cursor:pointer;padding:12px 14px;font-weight:700;color:var(--ac)}
+details.help>summary::-webkit-details-marker{display:none}
+details.help>summary::after{content:"\25be";float:right}
+details.help[open]>summary::after{content:"\25b4"}
+.hb{padding:0 14px 14px;font-size:.95rem}.hb h4{margin:1rem 0 .3rem}.hb p{margin:.3rem 0}.hb ol,.hb ul{margin:.3rem 0;padding-left:1.2rem}.hb li{margin:.3rem 0}
+.box{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:4px 14px 12px;margin-top:10px}
+.box ol,.box ul{padding-left:1.2rem;margin:.3rem 0}.box li{margin:.4rem 0}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}.row>*{flex:1 1 140px}
+textarea{width:100%;padding:12px;font:inherit;color:var(--fg);background:var(--card);border:1px solid var(--bd);border-radius:10px;margin-top:8px}
+input[type=number]{width:100%;padding:12px;font:inherit;color:var(--fg);background:var(--card);border:1px solid var(--bd);border-radius:10px}
+a.btn{text-decoration:none;text-align:center;display:block}
+pre{background:var(--code);border:1px solid var(--bd);border-radius:10px;padding:12px;overflow-x:auto;font-size:.78rem;line-height:1.45;margin:10px 0}
+#sum{white-space:pre-wrap;padding:14px;font-size:.92rem;word-break:break-word}
+@media print{h1,.s,details,.note,.tabs,.pn:not(#pe),.noprint,input{display:none!important}#pe{display:block!important}body,#sum{background:#fff!important;color:#000!important}#sum{border:0}}
+</style><meta name="description" content="Patient Evidence Navigator by Corey McDaniel: find trusted information, strong research and clinical trials for a health condition, then bring questions to a doctor. Information only, not medical advice.">
+<meta name="author" content="Corey McDaniel"><meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://coreymcdaniel.com/projects/patient-evidence-navigator/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Corey McDaniel"><meta property="og:title" content="Patient Evidence Navigator | Corey McDaniel"><meta property="og:description" content="Patient Evidence Navigator by Corey McDaniel: find trusted information, strong research and clinical trials for a health condition, then bring questions to a doctor. Information only, not medical advice."><meta property="og:url" content="https://coreymcdaniel.com/projects/patient-evidence-navigator/"><meta property="og:image" content="https://coreymcdaniel.com/img/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Corey McDaniel logo">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Patient Evidence Navigator | Corey McDaniel"><meta name="twitter:description" content="Patient Evidence Navigator by Corey McDaniel: find trusted information, strong research and clinical trials for a health condition, then bring questions to a doctor. Information only, not medical advice."><meta name="twitter:image" content="https://coreymcdaniel.com/img/og.png">
+<link rel="icon" href="/img/favicon-32.png" type="image/png" sizes="32x32"><link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+<script type="application/ld+json">{"@type": "WebApplication", "applicationCategory": "HealthApplication", "operatingSystem": "Any (web browser)", "@context": "https://schema.org", "@id": "https://coreymcdaniel.com/projects/patient-evidence-navigator/#app", "name": "Patient Evidence Navigator", "description": "Patient Evidence Navigator by Corey McDaniel: find trusted information, strong research and clinical trials for a health condition, then bring questions to a doctor. Information only, not medical advice.", "url": "https://coreymcdaniel.com/projects/patient-evidence-navigator/", "image": "https://coreymcdaniel.com/img/og.png", "inLanguage": "en", "author": {"@type": "Person", "@id": "https://coreymcdaniel.com/#person", "name": "Corey McDaniel", "url": "https://coreymcdaniel.com/"}, "creator": {"@type": "Person", "@id": "https://coreymcdaniel.com/#person", "name": "Corey McDaniel", "url": "https://coreymcdaniel.com/"}, "isPartOf": {"@type": "WebSite", "@id": "https://coreymcdaniel.com/#website", "name": "Corey McDaniel", "url": "https://coreymcdaniel.com/"}, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://coreymcdaniel.com/home/"}, {"@type": "ListItem", "position": 2, "name": "Life Project Files", "item": "https://coreymcdaniel.com/home/#projects"}, {"@type": "ListItem", "position": 3, "name": "Patient Evidence Navigator", "item": "https://coreymcdaniel.com/projects/patient-evidence-navigator/"}]}</script>
+<style>.cmd-back{position:fixed;top:calc(env(safe-area-inset-top,0px) + 10px);left:calc(env(safe-area-inset-left,0px) + 10px);z-index:2147483000;padding:8px 14px;border-radius:99px;background:#0b0916e6;color:#e9d5ff;border:1px solid #7c3aed;font:600 13px/1 system-ui,sans-serif;text-decoration:none;box-shadow:0 0 16px #7c3aed66;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}.cmd-back:hover,.cmd-back:focus-visible{color:#fff;outline:2px solid #67e8f9;outline-offset:2px}body{padding-top:56px!important}.cmd-note{position:relative;z-index:5;max-width:900px;margin:24px auto;padding:14px 18px;border:1px solid #7c3aed;border-radius:12px;background:#171230;color:#e9d5ff;font:500 14px/1.5 system-ui,sans-serif}</style>
+</head><body>
+<a class="cmd-back" href="/home/#projects">&larr; Life Project Files</a><div class="w">
+<h1>Patient Evidence Navigator</h1>
+<p class="s">Find trusted information, the strongest research, and trials for a health condition, then bring it to a doctor.</p>
+<details class="help"><summary>&#10067; How does this work? (tap to open)</summary><div class="hb">
+<p>Searching health topics on regular Google mixes real science with ads and false "miracle cures." This page sends your search only to places that check their facts: government health agencies, hospitals, medical journals, and trial registries.</p>
+<ol><li>Type the condition (like "pancreatic cancer"). Add details such as the type, stage, or a treatment name if you know them.</li>
+<li>Add your city if you want trials and specialists near you.</li>
+<li>Tap through the tabs and open any card. Each opens in a new tab.</li>
+<li>Save questions from the last tab and bring them, with anything you find, to the doctor.</li></ol>
+<p><b>Key idea:</b> one study, a video, or a story is not proof. The "Ask &amp; stay safe" tab shows how to tell strong evidence from weak.</p></div></details>
+<input type="text" id="c" placeholder="Condition, e.g. triple-negative breast cancer" autocomplete="off">
+<input type="text" id="d" placeholder="Extra details (optional): stage, treatment, gene mutation" autocomplete="off">
+<input type="text" id="l" placeholder="Your city or ZIP for nearby trials (optional)" autocomplete="off">
+<div class="note"><b>Information, not medical advice.</b> Never stop or delay treatment because of something you read online. Show what you find to the care team first.</div>
+<div class="tabs"><button data-t="a" class="on">Learn</button><button data-t="b">Best evidence</button><button data-t="c">Trials &amp; experts</button><button data-t="d">Ask &amp; stay safe</button><button data-t="e">Care team brief</button><button data-t="f">Spreadsheets</button></div>
+<div class="pn on" id="pa"></div><div class="pn" id="pb"></div><div class="pn" id="pc"></div>
+<div class="pn" id="pd">
+<h3>Questions to ask the doctor</h3>
+<div class="box"><ol id="ql"></ol></div>
+<div style="margin-top:10px"><button class="btn" id="cp">Copy questions</button></div>
+<h3>How strong is the evidence? (best to weakest)</h3>
+<div class="box"><ol><li><b>Systematic reviews and meta-analyses:</b> many studies combined.</li><li><b>Randomized controlled trials:</b> a fair head-to-head test in people.</li><li><b>Large observational studies:</b> watching what happens to many people.</li><li><b>Small studies and case reports:</b> hints only.</li><li><b>Lab-dish or animal studies:</b> a result in cells or mice is not a cure for people.</li><li><b>Testimonials and social media:</b> stories, not evidence.</li></ol></div>
+<h3>Red flags for fake cures</h3>
+<div class="box"><ul><li>Promises a cure or "100% success."</li><li>Says doctors or drug companies are "hiding" it.</li><li>Relies on testimonials with no published trial.</li><li>Tells you to stop or skip standard treatment.</li><li>Expensive, sold by one seller, or pushes you to buy fast.</li><li>Says "natural" means safe. Supplements can interfere with cancer drugs, so always tell the care team.</li></ul></div>
+</div>
+<div class="pn" id="pe">
+<div class="noprint">
+<h3>One-page brief for the care team</h3>
+<p class="s">Uses the condition, details and city typed at the top. Fill in what you know below. It builds a clean page you can copy, print, or save as a PDF to hand to the doctor or nurse, with your questions and the searches you used.</p>
+<textarea id="t1" rows="2" placeholder="Treatments I am on or considering"></textarea>
+<textarea id="t2" rows="3" placeholder="Studies or trials I want to discuss (paste titles or links)"></textarea>
+<textarea id="t3" rows="2" placeholder="My biggest concerns"></textarea>
+<div class="row"><button class="btn" id="cs">Copy summary</button><button class="btn" id="ps">Print / Save as PDF</button><button class="btn" id="sh" style="display:none">Share</button></div>
+</div>
+<div class="box" id="sum" style="margin-top:12px"></div>
+</div>
+<div class="pn" id="pf">
+<h3>Pull trials and studies into spreadsheets</h3>
+<p class="s">Uses the condition, details and city typed at the top. It saves <b>trials.csv</b> (studies enrolling now) and <b>studies.csv</b> (newest systematic reviews, meta-analyses and randomized trials). CSV files open in Excel, Numbers or Google Sheets.</p>
+<details class="help"><summary>&#9654; Where and how do I run this? (tap to open)</summary><div class="hb">
+<p>A script is a list of instructions for a computer. The easiest free place to run one, even on a phone, is <b>Google Colab</b>. It runs in your browser and needs no installing.</p>
+<ol><li>Fill in the condition (and city) at the top of this page.</li><li>Tap <b>Copy script</b> below.</li><li>Tap <b>Open Google Colab</b> and sign in with a Google account. On iPhone, if it looks cramped, use Safari's "Request Desktop Website".</li><li>Tap in the empty box, paste, then tap the &#9654; play button.</li><li>Wait a minute or two. A file called <b>results.zip</b> downloads by itself. Open it to find <b>trials.csv</b> and <b>studies.csv</b>. If nothing downloads, tap the folder icon on the left in Colab.</li><li>Open the CSV in Numbers, Excel or Google Sheets. Every row has a link to read more.</li></ol>
+<p><b>On a computer:</b> install Python from python.org, run <code>pip install requests</code>, save the script as <code>search.py</code>, then run <code>python search.py</code>. A <b>results</b> folder appears.</p>
+<p>Trial lists change often, so run it again whenever you want fresh results. Always confirm eligibility with the care team before contacting a trial.</p>
+</div></details>
+<p class="s" style="margin-bottom:4px">Results per list (max 100):</p>
+<input type="number" id="n" value="30" min="1" max="100" inputmode="numeric">
+<pre id="py"></pre>
+<div class="row"><button class="btn" id="cpy">Copy script</button><a class="btn" href="https://colab.research.google.com/#create=true" target="_blank" rel="noopener">Open Google Colab</a></div>
+</div>
+</div>
+<script>
+const $=id=>document.getElementById(id),E=encodeURIComponent,Y=new Date().getFullYear();
+const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const goog=(q,s)=>"https://www.google.com/search?q="+E(q+(s?" site:"+s:""));
+const pm=(q,f)=>"https://pubmed.ncbi.nlm.nih.gov/?term="+E(q)+"&filter="+f;
+const ct=(c,d,l,r)=>"https://clinicaltrials.gov/search?cond="+E(c)+(d?"&term="+E(d):"")+(r?"&aggFilters=status:rec":"")+(l?"&locStr="+E(l):"");
+const S=u=>()=>u;
+const Lr=[["Plain-language explainers",[
+["National Cancer Institute","US government cancer facts",(c,d,l,q)=>goog(q,"cancer.gov")],
+["MedlinePlus","Any illness, in plain words",(c,d,l,q)=>goog(q,"medlineplus.gov")],
+["Mayo Clinic","Causes, symptoms, treatments",(c,d,l,q)=>goog(q,"mayoclinic.org")],
+["Cancer.Net (ASCO)","Written by oncologists",(c,d,l,q)=>goog(q,"cancer.net")],
+["American Cancer Society","Guides and support",(c,d,l,q)=>goog(q,"cancer.org")],
+["Cleveland Clinic","Hospital health library",(c,d,l,q)=>goog(q,"my.clevelandclinic.org")],
+["CDC","Public health info",(c,d,l,q)=>goog(q,"cdc.gov")],
+["NHS (UK)","Clear, checked guides",(c,d,l,q)=>goog(q,"nhs.uk")]]],
+["Support",[
+["Patient groups","Foundations and support groups",(c)=>goog(c+" patient advocacy foundation support group")],
+["Money and travel help","Costs, lodging, rides",(c)=>goog(c+" financial assistance travel lodging patients")]]]];
+const Vr=[["Strongest evidence first",[
+["Systematic reviews","Many studies combined",(c,d,l,q)=>pm(q,"pubt.systematicreview")],
+["Meta-analyses","Statistics across trials",(c,d,l,q)=>pm(q,"pubt.metaanalysis")],
+["Randomized trials","Gold-standard tests",(c,d,l,q)=>pm(q,"pubt.randomizedcontrolledtrial")],
+["Treatment guidelines","What experts recommend",(c,d,l,q)=>pm(q,"pubt.practiceguideline")],
+["Cochrane Library","Independent evidence reviews",(c,d,l,q)=>"https://www.cochranelibrary.com/search?searchBy=1&searchText="+E(q)]]],
+["Newest and free to read",[
+["Last 3 years (PubMed)","Recent studies",(c,d,l,q)=>pm(q,"years."+(Y-2)+"-"+Y)],
+["Free full text","Europe PMC, no paywall",(c,d,l,q)=>"https://europepmc.org/search?query="+E(q+" AND OPEN_ACCESS:Y")],
+["Free PDFs","Google Scholar",(c,d,l,q)=>"https://scholar.google.com/scholar?q="+E(q+" filetype:pdf")],
+["NCCN patient guides","Cancer treatment roadmaps",S("https://www.nccn.org/patients"),1]]]];
+const Rr=[["Clinical trials",[
+["Recruiting trials","Enrolling now on ClinicalTrials.gov",(c,d,l)=>ct(c,d,l,1)],
+["All trials","Past and present",(c,d,l)=>ct(c,d,"",0)],
+["NCI trial finder","US cancer trials",S("https://www.cancer.gov/research/participate/clinical-trials-search"),1],
+["WHO trial registry","Trials worldwide",S("https://trialsearch.who.int/"),1]]],
+["Specialists and second opinions",[
+["Specialist centers","For this condition",(c,d,l)=>goog(c+" specialist center of excellence "+l)],
+["Second opinion","Where to get one",(c,d,l)=>goog(c+" second opinion "+l)],
+["NCI cancer centers","Top US cancer hospitals",S("https://www.cancer.gov/research/infrastructure/cancer-centers/find"),1]]]];
+function cards(G,c,d,l,q){return G.map(g=>'<h3>'+g[0]+'</h3><div class="grid">'+g[1].map(s=>{const on=s[3]||c,u=on?s[2](c,d,l,q):'';return '<a class="card'+(on?'':' off')+'"'+(on?' href="'+u.replace(/&/g,'&amp;')+'" target="_blank" rel="noopener"':'')+'><b>'+s[0]+'</b><span>'+s[1]+'</span></a>'}).join('')+'</div>').join('')}
+const Q=x=>["What exactly is my diagnosis: the type, stage or grade, and any gene or biomarker results?","Which tests could help choose the best treatment for me?","What are all my treatment options, and what does the evidence say about each?","What is the goal of treatment (cure, control, comfort), and how likely is it to work for someone like me?","What side effects should I expect, and how will they be managed?","Am I eligible for any clinical trials? I found these to review with you.","Should I get a second opinion at a specialist center for "+x+"?","I found these studies. Do they apply to my situation?","Is it safe to take any supplement or complementary therapy alongside treatment?","Who can help with costs, travel, and emotional support?"];
+function render(){const c=$('c').value.trim(),d=$('d').value.trim(),l=$('l').value.trim(),q=(c+" "+d).trim();
+$('pa').innerHTML=(c?'':'<p class="s" style="margin-top:12px">Type a condition above to turn on the links.</p>')+cards(Lr,c,d,l,q);
+$('pb').innerHTML=cards(Vr,c,d,l,q);$('pc').innerHTML=cards(Rr,c,d,l,q);
+$('ql').innerHTML=Q(c?esc(c):"my condition").map(x=>'<li>'+x+'</li>').join('');sm();py()}
+document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('on',x===b));['a','b','c','d','e','f'].forEach(k=>$('p'+k).classList.toggle('on',k===b.dataset.t))});
+$('cp').onclick=async()=>{const t=[...$('ql').children].map((e,i)=>(i+1)+". "+e.textContent).join("\n");try{await navigator.clipboard.writeText(t);$('cp').textContent='Copied'}catch(e){$('cp').textContent='Press and hold to copy the list above'}setTimeout(()=>$('cp').textContent='Copy questions',2200)};
+['c','d','l'].forEach(i=>$(i).addEventListener('input',render));
+['t1','t2','t3'].forEach(i=>$(i).addEventListener('input',sm));
+$('n').addEventListener('input',py);
+const PY=String.raw`import requests, csv, os
+
+COND = __C__
+DETAIL = __D__
+PLACE = __L__
+N = __N__
+OUT = 'results'
+os.makedirs(OUT, exist_ok=True)
+
+def save(name, rows):
+    if not rows:
+        print(name, '- nothing found')
+        return
+    with open(OUT + '/' + name, 'w', newline='', encoding='utf-8') as fh:
+        w = csv.DictWriter(fh, fieldnames=rows[0].keys())
+        w.writeheader()
+        w.writerows(rows)
+    print(name, '-', len(rows), 'rows')
+
+def trials():
+    p = {'query.cond': COND, 'filter.overallStatus': 'RECRUITING', 'pageSize': N}
+    if DETAIL: p['query.term'] = DETAIL
+    if PLACE: p['query.locn'] = PLACE
+    rows = []
+    for s in requests.get('https://clinicaltrials.gov/api/v2/studies', params=p, timeout=60).json().get('studies', []):
+        ps = s['protocolSection']
+        idm = ps['identificationModule']
+        el = ps.get('eligibilityModule', {})
+        locs = ps.get('contactsLocationsModule', {}).get('locations', [])
+        rows.append({
+            'nct_id': idm['nctId'],
+            'title': idm.get('briefTitle'),
+            'status': ps.get('statusModule', {}).get('overallStatus'),
+            'phase': ', '.join(ps.get('designModule', {}).get('phases', [])),
+            'conditions': '; '.join(ps.get('conditionsModule', {}).get('conditions', [])),
+            'treatments': '; '.join(i['name'] for i in ps.get('armsInterventionsModule', {}).get('interventions', [])),
+            'sponsor': ps.get('sponsorCollaboratorsModule', {}).get('leadSponsor', {}).get('name'),
+            'ages': '%s to %s' % (el.get('minimumAge', '?'), el.get('maximumAge', '?')),
+            'sites': '; '.join('%s, %s, %s' % (x.get('city', ''), x.get('state', ''), x.get('country', '')) for x in locs[:10]),
+            'link': 'https://clinicaltrials.gov/study/' + idm['nctId'],
+        })
+    save('trials.csv', rows)
+
+def studies():
+    base = 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/'
+    term = '(%s) AND (systematic[sb] OR meta-analysis[pt] OR randomized controlled trial[pt])' % (COND + ' ' + DETAIL).strip()
+    ids = requests.get(base + 'esearch.fcgi', params={'db': 'pubmed', 'term': term, 'retmax': N, 'sort': 'pub_date', 'retmode': 'json'}, timeout=60).json()['esearchresult']['idlist']
+    if not ids:
+        print('studies.csv - nothing found')
+        return
+    s = requests.get(base + 'esummary.fcgi', params={'db': 'pubmed', 'id': ','.join(ids), 'retmode': 'json'}, timeout=60).json()['result']
+    rows = []
+    for i in ids:
+        r = s[i]
+        doi = next((a['value'] for a in r.get('articleids', []) if a['idtype'] == 'doi'), '')
+        rows.append({'title': r['title'], 'journal': r.get('fulljournalname'), 'date': r.get('pubdate'), 'type': ', '.join(r.get('pubtype', [])), 'doi': doi, 'link': 'https://pubmed.ncbi.nlm.nih.gov/' + i})
+    save('studies.csv', rows)
+
+for f in (trials, studies):
+    try:
+        f()
+    except Exception as e:
+        print(f.__name__, 'failed:', e)
+
+try:  # in Google Colab, download everything as one zip
+    import shutil
+    from google.colab import files
+    shutil.make_archive('results', 'zip', OUT)
+    files.download('results.zip')
+except ImportError:
+    pass
+`;
+function py(){const c=$('c').value.trim()||'your condition';$('py').textContent=PY.replace('__C__',()=>JSON.stringify(c)).replace('__D__',()=>JSON.stringify($('d').value.trim())).replace('__L__',()=>JSON.stringify($('l').value.trim())).replace('__N__',()=>Math.min(100,Math.max(1,+$('n').value||30)))}
+function sm(){const c=$('c').value.trim(),d=$('d').value.trim(),l=$('l').value.trim(),q=(c+' '+d).trim(),v=id=>$(id).value.trim()||'(none yet)';
+let t='CARE TEAM BRIEF\nPrepared: '+new Date().toLocaleDateString()+'\n\nCondition: '+(c||'(enter above)')+(d?'\nDetails: '+d:'')+(l?'\nLocation: '+l:'')+'\n\nTreatments I am on or considering:\n'+v('t1')+'\n\nStudies and trials to discuss:\n'+v('t2')+'\n\nMy biggest concerns:\n'+v('t3')+'\n\nQuestions for this visit:\n'+Q(c||'my condition').map((x,i)=>(i+1)+'. '+x).join('\n');
+if(c)t+='\n\nSearches used (to review together):\n- Recruiting trials: '+ct(c,d,l,1)+'\n- Systematic reviews: '+pm(q,'pubt.systematicreview')+'\n- Randomized trials: '+pm(q,'pubt.randomizedcontrolledtrial');
+t+='\n\nNote: Compiled from public sources by the patient or caregiver. Not medical advice; for discussion with the care team.';
+$('sum').textContent=t}
+async function copyTo(id,txt,label){const b=$(id);try{await navigator.clipboard.writeText(txt());b.textContent='Copied'}catch(e){b.textContent='Press and hold the text to copy'}setTimeout(()=>b.textContent=label,2200)}
+$('cs').onclick=()=>copyTo('cs',()=>$('sum').textContent,'Copy summary');
+$('cpy').onclick=()=>copyTo('cpy',()=>$('py').textContent,'Copy script');
+$('ps').onclick=()=>{document.querySelector('.tabs button[data-t="e"]').click();window.print()};
+if(navigator.share){$('sh').style.display='';$('sh').onclick=()=>navigator.share({title:'Care team brief',text:$('sum').textContent}).catch(()=>{})}
+render();
+</script></body></html>

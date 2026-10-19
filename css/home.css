@@ -693,3 +693,15 @@ body.qp-is-fs .site-header { visibility: hidden; }
 .hr1 { transform: rotateX(45deg); } .hr2 { transform: rotateX(-45deg); }
 .hs-gable { position: absolute; left: 10px; top: 10px; width: 100px; height: 50px; background: linear-gradient(180deg, #e879f9, #a21caf); clip-path: polygon(50% 0, 100% 100%, 0 100%); }
 .hg1 { transform: rotateY(90deg) translateZ(50px); } .hg2 { transform: rotateY(-90deg) translateZ(50px); }
+
+/* Life Project Files — added project motifs (pure CSS 3D, same spin/pause behaviour) */
+.creditstack,.papers,.tags,.plate,.bowl{width:130px;height:130px}
+.cs-l,.pp-l,.tg-l,.pl-l,.bw-l{position:absolute;inset:0;display:grid;place-items:center;font-size:3rem;transform:translateZ(var(--z))}
+.cs-l{border-radius:16px;border:2px solid #6ee7b7;background:linear-gradient(135deg,#064e3bcc,#065f46cc);box-shadow:inset 0 0 24px #34d39955}
+.pp-l{border-radius:8px;border:2px solid #7dd3fc;background:linear-gradient(160deg,#0c4a6ecc,#1e3a5fcc);box-shadow:inset 0 0 24px #38bdf855}
+.tg-l{border-radius:12px;border:2px solid #f0abfc;background:linear-gradient(135deg,#701a75cc,#4c1d95cc);box-shadow:inset 0 0 24px #e879f955;color:#fdf4ff;font:900 1.6rem/1 ui-sans-serif,system-ui}
+.pl-l{border-radius:50%;border:2px solid #86efac;background:radial-gradient(circle at 35% 30%,#14532d,#052e16);box-shadow:inset 0 0 0 8px #16653488,inset 0 0 28px #4ade8055}
+.bw-l{border-radius:50%;border:2px solid #fdba74;background:radial-gradient(circle at 35% 30%,#7c2d12,#431407);box-shadow:inset 0 0 0 8px #9a341288,inset 0 0 28px #fb923c55}
+.medcube{width:110px;height:110px;animation-duration:7s}
+.mc-f{position:absolute;inset:0;display:grid;place-items:center;border:1.5px solid #fda4af;border-radius:14px;background:linear-gradient(135deg,#881337cc,#4c1d95cc);box-shadow:inset 0 0 24px #fb718555,0 0 22px #fb718544;backface-visibility:hidden;color:#ffe4e6;font:900 3rem/1 ui-sans-serif,system-ui;text-shadow:0 0 12px #fb7185}
+.mf1{transform:translateZ(55px)}.mf3{transform:rotateY(180deg) translateZ(55px)}.mf2{transform:rotateY(90deg) translateZ(55px)}.mf4{transform:rotateY(-90deg) translateZ(55px)}.mf5{transform:rotateX(90deg) translateZ(55px)}.mf6{transform:rotateX(-90deg) translateZ(55px)}
