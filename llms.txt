@@ -17,3 +17,9 @@
 
 ## Sitemap
 - https://coreymcdaniel.com/sitemap.xml
+- https://coreymcdaniel.com/projects/credit-reset-planner/ : Credit Reset Planner, trilingual educational debt and credit-reset planner (not financial or legal advice)
+- https://coreymcdaniel.com/projects/research-finder/ : Research Finder, scholarly paper, trial, preprint and open-access PDF search
+- https://coreymcdaniel.com/projects/brothers-brands/ : Brothers Brands, custom clothing design studio with mockups, tech packs and manufacturer options
+- https://coreymcdaniel.com/projects/healing-table/ : The Healing Table, shared meal planning and grocery list for two dietary needs (educational only, not medical advice)
+- https://coreymcdaniel.com/projects/patient-evidence-navigator/ : Patient Evidence Navigator, trusted health information, research and trial finder (information only, not medical advice)
+- https://coreymcdaniel.com/projects/cmd-health-food-guide/ : CMD Health Food Guide, personalized 7-day menu, recipes, grocery list and prep plan (educational only, not medical advice)
