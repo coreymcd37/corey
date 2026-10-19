@@ -1,36 +1,285 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Home Solar Calculator — Coming soon | Corey McDaniel</title>
-  <meta name="description" content="A home solar calculator by Corey McDaniel, coming soon." />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Home Solar Calculator — Coming soon | Corey McDaniel" />
-  <meta property="og:description" content="A home solar calculator by Corey McDaniel, coming soon." />
-  <meta property="og:url" content="https://coreymcdaniel.com/works/solar.html" />
-  <meta property="og:image" content="https://coreymcdaniel.com/img/og.png" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" />
-  <meta name="theme-color" content="#05040c" />
-  <meta name="robots" content="index,follow" />
-  <link rel="stylesheet" href="../css/home.css" />
-  <link rel="canonical" href="https://coreymcdaniel.com/works/solar.html" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Home Solar Calculator: Solar Savings Intelligence | Corey McDaniel</title>
+<style>
+:root {
+  --site-primary: #1556a8;
+  --site-on-primary: #ffffff;
+  --site-secondary: #c8e7ff;
+  --site-on-secondary: #12345b;
+  --site-background: #f2f7fc;
+  --site-on-background: #15263b;
+  --site-font-body: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --site-font-heading: Georgia, "Times New Roman", serif;
+  --site-heading-scale: 1;
+  --site-spacing-scale: 1;
+  --site-radius-scale: 1;
+  --site-decoration-opacity: 1;
+  --surface: light-dark(#ffffff, #101d31);
+  --surface-soft: light-dark(#edf5fc, #172944);
+  --ink: light-dark(#15263b, #edf5ff);
+  --muted: light-dark(#63758b, #a9bbd0);
+  --line: light-dark(#d7e4f0, #2c405c);
+  --accent: #58b8ff;
+  --good: #dcebd1;
+  --warning: #fff0d2;
+  color-scheme: light dark;
+}
+* { box-sizing: border-box; }
+body { margin: 0; font-family: var(--site-font-body); color: var(--site-on-background); background: var(--site-background); }
+button, input, select, textarea { font: inherit; }
+button { cursor: pointer; }
+#app { min-height: 100vh; width: 100%; background-color: var(--site-background); color: var(--site-on-background); border-radius: 0; }
+.topbar { max-width: 1180px; margin: auto; padding: 22px 28px; display:flex; align-items:center; justify-content:space-between; gap:20px; }
+.brand { display:flex; align-items:center; gap:12px; font-size:13px; letter-spacing:.12em; text-transform:uppercase; font-weight:800; }
+.brandmark { width:40px; height:40px; border-radius:14px; background:var(--site-primary); color:var(--site-on-primary); display:grid; place-items:center; box-shadow:0 8px 22px #174f4625; }
+.brandmark svg { width:24px; height:24px; }
+.topnote { color:var(--muted); font-size:12px; letter-spacing:.08em; text-transform:uppercase; }
+.shell { max-width:1180px; margin:0 auto; padding:14px 28px 58px; }
+.hero { background:var(--site-primary); color:var(--site-on-primary); border-radius:calc(28px * var(--site-radius-scale)); padding:clamp(28px,5vw,60px); display:grid; grid-template-columns:1.2fr .8fr; gap:32px; position:relative; overflow:hidden; }
+.hero:after { content:""; position:absolute; width:360px; height:360px; right:-110px; top:-150px; border:1px solid #ffffff30; border-radius:50%; box-shadow:0 0 0 40px #ffffff0a, 0 0 0 90px #ffffff08; opacity:var(--site-decoration-opacity); pointer-events:none; }
+.eyebrow { font-size:11px; letter-spacing:.17em; text-transform:uppercase; font-weight:800; opacity:.8; }
+h1,h2,h3,.serif { font-family:var(--site-font-heading); font-weight:500; letter-spacing:-.035em; }
+h1 { font-size:calc(clamp(38px,5.2vw,66px) * var(--site-heading-scale)); line-height:1.02; margin:16px 0 20px; max-width:650px; }
+.hero p { color:#e2eee5; line-height:1.7; max-width:540px; font-size:15px; }
+.hero-art { align-self:stretch; display:flex; align-items:center; justify-content:center; min-height:200px; position:relative; z-index:1; }
+.orbit { width:min(270px,100%); aspect-ratio:1; border-radius:50%; border:1px solid #d8e8ce70; display:grid; place-items:center; position:relative; }
+.orbit:before,.orbit:after { content:""; position:absolute; border:1px solid #d8e8ce50; border-radius:50%; inset:22px; transform:rotate(-28deg) scaleX(1.3); }
+.orbit:after { inset:52px; transform:rotate(42deg) scaleX(1.45); }
+.sun { width:94px; height:94px; border-radius:50%; background:var(--site-secondary); color:var(--site-on-secondary); display:grid; place-items:center; box-shadow:0 0 60px #d9e8bd50; }
+.sun svg { width:55px; height:55px; }
+.layout { display:grid; grid-template-columns:260px minmax(0,1fr); gap:24px; margin-top:24px; align-items:start; }
+.sidebar,.maincard,.summary-card { background:var(--surface); border:1px solid var(--line); border-radius:calc(22px * var(--site-radius-scale)); }
+.sidebar { padding:22px 16px; position:sticky; top:12px; }
+.side-label { font-size:10px; text-transform:uppercase; letter-spacing:.15em; color:var(--muted); font-weight:800; padding:0 10px 14px; }
+.stepnav { display:flex; flex-direction:column; gap:5px; }
+.stepitem { width:100%; display:flex; gap:12px; align-items:center; border:0; background:transparent; text-align:left; padding:11px 10px; border-radius:13px; color:var(--muted); transition:.2s; }
+.stepitem .num { width:30px; height:30px; display:grid; place-items:center; border:1px solid var(--line); border-radius:10px; font-size:12px; flex-shrink:0; }
+.stepitem .steptitle { font-size:13px; font-weight:700; }
+.stepitem .stepsub { font-size:11px; margin-top:3px; opacity:.75; }
+.stepitem.active { background:var(--site-secondary); color:var(--site-on-secondary); }
+.stepitem.active .num { background:var(--site-primary); color:white; border-color:transparent; }
+.stepitem.done .num { background:var(--site-primary); color:white; border-color:transparent; }
+.sidebar-foot { border-top:1px solid var(--line); margin-top:20px; padding:18px 10px 0; font-size:11px; color:var(--muted); line-height:1.6; }
+.maincard { overflow:hidden; }
+.progressline { height:4px; background:var(--surface-soft); }
+.progressline span { display:block; height:100%; width:14.285%; background:var(--site-primary); transition:width .25s; }
+.stepcontent { padding:clamp(24px,4vw,44px); min-height:450px; }
+.stepmeta { display:flex; justify-content:space-between; align-items:center; gap:15px; color:var(--muted); font-size:11px; letter-spacing:.12em; text-transform:uppercase; font-weight:800; }
+.stepcontent h2 { font-size:calc(clamp(30px,3.5vw,43px) * var(--site-heading-scale)); line-height:1.1; margin:22px 0 12px; }
+.lede { color:var(--muted); line-height:1.7; max-width:660px; font-size:14px; margin:0 0 30px; }
+.fields { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; }
+.field { min-width:0; }
+.field.full { grid-column:1/-1; }
+label { display:block; font-size:12px; font-weight:800; margin-bottom:9px; color:var(--ink); }
+.hint { font-size:11px; color:var(--muted); line-height:1.5; margin-top:7px; }
+input[type=text],input[type=number],input[type=email],select,textarea { width:100%; border:1px solid var(--line); border-radius:12px; padding:14px 14px; color:var(--ink); background:var(--surface); outline:none; transition:.15s; }
+input:focus,select:focus,textarea:focus { border-color:var(--site-primary); box-shadow:0 0 0 3px #174f4615; }
+textarea { min-height:90px; resize:vertical; }
+.inputunit { position:relative; }
+.inputunit input { padding-right:48px; }
+.unit { position:absolute; right:14px; top:50%; transform:translateY(-50%); color:var(--muted); font-size:12px; pointer-events:none; }
+.choicegrid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+.choice { position:relative; }
+.choice input { position:absolute; opacity:0; inset:0; width:100%; height:100%; cursor:pointer; }
+.choice label { border:1px solid var(--line); border-radius:15px; padding:17px; min-height:92px; margin:0; display:block; cursor:pointer; transition:.18s; }
+.choice label strong { display:block; font-size:13px; margin-bottom:7px; }
+.choice label span { display:block; color:var(--muted); font-size:11px; line-height:1.5; font-weight:400; }
+.choice input:checked + label { border-color:var(--site-primary); background:color-mix(in srgb, var(--site-secondary) 43%, var(--surface)); box-shadow:inset 0 0 0 1px var(--site-primary); }
+.choice input:focus-visible + label { outline:3px solid var(--accent); }
+.dropzone { border:1.5px dashed var(--line); border-radius:18px; padding:25px; text-align:center; background:var(--surface-soft); }
+.dropzone svg { width:30px; height:30px; color:var(--site-primary); }
+.dropzone strong { display:block; margin:12px 0 6px; font-size:13px; }
+.dropzone p { margin:0 auto 14px; font-size:11px; line-height:1.5; color:var(--muted); max-width:360px; }
+.filelabel { display:inline-block; border:1px solid var(--line); background:var(--surface); padding:10px 14px; border-radius:10px; font-size:12px; font-weight:800; cursor:pointer; }
+.filelabel input { display:none; }
+.fileinfo { margin-top:12px; color:var(--muted); font-size:12px; overflow-wrap:anywhere; }
+.notice { border-radius:13px; background:var(--surface-soft); padding:14px 16px; font-size:12px; line-height:1.65; color:var(--muted); margin-top:18px; }
+.notice strong { color:var(--ink); }
+.actions { padding:18px clamp(24px,4vw,44px); border-top:1px solid var(--line); display:flex; align-items:center; justify-content:space-between; gap:14px; background:var(--surface); }
+.btn { border:0; border-radius:12px; padding:13px 18px; font-size:12px; font-weight:800; display:inline-flex; gap:10px; align-items:center; justify-content:center; transition:transform .15s,opacity .15s; }
+.btn:hover { transform:translateY(-1px); }
+.btn.primary { background:var(--site-primary); color:var(--site-on-primary); }
+.btn.secondary { background:var(--surface-soft); color:var(--ink); border:1px solid var(--line); }
+.btn:disabled { opacity:.4; cursor:not-allowed; transform:none; }
+.error { color:#a33d2c; font-size:12px; margin-top:12px; }
+.summary-card { padding:22px; margin-top:18px; }
+.summary-head { display:flex; justify-content:space-between; align-items:center; gap:10px; }
+.summary-head strong { font-size:12px; }
+.pill { display:inline-flex; align-items:center; gap:6px; border-radius:30px; padding:6px 9px; background:var(--surface-soft); color:var(--muted); font-size:10px; font-weight:800; }
+.dot { width:6px; height:6px; border-radius:50%; background:#c38b2f; }
+.summary-num { font-family:var(--site-font-heading); font-size:34px; margin:18px 0 4px; letter-spacing:-.04em; }
+.summary-card p { font-size:11px; line-height:1.55; color:var(--muted); margin:0; }
+.minirow { display:flex; justify-content:space-between; gap:12px; font-size:11px; margin-top:16px; padding-top:13px; border-top:1px solid var(--line); }
+.minirow span { color:var(--muted); }
+.report { display:none; }
+.report-hero { background:var(--site-primary); color:white; border-radius:24px; padding:clamp(26px,4vw,46px); position:relative; overflow:hidden; }
+.report-hero:after { content:""; position:absolute; right:-90px; bottom:-170px; width:360px; height:360px; border-radius:50%; border:1px solid #ffffff35; box-shadow:0 0 0 36px #ffffff0c,0 0 0 75px #ffffff08; }
+.report-kicker { font-size:10px; letter-spacing:.18em; text-transform:uppercase; opacity:.75; font-weight:800; }
+.report-hero h2 { font-size:clamp(36px,5vw,60px); line-height:1.03; margin:18px 0 15px; max-width:650px; }
+.report-hero p { max-width:600px; line-height:1.7; color:#dce9df; font-size:13px; }
+.report-tag { display:inline-block; padding:8px 11px; border-radius:30px; background:#ffffff15; border:1px solid #ffffff30; font-size:10px; letter-spacing:.1em; text-transform:uppercase; margin-top:12px; }
+.kpis { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin:16px 0; }
+.kpi { padding:20px; border:1px solid var(--line); background:var(--surface); border-radius:17px; }
+.kpi span { display:block; color:var(--muted); font-size:10px; text-transform:uppercase; letter-spacing:.1em; font-weight:800; }
+.kpi strong { display:block; font-family:var(--site-font-heading); font-weight:500; font-size:clamp(24px,3vw,36px); margin:11px 0 6px; letter-spacing:-.04em; }
+.kpi small { color:var(--muted); font-size:10px; }
+.report-section { background:var(--surface); border:1px solid var(--line); border-radius:20px; padding:clamp(20px,3vw,30px); margin-top:14px; }
+.report-section h3 { font-size:26px; margin:0 0 8px; }
+.report-section .sub { color:var(--muted); font-size:12px; line-height:1.6; margin:0 0 22px; }
+.chartbox { width:100%; overflow:hidden; }
+.chartbox svg { width:100%; height:auto; display:block; }
+.scenario-table { width:100%; border-collapse:collapse; font-size:12px; }
+.scenario-table th { text-align:left; font-size:10px; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); padding:12px 8px; border-bottom:1px solid var(--line); }
+.scenario-table td { padding:14px 8px; border-bottom:1px solid var(--line); }
+.scenario-table tr:last-child td { border-bottom:0; }
+.scenario-table td:not(:first-child),.scenario-table th:not(:first-child) { text-align:right; }
+.data-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+.data-item { padding:14px; border-radius:12px; background:var(--surface-soft); }
+.data-item span { display:block; font-size:10px; color:var(--muted); margin-bottom:6px; }
+.data-item strong { font-size:12px; overflow-wrap:anywhere; }
+.report-actions { display:flex; flex-wrap:wrap; gap:10px; margin:18px 0 0; }
+.disclaimer { color:var(--muted); font-size:10px; line-height:1.7; margin:18px 2px 0; }
+.checklist { list-style:none; padding:0; margin:0; display:grid; gap:10px; }
+.checklist li { display:flex; gap:10px; font-size:12px; line-height:1.5; }
+.checkmark { width:19px; height:19px; border-radius:50%; display:grid; place-items:center; background:var(--warning); color:#79571b; flex-shrink:0; font-size:11px; font-weight:900; }
+.footer { max-width:1180px; margin:auto; padding:0 28px 28px; color:var(--muted); font-size:10px; display:flex; justify-content:space-between; gap:12px; }
+.top-controls { display:flex; align-items:center; gap:8px; }
+.utility-btn { border:1px solid var(--line); border-radius:999px; padding:9px 12px; color:var(--ink); background:var(--surface); font-size:12px; font-weight:800; }
+.step-art { height:116px; margin:0 0 24px; overflow:hidden; border-radius:16px; background:linear-gradient(115deg,#071a39,#1262a7 55%,#55c7f5); position:relative; }
+.step-art:before { content:""; position:absolute; inset:0; opacity:.42; background:repeating-linear-gradient(0deg,transparent 0 24px,#b7e9ff 25px 26px),repeating-linear-gradient(90deg,transparent 0 42px,#b7e9ff 43px 44px); transform:perspective(180px) rotateX(24deg) scale(1.25); }
+.step-art:after { content:""; position:absolute; width:210px; height:70px; left:50%; bottom:-22px; transform:translateX(-50%) skewY(-13deg); border:1px solid #a9e6ff; background:repeating-linear-gradient(90deg,#102e5a 0 29px,#5cbdf0 30px 31px),repeating-linear-gradient(0deg,transparent 0 19px,#a9e6ff 20px 21px); box-shadow:0 0 35px #44bfff77; }
+.art-label { position:absolute; z-index:1; left:16px; top:14px; color:#e5f7ff; font-size:10px; font-weight:800; letter-spacing:.16em; text-transform:uppercase; }
+body.dark { color-scheme:dark; --site-background:#081426; --site-on-background:#edf5ff; --site-primary:#1766bd; --site-secondary:#193d63; --site-on-secondary:#eaf6ff; }
+body.dark .hero { background:linear-gradient(120deg,#071b37,#124b88 70%,#087eaa); }
+button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline:3px solid #58b8ff; outline-offset:2px; }
+@media(max-width:850px) { .hero { grid-template-columns:1fr; } .hero-art { display:none; } .layout { grid-template-columns:1fr; } .sidebar { position:static; padding:12px; } .stepnav { flex-direction:row; overflow:auto; scrollbar-width:thin; } .stepitem { min-width:140px; } .sidebar-foot { display:none; } .summary-card { display:none; } }
+@media(max-width:560px) { .topbar { padding:14px 12px; align-items:flex-start; } .brand { font-size:10px; gap:7px; letter-spacing:.06em; } .brandmark { width:34px;height:34px;border-radius:11px; } .top-controls { gap:5px; } .utility-btn { padding:8px 9px;font-size:11px; } .shell { padding:8px 10px 30px; } .topnote { display:none; } .hero { padding:25px 20px; border-radius:18px; } .fields,.choicegrid,.kpis,.data-grid { grid-template-columns:1fr; } .field.full { grid-column:auto; } .stepcontent { min-height:0; padding:21px 16px; } .actions { padding:13px 14px; position:sticky; bottom:0; z-index:5; box-shadow:0 -8px 24px #071a390d; } .actions .btn { padding:12px 11px; } .stepitem { min-width:108px; padding:8px 6px; gap:7px; } .stepitem .num { width:26px;height:26px; } .stepitem .steptitle { font-size:11px; } .stepitem .stepsub { display:none; } .scenario-table { font-size:10px; } .scenario-table th,.scenario-table td { padding:9px 3px; } .report-section { padding:17px 13px; } .report-hero { padding:24px 19px; } .footer { padding:0 12px 18px; flex-direction:column; } .step-art { height:88px; } }
+@media(max-width:360px) { .brand span { max-width:110px; } .utility-btn { padding:7px 6px; font-size:10px; } .stepitem { min-width:96px; } .stepmeta { font-size:9px; } }
+@media print { body { background:white; } .topbar,.hero,.layout,.footer,.report-actions { display:none !important; } #app { background:white; } .shell { padding:0; max-width:none; } .report { display:block !important; } .report-section,.kpi { break-inside:avoid; border-color:#ddd; } .report-hero { print-color-adjust:exact; -webkit-print-color-adjust:exact; } }
+</style>
+<meta name="description" content="Home Solar Calculator by Corey McDaniel: a guided solar savings estimator that sizes an indicative system from your bill, rate and roof answers and builds a 5/10/20-year savings report. Estimates only, not financial advice.">
+<meta name="author" content="Corey McDaniel"><meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://coreymcdaniel.com/works/solar.html">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Corey McDaniel"><meta property="og:title" content="Home Solar Calculator: Solar Savings Intelligence | Corey McDaniel"><meta property="og:description" content="Home Solar Calculator by Corey McDaniel: a guided solar savings estimator that sizes an indicative system from your bill, rate and roof answers and builds a 5/10/20-year savings report. Estimates only, not financial advice."><meta property="og:url" content="https://coreymcdaniel.com/works/solar.html"><meta property="og:image" content="https://coreymcdaniel.com/img/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Home Solar Calculator: Solar Savings Intelligence | Corey McDaniel"><meta name="twitter:description" content="Home Solar Calculator by Corey McDaniel: a guided solar savings estimator that sizes an indicative system from your bill, rate and roof answers and builds a 5/10/20-year savings report. Estimates only, not financial advice."><meta name="twitter:image" content="https://coreymcdaniel.com/img/og.png">
+<link rel="icon" href="/img/favicon-32.png" type="image/png" sizes="32x32"><link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "@id": "https://coreymcdaniel.com/works/solar.html#app", "name": "Home Solar Calculator", "alternateName": "Solar Savings Intelligence", "description": "Home Solar Calculator by Corey McDaniel: a guided solar savings estimator that sizes an indicative system from your bill, rate and roof answers and builds a 5/10/20-year savings report. Estimates only, not financial advice.", "url": "https://coreymcdaniel.com/works/solar.html", "image": "https://coreymcdaniel.com/img/og.png", "applicationCategory": "FinanceApplication", "operatingSystem": "Any (web browser)", "inLanguage": "en", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "author": {"@type": "Person", "@id": "https://coreymcdaniel.com/#person", "name": "Corey McDaniel", "url": "https://coreymcdaniel.com/"}, "creator": {"@type": "Person", "@id": "https://coreymcdaniel.com/#person", "name": "Corey McDaniel", "url": "https://coreymcdaniel.com/"}, "isPartOf": {"@type": "WebSite", "@id": "https://coreymcdaniel.com/#website", "name": "Corey McDaniel", "url": "https://coreymcdaniel.com/"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://coreymcdaniel.com/home/"}, {"@type": "ListItem", "position": 2, "name": "Useful Works", "item": "https://coreymcdaniel.com/home/#works"}, {"@type": "ListItem", "position": 3, "name": "Home Solar Calculator", "item": "https://coreymcdaniel.com/works/solar.html"}]}</script>
+<style>.cmd-back{position:fixed;top:calc(env(safe-area-inset-top,0px) + 10px);left:calc(env(safe-area-inset-left,0px) + 10px);z-index:2147483000;padding:8px 14px;border-radius:99px;background:#0b0916e6;color:#e9d5ff;border:1px solid #7c3aed;font:600 13px/1 system-ui,sans-serif;text-decoration:none;box-shadow:0 0 16px #7c3aed66;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}.cmd-back:hover,.cmd-back:focus-visible{color:#fff;outline:2px solid #67e8f9;outline-offset:2px}body{padding-top:56px!important}.sidebar{top:64px!important}</style>
 </head>
 <body>
-    <header class="site-header"><div class="wrap nav">
-      <a class="brand" href="/home/" aria-label="Home">
-        <img class="site-logo" src="../img/logo-header.png" alt="Home" height="40" />
-      </a>
-      <nav class="nav-links" aria-label="Primary">
-        <a class="nav-cta" href="../utilities/">Open Utilities</a>
-      </nav>
-    </div></header>
-  <main class="wrap" style="padding:80px 0">
-    <p class="kicker">Useful Works · Coming soon</p>
-    <h1 class="grad" id="title">Home Solar Calculator</h1>
-    <p class="lede">This page is reserved. The layout is ready for a later code drop or a forward to the live app.</p>
-    <p><a class="btn btn-primary" href="/home/">Return home</a></p>
+<a class="cmd-back" href="/home/">&larr; Home</a>
+<div id="app">
+  <header class="topbar">
+    <div class="brand"><div class="brandmark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg></div><span>Solar Savings Intelligence</span></div>
+    <div class="top-controls"><div class="topnote">California · Home energy assessment</div><button class="utility-btn" id="languageBtn" onclick="toggleLanguage()" aria-label="Switch language">ES · Español</button><button class="utility-btn" id="themeBtn" onclick="toggleTheme()" aria-label="Switch light or dark theme">☾ Dark</button></div>
+  </header>
+  <main class="shell">
+    <section class="hero" id="introHero">
+      <div><div class="eyebrow">A clearer path to solar</div><h1>Make your roof work a little smarter.</h1><p>Answer a few short questions to shape a personal solar savings estimate. Your final report brings the assumptions, 5 / 10 / 20-year outlook, and next steps together in one thoughtful view.</p><button class="btn" style="margin-top:12px;background:var(--site-secondary);color:var(--site-on-secondary)" onclick="startWizard()">Build my estimate <span aria-hidden="true">↗</span></button></div>
+      <div class="hero-art"><div class="orbit"><div class="sun"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="32" cy="32" r="10"/><path d="M32 5v9m0 36v9M5 32h9m36 0h9M13 13l7 7m24 24 7 7m0-38-7 7M20 44l-7 7"/><path d="M25 29h14M25 35h14"/></svg></div></div></div>
+    </section>
+    <div class="layout" id="wizardLayout">
+      <aside><nav class="sidebar"><div class="side-label">Your assessment</div><div class="stepnav" id="stepnav"></div><div class="sidebar-foot">Your answers stay in this interactive session. This prototype does not connect to your utility or save customer records.</div></nav><div class="summary-card"><div class="summary-head"><strong>Estimate snapshot</strong><span class="pill"><i class="dot"></i> Draft</span></div><div class="summary-num" id="sideSavings">—</div><p>Illustrative first-year bill savings, based on current entries.</p><div class="minirow"><span>Annual usage</span><strong id="sideUsage">Not entered</strong></div><div class="minirow"><span>System size</span><strong id="sideSize">Not estimated</strong></div></div></aside>
+      <section class="maincard" id="wizardCard"><div class="progressline"><span id="progress"></span></div><div class="stepcontent" id="stepcontent"></div><div class="actions"><button class="btn secondary" id="backBtn" onclick="backStep()">← Back</button><div style="display:flex;align-items:center;gap:12px"><span id="stepCount" style="font-size:11px;color:var(--muted)">Step 1 of 7</span><button class="btn primary" id="nextBtn" onclick="nextStep()">Continue →</button></div></div></section>
+    </div>
+    <section class="report" id="report"></section>
   </main>
+  <footer class="footer"><span>Solar Savings Intelligence · Planning estimate, not a quote</span><span>Designed for clarity. Built around transparent assumptions.</span></footer>
+</div>
+<script>
+const state = {
+  audience:'homeowner', method:'manual', address:'', utility:'', tariff:'', usage:'', bill:'', rate:'', exportRate:'', fixed:'', roof:'unknown', shade:'some', ownership:'own', finance:'cash', battery:'unsure', systemCost:'', batteryCost:'', production:'', degradation:0.5, escalation:3, om:250, billFile:null, billFileName:'', notes:'', verified:{usage:'estimate',rate:'estimate',exportRate:'placeholder',fixed:'estimate'}, confirmEstimate:false
+};
+const steps = [
+ {title:'Start here',sub:'Who is this for?',eyebrow:'01 / A little context',heading:'Let’s make this useful for you.',lede:'First, tell us who will use the report and how you’d like to share your energy information.',fields:()=>`
+  <div class="field full"><label>Who are we preparing this for?</label><div class="choicegrid">${choice('audience','homeowner','Homeowner','A clear, plain-English view of the opportunity.')}${choice('audience','consultant','Solar consultant','A client-ready starting point for a sales conversation.')}</div></div>
+  <div class="field full"><label>How would you like to provide your information?</label><div class="choicegrid">${choice('method','manual','Enter it myself','Use figures from your bill, quote, or best current estimate.')}${choice('method','bill','Start with a utility bill','Add a bill file for a review workflow, then confirm the important figures.')}${choice('method','both','A bit of both','Upload a bill and fill in any details you already know.')}${choice('method','estimate','I’m just exploring','Start with rough figures; the report will mark them as unverified.')}</div></div>
+ `},
+ {title:'Your property',sub:'Location & utility',eyebrow:'02 / Place matters',heading:'Where is the sun doing its work?',lede:'A location and utility help shape the next research steps. This prototype does not automatically look up your address or tariff.',fields:()=>`
+  <div class="field full"><label for="address">Property city or ZIP code</label><input id="address" name="address" type="text" placeholder="e.g., Sacramento, CA 95814" value="${esc(state.address)}"/><div class="hint">A city or ZIP is enough for this planning-stage prototype. Avoid sharing a full street address unless you need it.</div></div>
+  <div class="field"><label for="utility">Electric utility</label><select id="utility" name="utility"><option value="">Choose if known</option>${['PG&E','Southern California Edison (SCE)','San Diego Gas & Electric (SDG&E)','Los Angeles Department of Water & Power (LADWP)','SMUD','Other / not sure'].map(x=>`<option ${state.utility===x?'selected':''}>${x}</option>`).join('')}</select></div>
+  <div class="field"><label for="tariff">Rate plan / tariff (optional)</label><input id="tariff" name="tariff" type="text" placeholder="e.g., TOU-D-PRIME" value="${esc(state.tariff)}"/><div class="hint">Use the exact name from your bill if available.</div></div>
+ `},
+ {title:'Electricity use',sub:'Your current bill',eyebrow:'03 / Your energy pattern',heading:'What does electricity cost today?',lede:'Annual usage in kWh is most useful. If you don’t have it handy, enter an average monthly bill and the estimate will use an explicitly marked approximation.',fields:()=>`
+  <div class="field"><label for="usage">Annual electricity usage</label><div class="inputunit"><input id="usage" type="number" min="0" step="100" placeholder="e.g., 8500" value="${esc(state.usage)}"/><span class="unit">kWh/yr</span></div><div class="hint">Often listed as annual kWh or available in your utility account.</div></div>
+  <div class="field"><label for="bill">Average monthly electric bill</label><div class="inputunit"><input id="bill" type="number" min="0" step="5" placeholder="e.g., 220" value="${esc(state.bill)}"/><span class="unit">$/mo</span></div><div class="hint">Can be used as a rough fallback if annual usage is unknown.</div></div>
+  <div class="field full"><label>Where did your usage figure come from?</label><div class="choicegrid">${choice('verified.usage','bill','Utility bill / account','Entered from a statement or account data.')}${choice('verified.usage','estimate','Estimate / memory','Approximate until the bill is checked.')}</div></div>
+ `},
+ {title:'Electric rates',sub:'Import & export value',eyebrow:'04 / The fine print matters',heading:'What is each unit of energy worth?',lede:'Solar savings depend on what you avoid buying and what exported electricity is credited at. These are separate values, especially under California’s Net Billing Tariff.',fields:()=>`
+  <div class="field"><label for="rate">Retail electricity rate</label><div class="inputunit"><input id="rate" type="number" min="0" step="0.01" placeholder="e.g., 0.35" value="${esc(state.rate)}"/><span class="unit">$/kWh</span></div><div class="hint">Use a blended rate if you have one; actual time-of-use rates vary by hour.</div></div>
+  <div class="field"><label for="exportRate">Solar export credit rate</label><div class="inputunit"><input id="exportRate" type="number" min="0" step="0.01" placeholder="e.g., 0.06" value="${esc(state.exportRate)}"/><span class="unit">$/kWh</span></div><div class="hint">Use the applicable export value if verified. Do not assume it equals your retail rate.</div></div>
+  <div class="field"><label for="fixed">Monthly fixed / non-bypassable charges</label><div class="inputunit"><input id="fixed" type="number" min="0" step="1" placeholder="e.g., 25" value="${esc(state.fixed)}"/><span class="unit">$/mo</span></div><div class="hint">Estimate of charges solar may not eliminate.</div></div>
+  <div class="field"><label>How well verified are these rates?</label><select id="rateSource"><option value="estimate" ${state.verified.rate==='estimate'?'selected':''}>Estimated / not checked</option><option value="bill" ${state.verified.rate==='bill'?'selected':''}>Read from bill</option><option value="utility" ${state.verified.rate==='utility'?'selected':''}>Verified against utility tariff</option></select><div class="hint">Export and fixed-charge values remain separate assumptions.</div></div>
+ `},
+ {title:'Your roof',sub:'Fit & sunlight',eyebrow:'05 / The roof reality check',heading:'How ready is the roof for solar?',lede:'These answers are directional only. A site visit or qualified installer should verify roof condition, shade, structure, and usable area.',fields:()=>`
+  <div class="field full"><label>Roof condition</label><div class="choicegrid">${choice('roof','good','Good condition','No major work expected in the near term.')}${choice('roof','repair','May need work','Repairs or replacement may be needed.')}${choice('roof','unknown','Not sure yet','Leave this for a roof assessment.')}</div></div>
+  <div class="field full"><label>How much shade reaches the roof?</label><div class="choicegrid">${choice('shade','low','Mostly sunny','Little shade during peak sun hours.')}${choice('shade','some','Some shade','Trees or structures shade part of the roof.')}${choice('shade','high','Heavy shade','Significant shade for much of the day.')}${choice('shade','unknown','Not sure','Needs a solar site assessment.')}</div></div>
+  <div class="field full"><label>Do you own the property?</label><div class="choicegrid">${choice('ownership','own','Own the home','I can explore ownership options.')}${choice('ownership','rent','Rent / other','I may need landlord approval or another arrangement.')}</div></div>
+ `},
+ {title:'System & budget',sub:'Preferences & quote',eyebrow:'06 / Shape the solution',heading:'What kind of solar plan feels right?',lede:'If you have an installer quote, use its cost and system size. Otherwise we’ll use transparent placeholders—not market-verified pricing.',fields:()=>`
+  <div class="field"><label>Preferred purchase approach</label><select id="finance"><option value="cash" ${state.finance==='cash'?'selected':''}>Cash purchase</option><option value="loan" ${state.finance==='loan'?'selected':''}>Solar loan</option><option value="lease" ${state.finance==='lease'?'selected':''}>Lease / PPA</option><option value="unsure" ${state.finance==='unsure'?'selected':''}>Not sure yet</option></select></div>
+  <div class="field"><label>Battery preference</label><select id="battery"><option value="unsure" ${state.battery==='unsure'?'selected':''}>Not sure yet</option><option value="yes" ${state.battery==='yes'?'selected':''}>Include a battery scenario</option><option value="no" ${state.battery==='no'?'selected':''}>Solar only</option></select></div>
+  <div class="field"><label for="systemCost">Quoted solar system price</label><div class="inputunit"><input id="systemCost" type="number" min="0" step="500" placeholder="e.g., 28000" value="${esc(state.systemCost)}"/><span class="unit">$</span></div><div class="hint">Before incentives; enter a quote if available.</div></div>
+  <div class="field"><label for="production">Estimated annual solar production</label><div class="inputunit"><input id="production" type="number" min="0" step="100" placeholder="e.g., 10500" value="${esc(state.production)}"/><span class="unit">kWh/yr</span></div><div class="hint">Use installer or PVWatts estimate if available.</div></div>
+  <div class="field"><label for="batteryCost">Battery add-on cost (optional)</label><div class="inputunit"><input id="batteryCost" type="number" min="0" step="500" placeholder="e.g., 12000" value="${esc(state.batteryCost)}"/><span class="unit">$</span></div></div>
+  <div class="field"><label for="om">Annual maintenance allowance</label><div class="inputunit"><input id="om" type="number" min="0" step="25" value="${esc(state.om)}"/><span class="unit">$/yr</span></div><div class="hint">Editable planning assumption; not a service quote.</div></div>
+ `},
+ {title:'Review & create',sub:'Confirm assumptions',eyebrow:'07 / Ready for your report',heading:'One last check before the picture comes together.',lede:'Review the source quality and add any context you want carried into the report. The output is a planning estimate, not a utility-verified proposal.',fields:()=>`
+  <div class="field full"><label>How should we treat your figures?</label><div class="choicegrid">${choice('confirmEstimate','true','Proceed with estimates','Create the report with clear labels for unverified assumptions.')}${choice('confirmEstimate','false','I’ll refine the data first','Go back and improve the inputs before generating.')}</div></div>
+  <div class="field full"><label for="notes">Notes for the report (optional)</label><textarea id="notes" placeholder="e.g., EV planned next year, electric water heater, roof replacement in 3 years">${esc(state.notes)}</textarea></div>
+  <div class="field full"><div class="notice"><strong>Before you continue:</strong> no live utility tariff lookup, address-based solar simulation, financing APR, bill OCR, or installer quote verification is connected in this prototype. The report will distinguish user-entered values from illustrative assumptions and flag what to verify.</div></div>
+ `}
+];
+let current=0;
+function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function choice(name,value,title,desc){let currentValue=name.startsWith('verified.')?state.verified[name.split('.')[1]]:name==='confirmEstimate'?String(state.confirmEstimate):state[name];let checked=String(currentValue??'')===String(value)?'checked':'';let id='c_'+name.replace(/[^a-z]/gi,'')+'_'+value;return `<div class="choice"><input id="${id}" type="radio" name="${name}" value="${value}" ${checked} onchange="setChoice('${name}','${value}')"><label for="${id}"><strong>${title}</strong><span>${desc}</span></label></div>`}
+function startWizard(){document.getElementById('introHero').scrollIntoView({behavior:'smooth',block:'start'});current=0;renderStep();setTimeout(()=>document.getElementById('wizardLayout').scrollIntoView({behavior:'smooth',block:'start'}),100)}
+function setChoice(name,value){if(name==='confirmEstimate')state.confirmEstimate=value==='true';else if(name.startsWith('verified.'))state.verified[name.split('.')[1]]=value;else state[name]=value;updateSnapshot();if(name==='method')renderStep();}
+function renderNav(){document.getElementById('stepnav').innerHTML=steps.map((s,i)=>`<button class="stepitem ${i===current?'active':''} ${i<current?'done':''}" onclick="jumpStep(${i})"><span class="num">${i<current?'✓':String(i+1).padStart(2,'0')}</span><span><div class="steptitle">${s.title}</div><div class="stepsub">${s.sub}</div></span></button>`).join('')}
+function renderStep(){const s=steps[current];document.getElementById('stepcontent').innerHTML=`<div class="step-art" role="img" aria-label="Futuristic blue solar panel illustration"><span class="art-label">SOLAR INTELLIGENCE · 0${current+1}</span></div><div class="stepmeta"><span>${s.eyebrow}</span><span>~ ${current===0?'2':current===6?'1':'1'} min</span></div><h2>${s.heading}</h2><p class="lede">${s.lede}</p><div class="fields">${s.fields()}${current===0&&(state.method==='bill'||state.method==='both')?billUploader():''}</div><div id="stepError" class="error" role="alert"></div>`;
+ document.getElementById('progress').style.width=((current+1)/steps.length*100)+'%';document.getElementById('stepCount').textContent=`Step ${current+1} of ${steps.length}`;document.getElementById('backBtn').disabled=current===0;document.getElementById('nextBtn').textContent=current===steps.length-1?'Create my report ↗':'Continue →';renderNav();bindFields();updateSnapshot();}
+function billUploader(){return `<div class="field full"><div class="dropzone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 16V4m-5 5 5-5 5 5"/><path d="M4 15v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4"/></svg><strong>Add a utility bill for reference</strong><p>PDF, image, or text file. This prototype can record the file name, but it does not perform reliable PDF/image OCR. You will still confirm every extracted value.</p><label class="filelabel">Choose a bill file<input id="billFile" type="file" accept=".pdf,.png,.jpg,.jpeg,.webp,.txt,.csv" onchange="handleFile(this)"></label><div class="fileinfo" id="fileinfo">${state.billFileName?`Selected: ${esc(state.billFileName)}`:'No file selected yet.'}</div></div></div>`}
+function bindFields(){const ids=['address','utility','tariff','usage','bill','rate','exportRate','fixed','rateSource','finance','battery','systemCost','production','batteryCost','om','notes'];ids.forEach(id=>{const el=document.getElementById(id);if(el)el.addEventListener('input',()=>{state[id]=el.value;if(id==='rateSource')state.verified.rate=el.value;updateSnapshot()})});}
+function handleFile(el){if(el.files&&el.files[0]){state.billFileName=el.files[0].name;state.billFile=el.files[0];const info=document.getElementById('fileinfo');if(info)info.textContent=`Selected: ${state.billFileName} · ${Math.round(state.billFile.size/1024)} KB. File is not uploaded to a utility or stored by this prototype.`;}}
+function capture(){['address','utility','tariff','usage','bill','rate','exportRate','fixed','finance','battery','systemCost','production','batteryCost','om','notes'].forEach(id=>{const el=document.getElementById(id);if(el)state[id]=el.value});const rs=document.getElementById('rateSource');if(rs)state.verified.rate=rs.value;}
+function validate(){capture();let msg='';if(current===1&&!state.address.trim())msg='Add a city or ZIP code to continue.';if(current===2&&!num(state.usage)&&!num(state.bill))msg='Enter annual usage or an average monthly bill to continue.';if(current===3&&!num(state.rate))msg='Enter a retail rate to make a savings estimate, or go back and use the exploration route.';if(current===6&&state.confirmEstimate===false)msg='Choose “Proceed with estimates” or go back to refine your data.';return msg}
+function nextStep(){const err=validate();document.getElementById('stepError').textContent=err;if(err)return;if(current<steps.length-1){current++;renderStep();document.getElementById('wizardCard').scrollIntoView({behavior:'smooth',block:'start'})}else{capture();generateReport()}}
+function backStep(){capture();if(current>0){current--;renderStep()}}
+function jumpStep(i){capture();current=i;renderStep();document.getElementById('wizardCard').scrollIntoView({behavior:'smooth',block:'start'})}
+function num(v){return v!==''&&v!==null&&Number.isFinite(Number(v))&&Number(v)>=0?Number(v):0}
+function calc(){let usage=num(state.usage);const bill=num(state.bill),rate=num(state.rate),fixed=num(state.fixed),exportRate=state.exportRate!==''?num(state.exportRate):0.06;
+ const usageFromBill=!usage&&bill>0&&rate>0; if(usageFromBill)usage=Math.max(0,(bill-fixed)/rate*12);
+ const production=num(state.production)||usage*1.15;const sysSize=production/1450;const cost=num(state.systemCost)||sysSize*3.0*1000;const batt=state.battery==='yes'?num(state.batteryCost):0;const totalCost=cost+batt;const shadeFactor=state.shade==='high'?.72:state.shade==='some'?.88:state.shade==='low'?1:.88;
+ const usableProd=production*shadeFactor;const selfUse=Math.min(usage,usableProd*(state.battery==='yes'?.68:.42));const exportKwh=Math.max(0,usableProd-selfUse);const retailAvoid=selfUse*rate;const exportValue=exportKwh*exportRate;const annualBill=usage*rate;const fixedAnnual=fixed*12;const grossSavings=retailAvoid+exportValue;const firstYear=Math.max(0,grossSavings-num(state.om));const netBill=Math.max(fixedAnnual,annualBill-firstYear);const payback=firstYear>0?totalCost/firstYear:null;let cum=0;const horizons=[5,10,20].map(years=>{cum=0;for(let y=1;y<=years;y++){const productionFactor=Math.pow(1-num(state.degradation||.5)/100,y-1);const priceFactor=Math.pow(1+num(state.escalation||3)/100,y-1);cum+=Math.max(0,(retailAvoid*productionFactor*priceFactor+exportValue*productionFactor)-num(state.om)*priceFactor);}return {years,savings:cum,net:cum-totalCost,roi:totalCost>0?(cum-totalCost)/totalCost*100:0}});
+ return {usage,usageFromBill,rate,fixed,exportRate,production,usableProd,sysSize,cost,batt,totalCost,selfUse,exportKwh,retailAvoid,exportValue,annualBill,fixedAnnual,firstYear,netBill,payback,horizons,shadeFactor,assumptions:{productionEntered:!!num(state.production),costEntered:!!num(state.systemCost),exportEntered:state.exportRate!=='',fixedEntered:state.fixed!==''&&state.fixed!==null,usageEntered:!!num(state.usage),rateEntered:!!num(state.rate)}}}
+function money(n){return new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0}).format(Number.isFinite(n)?n:0)}
+function money1(n){return new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:2}).format(Number.isFinite(n)?n:0)}
+function integer(n){return new Intl.NumberFormat('en-US',{maximumFractionDigits:0}).format(n||0)}
+function updateSnapshot(){let c=calc();document.getElementById('sideSavings').textContent=c.usage&&c.rate?money(c.firstYear):'—';document.getElementById('sideUsage').textContent=c.usage?integer(c.usage)+' kWh/yr':'Not entered';document.getElementById('sideSize').textContent=c.usage?c.sysSize.toFixed(1)+' kW':'Not estimated'}
+function barChart(c){const max=Math.max(...c.horizons.map(x=>Math.max(0,x.savings)),c.totalCost,1);const w=660,h=255,left=66,right=20,top=20,bottom=45,chartH=h-top-bottom,chartW=w-left-right;const ticks=4;let grid='';for(let i=0;i<=ticks;i++){let val=max*i/ticks,y=top+chartH-(chartH*i/ticks);grid+=`<line x1="${left}" y1="${y}" x2="${w-right}" y2="${y}" stroke="currentColor" opacity=".12"/><text x="${left-10}" y="${y+4}" text-anchor="end" fill="currentColor" opacity=".6" font-size="10">${val>=1000?'$'+(val/1000).toFixed(0)+'k':'$'+Math.round(val)}</text>`}let bars='';c.horizons.forEach((x,i)=>{const bw=76,gap=54,x0=left+44+i*(bw+gap),bh=Math.max(1,x.savings/max*chartH),y=top+chartH-bh;bars+=`<rect x="${x0}" y="${y}" width="${bw}" height="${bh}" rx="7" fill="#d9e8bd" stroke="#174f46" stroke-width="1"/><text x="${x0+bw/2}" y="${Math.max(14,y-8)}" text-anchor="middle" fill="currentColor" font-size="11" font-weight="700">${money(x.savings)}</text><text x="${x0+bw/2}" y="${h-18}" text-anchor="middle" fill="currentColor" opacity=".7" font-size="11">${x.years} years</text>`});const costY=top+chartH-c.totalCost/max*chartH;return `<svg viewBox="0 0 ${w} ${h}" role="img" aria-label="Projected cumulative bill savings at five, ten, and twenty years compared with system cost"><g>${grid}</g><line x1="${left}" y1="${costY}" x2="${w-right}" y2="${costY}" stroke="#bd7d2c" stroke-width="2" stroke-dasharray="6 5"/><text x="${w-right}" y="${Math.max(12,costY-7)}" text-anchor="end" fill="#bd7d2c" font-size="10" font-weight="700">Estimated upfront cost ${money(c.totalCost)}</text>${bars}</svg>`}
+function generateReport(){document.getElementById('wizardLayout').style.display='none';document.getElementById('introHero').style.display='none';const c=calc();const sourceQuality=[state.verified.usage==='bill'?'Usage entered from bill':'Usage source not verified',state.verified.rate==='utility'?'Retail rate marked utility-verified':state.verified.rate==='bill'?'Retail rate entered from bill':'Retail rate not verified',c.assumptions.exportEntered?'Export credit entered by user':'Export credit uses illustrative placeholder',c.assumptions.productionEntered?'Production estimate entered by user':'Production uses a simple placeholder yield',c.assumptions.costEntered?'System cost entered by user':'System cost uses an illustrative cost-per-watt assumption'];const dataRows=[['Property / area',state.address||'Not provided'],['Electric utility',state.utility||'Not specified'],['Rate plan',state.tariff||'Not specified'],['Annual electricity use',c.usage?integer(c.usage)+' kWh':'Not enough data'],['Retail rate',c.rate?money1(c.rate)+'/kWh':'Not entered'],['Export credit',money1(c.exportRate)+'/kWh'+(c.assumptions.exportEntered?'':' · placeholder')],['Monthly fixed charges',money1(c.fixed)+'/mo'+(c.assumptions.fixedEntered?'':' · assumed $0')],['Solar production',integer(c.production)+' kWh/yr'+(c.assumptions.productionEntered?'':' · estimated')],['Indicative system size',c.sysSize.toFixed(1)+' kW'],['Installed system cost',money(c.totalCost)+(c.assumptions.costEntered?' · entered quote':' · illustrative')]];
+ document.getElementById('report').style.display='block';document.getElementById('report').innerHTML=`<div class="report-hero"><div class="report-kicker">Solar Savings Intelligence · Personal assessment</div><h2>Your solar story,<br>in the numbers.</h2><p>A tailored planning snapshot for ${esc(state.address||'your property')}. Use this report to guide your next questions—not as a substitute for a tariff-specific simulation, roof assessment, or written installer proposal.</p><span class="report-tag">${state.audience==='consultant'?'Consultant working draft':'Homeowner planning report'} · ${new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'})}</span></div>
+ <div class="kpis"><div class="kpi"><span>Illustrative first-year savings</span><strong>${c.usage&&c.rate?money(c.firstYear):'—'}</strong><small>After maintenance allowance</small></div><div class="kpi"><span>Estimated solar size</span><strong>${c.usage?c.sysSize.toFixed(1)+' kW':'—'}</strong><small>Production ÷ 1,450 kWh/kW-year</small></div><div class="kpi"><span>Simple payback</span><strong>${c.payback&&Number.isFinite(c.payback)?c.payback.toFixed(1)+' yrs':'—'}</strong><small>Before financing, taxes, and incentives</small></div></div>
+ <section class="report-section"><h3>The outlook at a glance</h3><p class="sub">Cumulative estimated bill savings before subtracting upfront system cost. These are simplified scenarios—not guaranteed returns.</p><div class="chartbox">${barChart(c)}</div><table class="scenario-table"><thead><tr><th>Horizon</th><th>Bill savings</th><th>After system cost</th><th>Simple ROI</th></tr></thead><tbody>${c.horizons.map(x=>`<tr><td>${x.years} years</td><td>${money(x.savings)}</td><td>${money(x.net)}</td><td>${Number.isFinite(x.roi)?x.roi.toFixed(0)+'%':'—'}</td></tr>`).join('')}</tbody></table></section>
+ <section class="report-section"><h3>What the model assumes</h3><p class="sub">Values below are calculated from your entries where available. Missing or unverified inputs remain visible so they can be corrected.</p><div class="data-grid">${dataRows.map(x=>`<div class="data-item"><span>${x[0]}</span><strong>${esc(x[1])}</strong></div>`).join('')}</div><div class="notice"><strong>Important:</strong> the savings model estimates self-consumption at ${state.battery==='yes'?'68%':'42%'} of solar production (capped by annual usage), assigns remaining production the export rate, and uses a ${num(state.degradation||.5)}% annual degradation assumption with ${num(state.escalation||3)}% annual retail-rate escalation. Real results depend on hourly load, TOU schedule, seasonality, system design, and the applicable utility rules.</div></section>
+ <section class="report-section"><h3>Before you make a decision</h3><p class="sub">These checks can materially change the answer. Complete them before using the estimate to compare offers.</p><ul class="checklist">${sourceQuality.map(x=>`<li><span class="checkmark">!</span><span>${esc(x)}</span></li>`).join('')}<li><span class="checkmark">!</span><span>Verify the utility tariff, export credit structure, non-bypassable charges, and any fixed charges directly with the utility.</span></li><li><span class="checkmark">!</span><span>Use a roof-specific production simulation (for example, NREL PVWatts) and confirm shading, orientation, roof condition, and usable area.</span></li><li><span class="checkmark">!</span><span>Compare a written installer quote and financing terms. This estimate does not include loan interest, lease escalators, tax effects, battery dispatch, or avoided outage costs.</span></li></ul></section>
+ <section class="report-section"><h3>Your project notes</h3><p class="sub">These details help a consultant or installer continue the conversation.</p><div class="data-grid"><div class="data-item"><span>Roof condition</span><strong>${esc({good:'Good condition',repair:'May need work',unknown:'Not assessed'}[state.roof])}</strong></div><div class="data-item"><span>Shading</span><strong>${esc({low:'Mostly sunny',some:'Some shade',high:'Heavy shade',unknown:'Not assessed'}[state.shade])}</strong></div><div class="data-item"><span>Purchase approach</span><strong>${esc({cash:'Cash purchase',loan:'Solar loan',lease:'Lease / PPA',unsure:'Not sure'}[state.finance])}</strong></div><div class="data-item"><span>Battery preference</span><strong>${esc({yes:'Include battery scenario',no:'Solar only',unsure:'Undecided'}[state.battery])}</strong></div></div>${state.notes?`<div class="notice"><strong>Your notes</strong><br>${esc(state.notes)}</div>`:''}</section>
+ <div class="report-actions"><button class="btn primary" onclick="window.print()">Download / Save PDF ↗</button><button class="btn secondary" onclick="downloadReport()">Export report data (.json)</button><button class="btn secondary" onclick="editAnswers()">← Edit answers</button><button class="btn secondary" onclick="resetAll()">Start a new estimate</button></div>
+ <p class="disclaimer">Planning prototype only. This is not financial, tax, legal, or engineering advice. No live utility, PVWatts, address lookup, OCR, or installer database was queried. Federal and state incentives are not included in the savings calculation; eligibility and current law should be checked independently. All figures should be validated before customer presentation.</p>`;
+ document.getElementById('report').scrollIntoView({behavior:'smooth',block:'start'});}
+function downloadReport(){const payload={product:'Solar Savings Intelligence',createdAt:new Date().toISOString(),status:'Planning estimate — not utility verified',inputs:state.billFile?{...state,billFile:undefined}:state,calculation:calc(),limitations:['No live utility tariff lookup','No address-based production simulation','No bill OCR','Illustrative assumptions require verification']};const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='solar-savings-assessment.json';a.click();URL.revokeObjectURL(a.href)}
+function editAnswers(){document.getElementById('report').style.display='none';document.getElementById('wizardLayout').style.display='grid';document.getElementById('introHero').style.display='grid';current=6;renderStep();document.getElementById('wizardLayout').scrollIntoView({behavior:'smooth'})}
+function resetAll(){if(!confirm('Start a new estimate? Your current answers will be cleared from this page.'))return;location.reload()}
+// Capture the default form and show the first step immediately.
+function toggleTheme(){document.body.classList.toggle('dark');const dark=document.body.classList.contains('dark');document.getElementById('themeBtn').textContent=dark?'☀ Light':'☾ Dark';document.documentElement.style.colorScheme=dark?'dark':'light';}
+let spanish=false;
+function toggleLanguage(){spanish=!spanish;document.documentElement.lang=spanish?'es':'en';document.getElementById('languageBtn').textContent=spanish?'EN · English':'ES · Español';if(spanish){document.querySelector('.topnote').textContent='California · Evaluación energética del hogar';document.querySelector('.eyebrow').textContent='Un camino más claro hacia la energía solar';document.querySelector('.hero h1').textContent='Haz que tu techo trabaje de forma más inteligente.';document.querySelector('.hero p').textContent='Responde unas preguntas breves para crear una estimación personal de ahorro solar.';document.querySelector('#introHero .btn').innerHTML='Crear mi estimación ↗';document.querySelector('.side-label').textContent='Tu evaluación';document.querySelector('.summary-head strong').textContent='Resumen estimado';document.querySelector('.summary-card p').textContent='Ahorro ilustrativo del primer año según los datos ingresados.';document.getElementById('backBtn').textContent='← Atrás';document.getElementById('nextBtn').textContent=current===steps.length-1?'Crear mi informe ↗':'Continuar →';document.querySelector('.footer span').textContent='Solar Savings Intelligence · Estimación de planificación, no una cotización';}else{document.querySelector('.topnote').textContent='California · Home energy assessment';document.querySelector('.eyebrow').textContent='A clearer path to solar';document.querySelector('.hero h1').textContent='Make your roof work a little smarter.';document.querySelector('.hero p').textContent='Answer a few short questions to shape a personal solar savings estimate. Your final report brings the assumptions, 5 / 10 / 20-year outlook, and next steps together in one thoughtful view.';document.querySelector('#introHero .btn').innerHTML='Build my estimate <span aria-hidden="true">↗</span>';document.querySelector('.side-label').textContent='Your assessment';document.querySelector('.summary-head strong').textContent='Estimate snapshot';document.querySelector('.summary-card p').textContent='Illustrative first-year bill savings, based on current entries.';document.getElementById('backBtn').textContent='← Back';document.getElementById('nextBtn').textContent=current===steps.length-1?'Create my report ↗':'Continue →';document.querySelector('.footer span').textContent='Solar Savings Intelligence · Planning estimate, not a quote';}if(document.getElementById('report').style.display==='block')generateReport();else renderStep();}
+renderStep();
+</script>
 </body>
 </html>

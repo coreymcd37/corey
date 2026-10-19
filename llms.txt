@@ -13,6 +13,7 @@
 - https://coreymcdaniel.com/utilities/llms.txt : utilities details
 - https://coreymcdaniel.com/quotes/ : Quick Print
 - https://coreymcdaniel.com/works/photo.html : Photo tool
+- https://coreymcdaniel.com/works/solar.html : Home Solar Calculator (Solar Savings Intelligence), guided solar savings estimator with a 5/10/20-year report (estimates only, not financial advice)
 - https://coreymcdaniel.com/legal/terms.html : Terms and privacy
 
 ## Sitemap
