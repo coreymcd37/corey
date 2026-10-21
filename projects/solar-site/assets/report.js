@@ -27,7 +27,7 @@ function render(){var root=document.getElementById('rep'),s=C.load();
   '<section class="panel" style="margin-top:18px"><h2>'+T('rep.tbl.h')+'</h2><div class="tscroll"><table class="tbl"><thead><tr><th>'+T('rep.tbl.y')+'</th><th>'+T('rep.tbl.bill')+'</th><th>'+T('rep.tbl.save')+'</th><th>'+T('rep.tbl.cum')+'</th></tr></thead><tbody>'+rows+'</tbody></table></div></section>'+
   '<div class="grid" style="margin-top:18px"><section class="panel"><h2>'+T('rep.home.h')+'</h2><dl class="kv">'+
    '<dt>'+T('rep.loc')+'</dt><dd>'+e(loc)+'</dd><dt>'+T('rep.util')+'</dt><dd>'+(a.utility?e(a.utility):T('s4.other'))+'</dd>'+
-   '<dt>'+T('rep.roof')+'</dt><dd>'+T('roof.'+a.roof)+'</dd><dt>'+T('rep.shade')+'</dt><dd>'+T('shade.'+a.shade)+'</dd><dt>'+T('rep.pitch')+'</dt><dd>'+T('pitch.'+a.pitch)+'</dd><dt>'+T('rep.time')+'</dt><dd>'+T('time.'+a.time)+'</dd>'+
+   '<dt>'+T('rep.roof')+'</dt><dd>'+e(T('roof.'+a.roof))+'</dd><dt>'+T('rep.shade')+'</dt><dd>'+e(T('shade.'+a.shade))+'</dd><dt>'+T('rep.pitch')+'</dt><dd>'+e(T('pitch.'+a.pitch))+'</dd><dt>'+T('rep.time')+'</dt><dd>'+e(T('time.'+a.time))+'</dd>'+
    '<dt>'+T('rep.usage')+'</dt><dd>'+T(r.usageSrc==='from'?'rep.usage.from':'rep.usage.bill',{v:I.num(r.usage)})+'</dd></dl></section>'+
   '<section class="panel"><h2>'+T('rep.ass.h')+'</h2><dl class="kv">'+
    '<dt>'+T('rep.ass.rate')+'</dt><dd>'+T('rep.ass.rateV',{v:I.money(a.rate,2)})+'</dd><dt>'+T('rep.ass.sun')+'</dt><dd>'+T('rep.ass.sunV',{v:I.num(a.sun,1)})+'</dd>'+
@@ -35,7 +35,7 @@ function render(){var root=document.getElementById('rep'),s=C.load();
    '<dt>'+T('rep.ass.inc')+'</dt><dd>'+(a.inc>0?T('rep.ass.pct',{v:I.num(a.inc,1)}):T('rep.ass.none'))+'</dd><dt>'+T('rep.ass.esc')+'</dt><dd>'+T('rep.ass.yr',{v:I.num(a.esc,1)})+'</dd>'+
    '<dt>'+T('rep.ass.loss')+'</dt><dd>'+T('rep.ass.lossV')+'</dd><dt>'+T('rep.ass.deg')+'</dt><dd>'+T('rep.ass.degV')+'</dd><dt>'+T('rep.ass.fact')+'</dt><dd>'+I.num(r.factor*100)+'%</dd>'+
    (r.ground?'<dt>'+T('rep.ass.ground')+'</dt><dd>'+I.money(r.ground)+'</dd>':'')+
-   '<dt>'+T('rep.ass.loan')+'</dt><dd>'+T('rep.ass.loanV',{apr:I.num(a.apr,2),term:a.term})+'</dd></dl></section></div>'+
+   '<dt>'+T('rep.ass.loan')+'</dt><dd>'+T('rep.ass.loanV',{apr:I.num(a.apr,2),term:e(+a.term)})+'</dd></dl></section></div>'+
   '<section class="panel" style="margin-top:18px"><h2>'+T('rep.next.h')+'</h2><ul class="ck">'+[1,2,3,4,5].map(function(i){return '<li>'+T('rep.next.'+i)+'</li>'}).join('')+'</ul>'+
    '<p><a href="../quote/">'+T('rep.cta')+'</a></p></section>'+
   '<p class="note" style="margin-top:18px">'+T('rep.disc')+'</p>'+
