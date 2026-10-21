@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Solar Panel Calculator: Size, Cost & Savings Estimate | Corey McDaniel</title>
+<meta name="description" content="A free step-by-step solar panel calculator by Corey McDaniel. Enter your state, bill, roof and shading to estimate system size, cost, payback and savings. Runs in your browser.">
+<meta name="author" content="Corey McDaniel"><meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#07080f">
+<link rel="canonical" href="https://coreymcdaniel.com/projects/solar-site/calculator/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Corey McDaniel"><meta property="og:title" content="Solar Panel Calculator: Size, Cost & Savings Estimate | Corey McDaniel"><meta property="og:description" content="A free step-by-step solar panel calculator by Corey McDaniel. Enter your state, bill, roof and shading to estimate system size, cost, payback and savings. Runs in your browser."><meta property="og:url" content="https://coreymcdaniel.com/projects/solar-site/calculator/"><meta property="og:image" content="https://coreymcdaniel.com/img/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:locale" content="en_US"><meta property="og:locale:alternate" content="es_US">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Solar Panel Calculator: Size, Cost & Savings Estimate | Corey McDaniel"><meta name="twitter:description" content="A free step-by-step solar panel calculator by Corey McDaniel. Enter your state, bill, roof and shading to estimate system size, cost, payback and savings. Runs in your browser."><meta name="twitter:image" content="https://coreymcdaniel.com/img/og.png">
+<link rel="icon" href="/img/favicon-32.png" type="image/png" sizes="32x32"><link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/solar.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "@id": "https://coreymcdaniel.com/projects/solar-site/#app", "name": "Solar Site & Calculator", "alternateName": "Sitio solar y calculadora", "description": "Solar Site & Calculator by Corey McDaniel: learn how home solar works, estimate system size, cost and savings in your browser, and get a printable report. Estimates only.", "url": "https://coreymcdaniel.com/projects/solar-site/", "image": "https://coreymcdaniel.com/img/og.png", "applicationCategory": "FinanceApplication", "operatingSystem": "Any (web browser)", "inLanguage": ["en", "es"], "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "author": {"@type": "Person", "@id": "https://coreymcdaniel.com/#person", "name": "Corey McDaniel", "url": "https://coreymcdaniel.com/"}, "creator": {"@type": "Person", "@id": "https://coreymcdaniel.com/#person", "name": "Corey McDaniel", "url": "https://coreymcdaniel.com/"}, "isPartOf": {"@type": "WebSite", "@id": "https://coreymcdaniel.com/#website", "name": "Corey McDaniel", "url": "https://coreymcdaniel.com/"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "@id": "https://coreymcdaniel.com/projects/solar-site/calculator/#page", "url": "https://coreymcdaniel.com/projects/solar-site/calculator/", "name": "Solar Panel Calculator: Size, Cost & Savings Estimate | Corey McDaniel", "description": "A free step-by-step solar panel calculator by Corey McDaniel. Enter your state, bill, roof and shading to estimate system size, cost, payback and savings. Runs in your browser.", "inLanguage": ["en", "es"], "author": {"@type": "Person", "@id": "https://coreymcdaniel.com/#person", "name": "Corey McDaniel", "url": "https://coreymcdaniel.com/"}, "isPartOf": {"@id": "https://coreymcdaniel.com/projects/solar-site/#app"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://coreymcdaniel.com/home/"}, {"@type": "ListItem", "position": 2, "name": "Life Project Files", "item": "https://coreymcdaniel.com/home/#projects"}, {"@type": "ListItem", "position": 3, "name": "Solar Site & Calculator", "item": "https://coreymcdaniel.com/projects/solar-site/"}, {"@type": "ListItem", "position": 4, "name": "Calculator", "item": "https://coreymcdaniel.com/projects/solar-site/calculator/"}]}</script>
+<script src="../assets/i18n.js" defer></script><script src="../assets/data.js" defer></script><script src="../assets/core.js" defer></script><script src="../assets/calc.js" defer></script>
+</head>
+<body data-page="calc">
+<a class="cmd-back" href="/home/#projects" data-i="back">← Life Project Files</a>
+<a class="skip" href="#main" data-i="skip">Skip to content</a>
+<header class="top"><div class="wrap"><a class="brand" href="../"><i aria-hidden="true"></i><span data-i="brand">Solar Site &amp; Calculator</span></a>
+<nav class="nav" data-i-aria="nav.aria" aria-label="Solar site sections"><a href="../" data-i="nav.home">Overview</a><a href="../calculator/" aria-current=page data-i="nav.calc">Calculator</a><a href="../report/" data-i="nav.report">Report</a><a href="../learn/" data-i="nav.learn">Learn</a><a href="../quote/" data-i="nav.quote">Quote request</a></nav>
+<button class="btn btn-s" id="langBtn" type="button" data-i="lang.btn" data-i-aria="lang.aria" aria-label="Cambiar a español">ES · Español</button></div></header>
+<main id="main">
+<div class="wrap calc"><h1 data-i="calc.h1">Solar panel calculator</h1><p data-i="calc.lede" class="lede">Answer each step. Your answers stay in this browser and are used only to build your report.</p>
+<div class="prog" aria-hidden="true"><span id="progBar"></span></div><p class="stepc" id="stepCount" aria-live="polite"></p>
+<section class="panel" aria-labelledby="stepH"><div id="stepBox"></div><p class="err" id="stepErr" role="alert"></p></section>
+<div class="acts"><button class="btn" type="button" id="backBtn" data-i="calc.back">← Back</button><span class="row" style="margin:0"><button class="btn" type="button" id="resetBtn" data-i="calc.reset">Start over</button><button class="btn btn-p" type="button" id="nextBtn">Continue →</button></span></div>
+<p data-i="rep.disc" class="note">This report is a planning estimate based on your answers and simple averages. It is not a quote and not financial, tax, legal or engineering advice. Real production, prices, incentives and savings vary.</p></div>
+</main>
+<footer><div class="wrap"><span data-i="foot.by">A Corey McDaniel project.</span><span data-i="foot.est">Estimates only. Not financial, tax, legal or engineering advice.</span><a href="/legal/terms.html" data-i="foot.terms">Terms &amp; Privacy</a></div></footer>
+</body>
+</html>
