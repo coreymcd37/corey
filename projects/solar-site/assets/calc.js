@@ -9,7 +9,7 @@ function fld(id,lab,val,extra,help){return '<label for="'+id+'">'+I.t(lab)+'<inp
 var STEPS=[
  {t:'s1.t',r:function(){return '<div class="fields"><label for="state">'+I.t('s1.state')+'<select id="state" name="state"><option value="">'+I.t('s1.choose')+'</option>'+
    D.states.map(function(s){return '<option value="'+s[0]+'"'+(a.state===s[0]?' selected':'')+'>'+s[1]+'</option>'}).join('')+'</select></label>'+
-   '<label for="zip">'+I.t('s1.zip')+'<input id="zip" name="zip" inputmode="numeric" autocomplete="postal-code" maxlength="5" value="'+a.zip+'"><span class="help">'+I.t('s1.zipHelp')+'</span></label></div>'},
+   '<label for="zip">'+I.t('s1.zip')+'<input id="zip" name="zip" inputmode="numeric" autocomplete="postal-code" maxlength="5" value="'+esc(a.zip)+'"><span class="help">'+I.t('s1.zipHelp')+'</span></label></div>'},
   v:function(){a.state=val('state');a.zip=val('zip').trim();if(!a.state)return 'err.state';if(a.zip&&!/^\d{5}$/.test(a.zip))return 'err.zip'}},
  {t:'s2.t',r:function(){return '<p class="help">'+I.t('s2.help')+'</p><div class="fields">'+fld('kwhMonthly','s2.monthly',a.kwhMonthly)+fld('kwhDaily','s2.daily',a.kwhDaily)+'</div>'},
   v:function(){a.kwhMonthly=val('kwhMonthly');a.kwhDaily=val('kwhDaily');if(bad(a.kwhMonthly)||bad(a.kwhDaily))return 'err.num'}},
