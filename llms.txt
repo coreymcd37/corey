@@ -24,3 +24,5 @@
 - https://coreymcdaniel.com/projects/healing-table/ : The Healing Table, shared meal planning and grocery list for two dietary needs (educational only, not medical advice)
 - https://coreymcdaniel.com/projects/patient-evidence-navigator/ : Patient Evidence Navigator, trusted health information, research and trial finder (information only, not medical advice)
 - https://coreymcdaniel.com/projects/cmd-health-food-guide/ : CMD Health Food Guide, personalized 7-day menu, recipes, grocery list and prep plan (educational only, not medical advice)
+- https://coreymcdaniel.com/projects/solar-site/ : Solar Site & Calculator, bilingual (EN/ES) solar basics, step-by-step solar panel calculator and printable 25-year estimate report computed in the browser (estimates only, not financial advice)
+- https://coreymcdaniel.com/projects/solar-site/learn/ : Solar FAQ, pros and cons, and the end of the federal residential solar tax credit after 2025
