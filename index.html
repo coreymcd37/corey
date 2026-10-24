@@ -427,9 +427,9 @@
         const LAYERS = [
             { scale: 0.5, speed: 0.3, opacity: 0.12, blur: 1.6 },
             { scale: 0.65, speed: 0.45, opacity: 0.18, blur: 1 },
-            { scale: 0.85, speed: 0.7, opacity: 0.3, blur: 0 },
-            { scale: 1.05, speed: 1.0, opacity: 0.5, blur: 0 },
-            { scale: 1.35, speed: 1.4, opacity: 0.72, blur: 0 }
+            { scale: 0.8, speed: 0.7, opacity: 0.32, blur: 0 },
+            { scale: 1.0, speed: 1.0, opacity: 0.52, blur: 0 },
+            { scale: 1.3, speed: 1.4, opacity: 0.75, blur: 0 }
         ];
         const far = document.createElement('canvas');
         const fctx = far.getContext('2d');
@@ -441,7 +441,7 @@
             return {
                 x, baseX: x, y: Math.random() * (H + 60) - 30,
                 vx: 0, layer, size: 16 * L0.scale, blur: L0.blur > 0,
-                speed: (0.5 + 1.5 * Math.random()) * L0.speed,
+                speed: (0.5 + 1.5 * Math.random()) * L0.speed * 1.2,
                 baseOpacity: op, opacity: op, ci: Math.floor(Math.random() * pal.length),
                 char: alphabet[Math.floor(Math.random() * alphabet.length)],
                 swap: Math.random() * 1200, glint: 1000 + Math.random() * 8000,
@@ -600,7 +600,7 @@
 
             // soft vignette keeps the terminal readable
             const v = ctx.createRadialGradient(W / 2, H / 2, Math.min(W, H) * 0.25, W / 2, H / 2, Math.max(W, H) * 0.75);
-            v.addColorStop(0, 'rgba(3, 7, 18, 0)'); v.addColorStop(1, 'rgba(3, 7, 18, 0.55)');
+            v.addColorStop(0, 'rgba(3, 7, 18, 0)'); v.addColorStop(1, 'rgba(3, 7, 18, 0.35)');
             ctx.fillStyle = v; ctx.fillRect(0, 0, W, H);
         }
 
