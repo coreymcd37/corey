@@ -169,6 +169,8 @@
         }
 
         /* Screen Flash Explosion sequence */
+        /* iOS zooms focused fields under 16px: keep inputs at 16px */
+        #command-input, #modal-input { font-size: max(16px, 1em) !important; }
         /* Mobile: compact console so the rain and input line stay visible */
         @media (max-width: 639px) {
             body.crt-container { height: 100vh; height: 100dvh; }
@@ -647,7 +649,7 @@
         });
 
         document.getElementById('terminal-window').addEventListener('click', () => {
-            input.focus();
+            input.focus({ preventScroll: true });
         });
 
         input.addEventListener('input', () => {
