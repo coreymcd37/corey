@@ -228,14 +228,14 @@
         
         <!-- Terminal Header Bar -->
         <div class="bg-slate-900/80 border-b border-cyan-500/30 px-4 py-2.5 flex items-center justify-between text-xs sm:text-sm">
-            <div class="flex items-center space-x-3">
-                <span id="status-dot" class="w-2.5 h-2.5 rounded-full bg-emerald-400 status-pulse inline-block"></span>
-                <span class="font-bold tracking-wider text-cyan-400 glow-secondary">HACKED_CONSOLE_PORT_OUT_OF_MATRIX // NODE_CMD37</span>
+            <div class="flex items-center space-x-3 min-w-0">
+                <span id="status-dot" class="w-2.5 h-2.5 rounded-full bg-emerald-400 status-pulse inline-block flex-shrink-0"></span>
+                <span class="font-bold tracking-wider text-cyan-400 glow-secondary flex flex-wrap items-baseline" style="column-gap:1.5em;row-gap:2px"><span class="whitespace-nowrap">HACKED_CONSOLE_PORT_3321</span><span class="whitespace-nowrap">MATRIX // NODE_CMD37</span></span>
             </div>
             <div class="flex items-center space-x-3 sm:space-x-5 text-xs font-semibold">
                 <span class="hidden sm:inline text-slate-400">FPS: <span id="fps-display" class="text-emerald-400">60</span></span>
                 <span class="hidden md:inline text-slate-400">THEME: <span id="theme-display" class="text-emerald-400">MATRIX</span></span>
-                <button id="audio-toggle" class="px-2.5 py-0.5 rounded border border-cyan-500/50 hover:bg-cyan-500/20 text-cyan-300 text-xs transition-colors">
+                <button id="audio-toggle" class="whitespace-nowrap flex-shrink-0 px-2.5 py-0.5 rounded border border-cyan-500/50 hover:bg-cyan-500/20 text-cyan-300 text-xs transition-colors">
                     AUDIO: <span id="audio-status" class="text-emerald-400">ON</span>
                 </button>
             </div>
