@@ -458,8 +458,8 @@
             far.width = Math.max(1, Math.round(W * dpr / 2)); far.height = Math.max(1, Math.round(H * dpr / 2));
             fctx.setTransform(dpr / 2, 0, 0, dpr / 2, 0, 0);
             const mobile = W < 640;
-            const density = mobile ? 0.4 : 0.7;
-            const cap = mobile ? 1200 : 3200;
+            const density = mobile ? 0.55 : 1.0;
+            const cap = mobile ? 1600 : 4200;
             glyphs = [];
             LAYERS.forEach((L0, li) => {
                 const size = 16 * L0.scale, step = size * 1.2 * (mobile ? 1.25 : 1);
