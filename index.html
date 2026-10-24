@@ -459,7 +459,7 @@
             fctx.setTransform(dpr / 2, 0, 0, dpr / 2, 0, 0);
             const mobile = W < 640;
             const density = mobile ? 0.55 : 1.0;
-            const cap = mobile ? 1600 : 4200;
+            const cap = mobile ? 1100 : 4200;
             glyphs = [];
             LAYERS.forEach((L0, li) => {
                 const size = 16 * L0.scale, step = size * 1.2 * (mobile ? 1.25 : 1);
@@ -495,7 +495,7 @@
         const RADIUS = 150;
 
         function drawFrame(dt, time) {
-            const L = Math.min(dt / 16.67, 3);
+            const L = Math.min(dt / 16.67, 6);
             const sm = rainConfig.speedMultiplier;
             const pal = palettes[rainConfig.color] || palettes['#00ff66'];
             const live = pointer.active && !reduceMotion.matches && performance.now() - pointer.lastMove < 4000;
@@ -609,7 +609,7 @@
         let frameCount = 0;
         let currentFps = 60;
         const fpsDisplay = document.getElementById('fps-display');
-        const minFrame = reduceMotion.matches ? 1000 / 8 : (window.innerWidth < 640 ? 1000 / 45 : 0);
+        const minFrame = reduceMotion.matches ? 1000 / 30 : 0;
 
         function drawMatrix(currentTime) {
             requestAnimationFrame(drawMatrix);
@@ -624,8 +624,9 @@
                 frameCount = 0;
                 lastTime = currentTime;
             }
-            const motionScale = reduceMotion.matches && rainConfig.speedMultiplier <= 1 ? 0.15 : 1;
-            drawFrame(Math.min(dt, 50) * motionScale, currentTime);
+            // Time-based: same px/s at any frame rate. Reduced motion falls at half speed (was 15%, read as broken).
+            const motionScale = reduceMotion.matches && rainConfig.speedMultiplier <= 1 ? 0.5 : 1;
+            drawFrame(Math.min(dt, 100) * motionScale, currentTime);
         }
 
         requestAnimationFrame(drawMatrix);
