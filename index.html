@@ -169,6 +169,30 @@
         }
 
         /* Screen Flash Explosion sequence */
+        /* Mobile: compact console so the rain and input line stay visible */
+        @media (max-width: 639px) {
+            body.crt-container { height: 100vh; height: 100dvh; }
+            #terminal-window { height: auto !important; max-height: 50vh; max-height: 50svh; }
+            #terminal-window > div:first-child { padding: 6px 10px; font-size: 11px; }
+            #output-window { flex: 1 1 auto; min-height: 0; padding: 10px 12px; font-size: 13px; }
+            #output-window > * + * { margin-top: 4px; }
+            #terminal-window > div:last-child { padding: 8px 12px; flex-shrink: 0; }
+        }
+        @media (max-width: 639px) and (max-height: 700px) {
+            #terminal-window { max-height: 46svh; }
+        }
+        /* Home page links: bright baby blue, bold, tiny glow */
+        .cm-link, #output-window a, #output-window [onclick] {
+            color: #89cff0 !important; font-weight: 700; text-decoration: underline; text-underline-offset: 3px;
+            text-shadow: 0 0 4px rgba(137, 207, 240, 0.45); transition: text-shadow .15s, color .15s; border-radius: 2px;
+        }
+        .cm-link:hover, #output-window a:hover, #output-window [onclick]:hover,
+        .cm-link:focus-visible, #output-window a:focus-visible, #output-window [onclick]:focus-visible {
+            color: #b5e3fb !important; text-shadow: 0 0 6px rgba(137, 207, 240, 0.75), 0 0 12px rgba(125, 211, 252, 0.35);
+        }
+        .cm-link:focus-visible, #output-window a:focus-visible, #output-window [onclick]:focus-visible {
+            outline: 2px solid #7dd3fc; outline-offset: 2px;
+        }
         @keyframes matrix-warp {
             0% { transform: scale(1); filter: brightness(1) opacity(1); }
             50% { transform: scale(3) rotate(5deg); filter: brightness(10) contrast(2) invert(1); }
@@ -194,7 +218,7 @@
 <body class="crt-container h-screen w-screen flex items-center justify-center relative">
     <a class="cm-logo" href="/home/" aria-label="Corey McDaniel — home"><picture><source srcset="/img/logo-matrix.webp" type="image/webp"><img src="/img/logo-matrix.png" alt="Corey McDaniel" width="168" height="80" decoding="async"></picture></a>
     <h1 class="sr-only-cm">Corey McDaniel</h1>
-    <noscript><p style="position:fixed;bottom:1rem;left:0;right:0;text-align:center;z-index:60"><a href="/home/" style="color:#00ff66">Continue to Corey McDaniel's home page</a></p></noscript>
+    <noscript><p style="position:fixed;bottom:1rem;left:0;right:0;text-align:center;z-index:60"><a class="cm-link" href="/home/">Continue to Corey McDaniel's home page</a></p></noscript>
 
     <!-- Matrix Rain Background Canvas -->
     <canvas id="matrix-canvas" class="absolute inset-0 z-0" aria-hidden="true"></canvas>
@@ -221,7 +245,7 @@
         <div id="output-window" class="flex-1 p-4 sm:p-6 overflow-y-auto terminal-scroll text-sm sm:text-base space-y-2">
             <div class="text-cyan-400 glow-secondary">>>> ESCAPE_MATRIX v3.0 INITIALIZED [QUANTUM_RELEASE_2026]</div>
             <div class="text-slate-400">Neural Gateway Connected. Secure tunnel established on port 9042.</div>
-            <div class="text-emerald-400 glow-primary">Type <span class="text-white underline font-bold cursor-pointer" onclick="executeQuickCmd('help')">help</span> to list commands or <span class="text-pink-400 underline font-bold cursor-pointer" onclick="executeQuickCmd('enter the matrix')">enter the matrix</span> to begin.</div>
+            <div class="text-emerald-400 glow-primary">Type <span class="text-white underline font-bold cursor-pointer" role="link" tabindex="0" onkeydown="if(event.key==='Enter')this.click()" onclick="executeQuickCmd('help')">help</span> to list commands or <span class="text-pink-400 underline font-bold cursor-pointer" role="link" tabindex="0" onkeydown="if(event.key==='Enter')this.click()" onclick="executeQuickCmd('enter the matrix')">enter the matrix</span> to begin.</div>
             <div class="h-2"></div>
         </div>
 
@@ -399,19 +423,29 @@
         let W = 0, H = 0, dpr = 1, glyphs = [];
         const pointer = { x: -9999, y: -9999, sx: -9999, sy: -9999, active: false, pending: false, lastMove: 0 };
 
-        function makeGlyph(x, randomY) {
-            const layer = Math.random() < 0.45 ? 0 : (Math.random() < 0.6 ? 1 : 2);
-            const size = [11, 15, 20][layer] + Math.random() * 3;
+        // Five depth layers (far -> near). Far layers render to a half-res buffer and are softened.
+        const LAYERS = [
+            { scale: 0.5, speed: 0.3, opacity: 0.12, blur: 1.6 },
+            { scale: 0.65, speed: 0.45, opacity: 0.18, blur: 1 },
+            { scale: 0.85, speed: 0.7, opacity: 0.3, blur: 0 },
+            { scale: 1.05, speed: 1.0, opacity: 0.5, blur: 0 },
+            { scale: 1.35, speed: 1.4, opacity: 0.72, blur: 0 }
+        ];
+        const far = document.createElement('canvas');
+        const fctx = far.getContext('2d');
+
+        function makeGlyph(x, layer) {
+            const L0 = LAYERS[layer];
             const pal = palettes[rainConfig.color] || palettes['#00ff66'];
+            const op = L0.opacity * (0.5 + 0.5 * Math.random());
             return {
-                x, baseX: x, y: randomY ? Math.random() * H : -Math.random() * H * 0.5,
-                vx: 0, layer, size,
-                speed: [0.5, 0.95, 1.6][layer] * (0.7 + Math.random() * 0.6),
-                baseOpacity: [0.3, 0.55, 0.9][layer] * (0.75 + Math.random() * 0.5),
-                opacity: [0.3, 0.55, 0.9][layer], ci: Math.floor(Math.random() * pal.length),
+                x, baseX: x, y: Math.random() * (H + 60) - 30,
+                vx: 0, layer, size: 16 * L0.scale, blur: L0.blur > 0,
+                speed: (0.5 + 1.5 * Math.random()) * L0.speed,
+                baseOpacity: op, opacity: op, ci: Math.floor(Math.random() * pal.length),
                 char: alphabet[Math.floor(Math.random() * alphabet.length)],
-                swap: Math.random() * 1200, glint: 2000 + Math.random() * 6000,
-                capture: 0, angle: Math.random() * Math.PI * 2, trail: []
+                swap: Math.random() * 1200, glint: 1000 + Math.random() * 8000,
+                capture: 0, trail: []
             };
         }
 
@@ -421,12 +455,23 @@
             canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
             canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
             ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-            const spacing = W < 640 ? 22 : 18;
-            const cols = Math.min(Math.floor(W / spacing), 140);
-            const perCol = W < 640 ? 3 : 5;
+            far.width = Math.max(1, Math.round(W * dpr / 2)); far.height = Math.max(1, Math.round(H * dpr / 2));
+            fctx.setTransform(dpr / 2, 0, 0, dpr / 2, 0, 0);
+            const mobile = W < 640;
+            const density = mobile ? 0.4 : 0.7;
+            const cap = mobile ? 1200 : 3200;
             glyphs = [];
-            for (let i = 0; i < cols; i++) {
-                for (let k = 0; k < perCol; k++) glyphs.push(makeGlyph(i * spacing + spacing / 2, true));
+            LAYERS.forEach((L0, li) => {
+                const size = 16 * L0.scale, step = size * 1.2 * (mobile ? 1.25 : 1);
+                const cols = Math.floor(W / step) + 1;
+                for (let c = 0; c < cols; c++) {
+                    const n = Math.max(1, Math.round((5 + 3 * Math.random()) / L0.scale * density * (H / 900 + 0.3)));
+                    for (let k = 0; k < n; k++) glyphs.push(makeGlyph(c * step + size / 2, li));
+                }
+            });
+            if (glyphs.length > cap) {
+                glyphs.sort(() => Math.random() - 0.5);
+                glyphs.length = cap;
             }
             glyphs.sort((a, b) => a.layer - b.layer);
             if (reduceMotion.matches) drawFrame(16, 0);
@@ -470,15 +515,22 @@
                 ctx.fillStyle = s; ctx.fillRect(0, pointer.sy - 30, W, 60);
             }
 
-            ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-            let font = '';
+            fctx.clearRect(0, 0, W, H);
+            ctx.textAlign = fctx.textAlign = 'center'; ctx.textBaseline = fctx.textBaseline = 'middle';
+            let font = '', ffont = '', farDone = false;
+            const flushFar = () => {
+                if (farDone) return; farDone = true;
+                ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1; ctx.shadowBlur = 0;
+                ctx.drawImage(far, 0, 0, canvas.width, canvas.height);
+                ctx.restore();
+            };
             for (let i = 0; i < glyphs.length; i++) {
                 const e = glyphs[i];
                 let target = e.baseOpacity, captureTarget = 0, dist = 1e9;
                 if (live) {
                     const dx = e.x - pointer.sx, dy = e.y - pointer.sy;
                     dist = Math.sqrt(dx * dx + dy * dy);
-                    if (dist < RADIUS && e.layer > 0) captureTarget = 1 - dist / RADIUS;
+                    if (dist < RADIUS && e.layer > 1) captureTarget = 1 - dist / RADIUS;
                     const cx = Math.abs(e.baseX - pointer.sx);
                     if (cx < 100) target *= 1 + (1 - cx / 100) * 0.5;
                 }
@@ -513,10 +565,17 @@
 
                 const col = pal[e.ci % pal.length];
                 const f = `bold ${e.size.toFixed(1)}px "Fira Code", "JetBrains Mono", monospace`;
+                if (e.blur) {
+                    if (f !== ffont) { fctx.font = f; ffont = f; }
+                    fctx.globalAlpha = e.opacity; fctx.fillStyle = col;
+                    fctx.fillText(e.char, e.x, e.y);
+                    continue;
+                }
+                flushFar();
                 if (f !== font) { ctx.font = f; font = f; }
 
-                if (e.layer >= 1 && !reduceMotion.matches) {
-                    e.trail.unshift(e.y); if (e.trail.length > (e.layer === 2 ? 6 : 4)) e.trail.pop();
+                if (e.layer >= 3 && !reduceMotion.matches) {
+                    e.trail.unshift(e.y); if (e.trail.length > (e.layer === 4 ? 6 : 4)) e.trail.pop();
                     ctx.fillStyle = col;
                     for (let t = 1; t < e.trail.length; t++) {
                         ctx.globalAlpha = e.opacity * (1 - t / e.trail.length) * 0.18;
@@ -524,7 +583,7 @@
                     }
                 }
 
-                const glow = 16 * e.capture + (glint ? 12 : 0) + (e.layer === 2 ? 4 : 0);
+                const glow = 16 * e.capture + (glint ? 12 : 0) + (e.layer === 4 ? 4 : 0);
                 if (glow > 0.5) { ctx.shadowColor = col; ctx.shadowBlur = glow; }
                 ctx.fillStyle = glint ? '#ffffff' : col;
                 ctx.globalAlpha = Math.min(1, e.opacity * (glint ? 1.3 : 1));
@@ -536,6 +595,7 @@
                 }
                 ctx.shadowBlur = 0;
             }
+            flushFar();
             ctx.globalAlpha = 1;
 
             // soft vignette keeps the terminal readable
@@ -695,7 +755,7 @@
 
                 default:
                     audio.playCommandSound('error');
-                    printOutput(`<span class="text-pink-500">Command not recognized: '${escapeHtml(cmd)}'. Type <span class="text-white underline font-semibold cursor-pointer" onclick="executeQuickCmd('help')">help</span> for assistance.</span>`);
+                    printOutput(`<span class="text-pink-500">Command not recognized: '${escapeHtml(cmd)}'. Type <span class="text-white underline font-semibold cursor-pointer" role="link" tabindex="0" onkeydown="if(event.key==='Enter')this.click()" onclick="executeQuickCmd('help')">help</span> for assistance.</span>`);
                     break;
             }
         }
