@@ -8,7 +8,7 @@ The portfolio site of **Corey McDaniel**: projects, tools and writing, built as 
 
 - **Home** – an entry terminal at `/` and the main portfolio at [`/home/`](https://coreymcdaniel.com/home/).
 - **Project pages** – case studies and working demos under [`/projects/`](https://coreymcdaniel.com/projects/), including:
-  - [Solar Site & Calculator](https://coreymcdaniel.com/projects/solar-site/) – bilingual (English/Spanish) solar site with a savings calculator and homeowner report
+  - [My Solar Company Web Site](https://coreymcdaniel.com/projects/solar-site/) – bilingual (English/Spanish) solar site with a savings calculator and homeowner report
   - [CMD-R](https://coreymcdaniel.com/projects/cmd-r/) – one-minute browser arcade game
   - [Cognitive Prism](https://coreymcdaniel.com/projects/cognitive-prism/) – a synesthetic thought engine
   - [Government Funding Pathways](https://coreymcdaniel.com/projects/funding-gateway/) – nonprofit grant and business financing guide
