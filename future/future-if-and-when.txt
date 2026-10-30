@@ -10,7 +10,7 @@
 - https://coreymcdaniel.com/projects/funding-gateway/ : Government Funding Pathways, an independent educational guide to nonprofit grants and small-business financing (not affiliated with any government agency)
 - https://coreymcdaniel.com/projects/vacation-matchmaker/ : Vacation Property Matchmaker, a 60-second island vacation condo preference quiz
 - https://coreymcdaniel.com/utilities/ : All the Best Internet Utilities, ~124 free browser tools that run locally
-- https://coreymcdaniel.com/utilities/llms.txt : utilities details
+- https://coreymcdaniel.com/utilities/utilities-notes.txt : utilities details
 - https://coreymcdaniel.com/quotes/ : Quick Print
 - https://coreymcdaniel.com/works/photo.html : Photo tool
 - https://coreymcdaniel.com/works/solar.html : Home Solar Calculator (Solar Savings Intelligence), guided solar savings estimator with a 5/10/20-year report (estimates only, not financial advice)
