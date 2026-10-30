@@ -13,7 +13,7 @@ The portfolio site of **Corey McDaniel**: projects, tools and writing, built as 
   - [Cognitive Prism](https://coreymcdaniel.com/projects/cognitive-prism/) – a synesthetic thought engine
   - [Government Funding Pathways](https://coreymcdaniel.com/projects/funding-gateway/) – nonprofit grant and business financing guide
   - [Credit Reset Planner](https://coreymcdaniel.com/projects/credit-reset-planner/), [Research Finder](https://coreymcdaniel.com/projects/research-finder/), [Patient Evidence Navigator](https://coreymcdaniel.com/projects/patient-evidence-navigator/), [Vacation Property Matchmaker](https://coreymcdaniel.com/projects/vacation-matchmaker/), [Brothers Brands](https://coreymcdaniel.com/projects/brothers-brands/), [Clothing Design Studio](https://coreymcdaniel.com/projects/clothing/), [CMD Health Food Guide](https://coreymcdaniel.com/projects/cmd-health-food-guide/) and [The Healing Table](https://coreymcdaniel.com/projects/healing-table/)
-- **Utilities Toolkit** – [`/utilities/`](https://coreymcdaniel.com/utilities/): 127 privacy-first browser tools across 16 category workbenches (SEO, diagnostics, text, encoding, design, images, calculators and more). No account needed, and processing happens on your device.
+- **Utilities Toolkit** – [`/utilities/`](https://coreymcdaniel.com/utilities/): 124 privacy-first browser tools across 16 category workbenches (SEO, diagnostics, text, encoding, design, images, calculators and more). No account needed, and processing happens on your device.
 - **Works, quotes and legal** – `/works/`, `/quotes/`, `/legal/`.
 
 ## Features
