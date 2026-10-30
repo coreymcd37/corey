@@ -1,0 +1,17 @@
+# ai.txt for coreymcdaniel.com
+# Content on this site (text, images, code, design) may not be used to train,
+# fine-tune or ground AI/ML models, or be reproduced by AI answer engines,
+# without written permission from Corey McDaniel.
+# Ordinary search indexing (Google, Bing, etc.) is welcome; see /robots.txt.
+
+User-Agent: *
+Disallow: /
+Disallow: *.html
+Disallow: *.jpg
+Disallow: *.jpeg
+Disallow: *.png
+Disallow: *.webp
+Disallow: *.avif
+Disallow: *.svg
+Disallow: *.js
+Disallow: *.css
