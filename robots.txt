@@ -11,6 +11,7 @@ User-agent: Applebot
 User-agent: Yandex
 User-agent: Baiduspider
 Allow: /
+Disallow: /future/
 
 User-agent: GPTBot
 User-agent: ChatGPT-User
@@ -56,6 +57,7 @@ Disallow: /
 
 User-agent: *
 Allow: /
+Disallow: /future/
 
 Sitemap: https://coreymcdaniel.com/sitemap.xml
 Sitemap: https://coreymcdaniel.com/utilities/sitemap.xml
