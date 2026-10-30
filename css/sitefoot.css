@@ -1,0 +1,7 @@
+/* Shared site footer nav for standalone pages */
+.site-foot{position:relative;z-index:1;clear:both;margin:48px 0 0;padding:22px 16px 28px;border-top:1px solid rgba(127,127,127,.25);background:#0b0a16;color:#c9c6dd;font:14px/1.5 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;text-align:center}
+.site-foot nav{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 6px;margin:0 auto 8px;max-width:900px}
+.site-foot a{display:inline-flex;align-items:center;min-height:32px;padding:4px 10px;border-radius:8px;color:#e9e6ff;text-decoration:none}
+.site-foot a:hover,.site-foot a:focus-visible{background:rgba(167,139,250,.18);text-decoration:underline}
+.site-foot a:focus-visible{outline:2px solid #67e8f9;outline-offset:2px}
+.site-foot p{margin:0;font-size:12.5px;color:#b3afc9}
