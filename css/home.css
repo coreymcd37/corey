@@ -754,3 +754,7 @@ body.qp-is-fs .site-header { visibility: hidden; }
 .proj-ext:focus-visible{outline:3px solid #67e8f9;outline-offset:3px}
 @media (prefers-reduced-motion:reduce){.proj-card,.proj-media img,.proj-sheen,.proj-stage,.proj-go b{transition:none!important}.proj-sheen{display:none}.proj-card:hover,.proj-card:focus-within{--ty:0}}
 .proj-body .badge{align-self:flex-start}
+
+/* region links: comfortable tap targets */
+#region-links { display:flex; flex-wrap:wrap; gap:.35rem .5rem; }
+#region-links a { display:inline-flex; align-items:center; min-height:28px; padding:2px 8px; border-radius:8px; }

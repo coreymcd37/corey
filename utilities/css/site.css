@@ -139,11 +139,11 @@ img { max-width: 100%; }
 
 .search-wrap {
   position: relative;
-  min-width: 180px;
+  min-width: 0;
+  flex: 0 1 220px;
 }
 .search-wrap input {
-  width: 220px;
-  max-width: 36vw;
+  width: 100%;
   background: rgba(15, 10, 36, 0.9);
   border: 1px solid rgba(99, 102, 241, 0.35);
   color: var(--text);
@@ -531,3 +531,8 @@ table.data th, table.data td {
     transform: none !important;
   }
 }
+
+/* links inside running text stay identifiable without color alone */
+.prose a, main p a { text-decoration: underline; text-underline-offset: 3px; }
+.nav-links { min-width: 0; }
+@media (max-width: 1240px) and (min-width: 901px) { .nav-links a { padding: 7px 7px; font-size: 12.5px; } }
