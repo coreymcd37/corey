@@ -40,7 +40,7 @@ quotes/             Quick Print forms
 legal/              terms
 css/ js/ img/       shared assets (css/sitefoot.css = shared footer, js/a11y-*.js = accessibility helpers)
 404.html            site-wide not-found page
-sitemap.xml robots.txt ai.txt llms.txt site.webmanifest favicon.ico CNAME
+sitemap.xml robots.txt ai.txt site.webmanifest favicon.ico CNAME
 ```
 
 ## Run locally
