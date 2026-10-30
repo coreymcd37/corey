@@ -6,7 +6,6 @@ Privacy-first standalone toolkit of browser utilities by **Corey McDaniel**.
 
 - GitHub Pages: https://coreymcdaniel.com/utilities/
 - Portfolio home: https://coreymcdaniel.com/
-- Future custom domain: https://coreymcdaniel.com/utilities/ (planned; path retained)
 
 ## NOTICE — Demo only · All rights reserved
 

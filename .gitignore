@@ -3,3 +3,7 @@ node_modules/
 *.map
 .DS_Store
 tmp-upload/
+.env
+*.log
+Thumbs.db
+.vscode/

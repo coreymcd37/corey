@@ -14,14 +14,18 @@ The portfolio site of **Corey McDaniel**: projects, tools and writing, built as 
   - [Government Funding Pathways](https://coreymcdaniel.com/projects/funding-gateway/) – nonprofit grant and business financing guide
   - [Credit Reset Planner](https://coreymcdaniel.com/projects/credit-reset-planner/), [Research Finder](https://coreymcdaniel.com/projects/research-finder/), [Patient Evidence Navigator](https://coreymcdaniel.com/projects/patient-evidence-navigator/), [Vacation Property Matchmaker](https://coreymcdaniel.com/projects/vacation-matchmaker/), [Brothers Brands](https://coreymcdaniel.com/projects/brothers-brands/), [Clothing Design Studio](https://coreymcdaniel.com/projects/clothing/), [CMD Health Food Guide](https://coreymcdaniel.com/projects/cmd-health-food-guide/) and [The Healing Table](https://coreymcdaniel.com/projects/healing-table/)
 - **Utilities Toolkit** – [`/utilities/`](https://coreymcdaniel.com/utilities/): 124 privacy-first browser tools across 16 category workbenches (SEO, diagnostics, text, encoding, design, images, calculators and more). No account needed, and processing happens on your device.
-- **Works, quotes and legal** – `/works/`, `/quotes/`, `/legal/`.
+- **Works** – [Photo](https://coreymcdaniel.com/works/photo.html), [Money Desk](https://coreymcdaniel.com/works/money-desk.html) and [Solar Savings Intelligence](https://coreymcdaniel.com/works/solar.html).
+- **Quick Print** – printable invoice, list, work-order and expense forms at [`/quotes/`](https://coreymcdaniel.com/quotes/).
+- **Legal** – [`/legal/terms.html`](https://coreymcdaniel.com/legal/terms.html).
 
 ## Features
 
 - Static HTML, CSS and JavaScript with no build step and no server
 - Responsive, mobile-first layouts
-- SEO basics: per-page titles and descriptions, structured data, `sitemap.xml`, `robots.txt` and `llms.txt`
-- Web app manifest and a custom 404 page
+- SEO: per-page titles, descriptions, canonical URLs, Open Graph tags, JSON-LD structured data and complete sitemaps (`sitemap.xml`, `utilities/sitemap.xml`)
+- Crawler policy: `robots.txt` welcomes search engines and disallows AI-training and bulk-scraper bots; `ai.txt` and `noai` meta tags state the same. These are advisory: GitHub Pages cannot rate-limit or block bots, so a CDN/WAF (for example Cloudflare) in front of the domain would be needed to enforce it.
+- Security meta on every page: referrer policy and a conservative Content-Security-Policy (`base-uri`, `object-src`, `upgrade-insecure-requests`)
+- Shared footer nav and back links on every page, web app manifest and custom 404 pages
 - Client-side only: tools and calculators run in the browser
 
 ## Structure
@@ -31,10 +35,12 @@ index.html          entry terminal
 home/               main portfolio page
 projects/<name>/    project pages and demos
 utilities/          utilities toolkit (shipped minified)
-works/ quotes/      showcase pages
+works/              showcase pages (photo, money desk, solar)
+quotes/             Quick Print forms
 legal/              terms
-css/ js/ img/ media/ shared assets
-sitemap.xml robots.txt llms.txt site.webmanifest CNAME
+css/ js/ img/       shared assets (css/sitefoot.css = shared footer, js/a11y-*.js = accessibility helpers)
+404.html            site-wide not-found page
+sitemap.xml robots.txt ai.txt llms.txt site.webmanifest favicon.ico CNAME
 ```
 
 ## Run locally
