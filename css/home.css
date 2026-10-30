@@ -758,3 +758,20 @@ body.qp-is-fs .site-header { visibility: hidden; }
 /* region links: comfortable tap targets */
 #region-links { display:flex; flex-wrap:wrap; gap:.35rem .5rem; }
 #region-links a { display:inline-flex; align-items:center; min-height:28px; padding:2px 8px; border-radius:8px; }
+
+/* Compact sizing: smaller month card and denser project cards */
+.month-card { max-width: 480px; }
+.month-card.month-card--img { max-width: 400px; }
+@media (max-width: 600px) { .month-card.month-card--img { max-width: 78vw; } }
+.proj-grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr)); gap: 1.1rem; }
+.proj-card { padding: 8px; border-radius: 18px; }
+.proj-link::after { border-radius: 18px; }
+.proj-media { aspect-ratio: 16/9; border-radius: 12px; }
+.proj-media .proj-stage { transform: scale(.42); }
+.proj-card:hover .proj-stage { transform: scale(.48) translateY(-6px); }
+.proj-body { padding: .7rem .5rem .35rem; }
+.proj-body h3 { margin: .45rem 0 .3rem; font-size: 1.08rem; }
+.proj-body p { font-size: .88rem; line-height: 1.5; margin: 0 0 .75rem; }
+.proj-cta { padding-top: .6rem; }
+.status { font-size: .66rem; padding: .32rem .52rem; top: 8px; left: 8px; }
+@media (max-width: 600px) { .proj-grid { gap: .9rem; } .proj-media { aspect-ratio: 2/1; } }
