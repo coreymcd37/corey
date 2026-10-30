@@ -536,3 +536,6 @@ table.data th, table.data td {
 .prose a, main p a { text-decoration: underline; text-underline-offset: 3px; }
 .nav-links { min-width: 0; }
 @media (max-width: 1240px) and (min-width: 901px) { .nav-links a { padding: 7px 7px; font-size: 12.5px; } }
+/* Reserve space for the JS-rendered header and tool panel to avoid layout shift */
+body[data-shell]:not(:has(> header.nav)) > main { margin-top: 76px; }
+#tool-root:empty { min-height: 360px; }
