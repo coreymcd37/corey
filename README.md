@@ -64,6 +64,6 @@ By understanding a company's workflow and needs, then reviewing the systems in p
 
 ## License
 
-The source in this public repo is proprietary. Viewing the live site is welcome; copying, redistributing or republishing the code or the toolkit is not. Utilities JavaScript is shipped minified, and the readable source is kept private. See [`LICENSE`](./LICENSE).
+Portfolio Source License: learn from it, reuse small snippets with credit; no cloning or republishing. Utilities JavaScript is shipped minified, and the readable source is kept private. See [`LICENSE`](./LICENSE).
 
 © 2026 Corey McDaniel

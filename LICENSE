@@ -1,32 +1,30 @@
-Copyright (c) 2026 Corey McDaniel. All Rights Reserved.
+Copyright (c) 2026 Corey McDaniel. All rights reserved except as stated below.
 
-PROPRIETARY SOFTWARE LICENSE
+PORTFOLIO SOURCE LICENSE
 
-This repository and the "All the Best Internet Utilities" toolkit (including
-without limitation the contents of the /utilities/ directory, JavaScript,
-CSS, HTML structure, and related assets) are the proprietary intellectual
-property of Corey McDaniel.
+This repository is shared publicly so others can learn from it.
 
-PERMISSION GRANTED
-- You may view and use the live demo at the published URL(s) for personal,
-  non-commercial evaluation in a web browser.
-- You may browse this public repository for portfolio demonstration purposes.
+YOU MAY
+- Read and study the source code to learn how it works.
+- Copy and adapt small portions of code (for example, individual functions,
+  components, or styling techniques) into your own projects, including
+  commercial projects, provided you credit "Corey McDaniel
+  (coreymcdaniel.com)" in a code comment or project credits.
 
-PERMISSION DENIED
-- You may NOT copy, reproduce, redistribute, republish, sublicense, sell,
-  reverse engineer for redistribution, or create derivative works based on
-  the utilities toolkit source or obfuscated bundles for any purpose other
-  than personal evaluation of the live demo.
-- You may NOT host, mirror, or republish the toolkit (or a substantial
-  portion of it) on another website, CDN, package registry, or repository.
-- You may NOT remove or obscure copyright, proprietary, or attribution notices.
+YOU MAY NOT
+- Copy, mirror, republish, or redistribute this website, the
+  "All the Best Internet Utilities" toolkit, or any substantial portion of
+  either, on another site, repository, CDN, or package registry.
+- Sell, sublicense, or present this work or any substantial portion of it
+  as your own.
+- Use the name Corey McDaniel, the CMD brand, logos, written content,
+  illustrations, or photographs without written permission.
+- Remove or obscure copyright or attribution notices.
 
 NO WARRANTY
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL
-THE AUTHOR BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY ARISING
-FROM USE OF THE SOFTWARE OR THE LIVE DEMO.
+This work is provided "as is," without warranty of any kind, express or
+implied. In no event shall the author be liable for any claim, damages, or
+other liability arising from its use.
 
-For licensing inquiries: contact Corey McDaniel via coreymcdaniel.com
-(domain forthcoming) or the GitHub profile associated with this repository.
+Questions or permission requests: contact Corey McDaniel via
+coreymcdaniel.com or the GitHub profile associated with this repository.

@@ -7,13 +7,10 @@ Privacy-first standalone toolkit of browser utilities by **Corey McDaniel**.
 - GitHub Pages: https://coreymcdaniel.com/utilities/
 - Portfolio home: https://coreymcdaniel.com/
 
-## NOTICE — Demo only · All rights reserved
+## License
 
-© 2026 Corey McDaniel. All rights reserved.
-
-You may use the live demo in a browser. You may **not** copy, redistribute, republish,
-or host this toolkit (or its source / obfuscated bundles) elsewhere. See the root
-[`LICENSE`](../LICENSE) for the full proprietary terms.
+© 2026 Corey McDaniel. Portfolio Source License: learn from it, reuse small snippets with credit; no cloning or republishing of the toolkit. See the root
+[`LICENSE`](../LICENSE).
 
 Shipped JavaScript in this folder is obfuscated or minified for casual-theft resistance.
 Client-side code cannot be made truly unstealable.
