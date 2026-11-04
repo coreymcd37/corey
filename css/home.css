@@ -410,6 +410,9 @@ input, textarea, select {
   width: 100%; background: #070616; border: 1px solid var(--border); color: var(--fg);
   border-radius: 12px; padding: 10px 12px; font: inherit;
 }
+.oss-block { padding: var(--section-y) 0 0; }
+.oss-line { color: var(--soft); margin: 0; line-height: 1.6; font-size: clamp(1rem, 2vw, 1.125rem); }
+.oss-line a { text-decoration: underline; text-underline-offset: 3px; }
 .note-block { padding: var(--section-y) 0 var(--section-y-end); }
 .site-footer { border-top: 1px solid rgba(168,85,247,.2); padding: var(--section-y-end) 0 48px; color: var(--dim); font-size: var(--text-sm); }
 .foot-grid { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 18px; }
