@@ -401,6 +401,34 @@ h2.grad, #tools > h2, .journey > h2, .works h2 {
 .figure { height: 140px; }
 .howto { color: var(--dim); font-size: var(--text-sm); margin: 8px 0 16px; line-height: 1.6; }
 
+.month-blessings { margin: 14px 0 8px; max-width: 42rem; }
+.month-blessings-list {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; gap: 10px;
+}
+.month-blessings-list li {
+  position: relative;
+  padding-left: 1.55rem;
+  color: var(--soft);
+  font-size: var(--text-sm);
+  line-height: 1.55;
+  letter-spacing: 0.01em;
+}
+.month-blessings-list li::before {
+  content: "";
+  position: absolute; left: 0; top: 0.45em;
+  width: 0.55rem; height: 0.55rem; border-radius: 999px;
+  background: linear-gradient(135deg, #c084fc, #7dd3fc);
+  box-shadow: 0 0 10px rgba(192,132,252,.55), 0 0 18px rgba(125,211,252,.25);
+}
+.month-blessings-close {
+  margin: 16px 0 8px;
+  color: var(--dim);
+  font-size: var(--text-sm);
+  line-height: 1.65;
+  font-style: italic;
+}
+
 .panel {
   background: color-mix(in srgb, var(--card) 88%, transparent);
   border: 1px solid var(--border); border-radius: var(--radius); padding: 18px;
