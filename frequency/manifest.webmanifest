@@ -1,8 +1,8 @@
 {
   "id": "/frequency/",
-  "name": "Raw Hz Frequency Generator",
-  "short_name": "Raw Hz",
-  "description": "Corey’s Creative Conscious Creation and Cure for Cognitive Clarity: Solfeggio tones, brainwave binaural beats, isochronic pulses and a custom Hz dial. Runs entirely on your device, even offline.",
+  "name": "CMD Natural Frequency Generator",
+  "short_name": "CMD Natural",
+  "description": "CMD Natural Frequency Generator: Solfeggio tones, brainwave binaural beats, isochronic pulses and a custom Hz dial. Runs entirely on your device, even offline.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
