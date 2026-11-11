@@ -1,0 +1,21 @@
+{
+  "id": "/frequency/",
+  "name": "Raw Hz Frequency Generator",
+  "short_name": "Raw Hz",
+  "description": "Corey’s Creative Conscious Creation and Cure for Cognitive Clarity: Solfeggio tones, brainwave binaural beats, isochronic pulses and a custom Hz dial. Runs entirely on your device, even offline.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#1a0f0a",
+  "theme_color": "#1a0f0a",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["music", "health", "lifestyle"],
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

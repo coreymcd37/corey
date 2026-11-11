@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob: data:; font-src 'self'; connect-src 'self' blob: data:; manifest-src 'self'; worker-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self';">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1a0f0a">
+<meta name="description" content="Raw Hz frequencies and Solfeggio tones, alpha, beta, delta, theta brainwave sounds for cognitive clarity. Custom frequency generator with pure tones, binaural beats, and isochronic options. Create and play healing sounds easily in your browser.">
+<meta name="keywords" content="solfeggio frequencies, brainwave entrainment, alpha theta delta, Hz generator, binaural beats, isochronic tones, 528 Hz, 432 Hz, frequency healing, cognitive clarity, pure tone generator">
+<meta name="author" content="Corey McDaniel">
+<meta name="robots" content="index, follow">
+<title>Corey’s Creative Conscious Creation and Cure for Cognitive Clarity | Raw Hz Frequency Generator</title>
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Raw Hz">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Corey’s Creative Conscious Creation and Cure for Cognitive Clarity">
+<meta property="og:description" content="Raw Hz frequencies and Solfeggio tones, alpha, beta, delta, theta brainwave sounds. Custom frequency creation made simple. Pure tones, binaural, and isochronic for focus and clarity.">
+<meta property="og:site_name" content="Corey’s Frequency Generator">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Corey’s Creative Conscious Creation and Cure for Cognitive Clarity">
+<meta name="twitter:description" content="Raw Hz frequencies, Solfeggio, alpha beta delta theta tones. Custom sound generator for cognitive clarity. Play pure tones instantly in your browser.">
+
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Corey’s Creative Conscious Creation and Cure for Cognitive Clarity",
+  "description": "Browser-based pure frequency sound generator featuring Solfeggio tones, alpha beta delta theta brainwave entrainment, binaural beats, isochronic tones, and custom Hz dial for cognitive clarity.",
+  "applicationCategory": "MultimediaApplication",
+  "operatingSystem": "Any (Web)",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Corey McDaniel"
+  }
+}
+</script>
+<noscript><style>main{visibility:visible!important}</style></noscript>
+<style>
+html:not(.ready) main{visibility:hidden} /* hidden until the page has built itself, so nothing jumps while loading */
+:root { --bg:#1a0f0a; --surface:#2a1810; --text:#f5e6d3; --muted:#c4a882; --primary:#ff6b35; --accent:#ffd166; --border:#4a3020; --shadow:0 4px 20px rgba(255,107,53,.15); --radius:14px; --font:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; --glow:#ff8c42; }
+:root[data-theme="light"] { --bg:#fff5eb; --surface:#fffaf5; --text:#2c1810; --muted:#6b4f3a; --primary:#e85d04; --accent:#f4a261; --border:#e8d5c4; --shadow:0 4px 16px rgba(232,93,4,.1); --glow:#ff9f1c; }
+*{box-sizing:border-box} html,body{margin:0;padding:0;font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.55;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 20% 30%,rgba(255,107,53,.12) 0%,transparent 50%),radial-gradient(ellipse at 80% 70%,rgba(255,209,102,.08) 0%,transparent 50%);pointer-events:none;z-index:0}
+.light-strings{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+.light-string{position:absolute;height:2px;background:linear-gradient(90deg,transparent,var(--glow),transparent);opacity:.6;filter:blur(1px);animation:flicker 3s ease-in-out infinite;border-radius:2px}
+@keyframes flicker{0%,100%{opacity:.3;transform:scaleX(1)}50%{opacity:.8;transform:scaleX(1.05)}}
+header{background:rgba(42,24,16,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:1rem 1.25rem;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100;box-shadow:var(--shadow)}
+h1{margin:0;font-size:clamp(1.2rem,4vw,1.6rem);font-weight:700;background:linear-gradient(135deg,var(--primary),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.controls-top{display:flex;gap:.5rem}
+button,.btn{background:linear-gradient(135deg,var(--primary),#ff8c42);color:#fff;border:none;padding:.55rem .9rem;border-radius:8px;cursor:pointer;font-size:.92rem;font-weight:600;min-height:44px;transition:all .2s;box-shadow:0 2px 12px rgba(255,107,53,.3)}
+button:hover{transform:translateY(-1px);box-shadow:0 4px 20px rgba(255,107,53,.45)}
+button.secondary{background:transparent;color:var(--accent);border:1px solid var(--accent);box-shadow:none}
+button.icon{background:transparent;color:var(--text);border:1px solid var(--border);padding:.4rem .55rem;box-shadow:none}
+main{max-width:980px;margin:0 auto;padding:1.1rem;position:relative;z-index:2}
+.tabs{display:flex;gap:.25rem;margin-bottom:1.2rem;overflow-x:auto}
+.tabs button{flex:1;min-width:90px;background:var(--surface);color:var(--text);border:1px solid var(--border);box-shadow:none}
+.tabs button.active{background:linear-gradient(135deg,var(--primary),#ff8c42);color:#fff;border-color:var(--primary)}
+.panel{display:none}.panel.active{display:block}
+.card{background:var(--surface);border-radius:var(--radius);padding:1.15rem;margin-bottom:1rem;box-shadow:var(--shadow);border:1px solid var(--border);position:relative}
+.card::after{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--glow),transparent);opacity:.5}
+.quick-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.75rem;margin-bottom:1rem}
+.quick-card{border:1px solid var(--border);border-radius:10px;padding:.9rem;background:linear-gradient(145deg,var(--surface),rgba(255,107,53,.08));cursor:pointer;transition:all .2s;position:relative;overflow:hidden}
+.quick-card:hover{border-color:var(--primary);transform:translateY(-2px);box-shadow:0 6px 20px rgba(255,107,53,.2)}
+.quick-card strong{display:block;margin-bottom:.25rem;color:var(--accent)}
+.preset-list{display:grid;gap:.6rem}
+.preset-item{border:1px solid var(--border);border-radius:8px;overflow:hidden;background:var(--surface)}
+.preset-header{padding:.7rem .9rem;display:flex;justify-content:space-between;align-items:center;cursor:pointer;background:linear-gradient(90deg,transparent,rgba(255,209,102,.06))}
+.preset-body{padding:0 .9rem .9rem;display:none;font-size:.92rem}
+.preset-body.open{display:block}
+.freq-display{font-size:2.4rem;font-weight:800;text-align:center;margin:.4rem 0;font-variant-numeric:tabular-nums;color:var(--accent);text-shadow:0 0 20px rgba(255,209,102,.4)}
+input[type=range]{width:100%;height:8px;accent-color:var(--primary)}
+.control-row{display:flex;align-items:center;gap:.7rem;margin:.65rem 0}
+.control-row label{min-width:130px}
+input[type=number],select{padding:.45rem;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:1rem}
+.visualizer{width:100%;height:70px;background:#0a0503;border-radius:8px;margin:.8rem 0;border:1px solid var(--border)}
+.status{text-align:center;font-weight:600;margin:.4rem 0;color:var(--accent);text-shadow:0 0 10px rgba(255,209,102,.5)}
+.disclaimer{font-size:.82rem;color:var(--muted);margin-top:1.5rem;padding:1rem;border-top:1px solid var(--border)}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--primary);color:#fff;padding:.7rem 1.2rem;border-radius:8px;box-shadow:0 4px 20px rgba(255,107,53,.4);z-index:1000;opacity:0;transition:opacity .3s;pointer-events:none}
+.toast.show{opacity:1}
+@media(max-width:600px){.control-row{flex-direction:column;align-items:stretch}.control-row label{min-width:auto}}
+/* ---- v1.0.0 fixes + player ---- */
+:root[data-theme="light"] { --accent:#b45309; }
+:root[data-theme="light"] header{background:rgba(255,250,245,.88)}
+.light-string{transform:rotate(var(--r,0deg))}
+@keyframes flicker{0%,100%{opacity:.3;transform:rotate(var(--r,0deg)) scaleX(1)}50%{opacity:.8;transform:rotate(var(--r,0deg)) scaleX(1.05)}}
+button,.btn{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+[hidden]{display:none!important}
+h2{margin:.1rem 0 .7rem;font-size:1.15rem}
+button.quick-card{display:block;width:100%;min-height:0;border:1px solid var(--border);padding:.9rem;background:linear-gradient(145deg,var(--surface),rgba(255,107,53,.08));font:inherit;font-weight:400;color:var(--text);text-align:left;box-shadow:none;border-radius:10px}
+button.quick-card:hover{border-color:var(--primary);transform:translateY(-2px);box-shadow:0 6px 20px rgba(255,107,53,.2)}
+button.quick-card strong{display:block;margin-bottom:.25rem;color:var(--accent)}
+.group-title{margin:1rem 0 .4rem;font-size:.95rem;color:var(--accent);text-transform:uppercase;letter-spacing:.06em}
+.group-title:first-of-type{margin-top:.2rem}
+.chips{display:flex;flex-wrap:wrap;gap:.45rem}
+button.chip{background:var(--surface);color:var(--text);border:1px solid var(--border);box-shadow:none;border-radius:999px;padding:.4rem .85rem;min-height:44px;font-weight:600;font-size:.88rem}
+button.chip small{display:block;font-weight:400;color:var(--muted);font-size:.72rem;line-height:1.1}
+button.chip[aria-pressed="true"],button.chip.on{background:linear-gradient(135deg,var(--primary),#ff8c42);color:#fff;border-color:var(--primary)}
+button.chip[aria-pressed="true"] small{color:#fff}
+.detail-actions{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.6rem}
+.detail-name{font-size:1.1rem;font-weight:700;color:var(--accent)}
+details.more summary{cursor:pointer;color:var(--muted);margin-top:.5rem;min-height:32px}
+details.more p{font-size:.9rem}
+.player-card{text-align:center}
+.ring-wrap{position:relative;width:min(300px,78vw);aspect-ratio:1;margin:.2rem auto .4rem}
+.ring{width:100%;height:100%;transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:9;stroke-linecap:round}
+.ring .ring-bg{stroke:var(--border)}
+.ring #ringSeg{stroke:var(--primary);filter:drop-shadow(0 0 6px rgba(255,107,53,.5))}
+.ring #ringAll{stroke:var(--accent);stroke-width:6}
+.ring-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.1rem;padding:0 18%}
+.ring-center .freq-display{font-size:clamp(1.5rem,7vw,2.1rem);margin:0;line-height:1.1}
+.ring-sub{font-size:.78rem;color:var(--muted)}
+.ring-time{font-size:1.5rem;font-weight:700;font-variant-numeric:tabular-nums}
+.ring-total{font-size:.78rem;color:var(--muted)}
+.nowplaying{display:grid;gap:.15rem;margin:.2rem 0 .4rem;font-size:.95rem}
+.nowplaying .np-label{color:var(--muted);font-size:.72rem;text-transform:uppercase;letter-spacing:.07em}
+.transport{display:flex;justify-content:center;align-items:center;gap:.8rem;margin:.6rem 0 .2rem}
+button.round{border-radius:50%;width:76px;height:76px;padding:0;font-size:1.05rem;display:inline-flex;align-items:center;justify-content:center;flex-direction:column;line-height:1.1}
+button.round.big{width:84px;height:84px}
+button.round.small{width:52px;height:52px;min-height:52px;font-size:1rem}
+button.round{gap:.25rem}
+button.round .ico{font-size:1.15rem;line-height:1;display:block}
+button.round.small .ico{font-size:1rem}
+button.round .lbl{font-size:.7rem;font-weight:600}
+.dial{margin:.2rem 0 .6rem;text-align:center}
+#freqSlider{height:36px;margin:.2rem 0;touch-action:pan-y}
+.step-row{display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem;margin:.3rem 0}
+.step-row button{min-width:58px;padding:.4rem .5rem;font-variant-numeric:tabular-nums}
+.seg{display:flex;border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.seg button{flex:1;border-radius:0;box-shadow:none;background:var(--surface);color:var(--text);min-height:48px;transform:none}
+.seg button+button{border-left:1px solid var(--border)}
+.seg button[aria-checked="true"]{background:linear-gradient(135deg,var(--primary),#ff8c42);color:#fff}
+.hint{font-size:.85rem;color:var(--muted);margin:.35rem 0 0}
+.hint.warn{color:var(--accent)}
+.control-row input[type=number]{min-height:44px;min-width:0;width:100px}
+.control-row select{min-height:44px}
+.control-row input[type=checkbox]{width:22px;height:22px;vertical-align:middle}
+.control-row input[type=range]{min-height:36px;touch-action:pan-y;flex:1}
+.vol-val{min-width:3ch;text-align:right;font-variant-numeric:tabular-nums}
+.row-buttons{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin-top:.8rem}
+.q-item,.fav-item{display:flex;justify-content:space-between;align-items:center;gap:.5rem;padding:.55rem 0;border-bottom:1px solid var(--border);flex-wrap:wrap}
+.q-item .q-title{flex:1;min-width:150px}
+.q-item .q-title small{display:block;color:var(--muted)}
+.q-item.current{background:linear-gradient(90deg,rgba(255,107,53,.18),transparent);border-radius:8px}
+.q-ctrl{display:flex;gap:.3rem;align-items:center}
+.q-ctrl input{width:70px;min-height:44px}
+.q-ctrl button{min-width:44px;padding:.3rem .5rem}
+.fav-actions{display:flex;gap:.4rem;flex-shrink:0}
+.hist-item{padding:.4rem 0;border-bottom:1px solid var(--border);font-size:.9rem}
+.toast{max-width:90vw;text-align:center}
+.install-card{position:fixed;left:12px;right:12px;bottom:12px;max-width:560px;margin:0 auto;z-index:1050;border-color:var(--primary);box-shadow:0 8px 32px rgba(0,0,0,.55)} /* floats above the page so it never pushes content around */
+.install-card h2{margin:0 0 .3rem;font-size:1rem}
+.install-card p{margin:.2rem 0 .6rem;font-size:.92rem}
+main{padding-bottom:6rem}
+.update-bar{position:fixed;left:50%;transform:translateX(-50%);bottom:12px;z-index:1100;background:var(--surface);color:var(--text);border:1px solid var(--primary);border-radius:12px;padding:.5rem .6rem .5rem .9rem;box-shadow:0 6px 24px rgba(0,0,0,.45);display:flex;align-items:center;gap:.6rem;max-width:92vw}
+.update-bar[hidden]{display:none}
+.visualizer{height:84px}
+@media(max-width:600px){.tabs button{min-width:0;padding:.55rem .3rem;font-size:.8rem}.control-row input[type=number]{width:100%}}
+@media(prefers-reduced-motion:reduce){.light-string{animation:none}*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="light-strings" id="lightStrings" aria-hidden="true"></div>
+<header>
+  <h1 data-i18n="title">Corey’s Creative Conscious Creation</h1>
+  <div class="controls-top">
+    <button id="langToggle" class="icon" type="button" aria-label="EN — switch language / cambiar idioma">EN</button>
+    <button id="themeToggle" class="icon" type="button" aria-label="Toggle light / dark theme"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></button>
+  </div>
+</header>
+<audio id="player" playsinline preload="auto"></audio>
+<main>
+  <div class="card install-card" id="installCard" hidden>
+    <h2 data-i18n="installTitle">Install this app</h2>
+    <p id="installTextAndroid" data-i18n="installAndroid">Add Raw Hz to your home screen. It opens full screen, works offline, and keeps everything on your phone.</p>
+    <p id="installTextIOS" data-i18n="installIOS" hidden>On iPhone or iPad: tap the Share button in Safari, then “Add to Home Screen”. It then opens full screen and works offline.</p>
+    <div class="row-buttons" style="justify-content:flex-start">
+      <button type="button" id="installBtn" data-i18n="installBtn" hidden>Install app</button>
+      <button type="button" id="installLater" class="secondary" data-i18n="notNow">Not now</button>
+    </div>
+  </div>
+  <noscript><div class="card">This app needs JavaScript to generate sound.</div></noscript>
+  <div class="tabs" role="tablist" aria-label="Sections">
+    <button type="button" role="tab" id="tab-presets" aria-controls="presets" aria-selected="true" class="active" data-tab="presets" data-i18n="tabPresets">Presets</button>
+    <button type="button" role="tab" id="tab-manual" aria-controls="manual" aria-selected="false" data-tab="manual" data-i18n="tabManual">Manual</button>
+    <button type="button" role="tab" id="tab-queue" aria-controls="queue" aria-selected="false" data-tab="queue" data-i18n="tabQueue">Queue</button>
+    <button type="button" role="tab" id="tab-favorites" aria-controls="favorites" aria-selected="false" data-tab="favorites" data-i18n="tabFav">Favorites</button>
+    <button type="button" role="tab" id="tab-history" aria-controls="history" aria-selected="false" data-tab="history" data-i18n="tabHistory">History</button>
+  </div>
+
+  <div id="presets" class="panel active" role="tabpanel" aria-labelledby="tab-presets">
+    <div class="card">
+      <h2 data-i18n="quickStart">Quick Start — Most Used Settings</h2>
+      <div class="quick-grid" id="quickGrid"></div>
+    </div>
+    <div class="card" id="presetDetail" aria-live="polite">
+      <h2 data-i18n="selectedPreset">Selected preset</h2>
+      <p class="hint" id="presetHint" data-i18n="pickPreset">Tap a preset below to read about it, then play it or add it to your queue.</p>
+      <div id="presetInfo" hidden>
+        <div class="detail-name" id="pdName"></div>
+        <p id="pdShort"></p>
+        <details class="more"><summary data-i18n="moreInfo">More about this tone</summary><p id="pdLong"></p></details>
+        <div class="detail-actions">
+          <button type="button" id="pdPlay" data-i18n="playNow">Play now</button>
+          <button type="button" id="pdQueue" class="secondary" data-i18n="addQueue">Add to queue</button>
+          <button type="button" id="pdLoad" class="secondary" data-i18n="openPlayer">Open in player</button>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <h2 data-i18n="solfeggio">Solfeggio Frequencies</h2>
+      <div id="solfeggioList" class="chips"></div>
+    </div>
+    <div class="card">
+      <h2 data-i18n="brainwaves">Brainwave Entrainment</h2>
+      <p data-i18n="brainNote">Low frequencies are best experienced as binaural beats (headphones recommended) or isochronic tones.</p>
+      <div id="brainList" class="chips"></div>
+    </div>
+    <div class="card">
+      <h2 data-i18n="other">Other Popular Frequencies</h2>
+      <div id="otherList" class="chips"></div>
+    </div>
+  </div>
+
+  <div id="manual" class="panel" role="tabpanel" aria-labelledby="tab-manual">
+    <div class="card player-card">
+      <div class="ring-wrap">
+        <svg class="ring" viewBox="0 0 240 240" aria-hidden="true">
+          <circle class="ring-bg" cx="120" cy="120" r="108"/>
+          <circle id="ringSeg" cx="120" cy="120" r="108"/>
+          <circle class="ring-bg" cx="120" cy="120" r="92" style="stroke-width:6"/>
+          <circle id="ringAll" cx="120" cy="120" r="92"/>
+        </svg>
+        <div class="ring-center">
+          <div class="freq-display" id="freqDisplay">440 Hz</div>
+          <div class="ring-sub" id="ringSub"></div>
+          <div class="ring-time" id="segTime">--:--</div>
+          <div class="ring-total" id="totalTime"></div>
+        </div>
+      </div>
+      <div class="nowplaying" id="nowPlaying" aria-live="polite">
+        <div><span class="np-label" data-i18n="nowPlaying">Now playing</span><div id="npNow">—</div></div>
+        <div><span class="np-label" data-i18n="upNext">Up next</span><div id="npNext">—</div></div>
+      </div>
+      <canvas id="visualizer" class="visualizer" width="800" height="84" aria-hidden="true"></canvas>
+      <div class="status" id="status" role="status" aria-live="polite">Ready</div>
+      <div class="transport">
+        <button type="button" id="prevBtn" class="round small secondary" aria-label="Previous"><span class="ico" aria-hidden="true">⏮&#xFE0E;</span></button>
+        <button type="button" id="playBtn" class="round big"><span class="ico" aria-hidden="true">▶</span><span class="lbl" data-i18n="play">Play</span></button>
+        <button type="button" id="stopBtn" class="round big secondary"><span class="ico" aria-hidden="true">■</span><span class="lbl" data-i18n="stop">Stop</span></button>
+        <button type="button" id="nextBtn" class="round small secondary" aria-label="Next"><span class="ico" aria-hidden="true">⏭&#xFE0E;</span></button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 data-i18n="tone">Tone</h2>
+      <div id="pureControls">
+      <div class="dial">
+        <input type="range" id="freqSlider" min="0" max="1000" step="1" value="0" aria-label="Frequency dial (logarithmic, 1 to 20,000 Hz)">
+        <div class="step-row" role="group" aria-label="Fine frequency steps">
+          <button type="button" class="secondary" data-step="-10">−10</button>
+          <button type="button" class="secondary" data-step="-1">−1</button>
+          <button type="button" class="secondary" data-step="-0.1">−0.1</button>
+          <button type="button" class="secondary" data-step="0.1">+0.1</button>
+          <button type="button" class="secondary" data-step="1">+1</button>
+          <button type="button" class="secondary" data-step="10">+10</button>
+        </div>
+      </div>
+      <div class="control-row"><label for="freqNumber" data-i18n="exactHz">Exact Hz</label><input type="number" id="freqNumber" inputmode="decimal" min="1" max="20000" step="0.01" value="440"></div>
+      </div>
+      <div class="control-row"><span id="modeLabel" data-i18n="mode">Mode</span>
+        <div class="seg" role="radiogroup" aria-labelledby="modeLabel" id="modeSeg" style="flex:1">
+          <button type="button" role="radio" data-mode="pure" aria-checked="true" data-i18n="modePure">Pure Tone</button>
+          <button type="button" role="radio" data-mode="binaural" aria-checked="false" data-i18n="modeBin">Binaural</button>
+          <button type="button" role="radio" data-mode="isochronic" aria-checked="false" data-i18n="modeIso">Isochronic</button>
+        </div>
+      </div>
+      <input type="hidden" id="mode" value="pure">
+      <p class="hint warn" id="modeHint" hidden></p>
+      <div id="binauralControls" hidden>
+        <div class="control-row"><label for="carrier" data-i18n="carrier">Carrier (Hz)</label><input type="number" id="carrier" inputmode="decimal" min="40" max="500" value="200" step="1"></div>
+        <div class="control-row"><label for="beat" data-i18n="beat">Beat (Hz)</label><input type="number" id="beat" inputmode="decimal" min="0.5" max="40" value="10" step="0.1"></div>
+      </div>
+      <div class="control-row"><label for="waveform" data-i18n="waveform">Waveform</label><select id="waveform"><option value="sine">Sine</option><option value="square">Square</option><option value="sawtooth">Sawtooth</option><option value="triangle">Triangle</option></select></div>
+      <div class="control-row"><label for="volume" data-i18n="volume">Volume</label><input type="range" id="volume" min="0" max="1" step="0.01" value="0.3"><span class="vol-val" id="volVal">30%</span></div>
+      <p class="hint" id="volHint" data-i18n="volHint">Start low and raise slowly. Comfortable volume only.</p>
+      <div class="control-row" style="align-items:flex-start"><span data-i18n="duration">Duration (min)</span>
+        <div style="flex:1"><div class="chips" id="durChips" role="group" aria-label="Duration presets"></div>
+        <div class="control-row" style="margin-bottom:0"><label for="duration" data-i18n="customMin">Custom (min)</label><input type="number" id="duration" inputmode="numeric" min="1" max="240" value="15" step="1"></div></div>
+      </div>
+      <div class="row-buttons">
+        <button type="button" id="addQueueBtn" class="secondary" data-i18n="addQueue">Add to queue</button>
+        <button type="button" id="favBtn" class="secondary" data-i18n="saveFav">★ Favorite</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 data-i18n="sessionOpts">Session options</h2>
+      <div class="control-row"><label for="fade" data-i18n="fade">Fade in/out (sec)</label><input type="number" id="fade" inputmode="decimal" min="0" max="10" value="2" step="0.5"></div>
+      <div class="control-row"><label for="totalMin" data-i18n="totalTimer">Total session timer (min, 0 = off)</label><input type="number" id="totalMin" inputmode="numeric" min="0" max="240" value="0" step="1"></div>
+      <div class="control-row"><label><input type="checkbox" id="repeat"> <span data-i18n="repeat">Repeat the queue until the total timer ends</span></label></div>
+      <div class="control-row"><label><input type="checkbox" id="keepAwake"> <span data-i18n="keepAwake">Keep screen on (optional — audio also plays with the screen off)</span></label></div>
+      <p class="hint" data-i18n="bgHint">Sound is rendered as audio, so it keeps playing with the screen locked and on lock-screen controls.</p>
+    </div>
+  </div>
+
+  <div id="queue" class="panel" role="tabpanel" aria-labelledby="tab-queue"><div class="card">
+    <h2 data-i18n="queueTitle">Sequence queue</h2>
+    <p class="hint" data-i18n="queueHint">Each tone plays for its own time, then fades smoothly into the next. Add tones from the Presets or Manual tabs.</p>
+    <div id="queueList"></div>
+    <p id="queueEmpty" data-i18n="queueEmpty">Your queue is empty.</p>
+    <p class="status" id="queueSummary"></p>
+    <div class="row-buttons">
+      <button type="button" id="playQueueBtn" data-i18n="playQueue">Play queue</button>
+      <button type="button" id="clearQueueBtn" class="secondary" data-i18n="clearQueue">Clear queue</button>
+    </div>
+  </div></div>
+
+  <div id="favorites" class="panel" role="tabpanel" aria-labelledby="tab-favorites"><div class="card"><h2 data-i18n="favorites">Favorites</h2><div id="favList"></div><p id="favEmpty" data-i18n="noFav">No favorites yet.</p></div></div>
+  <div id="history" class="panel" role="tabpanel" aria-labelledby="tab-history"><div class="card"><h2 data-i18n="history">Session History</h2><div id="histList"></div><p id="histEmpty" data-i18n="noHist">No sessions yet.</p><button type="button" id="clearHist" class="secondary" data-i18n="clearHist">Clear History</button></div></div>
+
+  <div class="disclaimer">
+    <strong data-i18n="important">Important</strong>
+    <p data-i18n="disclaimer">Live synthesis only (Web Audio API). For relaxation and personal exploration. Not medical treatment. Documented stories and studies are included so you can evaluate them yourself. Evidence is limited or mixed for most specific claims. Comfortable volume only. Headphones for binaural. Stop if uncomfortable.</p>
+  </div>
+</main>
+<div class="update-bar" id="updateBar" role="alert" hidden><span data-i18n="updateAvail">Update available</span> <button type="button" id="updateBtn" data-i18n="updateBtn">Tap to refresh</button></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+'use strict';
+const translations={
+en:{title:"Corey’s Creative Conscious Creation",tabPresets:"Presets",tabManual:"Manual",tabFav:"Favorites",tabHistory:"History",quickStart:"Quick Start — Most Used Settings",solfeggio:"Solfeggio Frequencies",brainwaves:"Brainwave Entrainment",brainNote:"Low frequencies are best experienced as binaural beats (headphones recommended) or isochronic tones.",other:"Other Popular Frequencies",exactHz:"Exact Hz",waveform:"Waveform",mode:"Mode",carrier:"Carrier (Hz)",beat:"Beat (Hz)",volume:"Volume",duration:"Duration (min)",switchMid:"Switch frequency at halfway",secondFreq:"Second Hz",secondHint:"For binaural and isochronic modes this changes the carrier.",fade:"Fade in/out (sec)",play:"Play",stop:"Stop",saveFav:"★ Favorite",favorites:"Favorites",noFav:"No favorites yet.",history:"Session History",noHist:"No sessions yet.",clearHist:"Clear History",important:"Important",disclaimer:"Tones are generated live in your browser (no recordings or downloads). For relaxation and personal exploration. Not medical treatment. Documented stories and studies are included so you can evaluate them yourself. Evidence is limited or mixed for most specific claims. Comfortable volume only. Headphones for binaural. Stop if uncomfortable.",tabQueue:"Queue",selectedPreset:"Selected preset",pickPreset:"Tap a preset below to read about it, then play it or add it to your queue.",moreInfo:"More about this tone",playNow:"Play now",addQueue:"Add to queue",openPlayer:"Open in player",tone:"Tone",modePure:"Pure Tone",modeBin:"Binaural",modeIso:"Isochronic",hintBin:"🎧 Binaural beats need stereo headphones — each ear gets a slightly different tone.",hintIso:"Isochronic tones pulse on and off; headphones are optional.",hintPureLow:"Below about 60 Hz most phone and laptop speakers are silent — use headphones or a binaural beat.",volHint:"Start low and raise slowly. Comfortable volume only.",customMin:"Custom (min)",sessionOpts:"Session options",totalTimer:"Total session timer (min, 0 = off)",repeat:"Repeat the queue until the total timer ends",keepAwake:"Keep screen on (optional — audio also plays with the screen off)",bgHint:"Sound is rendered as audio, so it keeps playing with the screen locked and on lock-screen controls.",queueTitle:"Sequence queue",queueHint:"Each tone plays for its own time, then fades smoothly into the next. Add tones from the Presets or Manual tabs.",queueEmpty:"Your queue is empty.",playQueue:"Play queue",clearQueue:"Clear queue",nowPlaying:"Now playing",upNext:"Up next",pause:"Pause",resume:"Resume",queued:"Added to queue",queueNeeds:"Add at least one tone to the queue first.",endOfSession:"End of session",left:"left",total:"total",tones:"tones",min:"min",session:"session",paused:"Paused",playFail:"Could not start audio. Tap Play again.",building:"Preparing audio…",modeWord:"mode",queueWord:"queue",segLabel:"This tone",allLabel:"Session",moveUp:"Move up",moveDown:"Move down",minutesLabel:"Minutes",first:"first",back:"back",installTitle:"Install this app",installAndroid:"Add Raw Hz to your home screen. It opens full screen, works offline, and keeps everything on your phone.",installIOS:"On iPhone or iPad: tap the Share button in Safari, then “Add to Home Screen”. It then opens full screen and works offline.",installBtn:"Install app",notNow:"Not now",updateAvail:"Update available",updateBtn:"Tap to refresh",offlineReady:"Ready to use offline",playThis:"Play this",load:"Load",remove:"Remove",ready:"Ready",stopped:"Stopped",playingBtn:"Playing…",playing:"Playing",switchedTo:"Switched to",addedFav:"Added to favorites",clearConfirm:"Clear history?",noAudio:"Web Audio is not supported in this browser.",carrierWord:"carrier",beatWord:"beat",completed:"completed",stoppedEarly:"stopped early",min:"min",hzBeat:"Hz beat"},
+es:{title:"Creación Consciente Creativa de Corey",tabPresets:"Preajustes",tabManual:"Manual",tabFav:"Favoritos",tabHistory:"Historial",quickStart:"Inicio rápido — Ajustes más usados",solfeggio:"Frecuencias Solfeggio",brainwaves:"Ondas Cerebrales",brainNote:"Las frecuencias bajas se disfrutan mejor como pulsos binaurales (se recomiendan auriculares) o tonos isocrónicos.",other:"Otras Frecuencias",exactHz:"Hz Exactos",waveform:"Forma de onda",mode:"Modo",carrier:"Portadora (Hz)",beat:"Latido (Hz)",volume:"Volumen",duration:"Duración (min)",switchMid:"Cambiar frecuencia a mitad",secondFreq:"Segundo Hz",secondHint:"En modo binaural e isocrónico esto cambia la portadora.",fade:"Fundido (seg)",play:"Reproducir",stop:"Detener",saveFav:"★ Favorito",favorites:"Favoritos",noFav:"Aún no hay favoritos.",history:"Historial",noHist:"Aún no hay sesiones.",clearHist:"Borrar Historial",important:"Importante",disclaimer:"Los tonos se generan en vivo en su navegador (sin grabaciones ni descargas). Para relajación y exploración personal. No es un tratamiento médico. Se incluyen historias y estudios documentados para que usted mismo los evalúe. La evidencia es limitada o mixta para la mayoría de las afirmaciones específicas. Solo volumen cómodo. Auriculares para binaural. Deténgase si se siente incómodo.",tabQueue:"Cola",selectedPreset:"Preajuste seleccionado",pickPreset:"Toque un preajuste para leer sobre él; luego reprodúzcalo o añádalo a la cola.",moreInfo:"Más sobre este tono",playNow:"Reproducir ahora",addQueue:"Añadir a la cola",openPlayer:"Abrir en el reproductor",tone:"Tono",modePure:"Tono puro",modeBin:"Binaural",modeIso:"Isocrónico",hintBin:"🎧 Los pulsos binaurales necesitan auriculares estéreo: cada oído recibe un tono ligeramente distinto.",hintIso:"Los tonos isocrónicos laten; los auriculares son opcionales.",hintPureLow:"Por debajo de unos 60 Hz la mayoría de bocinas de teléfono y laptop no suenan; use auriculares o un pulso binaural.",volHint:"Empiece bajo y suba despacio. Solo volumen cómodo.",customMin:"Personalizado (min)",sessionOpts:"Opciones de sesión",totalTimer:"Temporizador total (min, 0 = apagado)",repeat:"Repetir la cola hasta que termine el temporizador total",keepAwake:"Mantener pantalla encendida (opcional; el audio también suena con la pantalla apagada)",bgHint:"El sonido se genera como audio, así que sigue sonando con la pantalla bloqueada y con los controles de bloqueo.",queueTitle:"Cola de secuencia",queueHint:"Cada tono suena su tiempo y luego se funde suavemente con el siguiente. Añada tonos desde Preajustes o Manual.",queueEmpty:"Su cola está vacía.",playQueue:"Reproducir cola",clearQueue:"Vaciar cola",nowPlaying:"Sonando ahora",upNext:"A continuación",pause:"Pausa",resume:"Continuar",queued:"Añadido a la cola",queueNeeds:"Primero añada al menos un tono a la cola.",endOfSession:"Fin de la sesión",left:"restante",total:"total",tones:"tonos",min:"min",session:"sesión",paused:"En pausa",playFail:"No se pudo iniciar el audio. Toque Reproducir otra vez.",building:"Preparando audio…",modeWord:"modo",queueWord:"cola",segLabel:"Este tono",allLabel:"Sesión",moveUp:"Subir",moveDown:"Bajar",minutesLabel:"Minutos",first:"primero",back:"atrás",installTitle:"Instalar esta app",installAndroid:"Añada Raw Hz a su pantalla de inicio. Se abre a pantalla completa, funciona sin conexión y todo se queda en su teléfono.",installIOS:"En iPhone o iPad: toque el botón Compartir en Safari y luego “Añadir a pantalla de inicio”. Se abrirá a pantalla completa y funcionará sin conexión.",installBtn:"Instalar app",notNow:"Ahora no",updateAvail:"Actualización disponible",updateBtn:"Toque para actualizar",offlineReady:"Lista para usar sin conexión",playThis:"Reproducir",load:"Cargar",remove:"Quitar",ready:"Listo",stopped:"Detenido",playingBtn:"Reproduciendo…",playing:"Reproduciendo",switchedTo:"Cambiado a",addedFav:"Añadido a favoritos",clearConfirm:"¿Borrar el historial?",noAudio:"Este navegador no admite Web Audio.",carrierWord:"portadora",beatWord:"latido",completed:"completada",stoppedEarly:"detenida antes",min:"min",hzBeat:"Hz de latido"}};
+
+// localStorage can throw (private mode, blocked storage); never let that stop the app
+const store={
+  get(k){try{return localStorage.getItem(k)}catch(e){return null}},
+  set(k,v){try{localStorage.setItem(k,v)}catch(e){}},
+  del(k){try{localStorage.removeItem(k)}catch(e){}}
+};
+const $=id=>document.getElementById(id);
+let currentLang=store.get('lang');if(!translations[currentLang])currentLang='en';
+let currentTheme=store.get('theme')==='light'?'light':'dark';
+function t(k){return (translations[currentLang]&&translations[currentLang][k])||translations.en[k]||k}
+function applyTranslations(){
+  document.querySelectorAll('[data-i18n]').forEach(el=>{el.textContent=t(el.dataset.i18n)});
+  document.documentElement.lang=currentLang;
+  $('langToggle').textContent=currentLang.toUpperCase();$('langToggle').setAttribute('aria-label',currentLang.toUpperCase()+' — switch language / cambiar idioma');
+  if(window.onLangApplied)window.onLangApplied();
+}
+const fmt=n=>String(parseFloat(Number(n).toFixed(2)));
+
+// Decorative light strings (rotation lives in a CSS variable so the flicker animation keeps it)
+function createLightStrings(){
+  const container=$('lightStrings');
+  for(let i=0;i<18;i++){
+    const s=document.createElement('div');
+    s.className='light-string';
+    s.style.width=(Math.random()*300+80)+'px';
+    s.style.top=(Math.random()*100)+'%';
+    s.style.left=(Math.random()*100)+'%';
+    s.style.setProperty('--r',(Math.random()*40-20)+'deg');
+    s.style.animationDelay=(Math.random()*3)+'s';
+    container.appendChild(s);
+  }
+}
+createLightStrings();
+
+const solfeggio=[
+  {freq:174,name:"174 Hz Foundation",desc:"Traditionally associated with pain relief, physical grounding and a sense of security. Added later to the modern Solfeggio set. In a 2022 listening test of 37 adults, 174 Hz was rated the calmest of the nine Solfeggio tones (≈8.1/10). No clinical trials demonstrate pain reduction. Best used as pure sine for 10–20 min during rest or grounding practice. Why: low frequencies generally sound calmer to listeners."},
+  {freq:285,name:"285 Hz Renewal",desc:"Claimed for tissue regeneration and cellular healing. No published listening studies test this. In the same 37-adult rating study it scored calm (6.7) and happy. Origin is modern (post-1999). Pure sine, 10–15 min, often suggested for recovery rest. Why: traditional association only; no mechanism demonstrated."},
+  {freq:396,name:"396 Hz Liberation",desc:"Said to help release guilt and fear. Derived by Joseph Puleo via numerology on Bible verse numbers in Numbers 7 (published with Leonard Horowitz in Healing Codes for the Biological Apocalypse, 1999). No studies measure guilt. One small skin-conductance pilot showed no significant change. Pure sine or soft square, 10–15 min. Why: numerological derivation + tradition; evidence absent."},
+  {freq:417,name:"417 Hz Change",desc:"Traditionally linked to facilitating change and clearing old patterns. Same 1999 numerological origin. Rated near-neutral in the 37-adult test. No benefit studies found. Pure sine, 10–20 min when seeking transition. Why: modern numerology + anecdotal reports."},
+  {freq:528,name:"528 Hz Transformation",desc:"Most famous Solfeggio tone, called Love/Miracle frequency. Origin: same 1999 Horowitz/Puleo numerology; claimed by some as DNA-repair frequency (no peer-reviewed evidence in living humans; mechanism unknown). Akimoto et al. 2018 (n=9): 5 min of piano music containing 528 Hz lowered salivary cortisol and raised oxytocin vs 440 Hz music; authors noted wider claims lack scientific basis. Small later studies mixed. Pure sine most common; 10–20 min. Why: small stress-marker pilot + cultural popularity; DNA claim unsupported."},
+  {freq:639,name:"639 Hz Connection",desc:"Associated with relationships and communication. Same modern origin. No dedicated trials. Pure sine, 10–15 min. Why: traditional assignment only."},
+  {freq:741,name:"741 Hz Expression",desc:"Linked to clarity, intuition and self-expression. One small skin-response study noted arousal. Pure sine or triangle, 10–15 min. Why: anecdotal + minor physiological response."},
+  {freq:852,name:"852 Hz Intuition",desc:"Said to support spiritual order and inner awareness. Same origin. Pure sine, 10–20 min. Why: tradition."},
+  {freq:963,name:"963 Hz Divine",desc:"Highest Solfeggio; linked to higher consciousness and pineal. Added later. Pure sine, short sessions. Why: modern extension of the set."}
+];
+
+const brainwaves=[
+  {name:"Delta 2 Hz",beat:2,carrier:100,desc:"Deep sleep, physical recovery, growth hormone association. Pure 2 Hz is inaudible; use binaural or isochronic. Headphones for binaural. 20–45 min evening. Documented: standard EEG band for deep NREM sleep."},
+  {name:"Theta 6 Hz",beat:6,carrier:150,desc:"Deep meditation, creativity, emotional processing. Binaural preferred. 15–30 min. EEG band for drowsiness/meditation."},
+  {name:"Alpha 10 Hz",beat:10,carrier:200,desc:"Relaxed alertness, stress reduction. Best for midday focus or wind-down. Binaural or isochronic. 10–20 min. Strong EEG correlation with eyes-closed relaxation."},
+  {name:"Beta 18 Hz",beat:18,carrier:250,desc:"Active, alert thinking and concentration (EEG beta band, roughly 13–30 Hz). Binaural or isochronic. 10–20 min, daytime. Documented: standard EEG band for waking, focused activity. Evidence that listening to a beta-rate beat changes focus is limited."},
+  {name:"Gamma 40 Hz",beat:40,carrier:300,isochronic:true,desc:"MIT Picower lab (Tsai et al.) research: 40 Hz light+sound reduced amyloid in mouse models and showed early signals in small human pilots (brain volume, some cognitive measures). Not proven treatment. Isochronic or binaural. Short sessions. Why: emerging sensory-stimulation research, not pure-tone folklore."}
+];
+
+const otherFreqs=[
+  {freq:432,name:"432 Hz",desc:"Alternative to 440 Hz tuning. Calamassi & Pomponi 2019 pilot (n=33): same music at 432 Hz lowered heart rate ~4.8 bpm vs 440 Hz. Other small trials mixed (sleep, cortisol, BP). Pure sine common. 15–20 min. Why: modest physiological signal in one pilot; warmer sound perception."},
+  {beat:7.83,carrier:150,name:"7.83 Hz Schumann",desc:"Fundamental electromagnetic resonance of Earth-ionosphere cavity (not a sound). Correlations with brain activity reported; one small sleep-device trial (Huang et al., 40 adults with insomnia, an electromagnetic device rather than sound) showed subjective sleep improvements vs placebo. Pure tone inaudible—plays here as a binaural beat. Why: real physics + weak/preliminary human data."},
+  {freq:40,name:"40 Hz Pure",desc:"See Gamma entry. Pure tone or isochronic used in some protocols. Very low pitch: phone and laptop speakers can barely reproduce it, so use headphones or a speaker with a woofer."}
+];
+
+// ======================================================================
+//  Sound engine
+//  Tones are synthesized into 16-bit PCM and wrapped in a WAV file that plays through
+//  an ordinary <audio> element. Phones keep <audio> playing with the screen off, and
+//  the lock-screen controls (Media Session) work, which pure Web Audio can't promise.
+//  Every tone is rendered as a loop with a whole number of cycles, so the loop seam is
+//  sample-exact (no click), then repeated by reference inside the file (no extra memory).
+// ======================================================================
+const TRIM={sine:1,triangle:1,square:.35,sawtooth:.4}; // square/saw are far louder than sine at equal level
+const LOOP_SEC=30, MAX_SESSION_SEC=4*3600;
+
+function toneFreqs(it){
+  return it.mode==='pure'?[it.freq]:it.mode==='binaural'?[Math.max(1,it.carrier-it.beat/2),it.carrier+it.beat/2]:[it.carrier,it.beat];
+}
+function pickSampleRate(items){
+  let m=0;
+  items.forEach(it=>{m=Math.max(m,it.mode==='pure'?it.freq:it.mode==='binaural'?it.carrier+it.beat/2:it.carrier)});
+  return m<=1500?11025:m<=5000?22050:44100; // lower rate = smaller file; plenty for low tones
+}
+// Find the loop length (about 30 s) whose whole-cycle counts match every frequency in the tone as closely as possible
+function pickLoopLength(freqs,sr){
+  const lo=Math.round(sr*LOOP_SEC*0.9),hi=Math.round(sr*LOOP_SEC*1.1);
+  let best=lo,bestErr=Infinity;
+  for(let N=lo;N<=hi;N++){
+    let e=0;
+    for(const f of freqs){const c=f*N/sr;e=Math.max(e,Math.abs(c-Math.round(c))*sr/N)}
+    if(e<bestErr){bestErr=e;best=N;if(e<1e-6)break}
+  }
+  return {N:best,err:bestErr};
+}
+const toneKey=it=>[it.mode,it.wave,it.freq,it.carrier,it.beat].join('|');
+function makeTone(it,sr){
+  const fr=toneFreqs(it),{N,err}=pickLoopLength(fr,sr);
+  const k=fr.map(f=>Math.max(1,Math.round(f*N/sr)));
+  return {it,sr,N,err,k,trim:TRIM[it.wave]||1,actual:k.map(c=>c*sr/N)};
+}
+function waveAt(type,ph,k,N,sr){ // ph = position in the cycle, 0..1
+  const x=2*Math.PI*ph;
+  if(type==='sine')return Math.sin(x);
+  if(type==='triangle')return Math.asin(Math.sin(x))*2/Math.PI;
+  const f=k*sr/N,H=Math.max(1,Math.min(40,Math.floor(sr*0.45/f))); // band-limited so it can't alias
+  let s=0;
+  if(type==='square'){for(let h=1;h<=H;h+=2)s+=Math.sin(h*x)/h;return s*4/Math.PI}
+  for(let h=1;h<=H;h++)s+=(h&1?1:-1)*Math.sin(h*x)/h;
+  return s*2/Math.PI;
+}
+const PULSE_K=3,PULSE_D=Math.tanh(PULSE_K);
+// One stereo sample of tone T at absolute sample index n (periodic in T.N)
+function toneSample(T,n,out){
+  const N=T.N,m=((n%N)+N)%N,it=T.it,ty=it.wave,sr=T.sr;
+  if(it.mode==='pure'){
+    out[0]=out[1]=waveAt(ty,((T.k[0]*m)%N)/N,T.k[0],N,sr)*T.trim;
+  }else if(it.mode==='binaural'){ // left ear = carrier - beat/2, right ear = carrier + beat/2
+    out[0]=waveAt(ty,((T.k[0]*m)%N)/N,T.k[0],N,sr)*T.trim;
+    out[1]=waveAt(ty,((T.k[1]*m)%N)/N,T.k[1],N,sr)*T.trim;
+  }else{ // isochronic: carrier pulses between silent (0) and full (1) at the beat rate
+    const c=waveAt(ty,((T.k[0]*m)%N)/N,T.k[0],N,sr);
+    const p=0.5+0.5*Math.tanh(PULSE_K*Math.sin(2*Math.PI*((T.k[1]*m)%N)/N))/PULSE_D;
+    out[0]=out[1]=c*p*T.trim;
+  }
+}
+const q16=v=>{v=Math.round(v*32767);return v>32767?32767:v<-32768?-32768:v};
+
+// Timeline: which tone plays when, with smooth crossfades between neighbours
+function buildPlan(items,opts){
+  const sr=pickSampleRate(items);
+  const durs=items.map(i=>Math.max(1,Math.round(i.minutes*60*sr)));
+  const sumOnce=durs.reduce((a,b)=>a+b,0),cap=MAX_SESSION_SEC*sr;
+  let T=opts.totalMin>0?Math.round(opts.totalMin*60*sr):(opts.repeat?cap:sumOnce);
+  if(!opts.repeat)T=Math.min(T,sumOnce);
+  T=Math.min(T,cap);
+  const segs=[];let t=0,i=0;
+  while(t<T){const idx=i%items.length,d=Math.min(durs[idx],T-t);segs.push({item:items[idx],idx,startS:t,endS:t+d});t+=d;i++}
+  if(segs.length>1){const last=segs[segs.length-1];if(last.endS-last.startS<Math.round(15*sr)){segs.pop();segs[segs.length-1].endS=last.endS}}
+  const shortest=Math.min(...segs.map(s=>s.endS-s.startS));
+  const X=Math.max(Math.round(0.05*sr),Math.min(Math.round(opts.fade*sr),Math.floor(shortest/4)));
+  const h=Math.floor(X/2);
+  segs.forEach((s,k)=>{
+    s.steadyStart=k===0?X:segs[k-1].endS-h+X;
+    s.steadyEnd=k===segs.length-1?T-X:s.endS-h;
+  });
+  const tones={};
+  segs.forEach(s=>{const key=toneKey(s.item);s.key=key;if(!tones[key])tones[key]=makeTone(s.item,sr)});
+  const stereo=segs.some(s=>s.item.mode==='binaural');
+  return {sr,ch:stereo?2:1,totalSamples:T,X,h,segs,tones};
+}
+function getPosition(plan,tSec){
+  const sr=plan.sr,s=Math.max(0,Math.min(plan.totalSamples,Math.floor(tSec*sr)));
+  let i=plan.segs.findIndex(g=>s<g.endS);if(i<0)i=plan.segs.length-1;
+  const g=plan.segs[i];
+  return {i,seg:g,next:plan.segs[i+1]||null,segElapsed:(s-g.startS)/sr,segRemaining:Math.max(0,(g.endS-s)/sr),segTotal:(g.endS-g.startS)/sr,
+          elapsed:s/sr,remaining:Math.max(0,(plan.totalSamples-s)/sr),total:plan.totalSamples/sr};
+}
+function repeatBlob(b,k){ // k copies of b by reference (binary doubling), no memory blow-up
+  const parts=[];let cur=b;
+  while(k>0){if(k&1)parts.push(cur);k=Math.floor(k/2);if(k)cur=new Blob([cur,cur])}
+  return new Blob(parts);
+}
+function renderLoop(T,amp,ch){
+  const N=T.N,out=new Int16Array(N*ch),tmp=[0,0];
+  for(let n=0;n<N;n++){toneSample(T,n,tmp);out[n*ch]=q16(tmp[0]*amp);if(ch===2)out[n*ch+1]=q16(tmp[1]*amp)}
+  return out;
+}
+function renderBlock(plan,len,voices,amp){ // voices: [{T,n0,up}]
+  const ch=plan.ch,out=new Int16Array(len*ch),tmp=[0,0];
+  for(let j=0;j<len;j++){
+    let l=0,r=0;const x=(j+0.5)/len,sm=x*x*(3-2*x); // smoothstep; neighbours always sum to 1, so a crossfade can never clip
+    for(const v of voices){toneSample(v.T,v.n0+j,tmp);const g=v.up?sm:1-sm;l+=tmp[0]*g;r+=tmp[1]*g}
+    out[j*ch]=q16(l*amp);if(ch===2)out[j*ch+1]=q16(r*amp);
+  }
+  return out;
+}
+function wavHeader(dataBytes,ch,sr){
+  const b=new ArrayBuffer(44),v=new DataView(b),w=(o,s)=>{for(let i=0;i<s.length;i++)v.setUint8(o+i,s.charCodeAt(i))};
+  w(0,'RIFF');v.setUint32(4,36+dataBytes,true);w(8,'WAVE');w(12,'fmt ');v.setUint32(16,16,true);v.setUint16(20,1,true);v.setUint16(22,ch,true);
+  v.setUint32(24,sr,true);v.setUint32(28,sr*ch*2,true);v.setUint16(32,ch*2,true);v.setUint16(34,16,true);w(36,'data');v.setUint32(40,dataBytes,true);
+  return b;
+}
+// amp = level written into the file (0..1). Returns a WAV Blob of the whole session.
+function renderPlan(plan,amp){
+  const {sr,ch,X,h,segs}=plan,loops={},parts=[],T=plan.totalSamples;
+  const loopOf=key=>{if(!loops[key]){const buf=renderLoop(plan.tones[key],amp,ch);loops[key]={buf,blob:new Blob([buf])}}return loops[key]};
+  let written=0;
+  const add=(x,len)=>{parts.push(x);written+=len};
+  const steady=(s)=>{
+    const S=s.steadyEnd-s.steadyStart;if(S<=0)return;
+    const L=loopOf(s.key),N=plan.tones[s.key].N,K=Math.floor(S/N),r=S-K*N;
+    if(K)add(repeatBlob(L.blob,K),K*N);
+    if(r)add(L.buf.subarray(0,r*ch),r);
+  };
+  const first=segs[0];
+  add(renderBlock(plan,X,[{T:plan.tones[first.key],n0:-X,up:true}],amp),X); // fade in
+  for(let i=0;i<segs.length;i++){
+    const s=segs[i];steady(s);
+    if(i<segs.length-1){
+      const nx=segs[i+1],S=s.steadyEnd-s.steadyStart;
+      add(renderBlock(plan,X,[{T:plan.tones[s.key],n0:S,up:false},{T:plan.tones[nx.key],n0:-X,up:true}],amp),X); // crossfade
+    }
+  }
+  const last=segs[segs.length-1];
+  add(renderBlock(plan,X,[{T:plan.tones[last.key],n0:last.steadyEnd-last.steadyStart,up:false}],amp),X); // fade out
+  if(written!==T)throw new Error('timeline length mismatch '+written+' vs '+T);
+  return new Blob([wavHeader(T*ch*2,ch,sr),...parts],{type:'audio/wav'});
+}
+
+// ======================================================================
+//  Player, queue, and UI
+// ======================================================================
+const el=$('player');
+const volumeSettable=(()=>{try{const a=new Audio();a.volume=0.5;return a.volume===0.5}catch(e){return false}})(); // iOS ignores element volume, so we bake it into the audio there
+const DUR_CHIPS=[5,10,15,30,60];
+const quickStarts=[
+  {title:"Midday Focus",sub:"10 Hz Alpha binaural · sine · 15–20 min",cfg:{mode:'binaural',carrier:200,beat:10,wave:'sine',minutes:15}},
+  {title:"Deep Sleep",sub:"2 Hz Delta binaural · 30–45 min evening",cfg:{mode:'binaural',carrier:100,beat:2,wave:'sine',minutes:30}},
+  {title:"528 Hz Love Tone",sub:"Pure sine · 10–15 min anytime",cfg:{mode:'pure',freq:528,wave:'sine',minutes:15}},
+  {title:"432 Hz Calming",sub:"Pure sine · lower heart rate reports",cfg:{mode:'pure',freq:432,wave:'sine',minutes:20}}
+];
+
+function showToast(msg){
+  const e=$('toast');e.textContent=msg;e.classList.add('show');
+  clearTimeout(showToast.timer);showToast.timer=setTimeout(()=>e.classList.remove('show'),2400);
+}
+function makeBtn(cls,text,onclick){const b=document.createElement('button');b.type='button';b.className=cls;b.textContent=text;b.onclick=onclick;return b}
+function readNum(id,min,max,def){const v=parseFloat($(id).value);return Number.isFinite(v)?Math.min(max,Math.max(min,v)):def}
+const mmss=s=>{s=Math.max(0,Math.round(s));const h=Math.floor(s/3600),m=Math.floor(s%3600/60),r=s%60;return (h?h+':'+String(m).padStart(2,'0'):m)+':'+String(r).padStart(2,'0')};
+
+// ---------- Draft (the tone currently dialed in) ----------
+function readDraft(){
+  return {mode:$('mode').value,wave:$('waveform').value,freq:readNum('freqNumber',1,20000,440),carrier:readNum('carrier',40,500,200),beat:readNum('beat',0.5,40,10),minutes:readNum('duration',1,240,15)};
+}
+function getOpts(){return {fade:readNum('fade',0,10,2),totalMin:readNum('totalMin',0,240,0),repeat:$('repeat').checked}}
+function itemLabel(it){
+  if(it.mode==='pure')return fmt(it.freq)+' Hz';
+  return fmt(it.carrier)+' Hz '+t('carrierWord')+' · '+fmt(it.beat)+' Hz '+t('beatWord')+' ('+(it.mode==='binaural'?'binaural':'isochronic')+')';
+}
+function headline(it){return it.mode==='pure'?fmt(it.freq)+' Hz':fmt(it.beat)+' Hz '+t('beatWord')}
+function subline(it){return it.mode==='pure'?it.wave:fmt(it.carrier)+' Hz '+t('carrierWord')+' · '+it.mode}
+function setMode(mode){
+  $('mode').value=mode;
+  document.querySelectorAll('#modeSeg button').forEach(b=>b.setAttribute('aria-checked',b.dataset.mode===mode?'true':'false'));
+  $('binauralControls').hidden=(mode==='pure');
+  $('pureControls').hidden=(mode!=='pure');
+  updateModeHint();updateIdleReadout();
+}
+function updateModeHint(){
+  const m=$('mode').value,h=$('modeHint');
+  let txt='';
+  if(m==='binaural')txt=t('hintBin');else if(m==='isochronic')txt=t('hintIso');
+  else if(readNum('freqNumber',1,20000,440)<60)txt=t('hintPureLow');
+  h.textContent=txt;h.hidden=!txt;
+}
+function setDraft(it){
+  setMode(it.mode||'pure');
+  if(it.freq)setFreqInput(it.freq);
+  if(it.carrier)$('carrier').value=it.carrier;
+  if(it.beat)$('beat').value=it.beat;
+  if(it.wave)$('waveform').value=it.wave;
+  if(it.minutes||it.duration)$('duration').value=it.minutes||it.duration;
+  syncDurChips();updateIdleReadout();
+}
+function showTab(name){
+  document.querySelectorAll('.tabs button').forEach(b=>{const on=b.dataset.tab===name;b.classList.toggle('active',on);b.setAttribute('aria-selected',on?'true':'false')});
+  document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id===name));
+  if(name==='favorites')renderFavorites();
+  if(name==='history')renderHistory();
+  if(name==='queue')renderQueue();
+}
+
+// ---------- Frequency dial (logarithmic so low Hz are easy to hit on a touch screen) ----------
+const F_MIN=1,F_MAX=20000,LOG_RANGE=Math.log(F_MAX/F_MIN);
+const sliderToFreq=v=>Math.round(F_MIN*Math.exp(LOG_RANGE*v/1000)*100)/100;
+const freqToSlider=f=>Math.round(1000*Math.log(Math.max(F_MIN,Math.min(F_MAX,f))/F_MIN)/LOG_RANGE);
+function setFreqInput(f){$('freqNumber').value=fmt(f);updateDial()}
+function updateDial(){
+  const f=parseFloat($('freqNumber').value);
+  if(!Number.isFinite(f))return;
+  const c=Math.min(F_MAX,Math.max(F_MIN,f));
+  $('freqSlider').value=freqToSlider(c);
+  $('freqSlider').setAttribute('aria-valuetext',fmt(c)+' Hz');
+  updateModeHint();updateIdleReadout();
+}
+function updateIdleReadout(){
+  if(session)return;
+  const d=readDraft();
+  $('freqDisplay').textContent=headline(d);
+  $('ringSub').textContent=subline(d);
+  $('segTime').textContent=mmss(d.minutes*60);
+  $('totalTime').textContent=queue.length?queue.length+' '+t('tones')+' '+t('queueWord'):'';
+  setRing('ringSeg',0);setRing('ringAll',0);
+}
+function nudgeFreq(step){
+  const f=readNum('freqNumber',F_MIN,F_MAX,440);
+  setFreqInput(Math.min(F_MAX,Math.max(F_MIN,Math.round((f+step)*100)/100)));
+  scheduleLive();
+}
+document.querySelectorAll('.step-row button').forEach(b=>{
+  const step=parseFloat(b.dataset.step);let hold=null,rep=null;
+  const stop=()=>{clearTimeout(hold);clearInterval(rep)};
+  b.addEventListener('pointerdown',e=>{if(e.button>0)return;nudgeFreq(step);stop();hold=setTimeout(()=>{rep=setInterval(()=>nudgeFreq(step),90)},450)});
+  ['pointerup','pointercancel','pointerleave'].forEach(ev=>b.addEventListener(ev,stop));
+  b.addEventListener('click',e=>{if(e.detail===0)nudgeFreq(step)}); // keyboard activation
+});
+$('freqSlider').oninput=e=>{$('freqNumber').value=fmt(sliderToFreq(parseFloat(e.target.value)));updateModeHint();updateIdleReadout();scheduleLive()};
+$('freqNumber').oninput=()=>{updateDial();scheduleLive()};
+$('freqNumber').onchange=()=>{setFreqInput(readNum('freqNumber',F_MIN,F_MAX,440));scheduleLive()};
+[['carrier',40,500,200],['beat',0.5,40,10],['duration',1,240,15],['fade',0,10,2],['totalMin',0,240,0]].forEach(([id,mn,mx,df])=>{
+  $(id).onchange=()=>{$(id).value=fmt(readNum(id,mn,mx,df));if(id==='duration')syncDurChips();if(id==='carrier'||id==='beat')scheduleLive();updateIdleReadout();saveOpts()};
+  if(id==='carrier'||id==='beat')$(id).oninput=()=>{updateIdleReadout();scheduleLive()};
+});
+$('waveform').onchange=()=>{updateIdleReadout();scheduleLive()};
+document.querySelectorAll('#modeSeg button').forEach(b=>b.onclick=()=>{setMode(b.dataset.mode);scheduleLive()});
+$('repeat').onchange=saveOpts;$('keepAwake').onchange=()=>{saveOpts();if($('keepAwake').checked)requestWake();else releaseWake()};
+
+function syncDurChips(){
+  const cur=readNum('duration',1,240,15);
+  document.querySelectorAll('#durChips button').forEach(b=>b.setAttribute('aria-pressed',parseFloat(b.dataset.min)===cur?'true':'false'));
+}
+function renderDurChips(){
+  const c=$('durChips');c.innerHTML='';
+  DUR_CHIPS.forEach(m=>{const b=makeBtn('chip',m+' '+t('min'),()=>{$('duration').value=m;syncDurChips();updateIdleReadout()});b.dataset.min=m;c.appendChild(b)});
+  syncDurChips();
+}
+
+// ---------- Presets ----------
+let selectedPreset=null;
+const shortDesc=d=>{const m=d.match(/^.*?[.!?](?=\s|$)/);return m?m[0]:d};
+function presetItem(p){
+  const d=readDraft();
+  if(p.beat!==undefined)return {mode:p.isochronic?'isochronic':'binaural',wave:d.wave,freq:d.freq,carrier:p.carrier,beat:p.beat,minutes:d.minutes};
+  return {mode:'pure',wave:d.wave,freq:p.freq,carrier:d.carrier,beat:d.beat,minutes:d.minutes};
+}
+function renderPresets(){
+  function renderList(list,id){
+    const c=$(id);c.innerHTML='';
+    list.forEach(p=>{
+      const b=document.createElement('button');b.type='button';b.className='chip';b.setAttribute('aria-pressed',selectedPreset===p?'true':'false');
+      b.append(document.createTextNode(p.name));
+      const sm=document.createElement('small');sm.textContent=p.beat!==undefined?fmt(p.beat)+' '+t('hzBeat'):fmt(p.freq)+' Hz';
+      b.appendChild(sm);
+      b.onclick=()=>selectPreset(p);
+      c.appendChild(b);
+    });
+  }
+  renderList(solfeggio,'solfeggioList');renderList(brainwaves,'brainList');renderList(otherFreqs,'otherList');
+}
+function selectPreset(p){
+  selectedPreset=p;
+  $('presetHint').hidden=true;$('presetInfo').hidden=false;
+  $('pdName').textContent=p.name;$('pdShort').textContent=shortDesc(p.desc);$('pdLong').textContent=p.desc;
+  renderPresets();
+  $('presetDetail').scrollIntoView({block:'nearest',behavior:'smooth'});
+}
+$('pdPlay').onclick=()=>{if(!selectedPreset)return;const it=presetItem(selectedPreset);setDraft(it);showTab('manual');startSession([it],getOpts(),'single')};
+$('pdQueue').onclick=()=>{if(selectedPreset)addToQueue(presetItem(selectedPreset))};
+$('pdLoad').onclick=()=>{if(!selectedPreset)return;setDraft(presetItem(selectedPreset));showTab('manual')};
+function renderQuick(){
+  const g=$('quickGrid');g.innerHTML='';
+  quickStarts.forEach(q=>{
+    const b=document.createElement('button');b.type='button';b.className='quick-card';
+    const s=document.createElement('strong');s.textContent=q.title;
+    const sp=document.createElement('span');sp.textContent=q.sub;
+    b.append(s,sp);
+    b.onclick=()=>{const it=Object.assign({freq:readDraft().freq,carrier:200,beat:10},q.cfg);setDraft(it);showTab('manual');startSession([it],getOpts(),'single')}; // runs inside the tap so iOS allows audio
+    g.appendChild(b);
+  });
+}
+
+// ---------- Queue ----------
+function loadJSON(k,def){try{const v=JSON.parse(store.get(k));return v==null?def:v}catch(e){return def}}
+const sanitizeItem=it=>({mode:['pure','binaural','isochronic'].includes(it.mode)?it.mode:'pure',wave:['sine','square','sawtooth','triangle'].includes(it.wave)?it.wave:'sine',
+  freq:Math.min(20000,Math.max(1,Number(it.freq)||440)),carrier:Math.min(500,Math.max(40,Number(it.carrier)||200)),beat:Math.min(40,Math.max(0.5,Number(it.beat)||10)),minutes:Math.min(240,Math.max(1,Number(it.minutes)||15))});
+let queue=(()=>{const q=loadJSON('freqQueue',[]);return Array.isArray(q)?q.slice(0,50).map(sanitizeItem):[]})();
+function saveQueue(){store.set('freqQueue',JSON.stringify(queue))}
+function saveOpts(){store.set('freqOpts',JSON.stringify(Object.assign(getOpts(),{keepAwake:$('keepAwake').checked})))}
+function addToQueue(it){
+  if(queue.length>=50)return;
+  queue.push(sanitizeItem(it));saveQueue();renderQueue();showToast(t('queued')+' ('+queue.length+')');updateIdleReadout();
+}
+function renderQueue(){
+  const list=$('queueList');list.innerHTML='';
+  $('queueEmpty').hidden=queue.length>0;
+  const curIdx=session&&session.kind==='queue'?getPosition(session.plan,el.currentTime||0).seg.idx:-1;
+  queue.forEach((it,i)=>{
+    const row=document.createElement('div');row.className='q-item'+(i===curIdx?' current':'');
+    const title=document.createElement('div');title.className='q-title';
+    const st=document.createElement('strong');st.textContent=(i+1)+'. '+itemLabel(it);
+    const sm=document.createElement('small');sm.textContent=it.wave+' · '+it.minutes+' '+t('min');
+    title.append(st,sm);
+    const ctl=document.createElement('div');ctl.className='q-ctrl';
+    const mins=document.createElement('input');mins.type='number';mins.min=1;mins.max=240;mins.step=1;mins.value=it.minutes;mins.inputMode='numeric';mins.setAttribute('aria-label',t('minutesLabel'));
+    mins.onchange=()=>{it.minutes=Math.min(240,Math.max(1,parseFloat(mins.value)||15));mins.value=it.minutes;saveQueue();renderQueue()};
+    const up=makeBtn('secondary','↑',()=>{if(i>0){[queue[i-1],queue[i]]=[queue[i],queue[i-1]];saveQueue();renderQueue()}});up.setAttribute('aria-label',t('moveUp'));
+    const dn=makeBtn('secondary','↓',()=>{if(i<queue.length-1){[queue[i+1],queue[i]]=[queue[i],queue[i+1]];saveQueue();renderQueue()}});dn.setAttribute('aria-label',t('moveDown'));
+    const rm=makeBtn('secondary','×',()=>{queue.splice(i,1);saveQueue();renderQueue();updateIdleReadout()});rm.setAttribute('aria-label',t('remove'));
+    ctl.append(mins,up,dn,rm);row.append(title,ctl);list.appendChild(row);
+  });
+  const total=queue.reduce((a,b)=>a+b.minutes,0);
+  $('queueSummary').textContent=queue.length?queue.length+' '+t('tones')+' · '+total+' '+t('min')+' '+t('total'):'';
+}
+$('addQueueBtn').onclick=()=>addToQueue(readDraft());
+$('clearQueueBtn').onclick=()=>{queue=[];saveQueue();renderQueue();updateIdleReadout()};
+$('playQueueBtn').onclick=()=>{
+  if(!queue.length){showToast(t('queueNeeds'));return}
+  showTab('manual');startSession(queue.map(x=>Object.assign({},x)),getOpts(),'queue');
+};
+
+// ---------- Playback session ----------
+let session=null,rafId=0,wake=null,liveTimer=null,volTimer=null;
+function startSession(items,opts,kind,o={}){
+  if(!items.length)return false;
+  if(session)teardown('replaced',{log:false});
+  const vol=readNum('volume',0,1,0.3);
+  let plan,blob;
+  try{plan=buildPlan(items,opts);blob=renderPlan(plan,volumeSettable?0.9:vol)}
+  catch(err){console.error(err);showToast(t('playFail'));return false}
+  const url=URL.createObjectURL(blob);
+  session={plan,items,opts,kind,url,startAt:o.startAt||0,carryMin:o.carryMin||0,wallStart:Date.now(),pausedMs:0,pausedAt:0,userPaused:false,sysPaused:false,lastSeg:-1,lastPush:0};
+  if(volumeSettable)el.volume=vol;
+  el.loop=false;el.src=url;
+  if(o.startAt)el.addEventListener('loadedmetadata',()=>{try{el.currentTime=o.startAt}catch(e){}},{once:true});
+  const p=el.play();
+  if(p&&p.catch)p.catch(()=>{if(session&&session.url===url){showToast(t('playFail'));session.sysPaused=true;updateUI()}});
+  updateMediaMeta(true);
+  requestWake();startLoop();updateUI();renderQueueIfOpen();
+  return true;
+}
+function playedMin(s){return s.carryMin+Math.max(0,(el.currentTime||0)-s.startAt)/60}
+function teardown(reason,o={}){
+  const s=session;if(!s)return;
+  session=null;
+  if(o.log!==false)logSession(s,reason);
+  clearTimeout(liveTimer);
+  try{el.pause();el.removeAttribute('src');el.load()}catch(e){}
+  URL.revokeObjectURL(s.url);
+  releaseWake();
+  if('mediaSession' in navigator){try{navigator.mediaSession.playbackState='none';navigator.mediaSession.metadata=null}catch(e){}}
+  lastStopReason=reason;
+  updateUI();renderQueueIfOpen();
+}
+let lastStopReason='';
+function stopSession(){if(session)teardown('stopped')}
+function pauseSession(){if(!session||el.paused)return;session.userPaused=true;session.pausedAt=Date.now();el.pause();updateUI()}
+function resumeSession(){
+  if(!session)return;
+  if(session.pausedAt){session.pausedMs+=Date.now()-session.pausedAt;session.pausedAt=0}
+  session.userPaused=false;session.sysPaused=false;
+  const p=el.play();if(p&&p.catch)p.catch(()=>{showToast(t('playFail'))});
+  updateUI();
+}
+function seekTo(sec){
+  if(!session)return;
+  const played=playedMin(session);
+  try{el.currentTime=sec}catch(e){return}
+  session.startAt=sec;session.carryMin=played;session.wallStart=Date.now();session.pausedMs=0;session.pausedAt=session.userPaused?Date.now():0;
+  updateMediaMeta(true);updateUI();
+}
+function skip(dir){
+  if(!session)return;
+  const pl=session.plan,p=getPosition(pl,el.currentTime),sr=pl.sr;
+  const start=i=>i<=0?0:pl.segs[i].steadyStart/sr; // jump to the start of a tone (its phase is 0 there, so sine/triangle begin cleanly)
+  if(dir>0){if(!p.next){teardown('completed');return}seekTo(start(p.i+1));}
+  else seekTo(start(p.segElapsed>4||p.i===0?p.i:p.i-1));
+}
+$('playBtn').onclick=()=>{
+  if(!session){startSession([readDraft()],getOpts(),'single');return}
+  if(el.paused)resumeSession();else pauseSession();
+};
+$('stopBtn').onclick=stopSession;
+$('nextBtn').onclick=()=>skip(1);
+$('prevBtn').onclick=()=>skip(-1);
+el.addEventListener('ended',()=>{if(session)teardown('completed')});
+el.addEventListener('pause',()=>{if(session&&!session.userPaused&&!el.ended){session.sysPaused=true;updateUI()}});
+el.addEventListener('play',()=>{if(session){session.sysPaused=false;updateUI()}});
+el.addEventListener('timeupdate',()=>{if(session)updateUI()}); // keeps firing with the screen off
+el.addEventListener('error',()=>{if(session){showToast(t('playFail'));teardown('error',{log:false})}});
+
+// Live edits: while a single tone plays, re-render it (keeping the remaining time) a moment after the last change
+function scheduleLive(){
+  if(!session||session.kind!=='single')return;
+  clearTimeout(liveTimer);liveTimer=setTimeout(restartLive,350);
+}
+function restartLive(){
+  if(!session||session.kind!=='single'||session.userPaused)return;
+  const pl=session.plan,remain=Math.max(0.25,(pl.totalSamples/pl.sr-el.currentTime)/60);
+  const o=session.opts;
+  startSession([Object.assign(readDraft(),{minutes:remain})],{fade:o.fade,totalMin:o.totalMin>0?remain:0,repeat:o.repeat},'single',{carryMin:playedMin(session)});
+}
+$('volume').oninput=e=>{
+  const v=parseFloat(e.target.value);$('volVal').textContent=Math.round(v*100)+'%';
+  if(volumeSettable){if(session)el.volume=v;return}
+  if(session){clearTimeout(volTimer);volTimer=setTimeout(()=>{ // iOS: bake the new level into the audio, resume where we were
+    if(!session)return;const s=session;
+    startSession(s.items,s.opts,s.kind,{startAt:el.currentTime,carryMin:playedMin(s)});
+    if(s.userPaused&&session)pauseSession();
+  },400)}
+};
+
+// Wake-up catch-up: if the phone suspended the page, jump back to where the real clock says we should be
+function expectedPos(s){return s.startAt+((s.pausedAt?s.pausedAt:Date.now())-s.wallStart-s.pausedMs)/1000}
+function catchUp(){
+  if(!session||session.userPaused)return;
+  const s=session,exp=expectedPos(s),total=s.plan.totalSamples/s.plan.sr;
+  if(exp>=total){teardown('completed');return}
+  if(el.paused||Math.abs(el.currentTime-exp)>3){
+    try{el.currentTime=exp}catch(e){}
+    const p=el.play();if(p&&p.catch)p.catch(()=>{});
+  }
+}
+document.addEventListener('visibilitychange',()=>{
+  if(document.hidden)return;
+  if(session){catchUp();requestWake();startLoop();updateUI()}
+});
+window.addEventListener('pageshow',()=>{if(session)catchUp()});
+
+// ---------- Screen wake lock (optional extra) ----------
+async function requestWake(){
+  if(!session||!$('keepAwake').checked||!navigator.wakeLock||wake)return;
+  try{wake=await navigator.wakeLock.request('screen');wake.addEventListener('release',()=>{wake=null})}catch(e){wake=null}
+}
+function releaseWake(){if(wake){try{wake.release()}catch(e){}wake=null}}
+
+// ---------- Lock-screen controls (Media Session) ----------
+let artworkURL=null;
+function artwork(){
+  if(artworkURL)return artworkURL;
+  try{
+    const c=document.createElement('canvas');c.width=c.height=512;const g=c.getContext('2d');
+    g.fillStyle='#1a0f0a';g.fillRect(0,0,512,512);
+    const gr=g.createLinearGradient(0,0,512,0);gr.addColorStop(0,'#ff6b35');gr.addColorStop(1,'#ffd166');
+    g.strokeStyle=gr;g.lineWidth=22;g.lineCap='round';g.lineJoin='round';g.beginPath();
+    for(let x=40;x<=472;x+=4){const y=256+Math.sin((x-40)/432*Math.PI*6)*Math.sin((x-40)/432*Math.PI)*150;x===40?g.moveTo(x,y):g.lineTo(x,y)}
+    g.stroke();artworkURL=c.toDataURL('image/png');
+  }catch(e){artworkURL=''}
+  return artworkURL;
+}
+function updateMediaMeta(force){
+  if(!session||!('mediaSession' in navigator)||typeof MediaMetadata==='undefined')return;
+  const p=getPosition(session.plan,el.currentTime||0);
+  if(!force&&p.i===session.lastSeg)return;
+  session.lastSeg=p.i;
+  const it=p.seg.item;
+  try{
+    const art=artwork();
+    navigator.mediaSession.metadata=new MediaMetadata({title:itemLabel(it),artist:'Corey McDaniel',album:'Raw Hz Frequency Generator'+(session.plan.segs.length>1?' — '+(p.i+1)+'/'+session.plan.segs.length:''),artwork:art?[{src:art,sizes:'512x512',type:'image/png'}]:[]});
+  }catch(e){}
+}
+function pushPositionState(p){
+  if(!('mediaSession' in navigator)||!navigator.mediaSession.setPositionState)return;
+  const now=Date.now();if(now-session.lastPush<2000)return;session.lastPush=now;
+  try{navigator.mediaSession.setPositionState({duration:p.total,position:Math.min(p.total,p.elapsed),playbackRate:1})}catch(e){}
+}
+(function initMediaSession(){
+  if(!('mediaSession' in navigator))return;
+  const set=(a,f)=>{try{navigator.mediaSession.setActionHandler(a,f)}catch(e){}};
+  set('play',()=>resumeSession());
+  set('pause',()=>pauseSession());
+  set('stop',()=>stopSession());
+  set('nexttrack',()=>skip(1));
+  set('previoustrack',()=>skip(-1));
+  set('seekto',d=>{if(session&&d&&Number.isFinite(d.seekTime))seekTo(d.seekTime)});
+})();
+
+// ---------- On-screen readout, rings, oscilloscope ----------
+const RING_C={ringSeg:2*Math.PI*108,ringAll:2*Math.PI*92};
+function setRing(id,frac){const c=RING_C[id],e=$(id);e.style.strokeDasharray=c;e.style.strokeDashoffset=c*(1-Math.max(0,Math.min(1,frac)))}
+function updateUI(){
+  const b=$('playBtn'),ico=b.querySelector('.ico'),lbl=b.querySelector('.lbl');
+  if(!session){
+    ico.textContent='▶';lbl.textContent=t('play');b.setAttribute('aria-pressed','false');
+    $('status').textContent=lastStopReason==='completed'?t('endOfSession'):lastStopReason==='stopped'?t('stopped'):t('ready');
+    if('mediaSession' in navigator){try{navigator.mediaSession.playbackState='none'}catch(e){}}
+    $('npNow').textContent='—';$('npNext').textContent=queue.length?t('queueWord')+': '+queue.length+' '+t('tones'):'—';
+    $('prevBtn').disabled=$('nextBtn').disabled=true;
+    updateIdleReadout();return;
+  }
+  const s=session,pl=s.plan,pos=el.currentTime||0,p=getPosition(pl,pos),paused=el.paused;
+  if('mediaSession' in navigator){try{navigator.mediaSession.playbackState=paused?'paused':'playing'}catch(e){}}
+  ico.textContent=paused?'▶':'❚❚';lbl.textContent=paused?t('resume'):t('pause');b.setAttribute('aria-pressed',paused?'false':'true');
+  $('prevBtn').disabled=$('nextBtn').disabled=false;
+  const it=p.seg.item;
+  $('status').textContent=(paused?t('paused')+' — ':t('playing')+' ')+itemLabel(it);
+  $('freqDisplay').textContent=headline(it);$('ringSub').textContent=subline(it)+(pl.segs.length>1?' · '+(p.i+1)+'/'+pl.segs.length:'');
+  $('segTime').textContent=mmss(p.segRemaining);
+  $('totalTime').textContent=mmss(p.remaining)+' '+t('left')+(pl.segs.length>1?' ('+t('session')+')':'');
+  setRing('ringSeg',p.segElapsed/p.segTotal);setRing('ringAll',p.elapsed/p.total);
+  $('npNow').textContent=itemLabel(it)+' · '+Math.round(p.segTotal/60*10)/10+' '+t('min');
+  $('npNext').textContent=p.next?itemLabel(p.next.item)+' · '+Math.round((p.next.endS-p.next.startS)/pl.sr/60*10)/10+' '+t('min'):t('endOfSession');
+  if(p.i!==s.lastSeg){updateMediaMeta(false);renderQueueIfOpen()}
+  pushPositionState(p);
+}
+function renderQueueIfOpen(){if($('queue').classList.contains('active'))renderQueue()}
+function sizeCanvas(){
+  const c=$('visualizer'),dpr=window.devicePixelRatio||1,w=Math.round(c.clientWidth*dpr),h=Math.round(c.clientHeight*dpr);
+  if(w&&(c.width!==w||c.height!==h)){c.width=w;c.height=h}
+}
+const _tmp=[0,0];
+function drawScope(){
+  const c=$('visualizer'),g=c.getContext('2d');sizeCanvas();
+  const W=c.width,H=c.height;
+  g.fillStyle='#0a0503';g.fillRect(0,0,W,H);
+  g.strokeStyle='#ff6b35';g.lineWidth=2;g.beginPath();
+  if(!session||el.paused){g.moveTo(0,H/2);g.lineTo(W,H/2);g.stroke();return}
+  const pl=session.plan,pos=el.currentTime||0,p=getPosition(pl,pos),it=p.seg.item,Tn=pl.tones[p.seg.key],sr=pl.sr;
+  const span=it.mode==='pure'?Math.min(0.6,Math.max(0.002,3/it.freq)):Math.min(4,2/it.beat);
+  const drift=it.mode==='pure'?Math.floor(((performance.now()/1000)*0.4%1)*sr/Math.max(1,it.freq)):Math.floor(pos*sr)-p.seg.steadyStart;
+  const steps=Math.max(100,Math.floor(W/2));
+  for(let i=0;i<=steps;i++){
+    const n=drift+i/steps*span*sr;toneSample(Tn,n,_tmp); // fractional index = smooth curve
+    const v=(_tmp[0]+_tmp[1])/2/Tn.trim,y=H/2-v*H*0.42;
+    i?g.lineTo(i/steps*W,y):g.moveTo(0,y);
+  }
+  g.stroke();
+}
+function startLoop(){
+  if(rafId||document.hidden)return;
+  (function frame(){
+    if(!session||document.hidden){rafId=0;drawScope();return}
+    rafId=requestAnimationFrame(frame);
+    drawScope();updateUI();
+  })();
+}
+
+// ---------- Tabs ----------
+const tabButtons=[...document.querySelectorAll('.tabs button')];
+tabButtons.forEach((btn,i)=>{
+  btn.onclick=()=>showTab(btn.dataset.tab);
+  btn.onkeydown=e=>{
+    if(e.key!=='ArrowRight'&&e.key!=='ArrowLeft')return;
+    const n=tabButtons[(i+(e.key==='ArrowRight'?1:-1)+tabButtons.length)%tabButtons.length];
+    n.focus();showTab(n.dataset.tab);e.preventDefault();
+  };
+});
+
+// ---------- Favorites & history ----------
+function getFavs(){try{const v=JSON.parse(store.get('freqFavs')||'[]');return Array.isArray(v)?v:[]}catch{return[]}}
+function getHist(){try{const v=JSON.parse(store.get('freqHist')||'[]');return Array.isArray(v)?v:[]}catch{return[]}}
+function saveFavorite(){
+  const d=readDraft();
+  const fav={id:Date.now(),freq:d.mode==='pure'?d.freq:d.carrier,mode:d.mode,wave:d.wave,carrier:d.carrier,beat:d.beat,duration:d.minutes,note:''};
+  const favs=getFavs();favs.unshift(fav);store.set('freqFavs',JSON.stringify(favs.slice(0,50)));
+  showToast(t('addedFav'));
+}
+function logSession(s,reason){
+  const minutes=reason==='completed'?Math.max(0,s.plan.totalSamples/s.plan.sr-s.startAt)/60+s.carryMin:playedMin(s);
+  const shown=reason==='completed'?Math.max(minutes,0):minutes;
+  if(shown<0.05)return; // ignore accidental taps
+  const it=s.plan.segs[0].item;
+  const hist=getHist();
+  hist.unshift({time:new Date().toISOString(),freq:it.mode==='pure'?it.freq:it.carrier,beat:it.mode==='pure'?undefined:it.beat,duration:Math.round(shown*10)/10,mode:it.mode,count:s.plan.segs.length>1?s.items.length:1,noteKey:reason==='completed'?'completed':'stoppedEarly'});
+  store.set('freqHist',JSON.stringify(hist.slice(0,100)));
+  if($('history').classList.contains('active'))renderHistory();
+}
+function favLabel(f){return itemLabel({mode:f.mode,freq:Number(f.freq)||0,carrier:Number(f.carrier)||Number(f.freq)||200,beat:Number(f.beat)||10})}
+function renderFavorites(){
+  const list=$('favList'),empty=$('favEmpty'),favs=getFavs();
+  list.innerHTML='';empty.style.display=favs.length?'none':'block';
+  favs.forEach(f=>{
+    const d=document.createElement('div');d.className='fav-item';
+    const label=document.createElement('div');
+    const strong=document.createElement('strong');strong.textContent=favLabel(f);
+    label.appendChild(strong);
+    if(f.note)label.appendChild(document.createTextNode(' — '+f.note));
+    const actions=document.createElement('div');actions.className='fav-actions';
+    const del=makeBtn('secondary','×',()=>{store.set('freqFavs',JSON.stringify(getFavs().filter(x=>x.id!==f.id)));renderFavorites()});
+    del.setAttribute('aria-label',t('remove'));
+    actions.append(makeBtn('load',t('load'),()=>{setDraft(sanitizeItem({mode:f.mode,wave:f.wave,freq:f.freq,carrier:f.carrier,beat:f.beat,minutes:f.duration}));showTab('manual');if(session&&session.kind==='single')scheduleLive()}),
+      makeBtn('secondary',t('addQueue'),()=>addToQueue({mode:f.mode,wave:f.wave,freq:f.freq,carrier:f.carrier,beat:f.beat,minutes:f.duration})),del);
+    d.append(label,actions);list.appendChild(d);
+  });
+}
+function renderHistory(){
+  const list=$('histList'),empty=$('histEmpty'),hist=getHist();
+  list.innerHTML='';empty.style.display=hist.length?'none':'block';
+  hist.forEach(h=>{
+    const d=document.createElement('div');d.className='hist-item';
+    const what=h.mode==='pure'||!h.beat?fmt(h.freq)+' Hz':fmt(h.freq)+' Hz '+t('carrierWord')+' · '+fmt(h.beat)+' Hz '+t('beatWord');
+    const note=h.noteKey?t(h.noteKey):(h.note||'');
+    const extra=h.count>1?' · '+h.count+' '+t('tones'):'';
+    d.textContent=`${new Date(h.time).toLocaleString()} — ${what}${extra} · ${h.duration} ${t('min')} (${h.mode}) ${note}`.trim();
+    list.appendChild(d);
+  });
+}
+$('favBtn').onclick=saveFavorite;
+$('clearHist').onclick=()=>{if(confirm(t('clearConfirm'))){store.del('freqHist');renderHistory()}};
+function applyTheme(){
+  document.documentElement.setAttribute('data-theme',currentTheme);
+  store.set('theme',currentTheme);
+  const m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content',currentTheme==='dark'?'#1a0f0a':'#fff5eb');
+}
+$('themeToggle').onclick=()=>{currentTheme=currentTheme==='dark'?'light':'dark';applyTheme()};
+$('langToggle').onclick=()=>{currentLang=currentLang==='en'?'es':'en';store.set('lang',currentLang);applyTranslations()};
+window.onLangApplied=()=>{renderQuick();renderPresets();renderDurChips();renderQueue();renderFavorites();renderHistory();updateModeHint();updateUI();if(session)updateMediaMeta(true)};
+
+// ---------- Boot ----------
+(function boot(){
+  const o=loadJSON('freqOpts',{});
+  if(o&&typeof o==='object'){
+    if(Number.isFinite(o.fade))$('fade').value=Math.min(10,Math.max(0,o.fade));
+    if(Number.isFinite(o.totalMin))$('totalMin').value=Math.min(240,Math.max(0,o.totalMin));
+    $('repeat').checked=!!o.repeat;$('keepAwake').checked=!!o.keepAwake;
+  }
+  $('volVal').textContent=Math.round(readNum('volume',0,1,0.3)*100)+'%';
+  applyTheme();setFreqInput(440);setMode('pure');applyTranslations();drawScope();document.documentElement.classList.add('ready');
+})();
+
+// ======================================================================
+//  Progressive Web App: offline service worker, update prompt, install hint
+// ======================================================================
+(function pwa(){
+  const standalone=()=>(window.matchMedia&&matchMedia('(display-mode: standalone)').matches)||navigator.standalone===true;
+  const ua=navigator.userAgent||'';
+  const isIOS=/iPhone|iPad|iPod/i.test(ua)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+  const isIOSSafari=isIOS&&!/CriOS|FxiOS|EdgiOS|OPiOS|GSA\//.test(ua);
+  let deferred=null;
+  const card=$('installCard');
+  const dismissed=()=>store.get('installDismissed')==='1';
+  function showInstall(kind){
+    if(standalone()||dismissed())return;
+    card.hidden=false;
+    $('installTextAndroid').hidden=kind!=='android';$('installBtn').hidden=kind!=='android';
+    $('installTextIOS').hidden=kind!=='ios';
+  }
+  window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferred=e;showInstall('android')});
+  window.addEventListener('appinstalled',()=>{deferred=null;card.hidden=true});
+  $('installBtn').onclick=async()=>{
+    if(!deferred)return;
+    deferred.prompt();
+    try{await deferred.userChoice}catch(e){}
+    deferred=null;card.hidden=true;
+  };
+  $('installLater').onclick=()=>{card.hidden=true;store.set('installDismissed','1')};
+  if(isIOSSafari)showInstall('ios'); // iOS has no install event, so show the Share > Add to Home Screen steps
+
+  if(!('serviceWorker' in navigator)||!/^https?:$/.test(location.protocol))return; // needs https (or localhost)
+  let refreshing=false;
+  navigator.serviceWorker.addEventListener('controllerchange',()=>{ // new version took over after the user tapped refresh
+    if(refreshing)return;refreshing=true;location.reload();
+  });
+  function offerUpdate(worker){
+    $('updateBar').hidden=false;
+    $('updateBtn').onclick=()=>{$('updateBtn').disabled=true;worker.postMessage({type:'SKIP_WAITING'})};
+  }
+  navigator.serviceWorker.register('sw.js',{updateViaCache:'none'}).then(reg=>{
+    if(reg.waiting&&navigator.serviceWorker.controller)offerUpdate(reg.waiting);
+    reg.addEventListener('updatefound',()=>{
+      const w=reg.installing;if(!w)return;
+      w.addEventListener('statechange',()=>{
+        if(w.state!=='installed')return;
+        if(navigator.serviceWorker.controller)offerUpdate(w);   // an older version is running: ask before switching
+        else showToast(t('offlineReady'));                        // first install: everything is now cached
+      });
+    });
+    document.addEventListener('visibilitychange',()=>{if(!document.hidden)reg.update().catch(()=>{})});
+    setInterval(()=>reg.update().catch(()=>{}),60*60*1000);
+  }).catch(err=>console.warn('Service worker not registered:',err&&err.message));
+})();
+</script>
+</body>
+</html>
