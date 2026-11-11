@@ -2,7 +2,7 @@
    Precaches every file the app needs and serves it cache-first, so the app opens and plays with no network.
    To ship a change: edit the app files, bump VERSION below, redeploy. Phones that already have the app will
    see "Update available — tap to refresh" and switch over when the user taps it. */
-const VERSION = '1.1.1';
+const VERSION = '1.1.2';
 const CACHE = 'cmd-natural-' + VERSION;
 const ASSETS = [
   './',
