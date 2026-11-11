@@ -1,9 +1,9 @@
-/* CMD Natural Frequency Generator — service worker
+/* CMD Sound Frequency Generator — service worker
    Precaches every file the app needs and serves it cache-first, so the app opens and plays with no network.
    To ship a change: edit the app files, bump VERSION below, redeploy. Phones that already have the app will
    see "Update available — tap to refresh" and switch over when the user taps it. */
-const VERSION = '1.1.2';
-const CACHE = 'cmd-natural-' + VERSION;
+const VERSION = '1.1.3';
+const CACHE = 'cmd-sound-' + VERSION;
 const ASSETS = [
   './',
   './index.html',
@@ -26,7 +26,7 @@ self.addEventListener('install', event => {
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys()
-      .then(keys => Promise.all(keys.filter(k => (k.startsWith('cmd-natural-') || k.startsWith('rawhz-')) && k !== CACHE).map(k => caches.delete(k))))
+      .then(keys => Promise.all(keys.filter(k => (k.startsWith('cmd-sound-') || k.startsWith('cmd-natural-') || k.startsWith('rawhz-')) && k !== CACHE).map(k => caches.delete(k))))
       .then(() => self.clients.claim())
   );
 });
