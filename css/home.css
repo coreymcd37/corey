@@ -183,7 +183,7 @@ a:hover { color: var(--accent); }
   -webkit-background-clip: text; background-clip: text; color: transparent;
 }
 .kicker { letter-spacing: .14em; text-transform: uppercase; color: var(--muted); font-size: var(--text-xs); font-weight: 700; opacity: 0.95; }
-.lede { color: var(--soft); max-width: 40rem; margin: 0 auto 22px; font-size: clamp(1rem, 2vw, 1.125rem); line-height: 1.6; }
+.lede { color: var(--soft); white-space: pre-line; max-width: 40rem; margin: 0 auto 22px; font-size: clamp(1rem, 2vw, 1.125rem); line-height: 1.6; }
 h2.grad, #tools > h2, .journey > h2, .works h2 {
   font-size: var(--text-h2);
   letter-spacing: -0.03em;
