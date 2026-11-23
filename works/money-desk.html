@@ -1277,16 +1277,17 @@ async function buildPdf(){
   return await doc.save();
 }
 async function doSavePdf(){
-  var dl=null;
-  try{dl=(window.claude&&window.claude.use)?await window.claude.use('downloads'):null}catch(e){dl=null}
-  if(dl&&window.PDFLib){
+  if(window.PDFLib){
     try{
       toast('Building your PDF...');
       var bytes=await buildPdf();
-      await dl.save({filename:'my-money-desk-'+state.tab+'-'+new Date().toISOString().slice(0,10)+'.pdf',data:new Blob([bytes],{type:'application/pdf'})});
+      var url=URL.createObjectURL(new Blob([bytes],{type:'application/pdf'}));
+      var a=document.createElement('a');
+      a.href=url;a.download='my-money-desk-'+state.tab+'-'+new Date().toISOString().slice(0,10)+'.pdf';
+      document.body.appendChild(a);a.click();a.remove();
+      setTimeout(function(){URL.revokeObjectURL(url)},10000);
       toast('PDF ready.');
     }catch(err){
-      if(err&&err.code==='declined'){toast('Canceled.');return}
       toast('Couldn\u2019t save the PDF. Opening the print dialog instead.');
       try{window.print()}catch(e2){}
     }
